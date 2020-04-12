@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ "$1" == "--new-window" ]; then
+	st -e sh -c "bspc node -t floating && cat ~/.config/sxhkd/sxhkdrc | less"
+else
+	bspc node -t floating
+	cat ~/.config/sxhkd/sxhkdrc | less
+fi

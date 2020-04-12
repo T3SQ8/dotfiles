@@ -1,0 +1,111 @@
+##########################
+# WM INDEPENDENT HOTKEYS #
+##########################
+
+# terminal emulator
+super + Return
+	st
+
+# make sxhkd reload its configuration files
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# help
+super + F1
+	helpsxhkd --new-window
+
+# dmenu application launcher
+super + space
+	tlauncher
+
+#################
+# BSPWM HOTKEYS #
+#################
+
+################
+# WINDOW FOCUS #
+################
+
+# toggle tiled and monocle layout
+super + f
+	bspc desktop -l next
+
+# focus on the next/previous node in the current desktop
+alt + {_,shift + }Tab
+	bspc node -f {next,prev}.local
+
+####################
+# MOVE/SWAP/RESIZE #
+####################
+
+# swap current node and biggest node
+super + g
+	bspc node -s biggest
+
+# set window state
+super + {t,shift + t,s}
+	bspc node -t {tiled,pseudo_tiled,floating}
+
+# move floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# pin window
+super + p 
+	bspc node -g sticky
+
+# expand window
+super + alt + {Left,Down,Up,Right}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract window
+super + alt + shift + {Left,Down,Up,Right}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# rotate windows
+super + r
+	bspc node @focused:/ -R 90
+
+# close window
+super + shift + q
+	bspc node -k
+
+###########
+# DESKTOP #
+###########
+
+# focus the next/previous desktop in the current monitor
+super + {Prior,Next}
+	bspc desktop -f {prev,next}.local; refpanel
+
+# focus on the given desktop
+super + {1-9,0}
+	bspc desktop -f '^{1-9,10}'; refpanel
+
+# send to the given desktop
+super + shift + {1-9,0}
+	bspc node -d '^{1-9,10}'
+
+################
+# PRESELECTION #
+################
+
+# preselect the direction
+super + ctrl + {Left,Down,Up,Right}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+########
+# MICS #
+########
+
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}

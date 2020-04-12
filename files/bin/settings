@@ -1,0 +1,15 @@
+#!/bin/bash
+
+dmenu_options="dmenu -i -c -l 10"
+Options=("brightness" "screen-resolution")
+
+Choise=$(printf '%s\n' "${Options[@]}"| $dmenu_options)
+
+case $Choise in
+	brightness)
+		xrandr --output "$(xrandr -q | grep connected | head -n 1 | cut -d ' ' -f1)" --brightness "$(x | $dmenu_options -p "Set brightness to?:")"
+		;;
+	screen-resolution)
+		xrandr -s "$(xrandr | sed s/\ \ \ // | awk '{print$1;}' | grep x | $dmenu_options -p "Set the screen resolution to?:")"
+		;;
+esac

@@ -1,0 +1,4 @@
+#!/bin/bash
+folder="$HOME/.local/share/wallpaper/"
+file=$(ls $folder*.jpg | shuf -n 1)
+feh --bg-fill --no-fehbg $file

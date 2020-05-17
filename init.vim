@@ -1,9 +1,4 @@
-" Plugins{{{
-call plug#begin('~/.config/nvim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-call plug#end()
-"}}}
+execute pathogen#infect()
 
 " Functions{{{
 function! Compilehtml()
@@ -98,3 +93,6 @@ nnoremap <s-q> <nop>
 nnoremap <space> <nop>
 nnoremap q: <nop>
 "}}}
+
+"autocmd bufwritepost !./launch.sh
+command! W write

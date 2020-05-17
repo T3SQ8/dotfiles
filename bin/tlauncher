@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dmenu_options="dmenu -i -c -l 10"
-gui_programs=("keepassxc" "firefox")
+gui_programs=("keepassxc" "pcmanfm" "chromium" "firefox")
 terminal_programs=("vim" "ranger" "newsboat" "settings")
 
 Choise=$(printf '%s\n' "${gui_programs[@]}" "${terminal_programs[@]}" | sort | $dmenu_options)

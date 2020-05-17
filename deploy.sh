@@ -1,5 +1,4 @@
 #!/bin/sh
-cd files || exit
 mkdir -p ~/.config/ranger ~/.config/bspwm ~/.config/sxhkd ~/.config/zsh ~/.cache/zsh ~/.config/X11 ~/.local/share/wallpaper
 cp -r bin ~/.local/bin
 cp -r bspwmrc ~/.config/bspwm/bspwmrc

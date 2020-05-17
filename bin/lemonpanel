@@ -1,0 +1,40 @@
+#!/usr/bin/sh
+
+# Define the clock
+Clock() {
+        date "+%b %d %H:%M"
+}
+
+# Define the battery
+Battery() {
+	echo "BAT:$(cat /sys/class/power_supply/BAT?/capacity)%"
+}
+
+# Define the internet
+Internet() {
+	cat /sys/class/net/[we]*/operstate | grep up 1> /dev/null && Connection="ON" || Connection="OFF"
+	echo "INT: $Connection"
+}
+
+# Define the desktop
+Desktop() {
+	bspc query -D -d focused --names
+}
+
+# Print the result
+Result() {
+	while true; do
+		echo "%{+u}%{l} $(Desktop) %{c}$(Clock)%{r}$(Internet) | $(Battery) "
+		sleep 1
+	done
+}
+
+case $1 in
+	-r)
+		exec lemonpanel
+		;;
+	*)
+		Result | lemonbar -g x24 -u2 -U#268bd2 -f "Liberation Mono:pixelsize=11:antialias=true:autohint=true" -B#073642 -F#eee8d5 &
+		lemonpanel_pid=$!
+		;;
+esac

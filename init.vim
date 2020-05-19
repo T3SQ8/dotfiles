@@ -94,5 +94,7 @@ nnoremap <space> <nop>
 nnoremap q: <nop>
 "}}}
 
-"autocmd bufwritepost !./launch.sh
+autocmd filetype markdown set commentstring=<!--%s-->
 command! W write
+command! Q quit
+colorscheme peachpuff

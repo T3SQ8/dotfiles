@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	st
+	$TERMINAL
 
 # make sxhkd reload its configuration files
 super + Escape
@@ -12,11 +12,18 @@ super + Escape
 
 # help
 super + F1
-	st -e sh -c "bspc node -t floating && cat ~/.config/sxhkd/sxhkdrc | less"
+	$TERMINAL -e sh -c "bspc node -t floating && cat ~/.config/sxhkd/sxhkdrc | less"
 
 # dmenu application launcher
 super + space
 	tlauncher
+
+# volume controls
+placeholder
+	amixer sset 'Master' 5%+
+	
+placeholder
+	amixer sset 'Master' 5%-
 
 #################
 # BSPWM HOTKEYS #
@@ -40,7 +47,7 @@ alt + {_,shift + }Tab
 
 # swap current node and biggest node
 super + g
-	bspc node -s biggest
+	bspc node -s biggest.local
 
 # set window state
 super + {t,shift + t,s}

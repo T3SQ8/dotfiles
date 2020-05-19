@@ -1,15 +1,25 @@
-#!/bin/bash
+#!/bin/sh
 
-dmenu_options="dmenu -i -c -l 10"
-Options=("brightness" "screen-resolution")
+echo "
+1. Brightness
+2. Screen resolution
+Choose an option:"
 
-Choise=$(printf '%s\n' "${Options[@]}"| $dmenu_options)
+read -r Choise
 
+echo ""
 case $Choise in
-	brightness)
-		xrandr --output "$(xrandr -q | grep connected | head -n 1 | cut -d ' ' -f1)" --brightness "$(x | $dmenu_options -p "Set brightness to?:")"
+	1)
+		echo "Set brightness to?:"
+		read -r Brightness
+		xrandr --output "$(xrandr -q | grep connected | head -n 1 | cut -d ' ' -f1)" --brightness "$Brightness"
 		;;
-	screen-resolution)
-		xrandr -s "$(xrandr | sed s/\ \ \ // | awk '{print$1;}' | grep x | $dmenu_options -p "Set the screen resolution to?:")"
+	2)
+		xrandr | sed s/\ \ \ // | awk '{print$1;}' | grep x
+		echo "Set the screen resolution to?:"
+		read -r Resolution
+		xrandr -s "$Resolution"
 		;;
+	*)
+		echo "Invalid option"
 esac

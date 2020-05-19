@@ -1,5 +1,4 @@
 #! /bin/sh
-sxhkd &
 
 bspc rule -r "*"
 
@@ -31,7 +30,4 @@ bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
-xsetroot -cursor_name left_ptr
-lemonpanel
-feh --bg-fill --no-fehbg $(ls $HOME/.local/share/wallpaper/*.jpg | shuf -n 1)
-setxkbmap se
+lemonpanel &

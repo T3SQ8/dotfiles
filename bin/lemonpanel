@@ -1,8 +1,20 @@
-#!/usr/bin/sh
+#!/bin/sh
+
+if [ "$1" = "-r" ]; then
+	pkill lemon &
+	exec lemonpanel
+fi
+
+Font="Liberation Mono:pixelsize=11:antialias=true:autohint=true"
+Underline_color=#268bd2
+Underline_size=2
+Foreground_color=#eee8d5
+Background_color=#073642
+Geometry=x24
 
 # Define the clock
 Clock() {
-        date "+%b %d %H:%M"
+	date "+%b %d %H:%M"
 }
 
 # Define the battery
@@ -21,20 +33,22 @@ Desktop() {
 	bspc query -D -d focused --names
 }
 
+Volume() {
+	echo "VOL: $(amixer get Master | awk -F"[][]" '/dB/ { print $2 }')"
+}
+
 # Print the result
 Result() {
 	while true; do
-		echo "%{+u}%{l} $(Desktop) %{c}$(Clock)%{r}$(Internet) | $(Battery) "
-		sleep 1
+		echo "%{+u}%{l} $(Desktop) %{c}$(Clock)%{r}$(Volume) | $(Internet) | $(Battery) "
+		sleep 30
 	done
 }
 
-case $1 in
-	-r)
-		exec lemonpanel
-		;;
-	*)
-		Result | lemonbar -g x24 -u2 -U#268bd2 -f "Liberation Mono:pixelsize=11:antialias=true:autohint=true" -B#073642 -F#eee8d5 &
-		lemonpanel_pid=$!
-		;;
-esac
+Result | lemonbar \
+	-g "$Geometry" \
+	-u "$Underline_size" \
+	-U "$Underline_color" \
+	-f "$Font" \
+	-B "$Background_color" \
+	-F "$Foreground_color"

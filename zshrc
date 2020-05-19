@@ -18,7 +18,15 @@ compinit
 _comp_options+=(globdots)               # Include hidden files.
  
 # Vim mode
-bindkey -v
+bindkey -e
 
 alias ls='ls --color=auto'
-alias vim='nvim'
+alias e='$EDITOR'
+
+
+# Open command in a vim buffer
+autoload edit-command-line
+zle -N edit-command-line
+bindkey '^o' edit-command-line
+
+setopt NO_HUP

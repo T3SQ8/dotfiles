@@ -1,10 +1,5 @@
 #!/bin/sh
 
-if [ "$1" = "-r" ]; then
-	pkill lemon &
-	exec lemonpanel
-fi
-
 Font="Liberation Mono:pixelsize=11:antialias=true:autohint=true"
 Underline_color=#268bd2
 Underline_size=2
@@ -12,23 +7,24 @@ Foreground_color=#eee8d5
 Background_color=#073642
 Geometry=x24
 
-# Define the clock
 Clock() {
 	date "+%b %d %H:%M"
 }
 
-# Define the battery
 Battery() {
-	echo "BAT:$(cat /sys/class/power_supply/BAT?/capacity)%"
+	Battery_precentage=$(cat /sys/class/power_supply/BAT?/capacity)
+	if [ "$(cat /sys/class/power_supply/BAT?/status)" = "Charging" ]; then
+		echo "BAT:+$Battery_precentage%"
+	else
+		echo "BAT:$Battery_precentage%"
+	fi
 }
 
-# Define the internet
 Internet() {
 	cat /sys/class/net/[we]*/operstate | grep up 1> /dev/null && Connection="ON" || Connection="OFF"
 	echo "INT: $Connection"
 }
 
-# Define the desktop
 Desktop() {
 	bspc query -D -d focused --names
 }
@@ -37,11 +33,10 @@ Volume() {
 	echo "VOL: $(amixer get Master | awk -F"[][]" '/dB/ { print $2 }')"
 }
 
-# Print the result
 Result() {
 	while true; do
 		echo "%{+u}%{l} $(Desktop) %{c}$(Clock)%{r}$(Volume) | $(Internet) | $(Battery) "
-		sleep 30
+		sleep 10
 	done
 }
 

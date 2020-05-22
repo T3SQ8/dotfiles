@@ -6,29 +6,31 @@
 super + Return
 	$TERMINAL
 
-# make sxhkd reload its configuration files
+# reload sxhkd
 super + Escape
 	pkill -USR1 -x sxhkd
 
-# help
-super + F1
-	$TERMINAL -e sh -c "bspc node -t floating && cat ~/.config/sxhkd/sxhkdrc | less"
-
 # dmenu application launcher
 super + space
-	tlauncher
+	launcher
 
 # volume controls
-placeholder
-	amixer sset 'Master' 5%+
+XF86AudioRaiseVolume
+	amixer sset 'Master' 5%+; refpanel
 	
-placeholder
-	amixer sset 'Master' 5%-
+XF86AudioLowerVolume
+	amixer sset 'Master' 5%-; refpanel
+
+# brightness
+XF86MonBrightnessUp
+	brightness 0.1; refpanel
+	
+XF86MonBrightnessDown
+	brightness -0.1; refpanel
 
 #################
 # BSPWM HOTKEYS #
 #################
-
 ################
 # WINDOW FOCUS #
 ################
@@ -54,8 +56,12 @@ super + {t,shift + t,s}
 	bspc node -t {tiled,pseudo_tiled,floating}
 
 # move floating window
-super + {Left,Down,Up,Right}
+super + {h,j,k,l}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+#
+# move floating window faster
+super + shift + {h,j,k,l}
+	bspc node -v {-40 0,0 40,0 -40,40 0}
 
 # pin window
 super + p 
@@ -83,11 +89,11 @@ super + shift + q
 
 # focus the next/previous desktop in the current monitor
 super + {Prior,Next}
-	bspc desktop -f {prev,next}.local; lemonpanel -r
+	bspc desktop -f {prev,next}.local; refpanel
 
 # focus on the given desktop
 super + {1-9,0}
-	bspc desktop -f '^{1-9,10}'; lemonpanel -r
+	bspc desktop -f '^{1-9,10}'; refpanel
 
 # send to the given desktop
 super + shift + {1-9,0}
@@ -98,7 +104,7 @@ super + shift + {1-9,0}
 ################
 
 # preselect the direction
-super + ctrl + {Left,Down,Up,Right}
+super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
 # preselect the ratio

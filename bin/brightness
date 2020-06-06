@@ -1,7 +1,7 @@
 #!/bin/sh
 
-[ -z $1 ] && exit
+[ -z $1 ] && exit # exit if no argument is given
 
-display="$(xrandr | grep LVDS | cut -f1 -d " ")"
+display="$(xrandr | grep LVDS | cut -f1 -d ' ')"
 brightness="$(echo $(xrandr --verbose | grep -m 1 -i brightness | cut -f2 -d ' ') $1 | awk '{print $1 + $2}')"
 xrandr --output "$display" --brightness "$brightness"

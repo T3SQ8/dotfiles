@@ -5,7 +5,7 @@ bspc rule -r "*"
 mainmonitor="$(bspc query --monitors --names | grep -v LVDS | head -n 1)" # Look for other monitors than the laptop screen
 if [ -n "$mainmonitor" ]; then
 	laptopdisplay="$(bspc query --monitors --names | grep LVDS)"
-	xrandr --output "$mainmonitor" --auto --output $laptopdisplay --off # Output to the external monitor and turn off the latop display
+	xrandr --output "$mainmonitor" --auto --output "$laptopdisplay" --off # Output to the external monitor and turn off the latop display
 	bspc monitor "$mainmonitor" -d 1 2 3 4 5 6 7 8 9 10
 else
 	bspc monitor -d 1 2 3 4 5 6 7 8 9 10
@@ -20,5 +20,5 @@ bspc config normal_border_color "#eee8d5"
 bspc config split_ratio 0.5
 bspc config window_gap 12
 
-feh --bg-fill --no-fehbg $(ls $HOME/.local/share/wallpaper/*.jpg | shuf -n 1)
+xwallpaper --zoom "$(find "$HOME"/pictures/wallpaper/*.jpg | shuf -n 1)"
 lemonpanel &

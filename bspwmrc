@@ -20,5 +20,13 @@ bspc config normal_border_color "#eee8d5"
 bspc config split_ratio 0.5
 bspc config window_gap 12
 
+bspc rule -a "Tor Browser" desktop='^9' follow=on state=pseudo_tiled
+
 xwallpaper --zoom "$(find "$HOME"/pictures/wallpaper/*.jpg | shuf -n 1)"
 lemonpanel &
+
+bspc subscribe desktop_focus | while read line; do
+refpanel &
+done
+
+echo "test"

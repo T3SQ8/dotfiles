@@ -4,8 +4,12 @@ Font="Liberation Mono:pixelsize=11:antialias=true:autohint=true"
 Underline_color=#268bd2
 Underline_size=2
 Foreground_color=#eee8d5
-Background_color=#073642
 Geometry=x24
+if [ "$(cat /sys/class/power_supply/BAT*/capacity)" -le 15 ];then
+	Background_color=#ff0000
+else
+	Background_color=#073642
+fi
 
 Clock() {
 	date "+%b %d %H:%M"
@@ -13,7 +17,7 @@ Clock() {
 
 Battery() {
 	Battery_precentage=$(cat /sys/class/power_supply/BAT?/capacity)
-	if [ "$(cat /sys/class/power_supply/BAT?/status)" = "Charging" ]; then
+	if [ "$(cat /sys/class/power_supply/BAT*/status)" = "Charging" ]; then
 		echo "BAT:+$Battery_precentage%"
 	else
 		echo "BAT:$Battery_precentage%"
@@ -21,7 +25,7 @@ Battery() {
 }
 
 Internet() {
-	cat /sys/class/net/[we]*/operstate | grep up 1> /dev/null && Connection="ON" || Connection="OFF"
+	cat /sys/class/net/*/operstate | grep up 1> /dev/null && Connection="ON" || Connection="OFF"
 	echo "INT: $Connection"
 }
 

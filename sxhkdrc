@@ -90,12 +90,10 @@ super + shift + q
 # focus the next/previous desktop in the current monitor
 super + {Prior,Next}
 	bspc desktop -f {prev,next}.local
-	#bspc desktop -f {prev,next}.local; refpanel
 
 # focus on the given desktop
 super + {1-9,0}
 	bspc desktop -f '^{1-9,10}'
-	#bspc desktop -f '^{1-9,10}'; refpanel
 
 # send to the given desktop
 super + shift + {1-9,0}

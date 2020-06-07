@@ -6,7 +6,6 @@ export XINITRC=$HOME/.config/X11/xinitrc
 export XAUTHORITY=$HOME/.config/X11/Xauthority
 export LESSHISTFILE=-
 export TERMINAL=st
+export GNUPGHOME="$HOME"/.config/gnupg
 
-if [[ "$(tty)" = "/dev/tty1" ]]; then
-	startx "$HOME/.config/X11/xinitrc" &
-fi
+[ "$(tty)" = "/dev/tty1" ] && startx "$HOME/.config/X11/xinitrc" &

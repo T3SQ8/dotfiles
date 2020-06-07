@@ -31,7 +31,6 @@ XF86MonBrightnessDown
 #################
 # BSPWM HOTKEYS #
 #################
-################
 # WINDOW FOCUS #
 ################
 
@@ -43,9 +42,9 @@ super + f
 alt + {_,shift + }Tab
 	bspc node -f {next,prev}.local
 
-####################
-# MOVE/SWAP/RESIZE #
-####################
+#############
+# MOVE/SWAP #
+#############
 
 # swap current node and biggest node
 super + g
@@ -56,24 +55,16 @@ super + {t,shift + t,s}
 	bspc node -t {tiled,pseudo_tiled,floating}
 
 # move floating window
-super + {h,j,k,l}
+super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
-#
+
 # move floating window faster
-super + shift + {h,j,k,l}
+super + shift + {Left,Down,Up,Right}
 	bspc node -v {-40 0,0 40,0 -40,40 0}
 
 # pin window
 super + p 
 	bspc node -g sticky
-
-# expand window
-super + alt + {Left,Down,Up,Right}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-# contract window
-super + alt + shift + {Left,Down,Up,Right}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # rotate windows
 super + r
@@ -82,6 +73,26 @@ super + r
 # close window
 super + shift + q
 	bspc node -k
+
+##########
+# RESIZE #
+##########
+
+# expand window from edge
+super + alt + {Left,Down,Up,Right}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract window from edge
+super + alt + shift + {Left,Down,Up,Right}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# expand window
+super + plus
+	bspwm_resize bigger
+
+# contract window from edge
+super + minus
+	bspwm_resize smaller
 
 ###########
 # DESKTOP #
@@ -104,7 +115,7 @@ super + shift + {1-9,0}
 ################
 
 # preselect the direction
-super + ctrl + {h,j,k,l}
+super + ctrl + {Left,Down,Up,Right}
 	bspc node -p {west,south,north,east}
 
 # preselect the ratio

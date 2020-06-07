@@ -1,0 +1,18 @@
+#!/bin/sh
+
+step=20
+
+case $1 in
+	bigger)
+		bspc node -z left -$step 0
+		bspc node -z bottom 0 $step
+		bspc node -z top 0 -$step
+		bspc node -z right $step 0
+		;;
+	smaller)
+		bspc node -z right -$step 0
+		bspc node -z top 0 $step
+		bspc node -z bottom 0 -$step
+		bspc node -z left $step 0
+		;;
+esac

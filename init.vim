@@ -1,32 +1,85 @@
+" Plugings{{{
 execute pathogen#infect()
+let g:linkhandler_browser = "xdg-open"
+nnoremap <leader>o :call Openurl()<cr>
+autocmd filetype todo nnoremap <c-x> :call Complete()<cr>
+"}}}
+
+" Settings{{{
+autocmd BufRead,BufNewFile *.tex set filetype=tex
+"autocmd filetype markdown set commentstring=<!--%s-->
+colorscheme peachpuff
+filetype indent on
+set foldmethod=marker " Folding
+set ignorecase " Searching
+set mouse=nvc " Enable mouse for normal, visual and command-line modes
+set notimeout " Key timeout
+set nowrap " Text wrapping
+set number relativenumber "cursorline " Lines
+set smartindent " Indentation
+set splitbelow splitright " Open splits at the bottom and right
+set undofile undodir=$HOME/.config/nvim/undodir "Set an undofile
+syntax on "}}}
+
+" Key bindings{{{
+let mapleader=" "
+nnoremap <leader>n :nohlsearch<cr>
+nnoremap Y y$
+
+" Movement
+nnoremap k gk
+vnoremap k gk
+nnoremap j gj
+vnoremap j gj
+
+" Disable keys
+nnoremap <s-q> <nop>
+nnoremap <space> <nop>
+nnoremap q: <nop>
+
+" Clipboard
+cnoremap <c-v> <c-r>+
+vnoremap <c-c> "+y
+nnoremap <c-a> ggVG
+inoremap <expr> <c-v> getreg('+')
+inoremap <expr> <s-insert> getreg(':')
+
+"Switching splits
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
+" Command-line/terminal
+command Q quit
+command W write
+command WQ wq
+command Wq wq
+tnoremap <Esc> <C-\><C-n>
+"}}}
 
 " Functions{{{
-function! Compilehtml()
-	set fileencoding=utf-8
-	write
-	!pandoc % -o /home/anime/Desktop/tmp.html
-	set fileencoding=latin1
-	write
-endfunction
-
 " Open a small terminal
+nnoremap <leader>t :call Terminal()<cr>
 function! Terminal()
 	4split +terminal
 	set nonumber norelativenumber
 endfunction
 
 " Spell check
-function! Spellmap(lang)
-	nnoremap n ]sz=
-	nnoremap p [sz=
-	set spell
-	if a:lang ==? "en_us"
-		let spellcheck="on"
-		set spelllang=en_us
-	else
-		unmap n
-		unmap p
+nnoremap <leader>en :call Spellmap("en_us")<cr>
+nnoremap <leader>sv :call Spellmap("sv")<cr>
+nnoremap <leader>fr :call Spellmap("fr")<cr>
+nnoremap <leader>l :call Spellmap("")<cr>
+function! Spellmap(lang) "Map n to jump when spellchecking
+	if empty(a:lang)
 		set nospell
+		silent! unmap <buffer> n
+		silent! unmap <buffer> N
+	else
+		nnoremap <buffer> n ]sz=
+		nnoremap <buffer> N [sz=
+		execute "set spell spelllang=" . a:lang
 	endif
 endfunction
 
@@ -39,62 +92,11 @@ function! Openurl()
 endfunction
 
 " Toggle text wrapping
-function! Wraping()
+nnoremap <leader>w :call Wraping()<cr>
+function! Wraping() "Toggle line wrapping
 	if &wrap ==? "nowrap" || &linebreak ==? "nolinebreak"
 		set wrap linebreak
 	else
-		set nowrap nolinebreak
+		set nowrap
 	endif
-endfunction
-"}}}
-
-" Settings{{{
-" Lines
-set number relativenumber
-
-" Open splits at the bottom and right
-set splitbelow splitright
-
-" Text wrapping
-set nowrap
-
-" Searching
-set ignorecase
-
-" Enable mouse for normal, visual and command-line modes
-set mouse=nvc
-
-" Indentation
-set smartindent
-
-" Folding
-set foldmethod=marker
-
-" Key timeout
-set notimeout
-"}}}
-
-" Key bindings{{{
-let mapleader=" "
-nnoremap <leader>c :call Compilehtml()<cr>
-nnoremap <leader>w :call Wraping()<cr>
-nnoremap <leader>t :call Terminal()<cr>
-nnoremap <leader>en :call Spellmap("en_us")<cr>
-nnoremap <leader>l :call Spellmap("")<cr>
-nnoremap <leader>u :call Openurl()<cr>
-nnoremap <leader>n :noh<cr>
-nnoremap <c-a> ggVG
-tnoremap <Esc> <C-\><C-n>
-nnoremap k gk
-nnoremap j gj
-
-" Disable keys
-nnoremap <s-q> <nop>
-nnoremap <space> <nop>
-nnoremap q: <nop>
-"}}}
-
-autocmd filetype markdown set commentstring=<!--%s-->
-command! W write
-command! Q quit
-colorscheme peachpuff
+endfunction "}}}

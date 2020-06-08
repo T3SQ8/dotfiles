@@ -1,13 +1,12 @@
 " Plugings{{{
 execute pathogen#infect()
-let g:linkhandler_browser = "xdg-open"
-nnoremap <leader>o :call Openurl()<cr>
-autocmd filetype todo nnoremap <c-x> :call Complete()<cr>
 "}}}
 
 " Settings{{{
 autocmd BufRead,BufNewFile *.tex set filetype=tex
-"autocmd filetype markdown set commentstring=<!--%s-->
+autocmd BufRead,BufNewFile sxhkd set commentstring=#%s
+autocmd filetype markdown set commentstring=<!--%s-->
+
 colorscheme peachpuff
 filetype indent on
 set foldmethod=marker " Folding
@@ -56,6 +55,10 @@ command W write
 command WQ wq
 command Wq wq
 tnoremap <Esc> <C-\><C-n>
+
+" Plugins
+autocmd filetype todo nnoremap <c-x> :call Complete()<cr>
+nnoremap <leader>o :call Openurl()<cr>
 "}}}
 
 " Functions{{{
@@ -80,14 +83,6 @@ function! Spellmap(lang) "Map n to jump when spellchecking
 		nnoremap <buffer> n ]sz=
 		nnoremap <buffer> N [sz=
 		execute "set spell spelllang=" . a:lang
-	endif
-endfunction
-
-" Open links in a web browser
-function! Openurl()
-	let s:link = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*\|www.[a-z.]*[^ >,;]*')
-	if s:link != ""
-		execute "!firefox" s:link "&"
 	endif
 endfunction
 

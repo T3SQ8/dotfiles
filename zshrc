@@ -22,6 +22,7 @@ setopt NO_HUP autocd
 # Aliases
 alias ls='ls --color=auto'
 alias e='$EDITOR'
+alias grep='grep --color'
 
 # Command-line completion
 zstyle ':completion:*' menu select

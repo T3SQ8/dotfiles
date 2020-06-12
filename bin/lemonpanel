@@ -5,11 +5,15 @@ Underline_color=#268bd2
 Underline_size=2
 Foreground_color=#eee8d5
 Geometry=x24
-if [ "$(cat /sys/class/power_supply/BAT*/capacity)" -le 15 ];then
-	Background_color=#ff0000
-else
-	Background_color=#073642
-fi
+Background_color() {
+	if [ "$(cat /sys/class/power_supply/BAT*/capacity)" -le 15 ] && \
+		[ "$(cat /sys/class/power_supply/BAT*/status)" = "Discharging" ]; then
+			echo "#ff0000"
+		else
+			echo "#073642"
+	fi
+	echo "$Background_color"
+}
 
 Clock() {
 	date "+%b %d %H:%M"
@@ -30,24 +34,24 @@ Internet() {
 }
 
 Desktop() {
-	bspc query -D -d focused --names
+	bspc query -D -d --names
 }
 
 Volume() {
 	echo "VOL: $(amixer get Master | awk -F"[][]" '/dB/ { print $2 }')"
 }
 
-Result() {
+Output() {
 	while true; do
 		echo "%{+u}%{l} $(Desktop) %{c}$(Clock)%{r}$(Volume) | $(Internet) | $(Battery) "
 		sleep 10
 	done
 }
 
-Result | lemonbar \
+Output | lemonbar \
 	-g "$Geometry" \
 	-u "$Underline_size" \
 	-U "$Underline_color" \
 	-f "$Font" \
-	-B "$Background_color" \
+	-B "$(Background_color)" \
 	-F "$Foreground_color"

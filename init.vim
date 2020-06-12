@@ -7,7 +7,8 @@ autocmd BufRead,BufNewFile *.tex set filetype=tex
 autocmd BufRead,BufNewFile sxhkd set commentstring=#%s
 autocmd filetype markdown set commentstring=<!--%s-->
 
-colorscheme peachpuff
+set termguicolors
+colorscheme solarized8
 filetype indent on
 set foldmethod=marker " Folding
 set ignorecase " Searching
@@ -63,9 +64,14 @@ nnoremap <leader>o :call Openurl()<cr>
 
 " Functions{{{
 " Open a small terminal
-nnoremap <leader>t :call Terminal()<cr>
-function! Terminal()
-	4split +terminal
+nnoremap <leader>t :call Terminal("")<cr>
+nnoremap <leader>T :call Terminal("v")<cr>
+function! Terminal(position)
+	if a:position ==? "v"
+		50vsplit +terminal
+	else
+		4split +terminal
+	endif
 	set nonumber norelativenumber
 endfunction
 

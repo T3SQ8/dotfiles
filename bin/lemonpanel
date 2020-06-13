@@ -12,7 +12,6 @@ Background_color() {
 		else
 			echo "#073642"
 	fi
-	echo "$Background_color"
 }
 
 Clock() {
@@ -20,17 +19,12 @@ Clock() {
 }
 
 Battery() {
-	Battery_precentage=$(cat /sys/class/power_supply/BAT*/capacity)
-	if [ "$(cat /sys/class/power_supply/BAT*/status)" = "Charging" ]; then
-		echo "BAT:+$Battery_precentage%"
-	else
-		echo "BAT:$Battery_precentage%"
-	fi
+	[ "$(cat /sys/class/power_supply/BAT*/status)" = "Charging" ] && bat_status=+
+	echo "BAT:"$bat_status"$(cat /sys/class/power_supply/BAT*/capacity)%"
 }
 
 Internet() {
-	cat /sys/class/net/*/operstate | grep -q up && Connection="ON" || Connection="OFF"
-	echo "INT: $Connection"
+	cat /sys/class/net/*/operstate | grep -q up && echo "INT: ON" || echo "INT: OFF"
 }
 
 Desktop() {

@@ -7,8 +7,8 @@ function! Compilelatex()
 	set fileencoding=latin1 | write
 endfunction
 
-nnoremap <buffer> <leader>u :call Addpackage()<cr>
-function! Addpackage(package = "")
+nnoremap <buffer> <leader>u :call Addpackage("")<cr>
+function! Addpackage(package)
 	if empty(a:package)
 		if search('\\usepackage{\w\+}', 'n') "Search for a line that allready is calling a package
 			call append(search('\\usepackage{\w\+}', 'bn'), "\\usepackage{}") "Add the new line after that

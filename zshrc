@@ -1,6 +1,8 @@
 autoload -U colors compinit edit-command-line
 
 # History in cache directory:
+[ -e $HOME/.cache/zsh/histfile ] || mkdir -p $HOME/.cache/zsh/ && touch $HOME/.cache/zsh/histfile
+
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.cache/zsh/histfile

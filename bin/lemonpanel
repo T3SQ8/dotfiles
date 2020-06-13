@@ -1,13 +1,16 @@
 #!/bin/sh
 
+Battery_capacity=$(cat /sys/class/power_supply/BAT*/capacity)
+Battery_status=$(cat /sys/class/power_supply/BAT*/status)
+
 Font="Liberation Mono:pixelsize=11:antialias=true:autohint=true"
 Underline_color=#268bd2
 Underline_size=2
 Foreground_color=#eee8d5
 Geometry=x24
 Background_color() {
-	if [ "$(cat /sys/class/power_supply/BAT*/capacity)" -le 15 ] && \
-		[ "$(cat /sys/class/power_supply/BAT*/status)" = "Discharging" ]; then
+	if [ "$Battery_capacity" -le 15 ] && \
+		[ "$Battery_status" = "Discharging" ]; then
 			echo "#ff0000"
 		else
 			echo "#073642"
@@ -19,8 +22,8 @@ Clock() {
 }
 
 Battery() {
-	[ "$(cat /sys/class/power_supply/BAT*/status)" = "Charging" ] && bat_status=+
-	echo "BAT:"$bat_status"$(cat /sys/class/power_supply/BAT*/capacity)%"
+	[ "$Battery_status" = "Charging" ] && Charging_status=+
+	echo "BAT:"$Charging_status""$Battery_capacity"%"
 }
 
 Internet() {

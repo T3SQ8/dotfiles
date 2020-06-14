@@ -42,9 +42,9 @@ super + f
 alt + {_,shift + }Tab
 	bspc node -f {next,prev}.local
 
-# swap current node and biggest node
-super + g
-	bspc node -s biggest.local
+# swap nodes
+super + {g, w}
+	bspc node -s {biggest.local, pointed}
 
 # set window state
 super + {t,shift + t,s}
@@ -58,9 +58,13 @@ super + {Left,Down,Up,Right}
 super + shift + {Left,Down,Up,Right}
 	bspc node -v {-40 0,0 40,0 -40,40 0}
 
-# pin window
-super + p 
-	bspc node -g sticky
+# node flags
+super + {p, h}
+	bspc node -g {sticky, hidden}
+
+# unhide windows
+super + shift + h
+	bspc node $(bspc query -N -n .hidden | tail -n1) -g hidden=off
 
 # rotate windows
 super + r
@@ -98,11 +102,11 @@ super + minus
 super + {Prior,Next}
 	bspc desktop -f {prev,next}.local
 
-# focus on the given desktop
+# focus on desktop
 super + {1-9,0}
 	bspc desktop -f '^{1-9,10}'
 
-# send to the given desktop
+# send node to desktop
 super + shift + {1-9,0}
 	bspc node -d '^{1-9,10}'
 

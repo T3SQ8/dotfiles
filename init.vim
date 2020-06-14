@@ -18,7 +18,7 @@ set nowrap " Text wrapping
 set number relativenumber "cursorline " Lines
 set smartindent " Indentation
 set splitbelow splitright " Open splits at the bottom and right
-set undofile undodir=$HOME/.config/nvim/undodir "Set an undofile
+set undofile undodir=$HOME/.config/nvim/undodir " Set an undofile
 syntax on "}}}
 
 " Key bindings{{{
@@ -44,7 +44,7 @@ nnoremap <c-a> ggVG
 inoremap <expr> <c-v> getreg('+')
 inoremap <expr> <s-insert> getreg(':')
 
-"Switching splits
+" Switching splits
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k

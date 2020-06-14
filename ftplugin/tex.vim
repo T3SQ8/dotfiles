@@ -1,9 +1,15 @@
 "Functions{{{
 nnoremap <buffer> <leader>c :call Compilelatex()<cr>
 function! Compilelatex()
+	let output_dir = expand("%:p:h")
+	if filewritable(expand("%:p:r") . ".pdf")
+		let overwrite = input("The file already exists. Do you want to overwrite it? [y/N] ")
+		if empty(overwrite) || overwrite =~ "[^Yy]"
+			return
+		endif
+	endif
 	set fileencoding=utf-8 | write
-	let file = substitute(glob("%"), '\', '/', 'g')
-	silent execute '!pdflatex -output-directory=\%HOMEPATH\%\document-output' file
+	silent execute "!pdflatex"  "-output-directory=" . output_dir expand("%:p")
 	set fileencoding=latin1 | write
 endfunction
 
@@ -38,6 +44,6 @@ inoremap <buffer> <c-s>2 \subsection{}<left>
 inoremap <buffer> <c-b> \textbf{}<left>
 inoremap <buffer> <c-e> \emph{}<left>
 inoremap <buffer> <c-i> \textit{}<left>
-inoremap <buffer> <c-n> \newpage<cr>
+inoremap <buffer> <c-n> \newpage
 inoremap <buffer> <c-r> \textcolor{red}{}<left>
 "}}}

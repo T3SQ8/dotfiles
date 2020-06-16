@@ -15,7 +15,7 @@ set ignorecase " Searching
 set mouse=nvc " Enable mouse for normal, visual and command-line modes
 set notimeout " Key timeout
 set nowrap " Text wrapping
-set number relativenumber "cursorline " Lines
+set number relativenumber cursorline " Lines
 set smartindent " Indentation
 set splitbelow splitright " Open splits at the bottom and right
 set undofile undodir=$HOME/.config/nvim/undodir " Set an undofile
@@ -42,7 +42,7 @@ cnoremap <c-v> <c-r>+
 vnoremap <c-c> "+y
 nnoremap <c-a> ggVG
 inoremap <expr> <c-v> getreg('+')
-inoremap <expr> <s-insert> getreg(':')
+inoremap <expr> <c-f> getreg(':')
 
 " Switching splits
 nnoremap <c-h> <c-w>h

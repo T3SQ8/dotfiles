@@ -13,6 +13,8 @@ PS1="[%B%{$fg[blue]%}%~%{$reset_color%}]$ "
 
 # Keyboard shortcuts
 bindkey -e
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
 # Open command in editor
 zle -N edit-command-line

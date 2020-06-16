@@ -1,10 +1,9 @@
 #!/bin/bash
 
-dmenu_options="dmenu -i -c -l 10"
 gui_programs=("keepassxc" "pcmanfm" "chromium" "firefox")
-terminal_programs=("nvim" "ranger" "newsboat" "settings")
+terminal_programs=("nvim" "ranger" "newsboat")
 
-Choise=$(printf '%s\n' "${gui_programs[@]}" "${terminal_programs[@]}" | sort | $dmenu_options)
+Choise=$(printf '%s\n' "${gui_programs[@]}" "${terminal_programs[@]}" | sort | dmenu -c -i -l 10)
 
 if [[ "${gui_programs[*]}" =~ $Choise ]]; then
 	sh -c "$Choise" &

@@ -25,8 +25,12 @@ Volume() {
 }
 
 Hidden() {
-	if [ "$(bspc query -N -n .hidden --desktop | head -n 1)" ]; then
-		echo " +"
+	Total_hidden=""
+	if bspc query -N -n .hidden --desktop 1> /dev/null; then
+		for i in $(bspc query -N -n .hidden --desktop | grep -v "0x006"); do
+			Total_hidden="${Total_hidden}+"
+		done
+		echo " $Total_hidden"
 	fi
 }
 

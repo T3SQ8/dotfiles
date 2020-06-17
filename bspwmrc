@@ -27,6 +27,10 @@ bspc rule -a "firefox:Toolkit" state=floating sticky=on
 xwallpaper --zoom "$(find "$HOME"/pictures/wallpaper/*.jpg | shuf -n 1)"
 lemonpanel &
 
+bspc subscribe node_flag | while read -r line; do
+refpanel
+done &
+
 bspc subscribe desktop_focus | while read -r line; do
-refpanel &
-done
+refpanel
+done &

@@ -3,4 +3,4 @@
 #pkill -x -SIGTRAP lemonpanel
 
 pkill -x lemonpanel
-exec lemonpanel
+exec lemonpanel &

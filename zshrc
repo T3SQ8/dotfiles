@@ -32,6 +32,7 @@ alias gs='git status'
 alias gc='git commit'
 alias gp='git add'
 alias gd='git diff'
+alias gp='git push'
 
 # Command-line completion
 zstyle ':completion:*' menu select

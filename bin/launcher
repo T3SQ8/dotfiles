@@ -3,7 +3,7 @@
 gui_programs=("keepassxc" "pcmanfm" "chromium" "firefox")
 terminal_programs=("nvim" "ranger" "newsboat")
 
-Choise=$(printf '%s\n' "${gui_programs[@]}" "${terminal_programs[@]}" | sort | dmenu -c -i -l 10)
+Choise=$(printf '%s\n' "${gui_programs[@]}" "${terminal_programs[@]}" | sort | dmenu)
 
 if [[ "${gui_programs[*]}" =~ $Choise ]]; then
 	sh -c "$Choise" &

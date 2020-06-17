@@ -35,11 +35,17 @@ Volume() {
 	echo "VOL: $(amixer get Master | awk -F"[][]" '/dB/ { print $2 }')"
 }
 
+Hidden() {
+	if [ $(bspc query -N -n .hidden --desktop) ]; then
+		echo " +"
+	fi
+}
+
 Output() {
 	while true; do
 		Battery_capacity=$(cat /sys/class/power_supply/BAT*/capacity)
 		Battery_status=$(cat /sys/class/power_supply/BAT*/status)
-		echo "%{+u}%{l} $(Desktop) %{c}$(Clock)%{r}$(Volume) | $(Internet) | $(Battery) "
+		echo "%{+u}%{l} $(Desktop)$(Hidden) %{c}$(Clock)%{r}$(Volume) | $(Internet) | $(Battery) "
 		sleep 10
 	done
 }

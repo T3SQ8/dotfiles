@@ -17,4 +17,5 @@ ln -sfr xinitrc ~/.config/X11/xinitrc
 ln -sfr zprofile ~/.zprofile
 ln -sfr zshrc ~/.config/zsh/.zshrc
 ln -sfr ftplugin ~/.config/nvim/ftplugin
+ln -sfr Xresources ~/.config/X11/Xresources
 echo "Done"

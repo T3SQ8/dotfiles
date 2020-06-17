@@ -36,7 +36,7 @@ Volume() {
 }
 
 Hidden() {
-	if [ $(bspc query -N -n .hidden --desktop) ]; then
+	if [ $(bspc query -N -n .hidden --desktop | head -n 1) ]; then
 		echo " +"
 	fi
 }

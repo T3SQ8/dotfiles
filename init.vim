@@ -8,7 +8,6 @@ autocmd BufRead,BufNewFile sxhkd set commentstring=#%s
 autocmd filetype markdown set commentstring=<!--%s-->
 
 "set termguicolors
-"colorscheme solarized8
 filetype indent on
 set foldmethod=marker " Folding
 set ignorecase " Searching

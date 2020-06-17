@@ -1,18 +1,7 @@
 #!/bin/sh
 
-Font="Liberation Mono:pixelsize=11:antialias=true:autohint=true"
-Underline_color=#268bd2
-Underline_size=2
-Foreground_color=#eee8d5
-Geometry=x24
-Background_color() {
-	if [ "$Battery_capacity" -le 15 ] && \
-		[ "$Battery_status" = "Discharging" ]; then
-			echo "#ff0000"
-		else
-			echo "#073642"
-	fi
-}
+Battery_capacity=$(cat /sys/class/power_supply/BAT*/capacity)
+Battery_status=$(cat /sys/class/power_supply/BAT*/status)
 
 Clock() {
 	date "+%b %d %H:%M"
@@ -43,17 +32,23 @@ Hidden() {
 
 Output() {
 	while true; do
-		Battery_capacity=$(cat /sys/class/power_supply/BAT*/capacity)
-		Battery_status=$(cat /sys/class/power_supply/BAT*/status)
 		echo "%{+u}%{l} $(Desktop)$(Hidden) %{c}$(Clock)%{r}$(Volume) | $(Internet) | $(Battery) "
 		sleep 10
 	done
 }
 
+Background_color() {
+	if [ "$Battery_capacity" -le 15 ] && \
+		[ "$Battery_status" = "Discharging" ]; then
+			echo "#ff0000"
+		else
+			echo "$(xgetres color0)"
+	fi
+}
+
 Output | lemonbar \
-	-g "$Geometry" \
-	-u "$Underline_size" \
-	-U "$Underline_color" \
-	-f "$Font" \
+	-u 2 \
+	-U "$(xgetres color1)" \
+	-f "$(xgetres font)" \
 	-B "$(Background_color)" \
-	-F "$Foreground_color"
+	-F "$(xgetres foreground)"

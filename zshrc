@@ -27,6 +27,11 @@ setopt NO_HUP autocd
 alias ls='ls --color=auto'
 alias e='$EDITOR'
 alias grep='grep --color'
+alias ga='git add' # Git aliases
+alias gs='git status'
+alias gc='git commit'
+alias gp='git add'
+alias gd='git diff'
 
 # Command-line completion
 zstyle ':completion:*' menu select

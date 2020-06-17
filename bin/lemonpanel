@@ -1,8 +1,5 @@
 #!/bin/sh
 
-Battery_capacity=$(cat /sys/class/power_supply/BAT*/capacity)
-Battery_status=$(cat /sys/class/power_supply/BAT*/status)
-
 Font="Liberation Mono:pixelsize=11:antialias=true:autohint=true"
 Underline_color=#268bd2
 Underline_size=2
@@ -40,6 +37,8 @@ Volume() {
 
 Output() {
 	while true; do
+		Battery_capacity=$(cat /sys/class/power_supply/BAT*/capacity)
+		Battery_status=$(cat /sys/class/power_supply/BAT*/status)
 		echo "%{+u}%{l} $(Desktop) %{c}$(Clock)%{r}$(Volume) | $(Internet) | $(Battery) "
 		sleep 10
 	done

@@ -9,7 +9,7 @@ Clock() {
 
 Battery() {
 	[ "$Battery_status" = "Charging" ] && Charging_status=+
-	echo "BAT:"$Charging_status""$Battery_capacity"%"
+	echo BAT:"$Charging_status""$Battery_capacity"%
 }
 
 Internet() {
@@ -25,7 +25,7 @@ Volume() {
 }
 
 Hidden() {
-	if [ $(bspc query -N -n .hidden --desktop | head -n 1) ]; then
+	if [ "$(bspc query -N -n .hidden --desktop | head -n 1)" ]; then
 		echo " +"
 	fi
 }
@@ -42,7 +42,7 @@ Background_color() {
 		[ "$Battery_status" = "Discharging" ]; then
 			echo "#ff0000"
 		else
-			echo "$(xgetres color0)"
+			xgetres color0
 	fi
 }
 
@@ -51,4 +51,5 @@ Output | lemonbar \
 	-U "$(xgetres color1)" \
 	-f "$(xgetres font)" \
 	-B "$(Background_color)" \
-	-F "$(xgetres foreground)"
+	-F "$(xgetres foreground)" \
+	-o 1

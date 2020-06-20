@@ -1,0 +1,3 @@
+#!/bin/sh
+
+find '.' -type f -exec md5sum "{}" + | sed '/.chk$/d' > "$(date +%Y-%m-%d_%T)".chk

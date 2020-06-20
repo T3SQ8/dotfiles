@@ -1,0 +1,58 @@
+#!/bin/sh
+
+mount_dir="$HOME/cell-mount" # Only for mtp
+device_regex="sd[b-z]\+[0-9]\+"
+
+# Error handeling
+no_device() { echo "No devices found" ; exit 1 ; }
+no_mount_dir() { echo "Mount folder not found" ; exit 1 ; }
+no_mtpfs() { echo "Simple-mtpfs not installed" ; exit 1 ; }
+no_fusermount() { echo "Fusermount not installed" ; exit 1 ; }
+mtp_safety_check() {
+	[ -d "$mount_dir" ] || no_mount_dir
+	command -v simple-mtpfs > /dev/null || no_mtpfs
+	command -v fusermount > /dev/null || no_fusermount
+}
+
+echo "\nWhat do you want to do?"
+echo "1. Mount device"
+echo "2. Unmount device"
+echo "3. Mount mtp device"
+echo "4. Unmount mtp device"
+read -r choise
+echo ""
+
+case "$choise" in
+	1)
+		lsblk | sed '/\/mnt/d' | grep --color "$device_regex" || no_device
+		echo "Which device to you want to mount?"
+		read -r device
+		[ -e /dev/$device ] || no_device
+		[ -z $device ] && no_device
+		mount /dev/$device /mnt && echo "Device mounted at /mnt"
+		;;
+	2)
+		lsblk | sed '/\/mnt/!d' | grep --color "$device_regex" || no_device
+		echo "Which device to you want to umount?"
+		read -r device
+		[ -e /dev/$device ] || no_device
+		[ -z $device ] && no_device
+		umount /dev/$device && echo "Device umounted"
+		;;
+	3)
+		mtp_safety_check
+		simple-mtpfs -l || exit 1
+		echo "Which device do you want to mount?"
+		read -r device
+		[ -z "$device" ] && no_device
+		simple-mtpfs --device "$device" "$mount_dir" && echo "Mounted successfully!" || exit 1
+		;;
+	4)
+		mtp_safety_check
+		fusermount -u "$mount_dir" && echo "Unmounted successfully!" || exit 1
+		;;
+	*)
+		echo "Invalid option"
+		exit 1
+		;;
+esac

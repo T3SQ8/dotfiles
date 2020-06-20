@@ -43,7 +43,7 @@ Output() {
 Output | lemonbar \
 	-u 2 \
 	-U "$(xgetres color1)" \
-	-f "$(xgetres font)" \
-	-B "$([ "$Battery_capacity" -le 95 ] && [ "$Battery_status" = "Discharging" ] && echo "#ff0000" || xgetres color0)" \
+	-f "consolas:size=10" \
+	-B "$([ "$Battery_capacity" -le 15 ] && [ "$Battery_status" = "Discharging" ] && echo "#ff0000" || xgetres color0)" \
 	-F "$(xgetres foreground)" \
 	-o 1

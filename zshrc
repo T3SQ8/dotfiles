@@ -24,15 +24,19 @@ bindkey '^o' edit-command-line
 setopt NO_HUP autocd 
 
 # Aliases
-alias ls='ls --color=auto'
-alias e='$EDITOR'
-alias grep='grep --color'
-alias ga='git add' # Git aliases
-alias gs='git status'
-alias gc='git commit'
-alias gp='git add'
-alias gd='git diff'
-alias gp='git push'
+alias \
+	ls='ls --color=auto' \
+	e='$EDITOR' \
+	grep='grep --color'
+
+# Git aliases
+alias \
+	ga='git add' \
+	gs='git status' \
+	gc='git commit' \
+	gp='git add' \
+	gd='git diff' \
+	gp='git push'
 
 # Command-line completion
 zstyle ':completion:*' menu select

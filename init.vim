@@ -4,11 +4,8 @@ execute pathogen#infect()
 
 " Settings{{{
 autocmd BufRead,BufNewFile *.tex set filetype=tex
-autocmd BufRead,BufNewFile sxhkd set commentstring=#%s
-autocmd filetype markdown set commentstring=<!--%s-->
-
-"set termguicolors
 filetype indent on
+"set termguicolors
 set foldmethod=marker " Folding
 set ignorecase " Searching
 set mouse=nvc " Enable mouse for normal, visual and command-line modes
@@ -24,38 +21,32 @@ syntax on "}}}
 let mapleader=" "
 nnoremap <leader>n :nohlsearch<cr>
 nnoremap Y y$
-
 " Movement
 nnoremap k gk
 vnoremap k gk
 nnoremap j gj
 vnoremap j gj
-
 " Disable keys
 nnoremap <s-q> <nop>
 nnoremap <space> <nop>
 nnoremap q: <nop>
-
 " Clipboard
 cnoremap <c-v> <c-r>+
 vnoremap <c-c> "+y
 nnoremap <c-a> ggVG
 inoremap <expr> <c-v> getreg('+')
 inoremap <expr> <c-f> getreg(':')
-
 " Switching splits
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
-
 " Command-line/terminal
 command Q quit
 command W write
 command WQ wq
 command Wq wq
 tnoremap <Esc> <C-\><C-n>
-
 " Plugins
 autocmd filetype todo nnoremap <c-x> :call Complete()<cr>
 nnoremap <leader>o :call Openurl()<cr>

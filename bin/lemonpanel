@@ -21,11 +21,11 @@ Desktop() {
 }
 
 Volume() {
-	echo "VOL: $(amixer get Master | awk -F"[][]" '/dB/ { print $2 }')"
+	echo "VOL: $(amixer get Master | grep -oE '[0-9]{1,3}%')"
 }
 
 Hidden() {
-	if bspc query -N -n .hidden --desktop 1> /dev/null; then
+	if bspc query -N -n .hidden --desktop > /dev/null; then
 		for i in $(bspc query -N -n .hidden --desktop | grep -v "0x006"); do
 			Total_hidden="${Total_hidden}+"
 		done

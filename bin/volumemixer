@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$TERMINAL -e sh -c "bspc node -t floating && alsamixer"

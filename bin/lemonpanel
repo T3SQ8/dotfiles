@@ -35,7 +35,7 @@ Hidden() {
 
 Output() {
 	while true; do
-		echo "%{+u}%{l} $(Desktop)$(Hidden) %{c}$(Clock)%{r}$(Volume) | $(Internet) | $(Battery) "
+		echo "%{+u}%{l} $(Desktop)$(Hidden) %{c}$(Clock)%{r}%{A:volumemixer:}$(Volume)%{A} | $(Internet) | $(Battery) "
 		sleep 10
 	done
 }
@@ -46,4 +46,4 @@ Output | lemonbar \
 	-f "consolas:size=10" \
 	-B "$([ "$Battery_capacity" -le 15 ] && [ "$Battery_status" = "Discharging" ] && echo "#ff0000" || xgetres color0)" \
 	-F "$(xgetres foreground)" \
-	-o 1
+	-o 1 | sh

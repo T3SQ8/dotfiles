@@ -1,11 +1,11 @@
-export ZDOTDIR=$HOME/.config/zsh
-export EDITOR=nvim
-export GIT_EDITOR=$EDITOR
-export PATH=$PATH:$HOME/.local/bin
-export XINITRC=$HOME/.config/X11/xinitrc
-export XAUTHORITY=$HOME/.config/X11/Xauthority
-export LESSHISTFILE=-
-export TERMINAL=st
-export GNUPGHOME="$HOME"/.config/gnupg
+export ZDOTDIR=$HOME/.config/zsh \
+	EDITOR=nvim \
+	GIT_EDITOR=$EDITOR \
+	PATH=$PATH:$HOME/.local/bin \
+	XINITRC=$HOME/.config/X11/xinitrc \
+	XAUTHORITY=$HOME/.config/X11/Xauthority \
+	LESSHISTFILE=- \
+	TERMINAL=st \
+	GNUPGHOME="$HOME"/.config/gnupg
 
 [ "$(tty)" = "/dev/tty1" ] && startx "$HOME/.config/X11/xinitrc" &

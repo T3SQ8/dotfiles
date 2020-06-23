@@ -1,5 +1,4 @@
 #!/bin/sh
 
-pid=$(pgrep -x lemonpanel)
+pkill -x lemonpanel
 exec lemonpanel &
-kill -9 "$pid"

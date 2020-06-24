@@ -26,7 +26,7 @@ bspc rule -a "Tor Browser" desktop='^9' follow=on state=pseudo_tiled
 bspc rule -a "firefox:Toolkit" state=floating sticky=on
 
 # Launch programs
-xwallpaper --zoom "$(find "$HOME"/pictures/wallpaper/*.jpg | shuf -n 1)"
+xwallpaper --zoom "$(find "$HOME"/.local/share/wallpaper | shuf -n 1)"
 lemonpanel &
 
 # Subscribe to events

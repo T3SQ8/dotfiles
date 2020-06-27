@@ -1,6 +1,3 @@
 #!/bin/sh
 
-#find '.' -type f -exec md5sum "{}" + | sed '/.chk$/d' > "$(date +%Y-%m-%d_%T)".chk
-#find '.' -type f -exec md5sum "{}" + | grep -Ev "[0-9_:-]{19}.chk$" > "$(date +%Y-%m-%d_%T)".chk
-
 find '.' -regextype sed -not -regex ".*[0-9_:\-]\{19\}\.chk$" -type f -exec md5sum "{}" + > "$(date +%Y-%m-%d_%T)".chk

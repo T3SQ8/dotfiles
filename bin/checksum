@@ -1,3 +1,0 @@
-#!/bin/sh
-
-find '.' -regextype sed -not -regex ".*[0-9_:\-]\{19\}\.chk$" -type f -exec md5sum "{}" + > "$(date +%Y-%m-%d_%T)".chk

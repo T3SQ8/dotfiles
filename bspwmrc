@@ -17,8 +17,6 @@ bspc config border_width 3
 bspc config borderless_monocle true
 bspc config focused_border_color "$(xgetres color1)"
 bspc config gapless_monocle true
-#bspc config split_ratio 0.5
-#bspc config window_gap 0
 
 # Rules
 bspc rule -a "Tor Browser" desktop='^9' follow=on state=pseudo_tiled
@@ -27,8 +25,3 @@ bspc rule -a "Zathura" state=tiled
 
 # Launch programs
 xwallpaper --zoom "$(find "$HOME"/.local/share/wallpaper | shuf -n 1)"
-lemonpanel &
-
-# Subscribe to events
-bspc subscribe node_flag | while read -r line; do refpanel; done &
-bspc subscribe desktop_focus | while read -r line; do refpanel; done &

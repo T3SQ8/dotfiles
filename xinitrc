@@ -5,4 +5,5 @@ setxkbmap se
 setxkbmap -option caps:escape
 xrdb $HOME/.config/X11/Xresources
 amixer set Master 0%
+lemonpanel &
 exec bspwm

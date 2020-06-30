@@ -1,0 +1,35 @@
+#!/bin/sh
+
+Clock() {
+	date "+%b %d %H:%M"
+}
+
+Battery() {
+	[ "$(cat /sys/class/power_supply/BAT*/status)" = "Charging" ] && Charging_status=+
+	echo BAT:"$Charging_status""$(cat /sys/class/power_supply/BAT*/capacity)"%
+}
+
+Internet() {
+	cat /sys/class/net/*/operstate | grep -q up && echo "INT: ON" || echo "INT: OFF"
+}
+
+Desktop() {
+	bspc query -D -d --names
+}
+
+Volume() {
+	echo "VOL: $(amixer get Master | grep -oE '[0-9]{1,3}%')"
+}
+
+Hidden() {
+	if bspc query -N -n .hidden --desktop > /dev/null; then
+		for i in $(bspc query -N -n .hidden --desktop | grep -v "0x006"); do
+			Total_hidden="${Total_hidden}+"
+		done
+		echo " $Total_hidden"
+	fi
+}
+
+while read -r line; do
+	echo "%{+u}%{l} $(Desktop)$(Hidden) %{c}$(Clock)%{r}%{A:volumemixer:}$(Volume)%{A} | $(Internet) | $(Battery) "
+done

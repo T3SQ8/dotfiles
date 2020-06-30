@@ -23,10 +23,10 @@ XF86AudioLowerVolume
 
 # brightness
 XF86MonBrightnessUp
-	brightness 0.1
+	xbacklight -inc 10
 	
 XF86MonBrightnessDown
-	brightness -0.1
+	xbacklight -dec 10
 
 #################
 # BSPWM HOTKEYS #

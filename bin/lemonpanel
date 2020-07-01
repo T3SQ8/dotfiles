@@ -13,9 +13,7 @@ lemonout < "$PANEL_FIFO" | lemonbar \
 	-u 2 \
 	-U "$(xgetres color1)" \
 	-f "consolas:size=10" \
-	-B "$([ "$(cat /sys/class/power_supply/BAT*/capacity)" -le 15 ] && \
-	[ "$(cat /sys/class/power_supply/BAT*/status)" = "Discharging" ] && \
-	echo "#ff0000" || xgetres color0)" \
+	-B "$(xgetres color0)" \
 	-F "$(xgetres foreground)" \
 	-o 1 | sh &
 

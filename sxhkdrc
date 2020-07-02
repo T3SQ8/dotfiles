@@ -21,6 +21,9 @@ XF86AudioRaiseVolume
 XF86AudioLowerVolume
 	amixer sset 'Master' 5%-; refpanel
 
+XF86AudioMute
+	amixer set Master 0%; refpanel
+
 # brightness
 XF86MonBrightnessUp
 	xbacklight -inc 10

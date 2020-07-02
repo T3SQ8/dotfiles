@@ -8,7 +8,7 @@ filetype indent on
 "set termguicolors
 set foldmethod=marker " Folding
 set ignorecase " Searching
-set mouse=nvc " Enable mouse for normal, visual and command-line modes
+set mouse=nvci " Enable mouse for normal, visual and command-line modes
 set notimeout " Key timeout
 set nowrap " Text wrapping
 set number relativenumber "cursorline " Lines

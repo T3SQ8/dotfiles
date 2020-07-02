@@ -1,12 +1,12 @@
-#!/bin/bash
+#!/bin/sh
 
-gui_programs=("keepassxc" "pcmanfm" "chromium" "firefox")
-terminal_programs=("nvim" "ranger" "newsboat")
+gui_programs="keepassxc pcmanfm chromium firefox"
+terminal_programs="nvim ranger newsboat"
 
-Choise=$(printf '%s\n' "${gui_programs[@]}" "${terminal_programs[@]}" | sort | dmenu)
+Choise=$(echo "$gui_programs" "$terminal_programs" | tr " " "\n" | sort | dmenu)
 
-if [[ "${gui_programs[*]}" =~ $Choise ]]; then
+echo "$gui_programs" | grep -oq "$Choise" &&
 	sh -c "$Choise" &
-elif [[ "${terminal_programs[*]}" =~ $Choise ]]; then
+
+echo "$terminal_programs" | grep -oq "$Choise" &&
 	$TERMINAL -e "$Choise" &
-fi

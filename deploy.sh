@@ -9,7 +9,8 @@ mkdir -p \
 	~/.local/share/wallpaper \
 	~/.local/bin \
 	~/.config/nvim/ftplugin \
-	~/.config/newsboat
+	~/.config/newsboat \
+	~/.config/zathura
 
 
 ln -sr bin/* ~/.local/bin
@@ -22,5 +23,6 @@ ln -sr zprofile ~/.zprofile
 ln -sr zshrc ~/.config/zsh/.zshrc
 ln -sr ftplugin/* ~/.config/nvim/ftplugin
 ln -sr Xresources ~/.config/X11/Xresources
-ln -sr config ~/.config/newsboat
+ln -sr config ~/.config/newsboat/config
+ln -sr zathurarc ~/.config/zathura/zathurarc
 echo "Done"

@@ -5,16 +5,16 @@ execute pathogen#infect()
 " Settings{{{
 autocmd BufRead,BufNewFile *.tex set filetype=tex
 filetype indent on
-"set termguicolors
 set foldmethod=marker " Folding
 set ignorecase " Searching
 set mouse=nvci " Enable mouse for normal, visual and command-line modes
 set notimeout " Key timeout
 set nowrap " Text wrapping
-set number relativenumber "cursorline " Lines
+set number relativenumber cursorline " Lines
 set smartindent " Indentation
 set splitbelow splitright " Open splits at the bottom and right
 set undofile undodir=$HOME/.config/nvim/undodir " Set an undofile
+hi CursorLine cterm=NONE ctermbg=darkgrey
 syntax on "}}}
 
 " Key bindings{{{
@@ -28,13 +28,10 @@ nnoremap j gj
 vnoremap j gj
 " Disable keys
 nnoremap <s-q> <nop>
-nnoremap <space> <nop>
 nnoremap q: <nop>
 " Clipboard
-cnoremap <c-v> <c-r>+
 vnoremap <c-c> "+y
 nnoremap <c-a> ggVG
-inoremap <expr> <c-v> getreg('+')
 inoremap <expr> <c-f> getreg(':')
 " Switching splits
 nnoremap <c-h> <c-w>h

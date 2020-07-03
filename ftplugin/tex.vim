@@ -9,7 +9,7 @@ function! Compilelatex()
 		endif
 	endif
 	set fileencoding=utf-8 | write
-	silent execute "!pdflatex"  "-output-directory=" . output_dir expand("%:p")
+	silent execute "!pdflatex -output-directory=" . output_dir expand("%:p")
 	set fileencoding=latin1 | write
 endfunction
 

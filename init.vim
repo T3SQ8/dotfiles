@@ -32,6 +32,7 @@ nnoremap q: <nop>
 " Clipboard
 vnoremap <c-c> "+y
 nnoremap <c-a> ggVG
+inoremap <expr> <c-v> getreg('+')
 inoremap <expr> <c-f> getreg(':')
 " Switching splits
 nnoremap <c-h> <c-w>h

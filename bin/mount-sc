@@ -11,7 +11,7 @@ no_cell_mount_dir() { echo "Mount folder not found." ; exit 1 ; }
 no_mtpfs() { echo "Simple-mtpfs not installed." ; exit 1 ; }
 no_fusermount() { echo "Fusermount not installed." ; exit 1 ; }
 
-cryptsetup_checker() { [ ! $(command -v cryptsetup) ] &&
+cryptsetup_checker() { [ ! "$(command -v cryptsetup)" ] &&
 	echo "Cryptsetup is not installed." &&
 	exit 1
 }

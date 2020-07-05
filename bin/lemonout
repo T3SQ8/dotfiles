@@ -6,11 +6,11 @@ Clock() {
 
 Battery() {
 	[ "$(cat /sys/class/power_supply/BAT*/status)" = "Charging" ] && Charging_status="+"
-	echo BAT:"$Charging_status""$(cat /sys/class/power_supply/BAT*/capacity)"%
+	echo "BAT:$Charging_status$(cat /sys/class/power_supply/BAT*/capacity)%"
 }
 
 Internet() {
-	cat /sys/class/net/*/operstate | grep -q up && echo "INT: ON" || echo "INT: OFF"
+	grep -q "up" /sys/class/net/*/operstate && echo "INT: ON" || echo "INT: OFF"
 }
 
 Desktop() {
@@ -23,7 +23,7 @@ Volume() {
 
 Hidden() {
 	if bspc query -N -n .hidden.local > /dev/null; then
-		for i in $(bspc query -N -n .hidden.local | grep -v "0x00[0-9]\+"); do
+		for i in $(bspc query -N -n .hidden.local | grep "00[0-9]$"); do
 			Total_hidden="${Total_hidden}+"
 		done
 		echo " $Total_hidden"

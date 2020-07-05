@@ -12,7 +12,6 @@ mkdir -p \
 	~/.config/newsboat \
 	~/.config/zathura
 
-
 ln -sr bin/* ~/.local/bin
 ln -sr bspwmrc ~/.config/bspwm/bspwmrc
 ln -sr init.vim ~/.config/nvim/init.vim

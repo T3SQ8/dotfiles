@@ -23,7 +23,7 @@ Volume() {
 
 Hidden() {
 	if bspc query -N -n .hidden.local > /dev/null; then
-		for i in $(bspc query -N -n .hidden.local | grep "00[0-9]$"); do
+		for i in $(bspc query -N -n .hidden.local | grep "[0-9]$"); do
 			Total_hidden="${Total_hidden}+"
 		done
 		echo " $Total_hidden"

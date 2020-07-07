@@ -1,20 +1,52 @@
-" Plugings{{{
 execute pathogen#infect()
-"}}}
+
+" Functions{{{
+" Open a small terminal
+function! Terminal(position)
+	if a:position ==? "v"
+		vsplit +terminal
+	else
+		10 split +terminal
+	endif
+	set nonumber norelativenumber
+endfunction
+
+" Spell check
+function! Spellmap(lang) "Map n to jump when spellchecking
+	if empty(a:lang)
+		set nospell
+		silent! unmap <buffer> n
+		silent! unmap <buffer> N
+	else
+		nnoremap <buffer> n ]sz=
+		nnoremap <buffer> N [sz=
+		execute "set spell spelllang=" . a:lang
+	endif
+endfunction
+
+" Toggle text wrapping
+function! Wraping() "Toggle line wrapping
+	if &wrap ==? "nowrap" || &linebreak ==? "nolinebreak"
+		set wrap linebreak
+	else
+		set nowrap
+	endif
+endfunction "}}}
 
 " Settings{{{
 autocmd BufRead,BufNewFile *.tex set filetype=tex
 filetype indent on
-set foldmethod=marker " Folding
-set ignorecase " Searching
-set mouse=nvci " Enable mouse for normal, visual and command-line modes
-set notimeout " Key timeout
-set nowrap " Text wrapping
-set number relativenumber cursorline " Lines
-set smartindent " Indentation
-set splitbelow splitright " Open splits at the bottom and right
-set undofile undodir=$HOME/.config/nvim/undodir " Set an undofile
+set foldmethod=marker
+set ignorecase
+set mouse=nvci
+set notimeout
+set nowrap
+set number relativenumber cursorline
+set smartindent
+set splitbelow splitright
+set undofile undodir=$HOME/.config/nvim/undodir
 hi CursorLine cterm=NONE ctermbg=darkgrey
+hi Folded ctermbg=red
 syntax on "}}}
 
 " Key bindings{{{
@@ -22,10 +54,8 @@ let mapleader=" "
 nnoremap <leader>n :nohlsearch<cr>
 nnoremap Y y$
 " Movement
-nnoremap k gk
-vnoremap k gk
-nnoremap j gj
-vnoremap j gj
+noremap k gk
+noremap j gj
 " Disable keys
 nnoremap <s-q> <nop>
 nnoremap q: <nop>
@@ -45,47 +75,14 @@ command W write
 command WQ wq
 command Wq wq
 tnoremap <Esc> <C-\><C-n>
-" Plugins
-autocmd filetype todo nnoremap <c-x> :call Complete()<cr>
-nnoremap <leader>o :call Openurl()<cr>
-"}}}
-
-" Functions{{{
-" Open a small terminal
+" Functions
 nnoremap <leader>t :call Terminal("")<cr>
 nnoremap <leader>T :call Terminal("v")<cr>
-function! Terminal(position)
-	if a:position ==? "v"
-		50vsplit +terminal
-	else
-		4split +terminal
-	endif
-	set nonumber norelativenumber
-endfunction
-
-" Spell check
 nnoremap <leader>en :call Spellmap("en_us")<cr>
 nnoremap <leader>sv :call Spellmap("sv")<cr>
 nnoremap <leader>fr :call Spellmap("fr")<cr>
 nnoremap <leader>l :call Spellmap("")<cr>
-function! Spellmap(lang) "Map n to jump when spellchecking
-	if empty(a:lang)
-		set nospell
-		silent! unmap <buffer> n
-		silent! unmap <buffer> N
-	else
-		nnoremap <buffer> n ]sz=
-		nnoremap <buffer> N [sz=
-		execute "set spell spelllang=" . a:lang
-	endif
-endfunction
-
-" Toggle text wrapping
 nnoremap <leader>w :call Wraping()<cr>
-function! Wraping() "Toggle line wrapping
-	if &wrap ==? "nowrap" || &linebreak ==? "nolinebreak"
-		set wrap linebreak
-	else
-		set nowrap
-	endif
-endfunction "}}}
+" Plugins
+autocmd filetype todo nnoremap <c-x> :call Complete()<cr>
+"}}}

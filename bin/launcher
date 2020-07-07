@@ -7,8 +7,8 @@ Choise=$(echo "$gui_programs" "$terminal_programs" | tr " " "\n" | sort | dmenu)
 
 [ -z "$Choise" ] && exit
 
-echo "$gui_programs" | grep -oq "$Choise" &&
+echo "$gui_programs" | grep -wq "$Choise" &&
 	sh -c "$Choise" &
 
-echo "$terminal_programs" | grep -oq "$Choise" &&
+echo "$terminal_programs" | grep -wq "$Choise" &&
 	$TERMINAL -e "$Choise" &

@@ -1,1 +1,8 @@
 browser "newsboat-open"
+
+bind-key j down
+bind-key k up
+bind-key j next articlelist
+bind-key k prev articlelist
+bind-key l open
+bind-key h quit

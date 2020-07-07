@@ -4,7 +4,6 @@ mkdir -p \
 	~/.config/bspwm \
 	~/.config/sxhkd \
 	~/.config/zsh \
-	~/.cache/zsh \
 	~/.config/X11 \
 	~/.local/share/wallpaper \
 	~/.local/bin \

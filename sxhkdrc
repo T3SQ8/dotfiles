@@ -34,6 +34,12 @@ XF86MonBrightnessDown
 #################
 # BSPWM HOTKEYS #
 #################
+
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+###########
 # WINDOWS #
 ###########
 
@@ -70,8 +76,8 @@ super + shift + h
 	bspc node $(bspc query -N -n .hidden.local | tail -n1) -g hidden=off
 
 # rotate windows
-super + r
-	bspc node @focused:/ -R 90
+super + {_,shift} r
+	bspc node @focused:/ -R {_,-}90
 
 # close window
 super + shift + q
@@ -89,14 +95,6 @@ super + alt + {Left,Down,Up,Right}
 super + alt + shift + {Left,Down,Up,Right}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
-# expand window
-super + plus
-	bspwm_resize bigger
-
-# contract window from edge
-super + minus
-	bspwm_resize smaller
-
 ###########
 # DESKTOP #
 ###########
@@ -112,11 +110,3 @@ super + {1-9,0}
 # send node to desktop
 super + shift + {1-9,0}
 	bspc node -d '^{1-9,10}'
-
-########
-# MICS #
-########
-
-# quit/restart bspwm
-super + alt + {q,r}
-	bspc {quit,wm -r}

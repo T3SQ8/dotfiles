@@ -21,6 +21,7 @@ syntax on "}}}
 let mapleader=" "
 nnoremap <leader>n :nohlsearch<cr>
 nnoremap Y y$
+nnoremap <C-LeftMouse> <LeftMouse>.
 " Movement
 noremap k gk
 noremap j gj

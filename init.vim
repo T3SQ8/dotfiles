@@ -1,6 +1,5 @@
 execute pathogen#infect()
 
-
 " Settings{{{
 autocmd BufRead,BufNewFile *.tex set filetype=tex
 filetype indent on

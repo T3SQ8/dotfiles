@@ -15,21 +15,12 @@ super + space
 	launcher
 
 # volume controls
-XF86AudioRaiseVolume
-	amixer sset 'Master' 5%+; refpanel
-	
-XF86AudioLowerVolume
-	amixer sset 'Master' 5%-; refpanel
-
-XF86AudioMute
-	amixer set Master 0%; refpanel
+{XF86AudioRaiseVolume,XF86AudioLowerVolume,XF86AudioMute}
+	amixer sset Master {5%+,5%-,0%}; refpanel
 
 # brightness
-XF86MonBrightnessUp
-	xbacklight -inc 10
-	
-XF86MonBrightnessDown
-	xbacklight -dec 10
+{XF86MonBrightnessUp,XF86MonBrightnessDown}
+	xbacklight {-inc 10,-dec 10}
 
 #################
 # BSPWM HOTKEYS #

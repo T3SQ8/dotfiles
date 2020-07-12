@@ -1,7 +1,6 @@
 execute pathogen#infect()
 
 " Settings{{{
-autocmd BufRead,BufNewFile *.tex set filetype=tex
 filetype indent on
 set foldmethod=marker
 set ignorecase
@@ -18,10 +17,6 @@ syntax on "}}}
 
 " Key bindings{{{
 let mapleader=" "
-autocmd filetype markdown,tex nnoremap <buffer> <leader>c :!compiledoc %<cr>
-nnoremap <leader>n :nohlsearch<cr>
-nnoremap Y y$
-nnoremap <C-LeftMouse> <LeftMouse>.
 " Movement
 noremap k gk
 noremap j gj
@@ -44,8 +39,12 @@ command W write
 command WQ wq
 command Wq wq
 tnoremap <Esc> <C-\><C-n>
-" Plugins
+" Mics
 autocmd filetype todo nnoremap <c-x> :call Complete()<cr>
+autocmd filetype markdown,tex nnoremap <buffer> <leader>c :!compiledoc %<cr>
+nnoremap <leader>n :nohlsearch<cr>
+nnoremap Y y$
+nnoremap <C-LeftMouse> <LeftMouse>.
 "}}}
 
 " Functions{{{

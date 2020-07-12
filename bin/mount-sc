@@ -25,6 +25,14 @@ device_checker() {
 success_mnt="Mounted successfully!"
 success_umnt="Unmounted successfully!"
 
+ls_mountable() { # List devices excluding sda (OS disc) and mounted devices
+		lsblk | grep -v "$mount_dir" | grep --color "$device_regex" || no_device
+}
+
+ls_mounted() { # List mounted devices
+		lsblk | grep "$mount_dir" | grep --color "$device_regex" || no_mnt_device
+}
+
 echo "1. Mount device"
 echo "2. Unmount device"
 echo "3. Mount mtp device"
@@ -37,15 +45,15 @@ echo ""
 
 case "$choise" in
 	1)
-		lsblk | grep -v "$mount_dir" | grep --color "$device_regex" || no_device # List devices excluding sda (OS disc) and mounted devices
+		ls_mountable
 		printf "Which device to you want to mount? "
 		read -r device
 		device_checker
 		sudo mount /dev/"$device" "$mount_dir" && echo "$success_mnt"
 		;;
 	2)
-		lsblk | grep "$mount_dir" | grep --color "$device_regex" || no_mnt_device
-		printf "Which device to you want to umount? "
+		ls_mounted
+		printf "Which device to you want to unmount? "
 		read -r device
 		device_checker
 		sudo umount /dev/"$device" && echo "$success_umnt"
@@ -65,7 +73,7 @@ case "$choise" in
 		;;
 	5)
 		cryptsetup_checker
-		lsblk | grep -v "$mount_dir" | grep --color "$device_regex" || no_device
+		ls_mountable
 		printf "Which device to you want to mount? "
 		read -r device
 		device_checker
@@ -74,7 +82,7 @@ case "$choise" in
 		;;
 	6)
 		cryptsetup_checker
-		lsblk | grep "$mount_dir" | grep --color "$device_regex" || no_mnt_device
+		ls_mounted
 		printf "Which device to you want to umount? "
 		read -r device
 		device_checker

@@ -23,7 +23,7 @@ Volume() {
 
 Hidden() {
 	if bspc query -N -n .hidden.local > /dev/null; then
-		for i in $(bspc query -N -n .hidden.local | grep -v "^0x00"); do
+		for i in $(bspc query -N -n .hidden.local.leaf); do
 			Total_hidden="${Total_hidden}+"
 		done
 		echo " $Total_hidden"

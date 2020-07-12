@@ -1,21 +1,4 @@
 "Functions{{{
-nnoremap <buffer> <leader>c :call Compilelatex()<cr>
-function! Compilelatex()
-	let output_dir = expand("%:p:h")
-	if !exists("b:overwritefile")
-		if filewritable(expand("%:p:r") . ".pdf")
-			let overwrite = input("The file already exists. Do you want to overwrite it? [y/N] ")
-			if empty(overwrite) || overwrite =~ "[^Yy]"
-				return
-			endif
-		endif
-	endif
-	let b:overwritefile = 1
-	set fileencoding=utf-8 | write
-	silent execute "!pdflatex -output-directory=" . output_dir expand("%:p")
-	set fileencoding=latin1 | write
-endfunction
-
 nnoremap <buffer> <leader>u :call Addpackage("")<cr>
 function! Addpackage(package)
 	if empty(a:package)

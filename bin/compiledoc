@@ -1,0 +1,11 @@
+#!/bin/sh
+
+[ -z "$1" ] && exit
+
+if [ ${1##*.} = "md" ]; then
+	pandoc $1 -o ${1%.*}.html
+elif [ ${1##*.} = "tex" ]; then
+	pdflatex -output-directory=${1%/*} $1
+else
+	echo "Invalid filetype"
+fi

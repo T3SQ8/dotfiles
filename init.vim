@@ -18,6 +18,7 @@ syntax on "}}}
 
 " Key bindings{{{
 let mapleader=" "
+autocmd filetype markdown,tex nnoremap <buffer> <leader>c :!compiledoc %<cr>
 nnoremap <leader>n :nohlsearch<cr>
 nnoremap Y y$
 nnoremap <C-LeftMouse> <LeftMouse>.

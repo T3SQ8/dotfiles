@@ -41,7 +41,6 @@ command Wq wq
 tnoremap <Esc> <C-\><C-n>
 " Mics
 autocmd filetype todo nnoremap <c-x> :call Todo_complete()<cr>
-autocmd filetype markdown,tex nnoremap <buffer> <leader>c :!compiledoc %<cr>
 nnoremap <leader>n :nohlsearch<cr>
 nnoremap Y y$
 nnoremap <C-LeftMouse> <LeftMouse>.
@@ -81,5 +80,16 @@ function! Wraping() " Toggle line wrapping
 		set wrap linebreak
 	else
 		set nowrap
+	endif
+endfunction
+
+autocmd filetype markdown,tex nnoremap <buffer> <leader>c :call Compiledoc()<cr>
+function! Compiledoc()
+	if &filetype ==? "markdown"
+		execute '!pandoc % -o' . expand("%:p:r") . '.html'
+	elseif &filetype ==? "tex"
+		execute '!pdflatex -output-directory=' . expand("%:p:h") '%'
+	else
+		echo "Invalid filetype"
 	endif
 endfunction "}}}

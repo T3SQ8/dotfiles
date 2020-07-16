@@ -27,7 +27,7 @@ nnoremap q: <nop>
 " Clipboard
 vnoremap <c-c> "+y
 nnoremap <c-a> ggVG
-inoremap <expr> <c-v> getreg('+')
+"inoremap <expr> <c-v> getreg('+')
 inoremap <expr> <c-f> getreg(':')
 " Switching splits
 nnoremap <c-h> <c-w>h
@@ -95,4 +95,25 @@ function! Compiledoc()
 	else
 		echo "Invalid filetype"
 	endif
+endfunction
+
+vnoremap <leader>q :<c-u>call Blockseq()<cr>
+function! Blockseq(startnum)
+	if empty(a:startnum)
+		let l:num = "1"
+	else
+		let l:num = a:startnum
+	endif
+	normal! gv
+	if mode() != ""
+		echoerr "Not in visualblock mode"
+		return
+	endif
+	execute 'normal! d'
+	for i in range(0, get(getpos("'>"), 1) - get(getpos("'<"), 1)) " 0 to the number of selected lines (end of visual block - beginning of visual block)
+		let l:startcolumn = col('.') " Save the column to return to it
+		execute 'normal! i' . l:num
+		call cursor(line('.')+1, l:startcolumn) " Move the cursor down and back to the original column
+		let l:num = l:num + 1
+	endfor
 endfunction "}}}

@@ -97,7 +97,7 @@ function! Compiledoc()
 	endif
 endfunction
 
-vnoremap <leader>q :<c-u>call Blockseq()<cr>
+vnoremap <leader>q :<c-u>call Blockseq("")<cr>
 function! Blockseq(startnum)
 	if empty(a:startnum)
 		let l:num = "1"

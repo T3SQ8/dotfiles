@@ -1,6 +1,7 @@
 execute pathogen#infect()
 
 " Settings{{{
+autocmd BufRead,BufNewFile *.tex set filetype=tex
 filetype indent on
 set foldmethod=marker
 set ignorecase
@@ -44,6 +45,8 @@ autocmd filetype todo nnoremap <c-x> :call Todo_complete()<cr>
 nnoremap <leader>n :nohlsearch<cr>
 nnoremap Y y$
 nnoremap <C-LeftMouse> <LeftMouse>.
+"inoremap <c-x> <Esc>/<++><cr>"_ca<
+nnoremap <c-x> /<++><cr>"_ca<
 "}}}
 
 " Functions{{{

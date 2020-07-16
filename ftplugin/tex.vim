@@ -1,4 +1,3 @@
-"Functions{{{
 nnoremap <buffer> <leader>u :call Addpackage("")<cr>
 function! Addpackage(package)
 	if empty(a:package)
@@ -26,11 +25,5 @@ function! Begintex()
 	call append(0, '\documentclass{article}')
 	global/^$/d
 endfunction
-"}}}
 
 setlocal foldmarker=!{{{!,!}}}!
-
-"Key bindings{{{
-inoremap <buffer> <c-x> <Esc>/<++><cr>"_c4l
-nnoremap <buffer> <c-x> /<++><cr>"_c4l
-"}}}

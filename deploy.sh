@@ -9,7 +9,8 @@ mkdir -p \
 	~/.local/bin \
 	~/.config/nvim/ftplugin \
 	~/.config/newsboat \
-	~/.config/zathura
+	~/.config/zathura \
+	~/.config/mpv
 
 ln -sr bin/* ~/.local/bin
 ln -sr bspwmrc ~/.config/bspwm/bspwmrc
@@ -23,4 +24,5 @@ ln -sr ftplugin/* ~/.config/nvim/ftplugin
 ln -sr Xresources ~/.config/X11/Xresources
 ln -sr config ~/.config/newsboat/config
 ln -sr zathurarc ~/.config/zathura/zathurarc
+ln -sr mpv/* ~/.config/mpv
 echo "Done"

@@ -18,6 +18,7 @@ function! Addpackage(package)
 	endif
 endfunction
 
+nnoremap <buffer> <leader>b :call Begintex()<cr>
 function! Begintex()
 	call append(0, '\end{document}')
 	call append(0, '<++>')
@@ -26,4 +27,4 @@ function! Begintex()
 	global/^$/d
 endfunction
 
-setlocal foldmarker=!{{{!,!}}}!
+setlocal foldmarker=<<<,>>>

@@ -89,7 +89,7 @@ endfunction
 autocmd filetype markdown,tex nnoremap <buffer> <leader>c :call Compiledoc()<cr>
 function! Compiledoc()
 	if &filetype ==? "markdown"
-		execute '!pandoc % -o' . expand("%:p:r") . '.html'
+		execute '!pandoc % -o' expand("%:p:r") . '.html'
 	elseif &filetype ==? "tex"
 		execute '!pdflatex -output-directory=' . expand("%:p:h") '%'
 	else

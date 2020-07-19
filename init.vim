@@ -27,8 +27,7 @@ nnoremap q: <nop>
 " Clipboard
 vnoremap <c-c> "+y
 nnoremap <c-a> ggVG
-"inoremap <expr> <c-v> getreg('+')
-inoremap <expr> <c-f> getreg(':')
+inoremap <expr> <c-v> getreg('+')
 " Switching splits
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
@@ -45,7 +44,6 @@ autocmd filetype todo nnoremap <c-x> :call Todo_complete()<cr>
 nnoremap <leader>n :nohlsearch<cr>
 nnoremap Y y$
 nnoremap <C-LeftMouse> <LeftMouse>.
-"inoremap <c-x> <Esc>/<++><cr>"_ca<
 nnoremap <c-x> /<++><cr>"_ca<
 "}}}
 
@@ -88,6 +86,7 @@ endfunction
 
 autocmd filetype markdown,tex nnoremap <buffer> <leader>c :call Compiledoc()<cr>
 function! Compiledoc()
+	write
 	if &filetype ==? "markdown"
 		execute '!pandoc % -o' expand("%:p:r") . '.html'
 	elseif &filetype ==? "tex"

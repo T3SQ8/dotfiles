@@ -44,7 +44,8 @@ autocmd filetype todo nnoremap <c-x> :call Todo_complete()<cr>
 nnoremap <leader>n :nohlsearch<cr>
 nnoremap Y y$
 nnoremap <C-LeftMouse> <LeftMouse>.
-nnoremap <c-x> /<++><cr>"_ca<
+nnoremap <leader>x /<++><cr>"_ca<
+nnoremap <leader>X ?<++><cr>"_ca<
 "}}}
 
 " Functions{{{

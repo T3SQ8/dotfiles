@@ -25,5 +25,5 @@ bspc rule -a "firefox:Toolkit" state=floating sticky=on
 bspc rule -a "Zathura" state=tiled
 
 # Launch programs
-xwallpaper --zoom "$(find "$HOME"/.local/share/wallpaper -type f | shuf -n 1)"
+xwallpaper --zoom "$(find "$HOME/.local/share/wallpaper" -type f | shuf -n 1)"
 lemonpanel &

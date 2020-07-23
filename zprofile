@@ -5,7 +5,8 @@ export ZDOTDIR="$HOME/.config/zsh" \
 	XAUTHORITY="$HOME/.config/X11/Xauthority" \
 	LESSHISTFILE="-" \
 	TERMINAL="st" \
-	GNUPGHOME="$HOME/.config/gnupg"
+	GNUPGHOME="$HOME/.config/gnupg" \
+	PYTHONSTARTUP="$HOME/.config/python/startup.py"
 
 export GIT_EDITOR="$EDITOR"
 

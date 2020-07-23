@@ -11,7 +11,8 @@ mkdir -p \
 	~/.config/newsboat \
 	~/.config/zathura \
 	~/.config/mpv \
-	~/.config/dunst
+	~/.config/dunst \
+	~/.config/python
 
 ln -sr bin/* ~/.local/bin
 ln -sr bspwmrc ~/.config/bspwm/bspwmrc
@@ -27,4 +28,6 @@ ln -sr config ~/.config/newsboat/config
 ln -sr zathurarc ~/.config/zathura/zathurarc
 ln -sr mpv/* ~/.config/mpv
 ln -sr dunstrc ~/.config/dunst
+ln -sr dunstrc ~/.config/dunst
+ln -sr startup.py ~/.config/python
 echo "Done"

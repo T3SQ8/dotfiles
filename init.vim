@@ -12,8 +12,9 @@ set number relativenumber cursorline
 set smartindent
 set splitbelow splitright
 set undofile undodir=$HOME/.config/nvim/undodir
-hi CursorLine cterm=NONE ctermbg=darkgrey
-hi Folded ctermbg=red
+highlight CursorLine cterm=NONE ctermbg=darkgrey
+highlight CursorLineNr ctermbg=darkgrey
+highlight Folded ctermbg=red ctermfg=white
 syntax on "}}}
 
 " Key bindings{{{

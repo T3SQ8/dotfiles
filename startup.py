@@ -10,4 +10,4 @@ except:
     pass
 
 atexit.register(readline.write_history_file, histfile)
-os.remove(os.environ.get("HOME") + "/.python_history")
+atexit.register('os.remove(os.environ.get("HOME") + "/.python_history")')

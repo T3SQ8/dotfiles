@@ -31,5 +31,5 @@ Hidden() {
 }
 
 while read -r line; do
-	echo "%{+u}%{l} $(Desktop)$(Hidden) %{c}$(Clock)%{r}%{A:volumemixer:}$(Volume)%{A} | $(Internet) | $(Battery) "
+	echo "%{+u}%{l} $(Desktop)$(Hidden) %{c}$(Clock)%{r}%{A:volumemixer:}$(Volume)%{A}%{-u} %{+u}$(Internet)%{-u} %{+u}$(Battery) "
 done

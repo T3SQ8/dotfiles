@@ -10,8 +10,8 @@ bspc subscribe all > "$PANEL_FIFO" &
 lemonout < "$PANEL_FIFO" | lemonbar \
 	-u 2 \
 	-U "#aa0000" \
-	-f "consolas:size=10" \
-	-B "#222222" \
+	-f "consolas:size=10:style=bold" \
+	-B "#000000" \
 	-F "#D8DEE9" \
 	-o 1 | sh &
 

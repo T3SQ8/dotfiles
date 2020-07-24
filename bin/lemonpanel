@@ -1,20 +1,18 @@
 #!/bin/sh
 
-PANEL_FIFO=/tmp/panel-fifo
-
 pgrep -x lemonbar > /dev/null && echo "The panel is already running." && exit 1
 
+PANEL_FIFO=/tmp/panel-fifo
 [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
 mkfifo "$PANEL_FIFO"
-
 bspc subscribe all > "$PANEL_FIFO" &
 
 lemonout < "$PANEL_FIFO" | lemonbar \
 	-u 2 \
-	-U "$(xgetres color1)" \
+	-U "#aa0000" \
 	-f "consolas:size=10" \
-	-B "$(xgetres color0)" \
-	-F "$(xgetres foreground)" \
+	-B "#222222" \
+	-F "#D8DEE9" \
 	-o 1 | sh &
 
 while true; do

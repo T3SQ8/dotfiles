@@ -23,7 +23,6 @@ noremap k gk
 noremap j gj
 " Disable keys
 nnoremap <s-q> <nop>
-nnoremap q: <nop>
 " Clipboard
 vnoremap <c-c> "+y
 nnoremap <c-a> ggVG

@@ -24,11 +24,13 @@ found() {
 	fi
 }
 
-inputdev() {
+inputmsg(){
 	case $1 in
 		mount) printf "Which device to you want to mount? ";;
 		unmount) printf "Which device to you want to unmount? ";;
 	esac
+}
+inputdev() {
 	read -r device
 	if [ -z "$device" ]; then
 		echo "No device given."
@@ -53,26 +55,28 @@ echo "" #}}}
 case "$choise" in #{{{
 	1)
 		lsblk
-		inputdev mount
+		inputmsg mount
+		inputdev
 		sudo mount /dev/"$device" "$mount_dir" && echo "$success_mnt"
 		;;
 	2)
 		lsblk
-		inputdev unmount
+		inputdev 
+		inputmsg unmount
 		sudo umount /dev/"$device" && echo "$success_umnt"
 		;;
 	3)
-		[ -d "$cell_mount_dir" ] || errmsg no_cell_mount_dir
+		mkdir -p "$cell_mount_dir"
 		found simple-mtpfs || errmsg no_mtpfs
 		simple-mtpfs -l || exit 1
-		printf "Which device do you want to mount? "
+		inputmsg mount
 		read -r device
 		simple-mtpfs --device "$device" "$cell_mount_dir" && echo "$success_mnt" || exit 1
 		;;
 	4)
-		[ -d "$cell_mount_dir" ] || errmsg no_cell_mount_dir
 		found fusermount || errmsg no_fusermount
 		fusermount -u "$cell_mount_dir" && echo "$success_umnt" || exit 1
+		[ -z $(ls -A "$cell_mount_dir")] && rmdir "$cell_mount_dir"
 		;;
 	5)
 		found cryptsetup || errmsg no_cryptsetup

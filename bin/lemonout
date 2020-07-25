@@ -18,7 +18,7 @@ Desktop() {
 }
 
 Volume() {
-	echo "VOL: $(amixer get Master | grep -oE '[0-9]{1,3}%')"
+	echo "%{A:volumemixer:}VOL: $(amixer get Master | grep -oE '[0-9]{1,3}%')%{A}"
 }
 
 Hidden() {
@@ -31,5 +31,5 @@ Hidden() {
 }
 
 while read -r line; do
-	echo "%{+u}%{l} $(Desktop)$(Hidden) %{c}$(Clock)%{r}%{A:volumemixer:}$(Volume)%{A}%{-u} %{+u}$(Internet)%{-u} %{+u}$(Battery) "
+	echo "%{+u}%{l} $(Desktop)$(Hidden) %{c}$(Clock)%{r}$(Volume)%{-u} %{+u}$(Internet)%{-u} %{+u}$(Battery) "
 done

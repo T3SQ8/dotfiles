@@ -2,7 +2,6 @@
 
 mount_dir="/mnt" #{{{
 cell_mount_dir="$HOME/cell-mount" # Only for mtp devices
-device_regex="sd[b-z]\+[0-9]*"
 success_mnt="Mounted successfully!"
 success_umnt="Unmounted successfully!" #}}}
 
@@ -13,27 +12,33 @@ errmsg() { # Error handling{{{
 		no_cell_mount_dir) echo "Mount folder not found.";;
 		no_mtpfs) echo "Simple-mtpfs not installed.";;
 		no_fusermount) echo "Fusermount not installed.";;
+		no_cryptsetup) echo "cryptsetup not installed";;
 	esac
 	exit 1
 }
 
-cryptsetup_checker() { [ ! "$(command -v cryptsetup)" ] &&
-	echo "Cryptsetup is not installed." &&
-	exit 1
+found() {
+	if [ ! "$(command -v "$1")" ]; then
+		echo "$1 is not installed."
+		exit 1
+	fi
 }
 
-device_checker() {
-	[ -z "$device" ] && echo "No device given." && exit 1
-	[ ! -e /dev/"$device" ] && echo "Device not found." && exit 1
-}
-
-ls_mountable() { # List devices excluding sda (OS disc) and mounted devices
-		lsblk | grep -v "$mount_dir" | grep --color "$device_regex" || errmsg no_device
-}
-
-ls_mounted() { # List mounted devices
-		lsblk | grep "$mount_dir" | grep --color "$device_regex" || errmsg no_mnt_device
-}#}}}
+inputdev() {
+	case $1 in
+		mount) printf "Which device to you want to mount? ";;
+		unmount) printf "Which device to you want to unmount? ";;
+	esac
+	read -r device
+	if [ -z "$device" ]; then
+		echo "No device given."
+		exit 1
+	fi
+	if [ ! -e /dev/"$device" ]; then
+		echo "Device not found."
+		exit 1
+	fi
+} #}}}
 
 echo "1. Mount device" #{{{
 echo "2. Unmount device"
@@ -45,24 +50,20 @@ printf "What do you want to do? "
 read -r choise
 echo "" #}}}
 
-case "$choise" in#{{{
+case "$choise" in #{{{
 	1)
-		ls_mountable
-		printf "Which device to you want to mount? "
-		read -r device
-		device_checker
+		lsblk
+		inputdev mount
 		sudo mount /dev/"$device" "$mount_dir" && echo "$success_mnt"
 		;;
 	2)
-		ls_mounted
-		printf "Which device to you want to unmount? "
-		read -r device
-		device_checker
+		lsblk
+		inputdev unmount
 		sudo umount /dev/"$device" && echo "$success_umnt"
 		;;
 	3)
 		[ -d "$cell_mount_dir" ] || errmsg no_cell_mount_dir
-		command -v simple-mtpfs > /dev/null || errmsg no_mtpfs
+		found simple-mtpfs || errmsg no_mtpfs
 		simple-mtpfs -l || exit 1
 		printf "Which device do you want to mount? "
 		read -r device
@@ -70,24 +71,20 @@ case "$choise" in#{{{
 		;;
 	4)
 		[ -d "$cell_mount_dir" ] || errmsg no_cell_mount_dir
-		command -v fusermount > /dev/null || errmsg no_fusermount
+		found fusermount || errmsg no_fusermount
 		fusermount -u "$cell_mount_dir" && echo "$success_umnt" || exit 1
 		;;
 	5)
-		cryptsetup_checker
-		ls_mountable
-		printf "Which device to you want to mount? "
-		read -r device
-		device_checker
+		found cryptsetup || errmsg no_cryptsetup
+		lsblk
+		inputdev mount
 		sudo cryptsetup luksOpen /dev/"$device" "$device" || exit 1
 		sudo mount /dev/mapper/"$device" "$mount_dir" && echo "$success_mnt"
 		;;
 	6)
-		cryptsetup_checker
-		ls_mounted
-		printf "Which device to you want to umount? "
-		read -r device
-		device_checker
+		found cryptsetup || errmsg no_cryptsetup
+		lsblk
+		inputdev unmount
 		sudo umount "$mount_dir"
 		sudo cryptsetup luksClose "$device" && echo "$success_umnt"
 		;;
@@ -95,4 +92,4 @@ case "$choise" in#{{{
 		echo "Invalid option"
 		exit 1
 		;;
-esac#}}}
+esac #}}}

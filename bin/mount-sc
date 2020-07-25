@@ -1,12 +1,12 @@
 #!/bin/sh
 
-mount_dir="/mnt"
+mount_dir="/mnt" #{{{
 cell_mount_dir="$HOME/cell-mount" # Only for mtp devices
 device_regex="sd[b-z]\+[0-9]*"
 success_mnt="Mounted successfully!"
-success_umnt="Unmounted successfully!"
+success_umnt="Unmounted successfully!" #}}}
 
-errmsg() { # Error handling
+errmsg() { # Error handling{{{
 	case $1 in
 		no_device) echo "No mountable devices found.";;
 		no_mnt_device) echo "No devices mounted at '$mount_dir'";;
@@ -33,9 +33,9 @@ ls_mountable() { # List devices excluding sda (OS disc) and mounted devices
 
 ls_mounted() { # List mounted devices
 		lsblk | grep "$mount_dir" | grep --color "$device_regex" || errmsg no_mnt_device
-}
+}#}}}
 
-echo "1. Mount device"
+echo "1. Mount device" #{{{
 echo "2. Unmount device"
 echo "3. Mount mtp device"
 echo "4. Unmount mtp device"
@@ -43,9 +43,9 @@ echo "5. Mount LUKS-encrypted device"
 echo "6. Unmount LUKS-encrypted device"
 printf "What do you want to do? "
 read -r choise
-echo ""
+echo "" #}}}
 
-case "$choise" in
+case "$choise" in#{{{
 	1)
 		ls_mountable
 		printf "Which device to you want to mount? "
@@ -95,4 +95,4 @@ case "$choise" in
 		echo "Invalid option"
 		exit 1
 		;;
-esac
+esac#}}}

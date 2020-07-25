@@ -1,10 +1,12 @@
 #!/bin/sh
 
-[ ! "${PWD##*/}" = "backups" ] && echo "Wrong directory" && exit
+if [ ! "${PWD##*/}" = "backups" ]; then
+	echo "Wrong directory"
+	exit 1
+fi
 
 backup_dir="$(date +%Y-%m-%d)" 
 mkdir "$backup_dir" || exit 1
 cp -rv "$HOME" "$backup_dir"
-echo "Syncing..."
-sync
+echo "Syncing..."; sync
 echo "Done"

@@ -5,8 +5,8 @@ Clock() {
 }
 
 Battery() {
-	[ "$(cat /sys/class/power_supply/BAT*/status)" = "Charging" ] && Charging_status="+"
-	echo "BAT:$Charging_status$(cat /sys/class/power_supply/BAT*/capacity)%"
+	[ "$(cat /sys/class/power_supply/BAT*/status)" = "Charging" ] && status="+"
+	echo "BAT:${status}$(cat /sys/class/power_supply/BAT*/capacity)%"
 }
 
 Internet() {
@@ -24,9 +24,9 @@ Volume() {
 Hidden() {
 	if bspc query -N -n .hidden.local > /dev/null; then
 		for i in $(bspc query -N -n .hidden.local.leaf); do
-			Total_hidden="${Total_hidden}+"
+			hidden="${hidden}+"
 		done
-		echo " $Total_hidden"
+		echo " $hidden"
 	fi
 }
 

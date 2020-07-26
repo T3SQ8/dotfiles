@@ -5,7 +5,7 @@ Clock() {
 }
 
 Battery() {
-	grep "Charging" /sys/class/power_supply/BAT*/status && status="+"
+	grep -q "Charging" /sys/class/power_supply/BAT*/status && status="+"
 	echo "BAT:${status}$(cat /sys/class/power_supply/BAT*/capacity)%"
 }
 

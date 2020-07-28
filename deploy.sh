@@ -19,15 +19,13 @@ ln -sr bspwmrc ~/.config/bspwm/bspwmrc
 ln -sr init.vim ~/.config/nvim/init.vim
 ln -sr rc.conf ~/.config/ranger/rc.conf
 ln -sr sxhkdrc ~/.config/sxhkd/sxhkdrc
-ln -sr xinitrc ~/.config/X11/xinitrc
+ln -sr X11/* ~/.config/X11/
 ln -sr zprofile ~/.zprofile
 ln -sr zshrc ~/.config/zsh/.zshrc
 ln -sr ftplugin/* ~/.config/nvim/ftplugin
-ln -sr Xresources ~/.config/X11/Xresources
 ln -sr config ~/.config/newsboat/config
 ln -sr zathurarc ~/.config/zathura/zathurarc
 ln -sr mpv/* ~/.config/mpv
-ln -sr dunstrc ~/.config/dunst
-ln -sr dunstrc ~/.config/dunst
-ln -sr startup.py ~/.config/python
+ln -sr dunstrc ~/.config/dunst/dunstrc
+ln -sr startup.py ~/.config/python/startup.py
 echo "Done"

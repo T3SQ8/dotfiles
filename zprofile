@@ -6,7 +6,8 @@ export ZDOTDIR="$HOME/.config/zsh" \
 	LESSHISTFILE="-" \
 	TERMINAL="st" \
 	GNUPGHOME="$HOME/.config/gnupg" \
-	PYTHONSTARTUP="$HOME/.config/python/startup.py"
+	PYTHONSTARTUP="$HOME/.config/python/startup.py" \
+	PANEL_FIFO=/tmp/panel-fifo
 
 export GIT_EDITOR="$EDITOR"
 

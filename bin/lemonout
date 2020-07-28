@@ -18,7 +18,7 @@ Desktop() {
 }
 
 Volume() {
-	echo "%{A:volumemixer:}VOL: $(amixer get Master | grep -oE '[0-9]{1,3}%')%{A}"
+	echo "VOL: $(amixer get Master | grep -oE '[0-9]{1,3}%')"
 }
 
 Hidden() {

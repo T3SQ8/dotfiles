@@ -1,6 +1,6 @@
 autoload -U colors compinit edit-command-line
 
-HISTSIZE=10000
+HISTSIZE=1000
 SAVEHIST=10000
 HISTFILE="$HOME/.cache/zsh/histfile"
 

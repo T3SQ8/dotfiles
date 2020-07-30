@@ -1,10 +1,27 @@
 #!/bin/sh
+dir="$1"
 
-if [ ! -d "$1" ]; then
+dirsizecmd()	{ du -s "$dir" | cut -f1 ;}
+dircountcmd()	{ find "$dir" -type d | wc -l ;}
+filecountcmd()	{ find "$dir" -type f | wc -l ;}
+
+if [ ! -d "$dir" ]; then
 	echo "Directory not found"
 	exit 1
 fi
 
-while [ ! -z "$(find "$1" -empty)" ]; do
-	find "$1" -empty -exec rm -rf '{}' +
+dirsize="$(dirsizecmd)"
+dircount="$(dircountcmd)"
+filecount="$(filecountcmd)"
+
+while [ -n "$(find "$dir" -empty)" ]; do
+	find "$dir" -empty -exec rm -rf '{}' +
 done
+
+newdirsize="$(dirsizecmd)"
+newdircount="$(dircountcmd)"
+newfilecount="$(filecountcmd)"
+
+echo "Directory size: $dirsize -> $newdirsize ($((dirsize - newdirsize)))"
+echo "Directory count: $dircount -> $newdircount ($((dircount - newdircount)))"
+echo "File count: $filecount -> $newfilecount ($((filecount - newfilecount)))"

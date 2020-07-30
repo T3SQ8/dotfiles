@@ -1,11 +1,11 @@
 autoload -U colors compinit edit-command-line
 
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 HISTFILE="$HOME/.cache/zsh/histfile"
 
-[ ! -d ${HISTFILE%/*} ] && mkdir -p ${HISTFILE%/*}
-[ ! -f $HISTFILE ] && touch $HISTFILE
+[ ! -d "${HISTFILE%/*}" ] && mkdir -p "${HISTFILE%/*}"
+[ ! -f "$HISTFILE" ] && touch "$HISTFILE"
  
 # Turn on color and set the prompt
 colors

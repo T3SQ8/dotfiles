@@ -3,4 +3,4 @@
 programs="chromium keepassxc firefox"
 choice=$(echo "$programs" | tr " " "\n" | sort | dmenu)
 
-[ ! -z "$choice" ] && sh -c $(echo "$programs" | grep -iwo "$choice")
+[ -n "$choice" ] && sh -c "$(echo "$programs" | grep -iwo "$choice")"

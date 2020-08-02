@@ -3,7 +3,7 @@
 mtp_mount_dir="$HOME/cell-mount"
 
 found() {
-	for i in $@; do
+	for i in "$@"; do
 		if [ ! "$(command -v "$i")" ]; then
 			echo "$i is not installed."
 			exit 1
@@ -20,7 +20,7 @@ inputdev() {
 	if [ -z "$device" ]; then
 		echo "No device given."
 		exit 1
-	elif [ ! -e /dev/"$device" ]; then
+	elif [ ! -e "/dev/$device" ]; then
 		echo "Device not found."
 		exit 1
 	fi

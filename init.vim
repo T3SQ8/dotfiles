@@ -39,7 +39,7 @@ command WQ wq
 command Wq wq
 tnoremap <Esc> <C-\><C-n>
 " Mics
-autocmd filetype todo nnoremap <c-x> :call Todo_complete()<cr>
+autocmd filetype todo nnoremap <buffer> <c-x> :call Todo_complete()<cr>
 nnoremap <leader>n :nohlsearch<cr>
 nnoremap Y y$
 nnoremap <C-LeftMouse> <LeftMouse>.

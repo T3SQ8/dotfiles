@@ -50,13 +50,9 @@ super + {g, w}
 super + {t,shift + t,s}
 	bspc node -t {tiled,pseudo_tiled,floating}
 
-# move floating window
+# Resize window
 super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
-
-# move floating window faster
-super + shift + {Left,Down,Up,Right}
-	bspc node -v {-40 0,0 40,0 -40,40 0}
+	bspwm_resize {west, south, north, east}
 
 # node flags
 super + {p, h}
@@ -73,18 +69,6 @@ super + {_,shift} r
 # close window
 super + shift + q
 	bspc node -k
-
-############
-# RESIZING #
-############
-
-# expand window from edge
-super + alt + {Left,Down,Up,Right}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-# contract window from edge
-super + alt + shift + {Left,Down,Up,Right}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 ###########
 # DESKTOP #

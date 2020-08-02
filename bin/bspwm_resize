@@ -1,0 +1,14 @@
+#!/bin/sh
+
+step=20
+
+case $1 in
+	north)
+		bspc node -z top 0 "-$step" || bspc node -z bottom 0 "-$step" ;;
+	south)
+		bspc node -z bottom 0 "$step" || bspc node -z top 0 "$step" ;;
+	east)
+		bspc node -z right "$step" 0 || bspc node -z left "$step" 0 ;;
+	west)
+		bspc node -z left "-$step" 0 || bspc node -z right "-$step" 0 ;;
+esac

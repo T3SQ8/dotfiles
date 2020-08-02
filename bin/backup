@@ -5,8 +5,8 @@ if [ "${PWD##*/}" != "backups" ]; then
 	exit 1
 fi
 
-backup_dir="$(date +%Y-%m-%d)" 
-mkdir "$backup_dir" || exit 1
-cp -rv "$HOME" "$backup_dir"
-echo "Syncing..."; sync
-echo "Done"
+file="$(date +%Y-%m-%d).tar.gz"
+tar -cvzf "$file" "$HOME"
+md5sum "$file" >> checksums.md5
+echo "Syncing..."
+sync

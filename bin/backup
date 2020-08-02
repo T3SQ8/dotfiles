@@ -5,6 +5,7 @@ if [ "${PWD##*/}" != "backups" ]; then
 	exit 1
 fi
 
+pacman -Qqe > "$HOME/installed-packages.txt"
 file="$(date +%Y-%m-%d).tar.gz"
 tar -cvzf "$file" "$HOME"
 md5sum "$file" >> checksums.md5

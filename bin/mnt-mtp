@@ -1,0 +1,20 @@
+#!/bin/sh
+
+. mnt-sc
+found simple-mtpfs fusermount
+startmsg
+
+case $choise in
+	1)
+		simple-mtpfs -l || exit 1
+		printf "Which device to you want to mount? "
+		read -r device
+		mkdir "$mtp_mount_dir"
+		simple-mtpfs --device "$device" "$mtp_mount_dir"
+		;;
+	2)
+		fusermount -u "$mtp_mount_dir"
+		rmdir "$mtp_mount_dir"
+		;;
+esac
+echo "Done"

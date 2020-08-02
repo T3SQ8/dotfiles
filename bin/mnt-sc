@@ -1,0 +1,39 @@
+#!/bin/sh
+
+mtp_mount_dir="$HOME/cell-mount"
+
+found() {
+	for i in $@; do
+		if [ ! "$(command -v "$i")" ]; then
+			echo "$i is not installed."
+			exit 1
+		fi
+	done
+}
+
+inputdev() {
+	case $1 in
+		mount) printf "Which device to you want to mount? ";;
+		unmount) printf "Which device to you want to unmount? ";;
+	esac
+	read -r device
+	if [ -z "$device" ]; then
+		echo "No device given."
+		exit 1
+	elif [ ! -e /dev/"$device" ]; then
+		echo "Device not found."
+		exit 1
+	fi
+} 
+
+startmsg() {
+	echo "1. Mount device" 
+	echo "2. Unmount device"
+	printf "What do you want to do? "
+	read -r choise
+}
+
+mkmntdir() {
+	mntdir="/mnt/$device" 
+	[ -d "$mntdir" ] || sudo mkdir "$mntdir"
+}

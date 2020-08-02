@@ -1,0 +1,19 @@
+#!/bin/sh
+
+. mnt-sc
+startmsg
+
+case $choise in
+	1)
+		lsblk
+		inputdev mount
+		mkmntdir
+		sudo mount "/dev/$device" "$mntdir"
+		;;
+	2)
+		lsblk | grep "/mnt"
+		inputdev unmount
+		sudo umount "/dev/$device"
+		;;
+esac
+echo "Done"

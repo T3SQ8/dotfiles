@@ -1,4 +1,5 @@
 #!/bin/sh
+
 dir="$1"
 
 dirsizecmd()	{ du -s "$dir" | cut -f1 ;}
@@ -15,7 +16,7 @@ dircount="$(dircountcmd)"
 filecount="$(filecountcmd)"
 
 while [ -n "$(find "$dir" -empty)" ]; do
-	find "$dir" -empty -exec rm -rf '{}' +
+	find "$dir" -empty -delete
 done
 
 newdirsize="$(dirsizecmd)"

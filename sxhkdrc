@@ -10,7 +10,7 @@ super + Return
 super + Escape
 	pkill -USR1 -x sxhkd
 
-# dmenu application launcher
+# application launcher
 super + space
 	launcher
 
@@ -30,11 +30,7 @@ super + space
 super + alt + {q,r}
 	bspc {quit,wm -r}
 
-###########
-# WINDOWS #
-###########
-
-# toggle tiled and monocle layout
+# toggle monocle layout
 super + f
 	bspc desktop -l next
 
@@ -69,10 +65,6 @@ super + {_,shift} r
 # close window
 super + shift + q
 	bspc node -k
-
-###########
-# DESKTOP #
-###########
 
 # focus the next/previous desktop in the current monitor
 super + {Prior,Next}

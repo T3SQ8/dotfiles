@@ -11,7 +11,7 @@ set nowrap
 set number relativenumber cursorline
 set smartindent
 set splitbelow splitright
-set undofile undodir=$HOME/.config/nvim/undodir
+set undofile undodir=$HOME/.cache/nvim/undodir
 highlight CursorLine cterm=NONE ctermbg=darkgrey
 highlight Folded ctermbg=red ctermfg=white
 syntax on "}}}

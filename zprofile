@@ -7,7 +7,8 @@ export ZDOTDIR="$HOME/.config/zsh" \
 	TERMINAL="st" \
 	GNUPGHOME="$HOME/.config/gnupg" \
 	PYTHONSTARTUP="$HOME/.config/python/startup.py" \
-	PANEL_FIFO="/tmp/panel-fifo"
+	PANEL_FIFO="/tmp/panel-fifo" \
+	BROWSER="firefox"
 
 export GIT_EDITOR="$EDITOR"
 

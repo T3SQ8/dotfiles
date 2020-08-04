@@ -1,27 +1,30 @@
+# Loading
 autoload -U colors compinit edit-command-line
+colors
+compinit
+zle -N edit-command-line
+zmodload zsh/complist
 
+# Options
+setopt NO_HUP autocd correct auto_pushd nolistambiguous completeinword
+
+# Command-line completion
+zstyle ':completion:*' menu select
+_comp_options+=(globdots)
+zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
+
+# Variables
 HISTSIZE=1000
 SAVEHIST=10000
 HISTFILE="$HOME/.cache/zsh/histfile"
-
-[ ! -d "${HISTFILE%/*}" ] && mkdir -p "${HISTFILE%/*}"
-[ ! -f "$HISTFILE" ] && touch "$HISTFILE"
- 
-# Turn on color and set the prompt
-colors
+WORDCHARS="${WORDCHARS/\/}"
 PS1="[%B%{$fg[blue]%}%~%{$reset_color%}]$ "
 
-# Keyboard shortcuts
+# Shortcuts
 bindkey -e
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-
-# Open command in editor
-zle -N edit-command-line
 bindkey '^o' edit-command-line
-
-# Allow leaving with running jobs
-setopt NO_HUP autocd 
 
 # Aliases
 alias \
@@ -38,9 +41,8 @@ alias \
 	gd='git diff' \
 	gp='git push'
 
-# Command-line completion
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zmodload zsh/complist
-compinit
-_comp_options+=(globdots) # Include hidden files.
+# Create histfile
+[ -d "${HISTFILE%/*}" ] || mkdir -p "${HISTFILE%/*}"
+[ -f "$HISTFILE" ] || touch "$HISTFILE"
+
+stty -ixon

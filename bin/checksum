@@ -1,4 +1,4 @@
 #!/bin/sh
 
 file="$(date +%Y-%m-%d_%T).md5"
-find '.' -type f -not -name "$file" -exec md5sum "{}" + > "$file"
+find '.' -type f -not -name "$file" -exec md5sum '{}' + > "$file"

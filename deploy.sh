@@ -14,18 +14,18 @@ mkdir -p \
 	~/.config/dunst \
 	~/.config/python
 
-ln -sr bin/* ~/.local/bin
-ln -sr bspwmrc ~/.config/bspwm/bspwmrc
-ln -sr init.vim ~/.config/nvim/init.vim
-ln -sr rc.conf ~/.config/ranger/rc.conf
-ln -sr sxhkdrc ~/.config/sxhkd/sxhkdrc
-ln -sr X11/* ~/.config/X11/
-ln -sr zprofile ~/.zprofile
-ln -sr zshrc ~/.config/zsh/.zshrc
-ln -sr ftplugin/* ~/.config/nvim/ftplugin
-ln -sr config ~/.config/newsboat/config
-ln -sr zathurarc ~/.config/zathura/zathurarc
-ln -sr mpv/* ~/.config/mpv
-ln -sr dunstrc ~/.config/dunst/dunstrc
-ln -sr startup.py ~/.config/python/startup.py
+ln -sfr bin/* ~/.local/bin
+ln -sfr bspwmrc ~/.config/bspwm/bspwmrc
+ln -sfr init.vim ~/.config/nvim/init.vim
+ln -sfr rc.conf ~/.config/ranger/rc.conf
+ln -sfr sxhkdrc ~/.config/sxhkd/sxhkdrc
+ln -sfr X11/* ~/.config/X11/
+ln -sfr zprofile ~/.zprofile
+ln -sfr zshrc ~/.config/zsh/.zshrc
+ln -sfr ftplugin/* ~/.config/nvim/ftplugin
+ln -sfr config ~/.config/newsboat/config
+ln -sfr zathurarc ~/.config/zathura/zathurarc
+ln -sfr mpv/* ~/.config/mpv
+ln -sfr dunstrc ~/.config/dunst/dunstrc
+ln -sfr startup.py ~/.config/python/startup.py
 echo "Done"

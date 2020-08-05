@@ -1,20 +1,19 @@
 nnoremap <buffer> <leader>u :call Addpackage("")<cr>
 function! Addpackage(package)
-	if empty(a:package)
-		if search('\\usepackage{\w\+}', 'n') " Search for a line that already is calling a package
-			call append(search('\\usepackage{\w\+}', 'bn'), "\\usepackage{}") " Add the new line after that
-		else
-			call append(search('\\documentclass{\w\+}', 'bn'), "\\usepackage{}") " Add the line after the documentclass
-		endif
-		call search('\\usepackage{}', 'b')
-		call cursor('', 13)
-		startinsert
+	let usepackage = search('\\usepackage{\w\+}', 'n') " Search for a line that already is calling a package
+	if usepackage != 0
+		let line = usepackage
 	else
-		if search('\\usepackage{\w\+}', 'n')
-			call append(search('\\usepackage{\w\+}', 'bn'), '\usepackage{' . a:package . '}')
-		else
-			call append(search('\\documentclass{\w\+}', 'bn'), '\usepackage{' . a:package . '}')
-		endif
+		let line = search('\\documentclass{\w\+}', 'n') " Add the line after the documentclass (line is set to 0 if no the command fails)
+	endif
+	if empty(a:package)
+		call append(line, "\\usepackage{}")
+		call cursor(line + 1, 13)
+		startinsert
+	elseif search('\\usepackage{' . a:package . '}', 'n')
+		return
+	else
+		call append(line, '\usepackage{' . a:package . '}')
 	endif
 endfunction
 

@@ -6,7 +6,7 @@ zle -N edit-command-line
 zmodload zsh/complist
 
 # Options
-setopt NO_HUP autocd correct auto_pushd nolistambiguous completeinword
+setopt NO_HUP autocd correct auto_pushd nolistambiguous
 
 # Command-line completion
 zstyle ':completion:*' menu select

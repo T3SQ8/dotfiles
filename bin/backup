@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ "${PWD##*/}" != "backups" ]; then
+if [ "${PWD##*/}" != "backups-computer" ]; then
 	echo "Wrong directory"
 	exit 1
 fi

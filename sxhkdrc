@@ -36,7 +36,7 @@ super + f
 
 # focus on the next/previous node in the current desktop
 alt + {_,shift + }Tab
-	bspc node -f {next,prev}.local.leaf
+	bspc node -f {next,prev}.local.leaf.!hidden
 
 # swap nodes
 super + {g, w}

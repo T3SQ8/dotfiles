@@ -1,0 +1,19 @@
+#!/bin/sh
+
+printf "All files in this directory will be renamed. If you want to continue type 'yes' in all caps: "
+read -r choice
+
+[ "$choice" != "YES" ] && exit
+
+newfilecount=$(find . -type f | wc -l)
+
+for file in $(find . -type f); do
+	sum=$(md5sum "$file" | cut -d' ' -f1)
+	mv "$file" "${file%/*}/${sum}.${file##*.}"
+done
+
+oldfilecount=$(find . -type f | wc -l)
+
+if [ ! "$oldfilecount" = "$newfilecount" ]; then
+	echo "The file count has changed. Something went wrong"
+fi

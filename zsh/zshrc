@@ -46,3 +46,11 @@ alias \
 [ -f "$HISTFILE" ] || touch "$HISTFILE"
 
 stty -ixon
+
+ranger() {
+	if [ -z "$RANGER_LEVEL" ]; then
+		/usr/bin/ranger "$@"
+	else
+		exit
+	fi
+}

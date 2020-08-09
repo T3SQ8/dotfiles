@@ -11,5 +11,3 @@ export ZDOTDIR="$HOME/.config/zsh" \
 	BROWSER="firefox"
 
 export GIT_EDITOR="$EDITOR"
-
-[ "$(tty)" = "/dev/tty1" ] && startx "$XINITRC" &

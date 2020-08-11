@@ -35,5 +35,5 @@ startmsg() {
 
 mkmntdir() {
 	mntdir="/mnt/$device" 
-	[ -d "$mntdir" ] || sudo mkdir "$mntdir"
+	 sudo mkdir -p "$mntdir"
 }

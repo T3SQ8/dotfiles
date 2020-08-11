@@ -1,6 +1,4 @@
-import os
-import readline
-import atexit
+import os, readline, atexit
 
 histfile = os.environ.get("HOME") + "/.cache/python_history"
 

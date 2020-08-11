@@ -1,13 +1,12 @@
-export ZDOTDIR="$HOME/.config/zsh" \
+export \
+	BROWSER="firefox" \
 	EDITOR="nvim" \
-	PATH="$PATH:$HOME/.local/bin" \
-	XINITRC="$HOME/.config/X11/xinitrc" \
-	XAUTHORITY="$HOME/.config/X11/Xauthority" \
-	LESSHISTFILE="$HOME/.cache/lesshst" \
-	TERMINAL="st" \
 	GNUPGHOME="$HOME/.config/gnupg" \
-	PYTHONSTARTUP="$HOME/.config/python/startup.py" \
+	LESSHISTFILE="$HOME/.cache/lesshst" \
 	PANEL_FIFO="/tmp/panel-fifo" \
-	BROWSER="firefox"
-
-export GIT_EDITOR="$EDITOR"
+	PATH="$PATH:$HOME/.local/bin" \
+	PYTHONSTARTUP="$HOME/.config/python/startup.py" \
+	TERMINAL="st" \
+	XAUTHORITY="$HOME/.config/X11/Xauthority" \
+	XINITRC="$HOME/.config/X11/xinitrc" \
+	ZDOTDIR="$HOME/.config/zsh"

@@ -24,16 +24,16 @@ inputdev() {
 		echo "Device not found."
 		exit 1
 	fi
-} 
+}
 
 startmsg() {
-	echo "1. Mount device" 
+	echo "1. Mount device"
 	echo "2. Unmount device"
 	printf "What do you want to do? "
 	read -r choise
 }
 
 mkmntdir() {
-	mntdir="/mnt/$device" 
+	mntdir="/mnt/$device"
 	 sudo mkdir -p "$mntdir"
 }

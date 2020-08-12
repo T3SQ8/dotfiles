@@ -9,3 +9,4 @@ bind-key g home
 
 browser "newsboat-open"
 macro b set browser "$BROWSER %u &" ; open-in-browser ; set browser "newsboat-open"
+macro t set browser "newsboat-thumb" ; open-in-browser ; set browser "newsboat-open"

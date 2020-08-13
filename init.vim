@@ -2,6 +2,7 @@ execute pathogen#infect()
 
 " Settings{{{
 autocmd BufRead,BufNewFile *.tex set filetype=tex
+autocmd BufWritePost * if search(" $") | echoerr "There is whitespace at end of line(s)" | endif
 filetype indent on
 set foldmethod=marker
 set ignorecase

@@ -2,7 +2,6 @@ execute pathogen#infect()
 
 " Settings{{{
 autocmd BufRead,BufNewFile *.tex set filetype=tex
-autocmd BufWritePost * if search("[ 	]$") | echoerr "There is whitespace at end of line(s)" | endif
 filetype indent on
 set foldmethod=marker
 set ignorecase
@@ -147,5 +146,15 @@ function! Begin()
 		normal! G=gg
 	else
 		echoerr "File is not empty"
+	endif
+endfunction
+
+autocmd BufWritePost * call Rmspace()
+function! Rmspace()
+	if empty(getline("$"))
+		echomsg "The last line is empty"
+		call cursor("$", "")
+	elseif search("[ 	]$")
+		echomsg "There is whitespace at end of line(s)"
 	endif
 endfunction "}}}

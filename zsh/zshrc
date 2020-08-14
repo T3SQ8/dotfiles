@@ -35,11 +35,11 @@ alias \
 # Git aliases
 alias \
 	ga='git add' \
-	gs='git status' \
 	gc='git commit' \
-	gp='git add' \
 	gd='git diff' \
-	gp='git push'
+	gl='git log --oneline' \
+	gp='git push' \
+	gs='git status'
 
 # Create histfile
 [ -d "${HISTFILE%/*}" ] || mkdir -p "${HISTFILE%/*}"

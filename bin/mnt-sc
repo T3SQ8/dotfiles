@@ -37,3 +37,8 @@ mkmntdir() {
 	mntdir="/mnt/$device"
 	 sudo mkdir -p "$mntdir"
 }
+
+syncdev(){
+	echo "Syncing..."
+	sync
+}

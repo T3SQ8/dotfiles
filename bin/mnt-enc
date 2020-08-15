@@ -15,6 +15,7 @@ case $choise in
 	2)
 		lsblk | grep "crypt"
 		inputdev unmount
+		syncdev
 		sudo umount "/dev/mapper/$device"
 		sudo cryptsetup luksClose "$device"
 		;;

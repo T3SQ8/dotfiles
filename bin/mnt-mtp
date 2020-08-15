@@ -13,6 +13,7 @@ case $choise in
 		simple-mtpfs --device "$device" "$mtp_mount_dir"
 		;;
 	2)
+		syncdev
 		fusermount -u "$mtp_mount_dir"
 		rmdir "$mtp_mount_dir"
 		;;

@@ -13,7 +13,8 @@ case $choise in
 	2)
 		lsblk | grep "/mnt"
 		inputdev unmount
+		syncdev
 		sudo umount "/dev/$device"
 		;;
 esac
-echo "Done"
+finish

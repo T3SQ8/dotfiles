@@ -12,7 +12,7 @@ lemonout < "$PANEL_FIFO" | lemonbar \
 	-f "consolas:size=10:style=bold" \
 	-B "#151515" \
 	-F "#D8DEE9" \
-	-o 1 | sh &
+	-o 1
 
 while true; do
 	refpanel

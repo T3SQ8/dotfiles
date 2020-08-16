@@ -1,0 +1,6 @@
+#!/bin/sh
+
+programs="chromium keepassxc firefox"
+choice=$(echo "$programs" | tr " " "\n" | sort | dmenu)
+
+[ -n "$choice" ] && sh -c "$(echo "$programs" | grep -iwo "$choice")"

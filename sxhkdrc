@@ -10,10 +10,6 @@ super + Return
 super + Escape
 	pkill -USR1 -x sxhkd
 
-# application launcher
-super + space
-	launcher
-
 # volume controls
 {XF86AudioRaiseVolume,XF86AudioLowerVolume,XF86AudioMute}
 	amixer sset Master {5%+,5%-,0%}; refpanel
@@ -21,6 +17,10 @@ super + space
 # brightness
 {XF86MonBrightnessUp,XF86MonBrightnessDown}
 	xbacklight {-inc 10,-dec 10}
+
+# GUI Programs
+super + space + {f,k,c}
+	sh -c {firefox,keepassxc,chromium}
 
 #################
 # BSPWM HOTKEYS #

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rsync -azP --exclude={'.cache','.config/chromium','.config/nvim/bundle'} "$HOME/" 192.168.0.46:home-backups

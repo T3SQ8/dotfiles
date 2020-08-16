@@ -1,3 +1,11 @@
 #!/bin/sh
 
-rsync -azP --exclude={'.cache','.config/chromium','.config/nvim/bundle'} "$HOME/" 192.168.0.46:home-backups
+temp=$(mktemp)
+
+echo \
+".cache
+.config/chromium
+.config/nvim/bundle
+Downloads" > "$temp"
+
+rsync -azP --exclude-from="$temp" "$HOME/" 192.168.0.46:home-backups

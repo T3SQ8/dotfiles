@@ -1,0 +1,4 @@
+#!/bin/sh
+
+$TERMINAL -e sh -c "mpv --no-video $1" &
+notify-send "Video sent to mpv"

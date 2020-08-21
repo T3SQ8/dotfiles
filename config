@@ -7,6 +7,7 @@ bind-key h quit
 bind-key G end
 bind-key g home
 
-browser "newsboat-open"
-macro b set browser "$BROWSER %u &" ; open-in-browser ; set browser "newsboat-open"
-macro t set browser "newsboat-thumb" ; open-in-browser ; set browser "newsboat-open"
+browser "newsboat-video"
+macro b set browser "$BROWSER %u &" ; open-in-browser ; set browser "newsboat-video"
+macro t set browser "newsboat-thumb" ; open-in-browser ; set browser "newsboat-video"
+macro a set browser "newsboat-audio" ; open-in-browser ; set browser "newsboat-video"

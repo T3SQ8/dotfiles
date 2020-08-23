@@ -17,4 +17,4 @@ case $choise in
 		sudo umount "/dev/$device"
 		;;
 esac
-finish
+echo "Done"

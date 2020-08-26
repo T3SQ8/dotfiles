@@ -12,7 +12,7 @@ super + Escape
 
 # application launcher
 super + space
-	launcher
+	dmenu_run
 
 # volume controls
 {XF86AudioRaiseVolume,XF86AudioLowerVolume,XF86AudioMute}

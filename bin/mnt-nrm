@@ -1,20 +1,26 @@
 #!/bin/sh
 
-. mnt-sc
-startmsg
+if [ "$(whoami)" != "root" ]; then
+	echo "Root privileges needed"; exit
+elif [ $# = 0 ]; then
+	echo "No device given"; exit
+fi
 
-case $choise in
-	1)
-		lsblk
-		inputdev mount
-		mkmntdir
-		sudo mount "/dev/$device" "$mntdir"
-		;;
-	2)
-		lsblk | grep "/mnt"
-		inputdev unmount
-		syncdev
-		sudo umount "/dev/$device"
-		;;
-esac
-echo "Done"
+for device in "$@"; do
+	if [ ! -e "$device" ]; then
+		echo "'$device' not found"; exit
+	fi
+
+	if mount | grep -q "$device"; then
+		echo "Syncing..."; sync
+		umount "$device"
+		echo "$device unmounted"
+		mntdir="/mnt/$(basename $device)"
+		rmdir "$mntdir"
+	else
+		mntdir="/mnt/$(basename $device)"
+		mkdir -p "$mntdir"
+		mount "$device" "$mntdir"
+		echo "$device mounted"
+	fi
+done

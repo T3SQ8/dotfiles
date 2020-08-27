@@ -1,21 +1,22 @@
 #!/bin/sh
 
-. mnt-sc
-found simple-mtpfs fusermount
-startmsg
+mntdir="$HOME/cell-mount"
 
-case $choise in
+[ "$(command -v simple-mtpfs fusermount | wc -l)" -ne 2 ] && exit
+
+echo "1. Mount device"
+echo "2. Unmount device"
+printf "What do you want to do? "; read -r choice
+
+case $choice in
 	1)
-		simple-mtpfs -l || exit 1
-		printf "Which device to you want to mount? "
-		read -r device
-		mkdir "$mtp_mount_dir"
-		simple-mtpfs --device "$device" "$mtp_mount_dir"
+		simple-mtpfs -l || exit
+		printf "Which device to you want to mount? "; read -r device
+		mkdir "$mntdir"
+		simple-mtpfs --device "$device" "$mntdir"
 		;;
 	2)
-		syncdev
-		fusermount -u "$mtp_mount_dir"
-		rmdir "$mtp_mount_dir"
+		fusermount -u "$mntdir"
+		rmdir "$mntdir"
 		;;
 esac
-echo "Done"

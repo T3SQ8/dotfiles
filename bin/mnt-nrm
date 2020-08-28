@@ -10,15 +10,16 @@ for device in "$@"; do
 	if [ ! -e "$device" ]; then
 		echo "'$device' not found"; exit
 	fi
+done
 
+for device in "$@"; do
+	mntdir="/mnt/$(basename "$device")"
 	if mount | grep -q "$device"; then
 		echo "Syncing..."; sync
 		umount "$device"
-		echo "$device unmounted"
-		mntdir="/mnt/$(basename $device)"
 		rmdir "$mntdir"
+		echo "$device unmounted"
 	else
-		mntdir="/mnt/$(basename $device)"
 		mkdir -p "$mntdir"
 		mount "$device" "$mntdir"
 		echo "$device mounted"

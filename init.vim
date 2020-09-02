@@ -156,5 +156,7 @@ function! Rmspace()
 		call cursor("$", "")
 	elseif search("[ 	]$")
 		echomsg "There is whitespace at end of line(s)"
+	elseif search('	 \| 	')
+		echomsg "There are mismatched tabs and spaces"
 	endif
 endfunction "}}}

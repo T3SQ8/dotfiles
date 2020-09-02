@@ -2,7 +2,7 @@
 
 thumb="$(youtube-dl --write-thumbnail --skip-download "$1" --output "/tmp/thumb" | awk '/Writing thumbnail/ {print $NF}')"
 
-if [ "${thumb##*.}" = "jpg" ] && file $thumb | grep "Web/P"; then
+if [ "${thumb##*.}" = "jpg" ] && file "$thumb" | grep "Web/P"; then
 	mv "$thumb" "${thumb%.*}.webp"
 	thumb="${thumb%.*}.webp"
 fi

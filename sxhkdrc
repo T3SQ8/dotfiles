@@ -2,23 +2,23 @@
 # WM INDEPENDENT HOTKEYS #
 ##########################
 
-# terminal emulator
+# Terminal emulator
 super + Return
 	$TERMINAL
 
-# reload sxhkd
+# Reload sxhkd
 super + Escape
 	pkill -USR1 -x sxhkd
 
-# application launcher
+# Application launcher
 super + space
 	dmenu_run
 
-# volume controls
+# Volume controls
 {XF86AudioRaiseVolume,XF86AudioLowerVolume,XF86AudioMute}
 	amixer sset Master {5%+,5%-,0%}; refpanel
 
-# brightness
+# Brightness
 {XF86MonBrightnessUp,XF86MonBrightnessDown}
 	xbacklight {-inc 10,-dec 10}
 
@@ -26,23 +26,23 @@ super + space
 # BSPWM HOTKEYS #
 #################
 
-# quit/restart bspwm
+# Quit/restart bspwm
 super + alt + {q,r}
 	bspc {quit,wm -r}
 
-# toggle monocle layout
+# Toggle monocle layout
 super + f
 	bspc desktop -l next
 
-# focus on the next/previous node in the current desktop
+# Focus on the next/previous node in the current desktop
 alt + {_,shift + }Tab
 	bspc node -f {next,prev}.local.leaf.!hidden
 
-# swap nodes
+# Swap nodes
 super + {g, w}
 	bspc node -s {biggest.local, pointed}
 
-# set window state
+# Set window state
 super + {t,shift + t,s}
 	bspc node -t {tiled,pseudo_tiled,floating}
 
@@ -50,30 +50,30 @@ super + {t,shift + t,s}
 super + {Left,Down,Up,Right}
 	bspwm_resize {west, south, north, east}
 
-# node flags
+# Node flags
 super + {p, h}
 	bspc node -g {sticky, hidden}
 
-# unhide windows
+# Unhide windows
 super + shift + h
 	bspc node $(bspc query -N -n .hidden.local | tail -n1) -g hidden=off
 
-# rotate windows
+# Rotate windows
 super + {_,shift} r
 	bspc node @focused:/ -R {_,-}90
 
-# close window
+# Close window
 super + shift + q
 	bspc node -k
 
-# focus the next/previous desktop in the current monitor
+# Focus the next/previous desktop in the current monitor
 super + {Prior,Next}
 	bspc desktop -f {prev,next}.local
 
-# focus on desktop
+# Focus on desktop
 super + {1-9,0}
 	bspc desktop -f '^{1-9,10}'
 
-# send node to desktop
+# Send node to desktop
 super + shift + {1-9,0}
 	bspc node -d '^{1-9,10}'

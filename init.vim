@@ -151,7 +151,7 @@ endfunction
 
 autocmd BufWritePost * call Rmspace()
 function! Rmspace()
-	if empty(getline("$"))
+	if line("$") != 1 && empty(getline("$"))
 		echomsg "The last line is empty"
 		call cursor("$", "")
 	elseif search("[ 	]$")

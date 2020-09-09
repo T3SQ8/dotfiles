@@ -3,15 +3,13 @@
 bspc rule -r "*"
 
 # Setup monitors
-#mainmonitor="$(xrandr | awk '/^[A-Z]/ && !/Screen|VIRTUAL|LVDS|disconnected/ {print $1}')" # Look for other monitors than the laptop screen
-#if [ -n "$mainmonitor" ]; then
-#	xrandr --output "$mainmonitor" --auto --output "$(xrandr | awk '/LVDS/ {print $1}')" --off # Output to the external monitor and turn off the latop display
-#	bspc monitor "$mainmonitor" -d 1 2 3 4 5 6 7 8 9 10
-#else
-#	bspc monitor -d 1 2 3 4 5 6 7 8 9 10
-#fi
-#bspc desktop -f 1
-
+mainmonitor="$(xrandr | awk '/\yconnected/ && !/LVDS/ {print $1;exit}')"
+laptopmonitor="$(xrandr | awk '/LVDS/ {print $1;exit}')"
+if [ -n "$mainmonitor" ]; then
+	xrandr --output "$mainmonitor" --auto --output "$laptopmonitor" --off
+else
+	xrandr --output "$laptopmonitor" --auto
+fi
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 
 # Aesthetics

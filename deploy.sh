@@ -23,8 +23,8 @@ ln -sfr startup.py ~/.config/python/startup.py
 ln -sfr sxhkdrc ~/.config/sxhkd/sxhkdrc
 ln -sfr zathurarc ~/.config/zathura/zathurarc
 ln -sfr zshenv ~/.zshenv
+ln -sfr xinitrc ~/.config/X11/xinitrc
 
-ln -sfr X11/* ~/.config/X11
 ln -sfr bin/* ~/.local/bin
 ln -sfr ftplugin/* ~/.config/nvim/ftplugin
 ln -sfr mpv/* ~/.config/mpv

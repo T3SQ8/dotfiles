@@ -4,6 +4,7 @@ temp=$(mktemp)
 
 echo \
 ".cache
+.local/share/torbrowser
 .config/chromium
 .config/nvim/bundle
 Downloads" > "$temp"

@@ -9,7 +9,7 @@ bspc subscribe all > "$PANEL_FIFO" &
 lemonout < "$PANEL_FIFO" | lemonbar \
 	-u 2 \
 	-U "#aa0000" \
-	-f "consolas:size=10:style=bold" \
+	-f "Liberation Mono:size=9:style=bold" \
 	-B "#151515" \
 	-F "#D8DEE9" \
 	-o 1 &

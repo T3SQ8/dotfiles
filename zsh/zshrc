@@ -18,7 +18,7 @@ zstyle ':completion:*' hosts off
 HISTSIZE=1000
 SAVEHIST=10000
 HISTFILE="$HOME/.cache/zsh/histfile"
-WORDCHARS="${WORDCHARS/\/}"
+WORDCHARS=""
 PS1="[%B%{$fg[blue]%}%~%{$reset_color%}]$ "
 
 # Shortcuts

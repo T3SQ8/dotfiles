@@ -9,7 +9,7 @@ echo "Generating mirrorlist..."
 curl -s "https://www.archlinux.org/mirrorlist/?country=all&protocol=https&ip_version=4" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 10 - > /etc/pacman.d/mirrorlist
 
 pacman -Syu
-pacman -Rns "$(pacman -Qtdq)"
+pacman -Qtdq | pacman -Rns -
 pacman -Sc
 
 journalctl --vacuum-size=50M

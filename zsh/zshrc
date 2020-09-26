@@ -31,7 +31,8 @@ bindkey '^o' edit-command-line
 alias \
 	ls='ls --color=auto' \
 	e='$EDITOR' \
-	grep='grep --color'
+	grep='grep --color' \
+	open='xdg-open'
 
 # Git aliases
 alias \

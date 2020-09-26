@@ -158,5 +158,7 @@ function! Rmspace()
 		echomsg "There is whitespace at end of line(s)"
 	elseif search('	 \| 	')
 		echomsg "There are mismatched tabs and spaces"
+	elseif search('^ ')
+		echomsg "There spaces in the beginning of a line(s)"
 	endif
 endfunction "}}}

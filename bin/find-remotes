@@ -1,3 +1,3 @@
 #!/bin/sh
 
-nmap -sT -T5 -p 22,5900 --open $(ip route show default | cut -d' ' -f3)/24
+nmap -sT -T5 -p 22 -oG - --open $(ip route show default | cut -d' ' -f3)/24 | grep -v "^#"

@@ -1,0 +1,24 @@
+#!/bin/sh
+
+if [ "$(whoami)" != "root" ]; then
+	echo "Root privileges needed"; exit
+elif [ $# = 0 ]; then
+	echo "No device given"; exit
+fi
+
+for device in "$@"; do
+	if [ ! -e "$device" ]; then
+		echo "'$device' not found"; exit
+	fi
+done
+
+for dev in $@; do
+	devbase="$(basename $dev)"
+	if mount | grep -q "$devbase"; then
+		mnt-nrm "/dev/mapper/$devbase"
+		cryptsetup -v close "$devbase"
+	else
+		cryptsetup open -v "$dev" "$devbase"
+		mnt-nrm "/dev/mapper/$devbase"
+	fi
+done

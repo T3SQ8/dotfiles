@@ -16,7 +16,7 @@ super + space
 
 # Volume controls
 {XF86AudioRaiseVolume,XF86AudioLowerVolume,XF86AudioMute}
-	amixer sset Master {5%+,5%-,0%}; refpanel
+	amixer sset Master {5%+,5%-,toggle}; refpanel
 
 # Brightness
 {XF86MonBrightnessUp,XF86MonBrightnessDown}

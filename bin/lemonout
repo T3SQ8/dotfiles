@@ -17,7 +17,10 @@ Desktop() {
 }
 
 Volume() {
-	echo "VOL: $(amixer get Master | grep -oE '[0-9]{1,3}%')"
+	if amixer get Master | grep -q '\[off]'; then
+		mute="(M)"
+	fi
+	echo "VOL: $(amixer get Master | grep -oE '[0-9]{1,3}%')${mute}"
 }
 
 Hidden() {

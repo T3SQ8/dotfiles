@@ -6,7 +6,33 @@ pgrep -x lemonbar > /dev/null && echo "The panel is already running." && exit 1
 mkfifo "$PANEL_FIFO"
 bspc subscribe all > "$PANEL_FIFO" &
 
-lemonout < "$PANEL_FIFO" | lemonbar \
+Clock() {
+	date "+%b %d %H:%M"
+}
+
+Battery() {
+	echo "BAT: $(sed -n 's/Charging/+/p' /sys/class/power_supply/BAT*/status)$(cat /sys/class/power_supply/BAT*/capacity)%"
+}
+
+Internet() {
+	grep -q "up" /sys/class/net/*/operstate && echo "INT: ON" || echo "INT: OFF"
+}
+
+Desktop() {
+	bspc query -D -d --names
+}
+
+Volume() {
+	echo "VOL: $(amixer get Master | grep -oE '[0-9]{1,3}%')$(amixer get Master | awk '/\[off]/ {print "(M)"}')"
+}
+
+Hidden() {
+	bspc query -N -n .hidden.local.leaf | sed 's/.*/+/g;1s/^/ /' | tr -d '\n'
+}
+
+while read -r line; do
+	echo "%{+u}%{l} $(Desktop)$(Hidden) %{c}$(Clock)%{r}$(Volume)%{-u} %{+u}$(Internet)%{-u} %{+u}$(Battery) "
+done < "$PANEL_FIFO" | lemonbar \
 	-u 2 \
 	-U "#aa0000" \
 	-f "Liberation Mono:size=9:style=bold" \

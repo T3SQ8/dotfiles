@@ -17,19 +17,11 @@ Desktop() {
 }
 
 Volume() {
-	if amixer get Master | grep -q '\[off]'; then
-		mute="(M)"
-	fi
-	echo "VOL: $(amixer get Master | grep -oE '[0-9]{1,3}%')${mute}"
+	echo "VOL: $(amixer get Master | grep -oE '[0-9]{1,3}%')$(amixer get Master | awk '/\[off]/ {print "(M)"}')"
 }
 
 Hidden() {
-	if bspc query -N -n .hidden.local > /dev/null; then
-		for i in $(bspc query -N -n .hidden.local.leaf); do
-			hidden="${hidden}+"
-		done
-		echo " $hidden"
-	fi
+	bspc query -N -n .hidden.local.leaf | sed 's/.*/+/g;1s/^/ /' | tr -d '\n'
 }
 
 while read -r line; do

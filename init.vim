@@ -41,6 +41,7 @@ tnoremap <Esc> <C-\><C-n>
 " Mics
 autocmd filetype todo nnoremap <buffer> <c-x> :call Todo_complete()<cr>
 nnoremap <leader>n :nohlsearch<cr>
+nnoremap <leader>r :!cleandoc %<cr>
 nnoremap <leader>c :!compiledoc %<cr>
 nnoremap Y y$
 nnoremap <C-LeftMouse> <LeftMouse>.
@@ -134,19 +135,5 @@ function! Begin()
 		normal! G=gg
 	else
 		echoerr "File is not empty"
-	endif
-endfunction
-
-autocmd BufWritePost * call Rmspace()
-function! Rmspace()
-	if line("$") != 1 && empty(getline("$"))
-		echomsg "The last line is empty"
-		call cursor("$", "")
-	elseif search("[ 	]$")
-		echomsg "There is whitespace at end of line(s)"
-	elseif search('	 \| 	')
-		echomsg "There are mismatched tabs and spaces"
-	elseif search('^ ')
-		echomsg "There spaces in the beginning of a line(s)"
 	endif
 endfunction "}}}

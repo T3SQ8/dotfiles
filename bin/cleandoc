@@ -1,0 +1,11 @@
+#!/usr/bin/awk -f
+
+!/.+/ && NR==1 {print "First line empty"}
+
+/^ / {print "Spaces BOL: " NR}
+
+/\s$/ {print "Whitespace EOL: " NR}
+
+/ 	|	 / {print "Mismatched tabs and spaces: " NR}
+
+END { if(match(/.+/, $0)) print "Last line empty" }

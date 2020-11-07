@@ -4,7 +4,7 @@ for file in "$@"; do
 	basename=${file%.*}
 	case ${file##*.} in
 		roff)	groff -e -ms "$file" -Tpdf  > "$basename.pdf" ;;
-		tex)	pdflatex -output-directory /tmp "$file" && cp "/tmp/${basename##*/}.pdf" "${basename%/*}" ;;
+		tex)	pdflatex -output-directory /tmp "$file" && cp "/tmp/${basename##*/}.pdf" "${basename%/*}.pdf" ;;
 		md)	pandoc "$file" -o "${basename}.html" ;;
 		*)	echo "$file: Unknown filetype" ;;
 	esac

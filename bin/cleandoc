@@ -4,7 +4,9 @@
 
 /^ / {print "Spaces BOL:", NR}
 
-/\s$/ {print "Whitespace EOL:",  NR}
+/\s$/ {print "Whitespace EOL:", NR}
+
+/ {2,}/ {print "Multiple spaces", NR}
 
 / \t|\t / {print "Mismatched tabs and spaces:", NR}
 

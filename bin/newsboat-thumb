@@ -7,4 +7,4 @@ if [ "${thumb##*.}" = "jpg" ] && file "$thumb" | grep "Web/P"; then
 	thumb="${thumb%.*}.webp"
 fi
 
-xdg-open "$thumb"
+xdg-open "$thumb" &

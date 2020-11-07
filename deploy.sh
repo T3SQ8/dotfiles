@@ -29,6 +29,6 @@ ln -sfr bin/* ~/.local/bin
 ln -sfr ftplugin/* ~/.config/nvim/ftplugin
 ln -sfr mpv/* ~/.config/mpv
 
-for file in $(find zsh -type f); do
+for file in zsh/*; do
 	ln -sfr "$file" "$HOME/.config/zsh/.${file##*/}"
 done

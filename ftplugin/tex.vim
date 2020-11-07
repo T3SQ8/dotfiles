@@ -4,7 +4,7 @@ function! Addpackage(package)
 	if usepackage != 0
 		let line = usepackage
 	else
-		let line = search('\\documentclass{\w\+}', 'n') " Add the line after the documentclass (line is set to 0 if no the command fails)
+		let line = search('\\documentclass\[\=.*]\={\w\+}', 'n') " Add the line after the documentclass (line is set to 0 if no the command fails)
 	endif
 	if empty(a:package)
 		call append(line, "\\usepackage{}")

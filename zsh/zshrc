@@ -33,6 +33,9 @@ alias \
 	e='$EDITOR' \
 	grep='grep --color' \
 	open='xdg-open' \
+	cp='cp -v' \
+	mv='mv -v' \
+	rm='rm -v' \
 	wget='wget --hsts-file='
 
 # Git aliases

@@ -1,0 +1,27 @@
+#!/bin/sh
+
+url=$2
+
+case $1 in
+	-b)
+		xdg-open "$url" 2> /dev/null &
+		;;
+	-a)
+		$TERMINAL -e mpv --no-video "$url" &
+		;;
+	-l)
+		notify-send "$(youtube-dl --get-filename --get-duration --skip-download -o '%(title)s' "$url")" &
+		;;
+	-t)
+		thumb="$(youtube-dl --write-thumbnail --skip-download "$url" -o "/tmp/thumb" | awk '/Writing thumbnail/ {print $NF}')"
+		if [ "${thumb##*.}" = "jpg" ] && file "$thumb" | grep "Web/P"; then
+			thumbnew="${thumb%.*}.webp"
+			mv "$thumb" "$thumbnew"
+		fi
+		xdg-open "$thumb" &
+		;;
+	-v)
+		mpv --no-terminal "$url" &
+		notify-send "Sent to mpv"
+		;;
+esac

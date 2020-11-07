@@ -1,5 +1,0 @@
-#!/bin/sh
-
-clear
-youtube-dl --get-filename --get-duration --skip-download -o '%(title)s' "$1" &&
-read -r _

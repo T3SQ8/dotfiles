@@ -11,7 +11,7 @@ Clock() {
 }
 
 Battery() {
-	echo "BAT: $(sed -n 's/Charging/+/p' /sys/class/power_supply/BAT*/status)$(cat /sys/class/power_supply/BAT*/capacity)%"
+	awk 'BEGIN {printf "BAT: "} /Charging/ {printf "+"} /[0-9]/ {print $0 "%"}' /sys/class/power_supply/BAT*/status /sys/class/power_supply/BAT*/capacity
 }
 
 Internet() {
@@ -23,7 +23,7 @@ Desktop() {
 }
 
 Volume() {
-	echo "VOL: $(amixer get Master | grep -oE '[0-9]{1,3}%')$(amixer get Master | awk '/\[off]/ {print "(M)"}')"
+	amixer get Master | awk -F '[][]' 'BEGIN{printf "VOL: "} /[0-9]{1,3}%/ {printf $2} /\[off]/ {print "(M)"}'
 }
 
 Hidden() {

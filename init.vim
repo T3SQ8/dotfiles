@@ -111,31 +111,37 @@ endfunction
 
 autocmd filetype html,tex nnoremap <buffer> <leader>b :call Begin()<cr>
 function! Begin()
-	if line('$') == 1 && empty(getline(1))
-		if &filetype ==? "html"
-			call append(0, "</html>")
-			call append(0, "</body>")
-			call append(0, "<++>")
-			call append(0, "<body>")
-			call append(0, "</head>")
-			call append(0, "<title><++></title>")
-			call append(0, '<link rel="stylesheet" Type="text/css" href="<++>">')
-			call append(0, '<meta name="description" content="<++>">')
-			call append(0, '<meta charset="UTF-8">')
-			call append(0, "<head>")
-			call append(0, '<html lang="<++>">')
-			call append(0, "<!DOCTYPE html>")
-		elseif &filetype ==? "tex"
-			call append(0, '\end{document}')
-			call append(0, '<++>')
-			call append(0, '\begin{document}')
-			call append(0, '\documentclass{article}')
-		else
-			echoerr "Invalid filetype"
-		endif
-		global/^$/d
-		normal! G=gg
-	else
-		echoerr "File is not empty"
+	" If the file does not contain only one line or if the first line is
+	" not blank, this checks if the file is empty or not.
+	if line('$') != 1 || empty(getline(1)) != 1
+		echoerr "File not empty" | return
 	endif
+	if &filetype ==? "tex"
+		let text = [
+					\'\documentclass{article}',
+					\'\begin{document}',
+					\'<++>',
+					\'\end{document}'
+					\]
+	elseif &filetype ==? "html"
+		let text = [
+					\'<!DOCTYPE html>',
+					\'<html lang="<++>">',
+					\'<head>',
+					\'<meta charset="UTF-8">',
+					\'<meta name="description" content="<++>">',
+					\'<link rel="stylesheet" Type="text/css" href="<++>">',
+					\'<title><++></title>',
+					\'</head>',
+					\'<body>',
+					\'<++>',
+					\'</body>',
+					\'</html>'
+					\]
+	else
+		echoerr "Invalid filetype" | return
+	endif
+	call append(0, text)
+	global/^$/d
+	normal! G=gg
 endfunction "}}}

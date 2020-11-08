@@ -52,7 +52,7 @@ nnoremap <leader>X ?<++><cr>"_ca<
 " Functions{{{
 nnoremap <leader>t :call Terminal("")<cr>
 nnoremap <leader>T :call Terminal("v")<cr>
-function! Terminal(position) " Open a small terminal
+function! Terminal(position)
 	if a:position ==? "v"
 		vsplit +terminal
 	else
@@ -65,7 +65,7 @@ nnoremap <leader>en :call Spellmap("en_us")<cr>
 nnoremap <leader>sv :call Spellmap("sv")<cr>
 nnoremap <leader>fr :call Spellmap("fr")<cr>
 nnoremap <leader>l :call Spellmap("")<cr>
-function! Spellmap(lang) " Map n to jump for spellchecking
+function! Spellmap(lang)
 	if empty(a:lang)
 		set nospell
 		silent! unmap <buffer> n
@@ -77,8 +77,8 @@ function! Spellmap(lang) " Map n to jump for spellchecking
 	endif
 endfunction
 
-nnoremap <leader>w :call Wraping()<cr>
-function! Wraping() " Toggle line wrapping
+nnoremap <leader>w :call ToggleWraping()<cr>
+function! ToggleWraping()
 	if &wrap ==? "nowrap" || &linebreak ==? "nolinebreak"
 		set wrap linebreak
 	else

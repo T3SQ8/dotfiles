@@ -1,11 +1,15 @@
 nnoremap <buffer> <leader>u :call Addpackage("")<cr>
 function! Addpackage(package)
-	let usepackage = search('\\usepackage{\w\+}', 'n') " Search for a line that already is calling a package
-	if usepackage != 0
-		let line = usepackage
-	else
-		let line = search('\\documentclass\[\=.*]\={\w\+}', 'n') " Add the line after the documentclass (line is set to 0 if no the command fails)
+	let latexsyntax = '\[\=\w*]\={\S\+}'
+	let searchargs = 'ncb'
+	" Try to set line after usepackage or documentclass.
+	" Will assign to 0 if both fail
+	let line = search('\\usepackage' . latexsyntax, searchargs)
+	if line == 0
+		let line = search('\\documentclass' . latexsyntax, searchargs)
 	endif
+	" Check if the line exists if an argument is given.
+	" Otherwise move the cursor to line and enter insert mode.
 	if empty(a:package)
 		call append(line, "\\usepackage{}")
 		call cursor(line + 1, 13)

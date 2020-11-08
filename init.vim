@@ -89,9 +89,9 @@ endfunction
 vnoremap <leader>q :<c-u>call Blockseq("")<cr>
 function! Blockseq(startnum)
 	if empty(a:startnum)
-		let l:num = "1"
+		let num = 1
 	else
-		let l:num = a:startnum
+		let num = a:startnum
 	endif
 	normal! gv
 	if mode() != ""
@@ -99,11 +99,13 @@ function! Blockseq(startnum)
 		return
 	endif
 	execute 'normal! d'
-	for i in range(0, get(getpos("'>"), 1) - get(getpos("'<"), 1)) " 0 to the number of selected lines (end of visual block - beginning of visual block)
-		let l:startcolumn = col('.') " Save the column to return to it
-		execute 'normal! i' . l:num
-		call cursor(line('.')+1, l:startcolumn) " Move the cursor down and back to the original column
-		let l:num = l:num + 1
+	" get() is used to get beginning and ending lines of visual
+	" selection from the list which getpos() returns
+	for i in range(get(getpos("'<"), 1), get(getpos("'>"), 1))
+		let startcolumn = col('.')
+		execute 'normal! i' . num
+		call cursor(line('.')+1, startcolumn) " Move the cursor down and back to the original column
+		let num = num + 1
 	endfor
 endfunction
 

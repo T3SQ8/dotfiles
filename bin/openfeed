@@ -13,12 +13,7 @@ case $1 in
 		notify-send "$(youtube-dl --get-filename --get-duration --skip-download -o '%(title)s' "$url")" &
 		;;
 	-t)
-		thumb="$(youtube-dl --write-thumbnail --skip-download "$url" -o "/tmp/thumb" | awk '/Writing thumbnail/ {print $NF}')"
-		if [ "${thumb##*.}" = "jpg" ] && file "$thumb" | grep "Web/P"; then
-			thumbnew="${thumb%.*}.webp"
-			mv "$thumb" "$thumbnew"
-		fi
-		xdg-open "$thumb" &
+		convert "$(youtube-dl --write-thumbnail --skip-download "$url" -o "/tmp/thumb" | awk '/Writing thumbnail/ {print $NF}')" /tmp/thumb.jpg && xdg-open /tmp/thumb.jpg &
 		;;
 	-v)
 		mpv --no-terminal "$url" &

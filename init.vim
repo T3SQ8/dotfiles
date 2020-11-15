@@ -41,12 +41,13 @@ tnoremap <Esc> <C-\><C-n>
 " Mics
 autocmd filetype todo nnoremap <buffer> <c-x> :call Todo_complete()<cr>
 nnoremap <leader>n :nohlsearch<cr>
-nnoremap <leader>r :!cleandoc %<cr>
+nnoremap <leader>r :w \| !cleandoc %<cr>
 nnoremap <leader>c :w \| !compiledoc %<cr>
 nnoremap Y y$
 nnoremap <C-LeftMouse> <LeftMouse>.
 nnoremap <leader>x /<++><cr>"_ca<
 nnoremap <leader>X ?<++><cr>"_ca<
+nnoremap <leader>o :!xdg-open '%'<cr>
 "}}}
 
 " Functions{{{

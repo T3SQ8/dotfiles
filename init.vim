@@ -57,7 +57,7 @@ function! Terminal(position)
 	if a:position ==? "v"
 		vsplit +terminal
 	else
-		10 split +terminal
+		execute winheight(0)/3 "split +terminal"
 	endif
 	set nonumber norelativenumber
 endfunction

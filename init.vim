@@ -89,21 +89,16 @@ endfunction
 
 vnoremap <leader>q :<c-u>call Blockseq("")<cr>
 function! Blockseq(startnum)
+	" Get beginning and ending lines of visual selection
+	let visualrange = [ getpos("'<")[1], getpos("'>")[1] ]
 	if empty(a:startnum)
 		let num = 1
 	else
 		let num = a:startnum
 	endif
-	normal! gv
-	if mode() != ""
-		echoerr "Not in visualblock mode"
-		return
-	endif
-	execute 'normal! d'
-	" get() is used to get beginning and ending lines of visual
-	" selection from the list which getpos() returns
-	for i in range(get(getpos("'<"), 1), get(getpos("'>"), 1))
-		let startcolumn = col('.')
+	normal! gvd
+	let startcolumn = col('.')
+	for i in range(visualrange[0], visualrange[1])
 		execute 'normal! i' . num
 		call cursor(line('.')+1, startcolumn) " Move the cursor down and back to the original column
 		let num = num + 1

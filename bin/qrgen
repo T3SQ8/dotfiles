@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for input in "$@"; do
+	[ -f "$input" ] && args="-r"
+	qrencode -t ansiutf8 $args "$input"
+done

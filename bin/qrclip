@@ -1,0 +1,5 @@
+#!/bin/sh
+
+temp=$(mktemp /tmp/XXXXXX)
+scrot -so "$temp"
+zbarimg --raw -q "$temp" | xclip -selection c

@@ -15,7 +15,7 @@ dirsize="$(dirsizecmd)"
 dircount="$(dircountcmd)"
 filecount="$(filecountcmd)"
 
-while [ -n "$(find "$dir" -empty)" ]; do
+while [ -n "$(find "$dir" -empty -print -quit)" ]; do
 	find "$dir" -empty -delete
 done
 

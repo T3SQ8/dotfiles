@@ -45,7 +45,8 @@ alias \
 	gd='git diff' \
 	gl='git log --oneline' \
 	gp='git push' \
-	gs='git status'
+	gs='git status' \
+	gb='git branch -avv'
 
 # Create histfile
 [ -d "${HISTFILE%/*}" ] || mkdir -p "${HISTFILE%/*}"

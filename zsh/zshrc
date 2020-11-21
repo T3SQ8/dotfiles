@@ -52,16 +52,5 @@ alias \
 [ -d "${HISTFILE%/*}" ] || mkdir -p "${HISTFILE%/*}"
 [ -f "$HISTFILE" ] || touch "$HISTFILE"
 
-# Ranger
-ranger() {
-	if [ -z "$RANGER_LEVEL" ]; then
-		/usr/bin/ranger "$@"
-	else
-		exit
-	fi
-}
-
-[ "$RANGER_LEVEL" ] && PS1="RANGER> "
-
 # Fix keybind issue
 stty -ixon

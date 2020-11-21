@@ -8,7 +8,6 @@ mkdir -p \
 	~/.config/newsboat \
 	~/.config/nvim/ftplugin \
 	~/.config/python \
-	~/.config/ranger \
 	~/.config/sxhkd \
 	~/.config/zathura \
 	~/.config/zsh \
@@ -18,7 +17,6 @@ ln -sfr bspwmrc ~/.config/bspwm/bspwmrc
 ln -sfr config ~/.config/newsboat/config
 ln -sfr dunstrc ~/.config/dunst/dunstrc
 ln -sfr init.vim ~/.config/nvim/init.vim
-ln -sfr rc.conf ~/.config/ranger/rc.conf
 ln -sfr startup.py ~/.config/python/startup.py
 ln -sfr sxhkdrc ~/.config/sxhkd/sxhkdrc
 ln -sfr zathurarc ~/.config/zathura/zathurarc

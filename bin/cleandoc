@@ -1,13 +1,17 @@
 #!/usr/bin/awk -f
 
-/^\s*$/ && NR==1 {print "First line empty"}
+function format(msg) {
+	print NR ":", msg
+}
 
-/^ / {print "Spaces BOL:", NR}
+/^\s*$/ && NR==1 {format("First line empty")}
 
-/\s$/ {print "Whitespace EOL:", NR}
+/^ / {format("Spaces BOL")}
 
-/ {2,}/ {print "Multiple spaces", NR}
+/\s$/ {format("Whitespace EOL")}
 
-/ \t|\t / {print "Mismatched tabs and spaces:", NR}
+/ {2,}/ {format("Multiple spaces")}
 
-END { if(match($0, /^\s*$/)) print "Last line empty" }
+/ \t|\t / {format("Mismatched tabs and spaces")}
+
+END { if(match($0, /^\s*$/)) format("Last line empty")}

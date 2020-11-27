@@ -9,4 +9,4 @@ echo \
 .config/nvim/bundle
 Downloads" > "$temp"
 
-rsync -azP --exclude-from="$temp" "$HOME/" backups-server:home-backups
+rsync -aP --exclude-from="$temp" "$HOME/" backups-server:home-backups

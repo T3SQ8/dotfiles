@@ -1,4 +1,4 @@
-import os, readline, atexit
+import os, readline, atexit, sys
 
 histfile = os.environ.get("HOME") + "/.cache/python_history"
 
@@ -8,3 +8,5 @@ except:
     pass
 
 atexit.register(readline.write_history_file, histfile)
+
+sys.ps1 = "> "

@@ -48,6 +48,8 @@ nnoremap <C-LeftMouse> <LeftMouse>.
 nnoremap <leader>x /<++><cr>"_ca<
 nnoremap <leader>X ?<++><cr>"_ca<
 nnoremap <leader>o :!xdg-open '%'<cr>
+nnoremap <c-n> :next<cr>
+nnoremap <c-p> :previous<cr>
 "}}}
 
 " Functions{{{

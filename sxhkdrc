@@ -47,7 +47,7 @@ super + {t,shift + t,s}
 	bspc node -t {tiled,pseudo_tiled,floating}
 
 # Resize window
-super + {Left,Down,Up,Right}
+super + {h,j,k,l}
 	bspwm_resize {west, south, north, east}
 
 # Node flags
@@ -77,3 +77,11 @@ super + {1-9,0}
 # Send node to desktop
 super + shift + {1-9,0}
 	bspc node -d '^{1-9,10}'
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel

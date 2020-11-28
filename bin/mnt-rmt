@@ -1,0 +1,14 @@
+#!/bin/sh
+
+dir="$HOME/drive"
+drive="drive"
+
+if [ ! -d "$dir" ]; then
+	mkdir "$dir"
+	rclone mount --daemon "$drive:" "$dir"
+	echo "Drive mounted"
+else
+	umount "$dir"
+	rmdir "$dir"
+	echo "Drive unmounted"
+fi

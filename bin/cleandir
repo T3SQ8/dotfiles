@@ -1,33 +1,14 @@
 #!/bin/sh
 
-dir="$1"
-
-dirsizecmd()	{ du -s "$dir" | cut -f1 ;}
-dircountcmd()	{ find "$dir" -type d | wc -l ;}
-filecountcmd()	{ find "$dir" -type f | wc -l ;}
-linkcountcmd()	{ find "$dir" -type l | wc -l ;}
-
-if [ ! -d "$dir" ]; then
-	echo "Directory not found"
-	exit 1
-fi
-
-dirsize="$(dirsizecmd)"
-dircount="$(dircountcmd)"
-filecount="$(filecountcmd)"
-linkcount="$(linkcountcmd)"
-
-find "$dir" -xtype l -delete
-while [ -n "$(find "$dir" -empty -print -quit)" ]; do
-	find "$dir" -empty -delete
+for dir in "$@"; do
+	if [ ! -d "$dir" ]; then
+		echo "$dir not found"; exit
+	fi
 done
 
-newdirsize="$(dirsizecmd)"
-newdircount="$(dircountcmd)"
-newfilecount="$(filecountcmd)"
-newlinkcount="$(linkcountcmd)"
-
-echo "Directory size: $dirsize -> $newdirsize ($((dirsize - newdirsize)))"
-echo "Directory count: $dircount -> $newdircount ($((dircount - newdircount)))"
-echo "File count: $filecount -> $newfilecount ($((filecount - newfilecount)))"
-echo "Symbolic link count: $linkcount -> $newlinkcount ($((linkcount - newlinkcount)))"
+for dir in "$@"; do
+	find "$dir" -xtype l -delete
+	while [ -n "$(find "$dir" -empty -print -quit)" ]; do
+		find "$dir" -empty -print -delete
+	done
+done

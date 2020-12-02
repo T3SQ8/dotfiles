@@ -51,11 +51,11 @@ super + {h,j,k,l}
 	bspwm_resize {west, south, north, east}
 
 # Node flags
-super + {p, h}
+super + {p, y}
 	bspc node -g {sticky, hidden}
 
 # Unhide windows
-super + shift + h
+super + shift + y
 	bspc node $(bspc query -N -n .hidden.local | tail -n1) -g hidden=off
 
 # Rotate windows

@@ -1,13 +1,12 @@
 #!/bin/sh
 
+file="$(date +%Y-%m-%d).tar.gz"
+
 if [ "${PWD##*/}" != "backups-computer" ]; then
-	echo "Wrong directory"
-	exit 1
+	echo "Wrong directory"; exit 1
 fi
 
 pacman -Qqe > "$HOME/installed-packages.txt"
-file="$(date +%Y-%m-%d).tar.gz"
 tar -cvzf "$file" "$HOME"
 md5sum "$file" >> checksums.md5
-echo "Syncing..."
-sync
+echo "Syncing..."; sync

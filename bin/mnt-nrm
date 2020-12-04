@@ -4,24 +4,46 @@ if [ "$(whoami)" != "root" ]; then
 	echo "Root privileges needed"; exit
 elif [ $# = 0 ]; then
 	echo "No device given"; exit
+else
+	for device in "$@"; do
+		if [ ! -e "$device" ]; then
+			echo "$device not found"; exit
+		fi
+	done
 fi
 
-for device in "$@"; do
-	if [ ! -e "$device" ]; then
-		echo "'$device' not found"; exit
-	fi
-done
+mountdev() {
+	mkdir -p "$mntdir"
+	mount "$1" "$mntdir"
+	echo "$1 mounted"
+}
+
+umountdev() {
+	echo "Syncing..."; sync
+	umount "$1"
+	rmdir "$mntdir"
+	echo "$1 unmounted"
+}
 
 for device in "$@"; do
-	mntdir="/mnt/$(basename "$device")"
-	if mount | grep -q "$device"; then
-		echo "Syncing..."; sync
-		umount "$device"
-		rmdir "$mntdir"
-		echo "$device unmounted"
-	else
-		mkdir -p "$mntdir"
-		mount "$device" "$mntdir"
-		echo "$device mounted"
+	shortdev=${device##*/}
+	mntdir="/mnt/$shortdev"
+	mappername="/dev/mapper/$shortdev"
+
+	# If device is encrypted using luks
+	if blkid "$device" | grep -q 'TYPE="crypto_LUKS"'; then
+		if mount | grep -q "$mappername"; then
+			umountdev "$mappername"
+			cryptsetup -v close "$shortdev"
+		else
+			cryptsetup open -v "$device" "$shortdev"
+			mountdev "$mappername"
+		fi
+	else # If device is not encrypted
+		if mount | grep -q "$device"; then
+			umountdev "$device"
+		else
+			mountdev "$device"
+		fi
 	fi
 done

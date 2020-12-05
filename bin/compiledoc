@@ -1,9 +1,9 @@
 #!/bin/sh
 
 for file in "$@"; do
-	basename=${file%.*}
-	nameonly=${basename##*/}
-	ext=${file##*.}
+	basename=${file%.*} # Without extention
+	nameonly=${basename##*/} # Without extention or directory path
+	ext=${file##*.} # Extention only
 	case $ext in
 		roff)	groff -e -ms "$file" -Tpdf > "$basename.pdf" ;;
 		tex)	pdflatex -output-directory /tmp "$file" && cp "/tmp/$nameonly.pdf" "$basename.pdf" ;;

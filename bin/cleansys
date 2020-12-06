@@ -1,8 +1,6 @@
 #!/bin/sh
 
-if [ "$(whoami)" != "root" ]; then
-	echo "Need root privileges"; exit
-fi
+[ "$(whoami)" != "root" ] && { echo "Need root privileges"; exit ;}
 
 pacman -Qi pacman-contrib > /dev/null || exit
 echo "Generating mirrorlist..."

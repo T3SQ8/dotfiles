@@ -2,9 +2,7 @@
 
 file="$(date +%Y-%m-%d).tar.gz"
 
-if [ "${PWD##*/}" != "backups-computer" ]; then
-	echo "Wrong directory"; exit 1
-fi
+[ "${PWD##*/}" != "backups-computer" ] && { echo "Wrong directory"; exit 1 ;}
 
 pacman -Qqe > "$HOME/installed-packages.txt"
 tar -cvzf "$file" "$HOME"

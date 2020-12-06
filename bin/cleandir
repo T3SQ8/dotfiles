@@ -1,12 +1,8 @@
 #!/bin/sh
 
 for dir in "$@"; do
-	if [ ! -d "$dir" ]; then
-		echo "$dir not found"; exit
-	fi
-done
+	[ ! -d "$dir" ] && { echo "$dir not found"; continue ;}
 
-for dir in "$@"; do
 	find "$dir" -xtype l -delete
 	while [ -n "$(find "$dir" -empty -print -quit)" ]; do
 		find "$dir" -empty -print -delete

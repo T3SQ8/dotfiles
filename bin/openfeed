@@ -1,22 +1,24 @@
 #!/bin/sh
 
-url=$2
+[ "$#" = 0 ] && { echo "No url provided"; exit 1; }
 
-case $1 in
-	-b)
-		xdg-open "$url" 2> /dev/null &
-		;;
-	-a)
-		$TERMINAL -e mpv --no-video "$url" &
-		;;
-	-l)
-		notify-send "$(youtube-dl --get-filename --get-duration --skip-download -o '%(title)s' "$url")" &
-		;;
-	-t)
-		convert "$(youtube-dl --write-thumbnail --skip-download "$url" -o "/tmp/thumb" | awk '/Writing thumbnail/ {print $NF}')" /tmp/thumb.jpg && xdg-open /tmp/thumb.jpg &
-		;;
-	-v)
-		mpv --no-terminal "$url" &
-		notify-send "Sent to mpv"
-		;;
-esac
+url=$(echo "$@" | awk '{print $NF}')
+
+video() { mpv --no-terminal "$url" & notify-send "Sent to mpv" ;}
+browser(){ xdg-open "$url" 2> /dev/null & }
+audio(){ $TERMINAL -e mpv --no-video "$url" & }
+duration(){ notify-send "$(youtube-dl --get-filename --get-duration --skip-download -o '%(title)s' "$url")" & }
+thumbnail(){ convert "$(youtube-dl --write-thumbnail --skip-download "$url" -o "/tmp/thumb" | awk '/Writing thumbnail/ {print $NF}')" /tmp/thumb.jpg && xdg-open /tmp/thumb.jpg & }
+
+while getopts baltv arg; do
+	case $arg in
+		b) browser ;;
+		a) audio ;;
+		l) duration ;;
+		t) thumbnail ;;
+		v) video ;;
+	esac
+	var=1
+done
+
+[ ! "$var" ] && video

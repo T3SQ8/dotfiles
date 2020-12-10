@@ -5,8 +5,8 @@ bind-key h quit
 bind-key G end
 bind-key g home
 
-browser "openfeed -v"
-macro b set browser "openfeed -b" ; open-in-browser ; set browser "openfeed -v"
-macro t set browser "openfeed -t" ; open-in-browser ; set browser "openfeed -v"
-macro a set browser "openfeed -a" ; open-in-browser ; set browser "openfeed -v"
-macro l set browser "openfeed -l" ; open-in-browser ; set browser "openfeed -v"
+browser "openfeed"
+macro b set browser "openfeed -b" ; open-in-browser ; set browser "openfeed"
+macro t set browser "openfeed -t" ; open-in-browser ; set browser "openfeed"
+macro a set browser "openfeed -a" ; open-in-browser ; set browser "openfeed"
+macro l set browser "openfeed -l" ; open-in-browser ; set browser "openfeed"

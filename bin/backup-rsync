@@ -1,12 +1,3 @@
 #!/bin/sh
 
-temp=$(mktemp)
-
-echo \
-".cache
-.local/share/torbrowser
-.config/chromium
-.config/nvim/bundle
-Downloads" > "$temp"
-
-rsync -aP --exclude-from="$temp" "$HOME/" backups-server:home-backups
+rsync -aP --exclude-from ~/.local/backups-ignore "$HOME/" backups-server:home-backups

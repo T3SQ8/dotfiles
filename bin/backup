@@ -1,0 +1,10 @@
+#!/bin/sh
+
+file="$(date +%Y-%m-%d).tar.gz"
+
+[ "${PWD##*/}" != "backups-computer" ] && { echo "Wrong directory"; exit 1 ;}
+
+pacman -Qqe > ~/.local/installed-packages.txt
+#rsync -aP --exclude-from ~/.local/backups-ignore "$HOME/" backups-server:home-backups
+tar -cvz -X ~/.local/backups-ignore "$HOME" | tee "$file" | gpg -c | rclone rcat "backups:$file.gpg"
+md5sum "$file" >> checksums.md5

@@ -1,3 +1,0 @@
-#!/bin/sh
-
-rsync -aP --exclude-from ~/.local/backups-ignore "$HOME/" backups-server:home-backups

@@ -2,38 +2,22 @@
 
 [ "$#" = 0 ] && { echo "No url provided"; exit 1; }
 
-url=$(echo "$@" | awk '{print $NF}')
-
-video() {
-	mpv --no-terminal "$url" &
-	notify-send "Sent to mpv"
-}
-
-browser(){
-	xdg-open "$url" 2> /dev/null
-}
-
-audio(){
-	$TERMINAL -e mpv --no-video "$url"
-}
-
-duration(){
-	notify-send "$(youtube-dl --get-filename --get-duration --skip-download -o '%(title)s' "$url")"
-}
-
-thumbnail(){
-	convert "$(youtube-dl --write-thumbnail --skip-download "$url" -o "/tmp/thumb" | awk '/Writing thumbnail/ {print $NF}')" /tmp/thumb.jpg && xdg-open /tmp/thumb.jpg
-}
+for url do :; done
 
 while getopts baltv arg; do
 	case $arg in
-		b) browser ;;
-		a) audio ;;
-		l) duration ;;
-		t) thumbnail ;;
-		v) video ;;
+		b) browser=1 ;;
+		a) audio=1 ;;
+		l) duration=1 ;;
+		t) thumbnail=1 ;;
+		v) video=1 ;;
+		\?) exit 1 ;;
 	esac
-	var=1
+	default=1
 done
 
-[ ! "$var" ] && video
+[ "$browser" ] && xdg-open "$url" 2> /dev/null
+[ "$audio" ] && $TERMINAL -e mpv --no-video "$url"
+[ "$duration" ] && notify-send "$(youtube-dl --get-filename --get-duration --skip-download -o '%(title)s' "$url")"
+[ "$thumbnail" ] && convert "$(youtube-dl --write-thumbnail --skip-download "$url" -o "/tmp/thumb" | awk '/Writing thumbnail/ {print $NF}')" /tmp/thumb.jpg && xdg-open /tmp/thumb.jpg
+[ "$video" ] || [ ! "$default" ] && { mpv --no-terminal "$url" & notify-send "Sent to mpv" ;}

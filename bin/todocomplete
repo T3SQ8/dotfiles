@@ -1,0 +1,9 @@
+#!/bin/sh
+
+pattern="^x\s"
+
+for file in "$@"; do
+	file=$(realpath "$file")
+	grep "$pattern" "$file" >> "${file%/*}/archive.txt"
+	sed -i "/$pattern/d" "$file"
+done

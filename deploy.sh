@@ -1,32 +1,48 @@
 #!/bin/sh
 
-mkdir -p \
-	~/.config/X11 \
-	~/.config/bspwm \
-	~/.config/dunst \
-	~/.config/mpv \
-	~/.config/newsboat \
-	~/.config/nvim/ftplugin \
-	~/.config/python \
-	~/.config/sxhkd \
-	~/.config/zathura \
-	~/.config/zsh \
-	~/.local/bin
+alias lncmd='ln -sfr'
 
-ln -sfr bspwmrc ~/.config/bspwm/bspwmrc
-ln -sfr config ~/.config/newsboat/config
-ln -sfr dunstrc ~/.config/dunst/dunstrc
-ln -sfr init.vim ~/.config/nvim/init.vim
-ln -sfr startup.py ~/.config/python/startup.py
-ln -sfr sxhkdrc ~/.config/sxhkd/sxhkdrc
-ln -sfr zathurarc ~/.config/zathura/zathurarc
-ln -sfr zshenv ~/.zshenv
-ln -sfr xinitrc ~/.config/X11/xinitrc
+link() {
+	while getopts h arg; do
+		case $arg in
+			h) hidden=1 ;;
+		esac
+	done
 
-ln -sfr bin/* ~/.local/bin
-ln -sfr ftplugin/* ~/.config/nvim/ftplugin
-ln -sfr mpv/* ~/.config/mpv
+	for dir do :; done
 
-for file in zsh/*; do
-	ln -sfr "$file" "$HOME/.config/zsh/.${file##*/}"
-done
+	for arg do
+		shift
+		[ "$arg" = "$dir" ] || [ "$arg" = "-h" ] && continue
+		set -- "$@" "$arg"
+	done
+
+	[ -d "$dir" ] || mkdir -p "$dir"
+
+	if [ "$hidden" ]; then
+		for file in "$@"; do
+			lncmd "$file" "$dir/.${file##*/}"
+		done
+	else
+		lncmd "$@" "$dir"
+	fi
+}
+
+# Files
+link bspwmrc ~/.config/bspwm
+link config ~/.config/newsboat
+link dunstrc ~/.config/dunst
+link startup.py ~/.config/python
+link sxhkdrc ~/.config/sxhkd
+link zathurarc ~/.config/zathura
+link xinitrc ~/.config/X11
+link init.vim ~/.config/nvim
+
+# Folders
+link mpv/* ~/.config/mpv
+link bin/* ~/.local/bin
+link ftplugin/* ~/.config/nvim/ftplugin
+
+# Hidden files
+link -h zsh/* ~/.config/zsh
+link -h zshenv ~

@@ -1,5 +1,4 @@
 " Settings{{{
-autocmd BufRead,BufNewFile *.tex set filetype=tex
 filetype indent on
 set foldmethod=marker
 set ignorecase
@@ -37,7 +36,6 @@ command WQ wq
 command Wq wq
 tnoremap <Esc> <C-\><C-n>
 " Mics
-autocmd filetype todo nnoremap <buffer> <c-x> :call Todo_complete()<cr>
 nnoremap <leader>n :nohlsearch<cr>
 nnoremap <leader>r :w \| !cleandoc %<cr>
 nnoremap <leader>c :w \| !compiledoc %<cr>
@@ -141,3 +139,7 @@ function! Begin()
 	global/^$/d
 	normal! G=gg
 endfunction "}}}
+
+" Filetypes
+autocmd BufRead,BufNewFile *.tex set filetype=tex
+autocmd BufRead,BufNewFile *todo.txt set filetype=todo

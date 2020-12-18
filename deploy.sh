@@ -42,6 +42,7 @@ link init.vim ~/.config/nvim
 link mpv/* ~/.config/mpv
 link bin/* ~/.local/bin
 link ftplugin/* ~/.config/nvim/ftplugin
+link syntax/* ~/.config/nvim/syntax
 
 # Hidden files
 link -h zsh/* ~/.config/zsh

@@ -1,0 +1,5 @@
+%\usepackage{xifthen}
+
+\newcommand{\formel}[3]{\textbf{#1:}\\
+#2 \ifthenelse{\isempty{#3}}{}{{\tiny{(#3)}}}
+\medskip}

@@ -46,6 +46,7 @@ nnoremap <leader>X ?<++><cr>"_ca<
 nnoremap <leader>o :!xdg-open '%'<cr>
 nnoremap <c-n> :next<cr>
 nnoremap <c-p> :previous<cr>
+nnoremap <leader>i :r !cat ~/.config/nvim/templates/
 "}}}
 
 " Functions{{{
@@ -102,43 +103,6 @@ function! Blockseq(startnum)
 		let num = num + 1
 	endfor
 endfunction
-
-autocmd filetype html,tex nnoremap <buffer> <leader>b :call Begin()<cr>
-function! Begin()
-	" If the file does not contain only one line or if the first line is
-	" not blank, this checks if the file is empty or not.
-	if line('$') != 1 || empty(getline(1)) != 1
-		echoerr "File not empty" | return
-	endif
-	if &filetype ==? "tex"
-		let text = [
-					\'\documentclass{article}',
-					\'\begin{document}',
-					\'<++>',
-					\'\end{document}'
-					\]
-	elseif &filetype ==? "html"
-		let text = [
-					\'<!DOCTYPE html>',
-					\'<html lang="<++>">',
-					\'<head>',
-					\'<meta charset="UTF-8">',
-					\'<meta name="description" content="<++>">',
-					\'<link rel="stylesheet" Type="text/css" href="<++>">',
-					\'<title><++></title>',
-					\'</head>',
-					\'<body>',
-					\'<++>',
-					\'</body>',
-					\'</html>'
-					\]
-	else
-		echoerr "Invalid filetype" | return
-	endif
-	call append(0, text)
-	global/^$/d
-	normal! G=gg
-endfunction "}}}
 
 " Filetypes
 autocmd BufRead,BufNewFile *.tex set filetype=tex

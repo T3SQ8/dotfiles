@@ -1,0 +1,8 @@
+#!/bin/sh
+
+drive="drive"
+fulldir=$1
+shortdir=${fulldir##*/}
+
+rclone copy -i "$drive:$fulldir" "$shortdir"
+echo "rclone sync -i . $drive:$fulldir" > "$shortdir/push.sh"

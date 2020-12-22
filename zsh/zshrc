@@ -31,8 +31,8 @@ bindkey '^o' edit-command-line
 alias \
 	ls='ls --color=auto' \
 	e='$EDITOR' \
+	o='xdg-open' \
 	grep='grep --color' \
-	open='xdg-open' \
 	cp='cp -v' \
 	mv='mv -v' \
 	rm='rm -v' \

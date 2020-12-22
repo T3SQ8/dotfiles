@@ -43,7 +43,10 @@ link mpv/* ~/.config/mpv
 link bin/* ~/.local/bin
 link ftplugin/* ~/.config/nvim/ftplugin
 link syntax/* ~/.config/nvim/syntax
-link templates/* ~/.config/nvim/templates
+
+link templates/html/* ~/.config/nvim/templates/html
+link templates/tex/* ~/.config/nvim/templates/tex
+link templates/roff/* ~/.config/nvim/templates/roff
 
 # Hidden files
 link -h zsh/* ~/.config/zsh

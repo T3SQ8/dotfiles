@@ -1,7 +1,7 @@
 #!/bin/sh
 
 output=$(simple-mtpfs -l)
-printf "$output\nChoose a device: "; read -r device
+printf "%s\nChoose a device: " "$output"; read -r device
 
 devname=$(echo "$output" | grep "$device" | cut -d' ' -f2)
 mntdir="$HOME/$devname"

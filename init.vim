@@ -44,7 +44,7 @@ nnoremap <leader>X ?<++><cr>"_ca<
 nnoremap <leader>o :!xdg-open '%'<cr>
 nnoremap <c-n> :next<cr>
 nnoremap <c-p> :previous<cr>
-nnoremap <leader>i :r !cat ~/.config/nvim/templates/
+autocmd BufNewFile,BufRead * execute "nnoremap <buffer> <leader>i :r !cat ~/.config/nvim/templates/" . &filetype . "/"
 "}}}
 
 " Functions{{{

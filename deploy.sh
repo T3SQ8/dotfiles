@@ -3,29 +3,17 @@
 alias lncmd='ln -sfr'
 
 link() {
-	while getopts h arg; do
-		case $arg in
-			h) hidden=1 ;;
-		esac
-	done
-
 	for dir do :; done
 
 	for arg do
 		shift
-		[ "$arg" = "$dir" ] || [ "$arg" = "-h" ] && continue
+		[ "$arg" = "$dir" ] && continue
 		set -- "$@" "$arg"
 	done
 
 	[ -d "$dir" ] || mkdir -p "$dir"
 
-	if [ "$hidden" ]; then
-		for file in "$@"; do
-			lncmd "$file" "$dir/.${file##*/}"
-		done
-	else
-		lncmd "$@" "$dir"
-	fi
+	lncmd "$@" "$dir"
 }
 
 # Files
@@ -49,5 +37,6 @@ link templates/tex/* ~/.config/nvim/templates/tex
 link templates/roff/* ~/.config/nvim/templates/roff
 
 # Hidden files
-link -h zsh/* ~/.config/zsh
-link -h zshenv ~
+lncmd zsh/zprofile ~/.config/zsh/.zprofile
+lncmd zsh/zshrc ~/.config/zsh/.zshrc
+lncmd zshenv ~/.zshenv

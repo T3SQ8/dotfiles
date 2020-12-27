@@ -6,20 +6,17 @@ set mouse=nvci
 set notimeout
 set nowrap
 set number relativenumber cursorline
-set smartindent
 set splitbelow splitright
 set undofile undodir=$HOME/.cache/nvim/undodir
 highlight CursorLine cterm=bold
 highlight Folded ctermbg=darkblue ctermfg=white
-syntax on "}}}
+syntax on
+autocmd BufRead,BufNewFile *.tex set filetype=tex
+autocmd BufRead,BufNewFile *todo.txt set filetype=todo
+"}}}
 
 " Key bindings{{{
 let mapleader=" "
-" Movement
-noremap k gk
-noremap j gj
-" Disable keys
-nnoremap <s-q> <nop>
 " Clipboard
 vnoremap <c-c> "+y
 nnoremap <c-a> ggVG
@@ -36,6 +33,7 @@ command WQ wq
 command Wq wq
 tnoremap <Esc> <C-\><C-n>
 " Mics
+nnoremap <s-q> <nop>
 nnoremap <leader>n :nohlsearch<cr>
 nnoremap <leader>r :w \| !cleandoc %<cr>
 nnoremap <leader>c :w \| !compiledoc %<cr>
@@ -50,26 +48,20 @@ nnoremap <leader>i :r !cat ~/.config/nvim/templates/
 "}}}
 
 " Functions{{{
-nnoremap <leader>t :call Terminal("")<cr>
-nnoremap <leader>T :call Terminal("v")<cr>
-function! Terminal(position)
-	if a:position ==? "v"
-		vsplit +terminal
-	else
-		execute winheight(0)/3 "split +terminal"
-	endif
+nnoremap <leader>t :call Terminal()<cr>
+function! Terminal()
+	execute winheight(0)/3 "split +terminal"
 	set nonumber norelativenumber
 endfunction
 
-nnoremap <leader>en :call Spellmap("en_us")<cr>
-nnoremap <leader>sv :call Spellmap("sv")<cr>
-nnoremap <leader>fr :call Spellmap("fr")<cr>
-nnoremap <leader>l :call Spellmap("")<cr>
+nnoremap <leader>le :call Spellmap("en_us")<cr>
+nnoremap <leader>ls :call Spellmap("sv")<cr>
+nnoremap <leader>ll:call Spellmap("")<cr>
 function! Spellmap(lang)
 	if empty(a:lang)
 		set nospell
-		silent! unmap <buffer> n
-		silent! unmap <buffer> N
+		silent! nunmap <buffer> n
+		silent! nunmap <buffer> N
 	else
 		nnoremap <buffer> n ]sz=
 		nnoremap <buffer> N [sz=
@@ -81,8 +73,12 @@ nnoremap <leader>w :call ToggleWraping()<cr>
 function! ToggleWraping()
 	if &wrap ==? "nowrap" || &linebreak ==? "nolinebreak"
 		set wrap linebreak
+		noremap <buffer> k gk
+		noremap <buffer> j gj
 	else
-		set nowrap
+		set nowrap nolinebreak
+		silent! nunmap <buffer> k
+		silent! nunmap <buffer> j
 	endif
 endfunction
 
@@ -103,7 +99,3 @@ function! Blockseq(startnum)
 		let num = num + 1
 	endfor
 endfunction
-
-" Filetypes
-autocmd BufRead,BufNewFile *.tex set filetype=tex
-autocmd BufRead,BufNewFile *todo.txt set filetype=todo

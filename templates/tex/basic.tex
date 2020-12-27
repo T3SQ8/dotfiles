@@ -1,24 +1,48 @@
+%\documentclass[varwidth,border=12pt]{standalone}
 \documentclass[a4paper,12pt]{article}
+\usepackage{graphicx}
+\usepackage{xifthen}
 \usepackage{caption}
-\captionsetup[table]{name=Tabel}
-\captionsetup[figure]{name=Figur}
+\usepackage{parskip}
 
-\linespread{1.5}			% Increase space between lines
-\setlength{\parindent}{0in}		% Remove paragraph indentation
-\setlength{\parskip}{1em}		% Increase paragraph spacing
-\usepackage[margin=0.5in]{geometry}	% Decrease margins
-\pagenumbering{gobble}			% Disable page numbering
+\captionsetup[table]{name=Tabel}	% Change table caption
+\captionsetup[figure]{name=Figur}	% Change figure caption
+%\linespread{1.5}			% Increase space between lines
+%\usepackage[margin=0.5in]{geometry}	% Decrease margins
+%\pagenumbering{gobble}			% Disable page numbering
 
 \title{Title}
 \author{Author}
 \date{14 December}
+
+%Commands<<<
+\newcommand{\image}[3][\linewidth]{
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=#1]{#3}
+		\caption{#2}
+	\end{figure}
+}
+
+\newcommand{\tabel}[2]{
+	\begin{table}[h]
+		\caption{#1}
+		\centering
+		#2
+	\end{table}
+}
+
+\newcommand{\formel}[3][]{
+	\textbf{#2:}\\
+	#3
+	\ifthenelse{\isempty{#1}}{}{{\tiny{(#1)}}}
+	\medskip
+}%>>>
 
 \begin{document}
 
 \maketitle
 \tableofcontents
 \newpage
-
-\section{First heading}
 
 \end{document}

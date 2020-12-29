@@ -7,7 +7,9 @@ for file in "$@"; do
 	case $ext in
 		roff)	groff -e -ms "$file" -Tpdf > "$basename.pdf" ;;
 		tex)	pdflatex -output-directory /tmp "$file" && cp "/tmp/$nameonly.pdf" "$basename.pdf" ;;
-		md)	pandoc "$file" -o "$basename.html" ;;
+		md)
+			#pandoc "$file" -o "$basename.html" ;;
+			md2html "$file" -o "$basename.html" ;;
 		*)	echo "$file: Unknown filetype" ;;
 	esac
 done

@@ -1,10 +1,16 @@
 #!/bin/sh
 
+dir="backups-computer"
 file="$(date +%Y-%m-%d).tar.gz"
+rmtfile="$file.gpg"
+pkglist="$HOME/.local/installed-packages.txt"
+difflist="$HOME/.local/backups-differential"
+ignorelist="$HOME/.local/backups-ignore"
+sumfile="checksums.md5"
 
-[ "${PWD##*/}" != "backups-computer" ] && { echo "Wrong directory"; exit 1 ;}
+[ "${PWD##*/}" != "$dir" ] && { echo "Wrong directory"; exit 1 ;}
 
-pacman -Qqe > ~/.local/installed-packages.txt
-#rsync -aP --exclude-from ~/.local/backups-ignore "$HOME/" backups-server:home-backups
-tar -cvz -X ~/.local/backups-ignore "$HOME" | tee "$file" | gpg -c | rclone rcat "backups:$file.gpg"
-md5sum "$file" >> checksums.md5
+pacman -Qqe > "$pkglist"
+rsync -aPr --files-from "$difflist" "$HOME/" differential
+tar -cvz -X "$ignorelist" -X "$difflist" "$HOME" | tee "$file" | gpg -c | rclone rcat "backups:$rmtfile"
+md5sum "$file" >> "$sumfile"

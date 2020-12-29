@@ -1,0 +1,37 @@
+\documentclass{beamer}
+
+\setbeamertemplate{navigation symbols}{}	% Remove bottom navigation bar
+%\usecolortheme{beaver}
+%\setbeamercolor{itemize item}{fg=red}		% Make list bullets red
+%\setlength{\leftmargini}{0.5em}		% Set margin from the left
+
+% Title page
+\title{Title}
+\author{Author}
+\date{July 20, 2020}
+\institute{Institute}
+
+\newcommand{\imagecolumn}[3][\textwidth]{
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+				#2
+		\end{column}
+		\begin{column}{.5\textwidth}
+			\begin{center}
+				\includegraphics[width=#1]{#3}
+			\end{center}
+		\end{column}
+	\end{columns}
+}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}
+	\frametitle{Title}
+\end{frame}
+
+\end{document}

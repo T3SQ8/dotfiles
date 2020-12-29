@@ -56,7 +56,7 @@ endfunction
 
 nnoremap <leader>le :call Spellmap("en_us")<cr>
 nnoremap <leader>ls :call Spellmap("sv")<cr>
-nnoremap <leader>ll:call Spellmap("")<cr>
+nnoremap <leader>ll :call Spellmap("")<cr>
 function! Spellmap(lang)
 	if empty(a:lang)
 		set nospell

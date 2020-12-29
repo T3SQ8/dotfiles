@@ -3,7 +3,7 @@
 for dir in "$@"; do
 	[ ! -d "$dir" ] && { echo "$dir not found"; continue ;}
 
-	find "$dir" -xtype l -delete
+	find "$dir" -xtype l -print -delete
 	while [ -n "$(find "$dir" -empty -print -quit)" ]; do
 		find "$dir" -empty -print -delete
 	done

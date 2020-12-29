@@ -45,6 +45,7 @@ nnoremap <leader>o :!xdg-open '%'<cr>
 nnoremap <c-n> :next<cr>
 nnoremap <c-p> :previous<cr>
 autocmd BufNewFile,BufRead * execute "nnoremap <buffer> <leader>i :r !cat ~/.config/nvim/templates/" . &filetype . "/"
+autocmd BufNewFile,BufRead * execute "nnoremap <buffer> <leader>h :sp ~/.config/nvim/templates/" . &filetype . "/"
 "}}}
 
 " Functions{{{

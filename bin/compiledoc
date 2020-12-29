@@ -9,7 +9,7 @@ for file in "$@"; do
 		tex)	pdflatex -output-directory /tmp "$file" && cp "/tmp/$nameonly.pdf" "$basename.pdf" ;;
 		md)
 			#pandoc "$file" -o "$basename.html" ;;
-			md2html "$file" -o "$basename.html" ;;
+			md2html --github "$file" -o "$basename.html" ;;
 		*)	echo "$file: Unknown filetype" ;;
 	esac
 done

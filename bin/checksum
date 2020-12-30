@@ -1,4 +1,27 @@
 #!/bin/sh
 
-file="$(date +%Y-%m-%d_%T).md5"
-find '.' -type f -not -name "$file" -exec md5sum '{}' + > "$file"
+add_ignore_list() {
+	ignore="${ignore} ! -path './$1'"
+}
+
+mk_ignore_list() {
+	ignorelist=$(mktemp)
+	sed 's/^\w\+\s\+\.\///' "$sumfile" > "$ignorelist"
+	while read -r file; do
+		add_ignore_list "$file"
+	done < "$ignorelist"
+}
+
+while getopts mf:i: arg; do
+	case $arg in
+		f) sumfile=$OPTARG ;;
+		m) missing=1 ;;
+		i) add_ignore_list "$OPTARG" ;;
+		\?) exit 1 ;;
+	esac
+done
+
+sumfile=${sumfile:-checksum.md5}
+add_ignore_list "$sumfile"
+[ "$missing" ] && mk_ignore_list
+echo "find '.' -type f $ignore -exec md5sum '{}' + >> '$sumfile'" | sh

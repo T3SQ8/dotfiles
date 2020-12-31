@@ -12,9 +12,16 @@ mk_ignore_list() {
 	done < "$ignorelist"
 }
 
-while getopts mf:i: arg; do
+exist_sumfile() {
+	[ -f "$sumfile" ] && [ ! "$force" ] && [ ! "$missing" ] && {
+		echo "'$sumfile' already exists. Please specify the -m option to only add missing files or the -o option to continue."; exit 1
+	}
+}
+
+while getopts omf:i: arg; do
 	case $arg in
 		f) sumfile=$OPTARG ;;
+		o) force=1 ;;
 		m) missing=1 ;;
 		i) add_ignore_list "$OPTARG" ;;
 		\?) exit 1 ;;
@@ -23,5 +30,7 @@ done
 
 sumfile=${sumfile:-checksum.md5}
 add_ignore_list "$sumfile"
+exist_sumfile
+
 [ "$missing" ] && mk_ignore_list
 echo "find '.' -type f $ignore -exec md5sum '{}' + >> '$sumfile'" | sh

@@ -33,4 +33,4 @@ add_ignore_list "$sumfile"
 exist_sumfile
 
 [ "$missing" ] && mk_ignore_list
-echo "find '.' -type f $ignore -exec md5sum '{}' + >> '$sumfile'" | sh
+eval find '.' -type f $ignore -exec md5sum '{}' + >> "$sumfile"

@@ -7,44 +7,43 @@ elif [ $# = 0 ]; then
 fi
 
 mountdev() {
-	mkdir -p "$mntdir"
-	mount "$1" "$mntdir"
-	echo "$1 mounted"
+	mkdir -p "$mntdir" && mount "$1" "$mntdir" && echo "$1 mounted"
 }
 
 umountdev() {
-	echo "Syncing..."; sync
-	umount "$1"
-	rmdir "$mntdir"
-	echo "$1 unmounted"
+	[ "$sync" ] || { echo "Syncing..."; sync ;}
+	umount "$1" && rmdir "$mntdir" && echo "$1 unmounted"
+	sync=1
 }
 
 checkmount(){
-	grep -q "$1" /proc/mounts
+	grep -q "$mntdir" /proc/mounts
 }
 
-
 for device in "$@"; do
-	[ ! -e "$device" ] && { echo "$device not found"; continue ;}
-
 	shortdev=${device##*/}
 	mntdir="/mnt/$shortdev"
-	mappername="/dev/mapper/$shortdev"
+	mapper="/dev/mapper/$shortdev"
+	parttype=$(blkid -o value -s TYPE "$device")
 
-	# If device is encrypted using luks
-	if blkid "$device" | grep -q 'TYPE="crypto_LUKS"'; then
-		if checkmount "$mappername"; then
-			umountdev "$mappername"
-			cryptsetup -v close "$shortdev"
-		else
-			cryptsetup open -v "$device" "$shortdev"
-			mountdev "$mappername"
-		fi
-	else # If device is not encrypted
-		if checkmount "$device"; then
-			umountdev "$device"
-		else
-			mountdev "$device"
-		fi
-	fi
+	[ ! -e "$device" ] && { echo "$device not found"; continue ;}
+
+	case $parttype in
+		crypto_LUKS)
+			if ! checkmount; then
+				cryptsetup open -v "$device" "$shortdev" && mountdev "$mapper"
+			else
+				umountdev "$mapper" && cryptsetup -v close "$shortdev"
+			fi
+			;;
+		ext4)
+			if ! checkmount; then
+				mountdev "$device"
+			else
+				umountdev "$device"
+			fi
+			;;
+		*)
+			echo "Unknown partition type"; exit 1 ;;
+	esac
 done

@@ -83,20 +83,18 @@ function! ToggleWraping()
 	endif
 endfunction
 
-vnoremap <leader>q :<c-u>call Blockseq("")<cr>
-function! Blockseq(startnum)
-	" Get beginning and ending lines of visual selection
-	let visualrange = [ getpos("'<")[1], getpos("'>")[1] ]
-	if empty(a:startnum)
-		let num = 1
+vnoremap <leader>q :<c-u>call Blockseq()<cr>
+function! Blockseq(...)
+	let visualrange = [ getpos("'<")[1], getpos("'>")[1] ] " Beginning and ending lines of visual selection
+	if a:0 >= 1 " Assign the starting counter to the first argument if it exists
+		let num = a:1
 	else
-		let num = a:startnum
+		let num = 1
 	endif
-	normal! gvd
 	let startcolumn = col('.')
 	for i in range(visualrange[0], visualrange[1])
-		execute 'normal! i' . num
+		execute 'normal! R' . num
 		call cursor(line('.')+1, startcolumn) " Move the cursor down and back to the original column
-		let num = num + 1
+		let num += 1
 	endfor
-endfunction
+endfunction "}}}

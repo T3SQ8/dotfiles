@@ -1,6 +1,5 @@
 # Loading
-autoload -U colors compinit edit-command-line
-colors
+autoload -U compinit edit-command-line
 compinit
 zle -N edit-command-line
 zmodload zsh/complist
@@ -13,8 +12,6 @@ zstyle ':completion:*' menu select
 _comp_options+=(globdots)
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' hosts off
-
-PS1="[%B%{$fg[blue]%}%~%{$reset_color%}]$ "
 
 # Shortcuts
 bindkey -e

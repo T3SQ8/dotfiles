@@ -22,4 +22,5 @@ export \
 	HISTSIZE=1000 \
 	SAVEHIST=10000 \
 	HISTFILE="$HOME/.cache/zshhist" \
+	PS1="[%B%F{blue}%~%f%b]$ " \
 	WORDCHARS="_"

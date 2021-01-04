@@ -27,10 +27,10 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 " Command-line/terminal
-command Q quit
-command W write
-command WQ wq
-command Wq wq
+command! Q quit
+command! W write
+command! WQ wq
+command! Wq wq
 tnoremap <Esc> <C-\><C-n>
 " Mics
 nnoremap <s-q> <nop>
@@ -44,6 +44,7 @@ nnoremap <leader>X ?<++><cr>"_ca<
 nnoremap <leader>o :!xdg-open '%'<cr>
 nnoremap <c-n> :next<cr>
 nnoremap <c-p> :previous<cr>
+nnoremap <leader>s :source $MYVIMRC<cr>
 autocmd BufNewFile,BufRead * execute "nnoremap <buffer> <leader>i :r !cat ~/.config/nvim/templates/" . &filetype . "/"
 autocmd BufNewFile,BufRead * execute "nnoremap <buffer> <leader>h :sp ~/.config/nvim/templates/" . &filetype . "/"
 "}}}

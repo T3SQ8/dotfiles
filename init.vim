@@ -7,7 +7,7 @@ set notimeout
 set nowrap
 set number relativenumber cursorline
 set splitbelow splitright
-set undofile undodir=$HOME/.cache/nvim/undodir
+set undofile
 highlight CursorLine cterm=bold
 highlight Folded ctermbg=darkblue ctermfg=white
 syntax on

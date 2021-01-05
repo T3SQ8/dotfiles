@@ -41,7 +41,6 @@ nnoremap Y y$
 nnoremap <C-LeftMouse> <LeftMouse>.
 nnoremap <leader>x /<++><cr>"_ca<
 nnoremap <leader>X ?<++><cr>"_ca<
-nnoremap <leader>o :!xdg-open '%'<cr>
 nnoremap <c-n> :next<cr>
 nnoremap <c-p> :previous<cr>
 nnoremap <leader>s :source $MYVIMRC<cr>
@@ -50,6 +49,16 @@ autocmd BufNewFile,BufRead * execute "nnoremap <buffer> <leader>h :sp ~/.config/
 "}}}
 
 " Functions{{{
+nnoremap <leader>o :call Open()<cr>
+function! Open()
+	if &filetype == "tex"
+		let file = expand("%:r") . ".pdf"
+	else
+		let file = expand("%")
+	endif
+execute "!xdg-open" file "&"
+endfunction
+
 nnoremap <leader>t :call Terminal()<cr>
 function! Terminal()
 	execute winheight(0)/3 "split +terminal"

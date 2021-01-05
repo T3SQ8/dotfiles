@@ -5,7 +5,7 @@ zle -N edit-command-line
 zmodload zsh/complist
 
 # Options
-setopt NO_HUP autocd auto_pushd nolistambiguous
+setopt nohup autocd autopushd nolistambiguous emacs nocheckrunningjobs
 
 # Command-line completion
 zstyle ':completion:*' menu select
@@ -14,10 +14,10 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 zstyle ':completion:*' hosts off
 
 # Shortcuts
-bindkey -e
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-bindkey '^o' edit-command-line
+bindkey '^[' edit-command-line
+stty -ixon
 
 # Aliases
 alias \
@@ -39,6 +39,3 @@ alias \
 	gp='git push' \
 	gs='git status' \
 	gb='git branch -avv'
-
-# Fix keybind issue
-stty -ixon

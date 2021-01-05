@@ -4,6 +4,7 @@
 \usepackage{xifthen}
 \usepackage{caption}
 \usepackage{parskip}
+\usepackage{tcolorbox}
 
 \captionsetup[table]{name=Tabel}	% Change table caption
 \captionsetup[figure]{name=Figur}	% Change figure caption
@@ -37,6 +38,12 @@
 	#3
 	\ifthenelse{\isempty{#1}}{}{{\tiny{(#1)}}}
 	\medskip
+}
+
+\newcommand{\textbox}[2][]{
+	\begin{tcolorbox}[title=#1]
+		#2
+	\end{tcolorbox}
 }%>>>
 
 \begin{document}

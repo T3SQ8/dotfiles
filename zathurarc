@@ -1,2 +1,3 @@
 set selection-clipboard clipboard
-set recolor
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen

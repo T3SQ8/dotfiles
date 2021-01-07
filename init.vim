@@ -9,7 +9,6 @@ set number relativenumber cursorline
 set splitbelow splitright
 set undofile
 highlight CursorLine cterm=bold
-highlight Folded ctermbg=darkblue ctermfg=white
 syntax on
 autocmd BufRead,BufNewFile *.tex set filetype=tex
 autocmd BufRead,BufNewFile *todo.txt set filetype=todo

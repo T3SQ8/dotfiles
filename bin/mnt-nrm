@@ -36,7 +36,7 @@ for device in "$@"; do
 				umountdev "$mapper" && cryptsetup -v close "$shortdev"
 			fi
 			;;
-		ext4)
+		ext4|vfat)
 			if ! checkmount; then
 				mountdev "$device"
 			else

@@ -6,6 +6,8 @@ zmodload zsh/complist
 
 # Options
 setopt nohup autocd autopushd nolistambiguous emacs nocheckrunningjobs
+SAVEHIST=10000
+HISTSIZE=1000
 
 # Command-line completion
 zstyle ':completion:*' menu select

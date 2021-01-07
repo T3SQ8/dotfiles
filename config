@@ -10,3 +10,4 @@ macro b set browser "openfeed -b %u &" ; open-in-browser ; set browser "openfeed
 macro a set browser "openfeed -a %u &" ; open-in-browser ; set browser "openfeed"
 macro p set browser "openfeed -lt %u &" ; open-in-browser ; set browser "openfeed"
 macro l set browser "openfeed -ltv %u &" ; open-in-browser ; set browser "openfeed"
+macro d set browser "openfeed -l %u &" ; open-in-browser ; set browser "openfeed"

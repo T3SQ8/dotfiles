@@ -1,12 +1,16 @@
 #!/bin/sh
 
-bkpdir="backups-computer"
+bkpdir="backups"
 diffdir="differential"
+phonedir="phone"
 rclonermt="backups"
 
-localfile="$(date +%Y-%m-%d).tar.gz"
+datefrmt=$(date +%Y-%m-%d)
+localfile="$datefrmt.tar.gz"
 rmtfile="$localfile.gpg"
+phonefile="$phonedir/$datefrmt.ab"
 sumfile="checksums.md5"
+phonesum="$phonedir/checksums.md5"
 
 pkglist="$HOME/.local/installed-packages.txt"
 difflist="$HOME/.local/backups-differential"
@@ -14,7 +18,10 @@ ignorelist="$HOME/.local/backups-ignore"
 
 [ "${PWD##*/}" != "$bkpdir" ] && { echo "Wrong directory"; exit 1 ;}
 
+adb backup -apk -obb -all -f "$phonefile"
 pacman -Qqe > "$pkglist"
 rsync -aPr --files-from "$difflist" "$HOME" "$diffdir"
 tar -cvz -X "$ignorelist" -X "$difflist" "$HOME" | tee "$localfile" | gpg -c | rclone rcat "$rclonermt:$rmtfile"
+
 md5sum "$localfile" >> "$sumfile"
+md5sum "$phonefile" >> "$phonesum"

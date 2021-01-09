@@ -1,9 +1,0 @@
-#!/bin/sh
-
-for dir in "$@"; do
-	[ ! -d "$dir" ] && { echo "$dir not found"; continue ;}
-
-	find "$dir" -type f -empty -print -delete
-	find "$dir" -xtype l -print -delete
-	find "$dir" -type d -empty -print -exec rmdir -p '{}' +
-done

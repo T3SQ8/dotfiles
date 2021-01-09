@@ -6,7 +6,6 @@ horizontal_padding = 8
 frame_width = 3
 font = Monospace 10
 format = "<b>%s</b>\n%b"
-corner_radius = 7
 hide_duplicate_count = true
 stack_duplicates = true
 word_wrap = true
@@ -20,12 +19,4 @@ foreground = "#888888"
 timeout = 5
 
 [urgency_normal]
-background = "#285577"
-foreground = "#ffffff"
 timeout = 5
-
-[urgency_critical]
-background = "#900000"
-foreground = "#ffffff"
-frame_color = "#ff0000"
-timeout = 0

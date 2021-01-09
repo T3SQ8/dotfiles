@@ -2,15 +2,13 @@
 
 bkpdir="backups"
 diffdir="differential"
-phonedir="phone"
 rclonermt="backups"
 
 datefrmt=$(date +%Y-%m-%d)
 localfile="$datefrmt.tar.gz"
 rmtfile="$localfile.gpg"
-phonefile="$phonedir/$datefrmt.ab"
+phonefile="phone/$datefrmt.ab"
 sumfile="checksums.md5"
-phonesum="$phonedir/checksums.md5"
 
 pkglist="$HOME/.local/installed-packages.txt"
 difflist="$HOME/.local/backups-differential"
@@ -23,5 +21,4 @@ pacman -Qqe > "$pkglist"
 rsync -aPr --files-from "$difflist" "$HOME" "$diffdir"
 tar -cvz -X "$ignorelist" -X "$difflist" "$HOME" | tee "$localfile" | gpg -c | rclone rcat "$rclonermt:$rmtfile"
 
-md5sum "$localfile" >> "$sumfile"
-md5sum "$phonefile" >> "$phonesum"
+md5sum "$localfile" "$phonefile" >> "$sumfile"

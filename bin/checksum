@@ -2,8 +2,8 @@
 
 while getopts omf:i:d:a: arg; do
 	case $arg in
-		f) sumfile=$OPTARG ;;
-		o) force=1 ;;
+		o) sumfile=$OPTARG ;;
+		f) force=1 ;;
 		m) missing=1 ;;
 		a) hashalgo=$OPTARG ;;
 		i) add_ignore_list "$OPTARG" ;;
@@ -16,7 +16,7 @@ dir=${dir:-.}
 hashalgo=${hashalgo:-md5sum}
 
 [ -f "$sumfile" ] && [ ! "$force" ] && [ ! "$missing" ] && {
-	echo "'$sumfile' already exists. Please specify the -m option to only add missing files or the -o option to continue."; exit 1
+	echo "'$sumfile' already exists."; exit 1
 }
 
 if [ "$missing" ]; then

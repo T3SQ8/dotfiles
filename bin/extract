@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for archive do
+	bsdtar -tf "$archive" | fzf -m | xargs -r bsdtar -xvf "$archive"
+done

@@ -18,7 +18,7 @@ zstyle ':completion:*' hosts off
 # Shortcuts
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-bindkey '^[' edit-command-line
+bindkey '^o' edit-command-line
 stty -ixon
 
 # Aliases

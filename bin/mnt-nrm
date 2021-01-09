@@ -1,49 +1,60 @@
 #!/bin/sh
 
-if [ "$(whoami)" != "root" ]; then
-	echo "Root privileges needed"; exit
-elif [ $# = 0 ]; then
-	echo "No device given"; exit
-fi
+[ "$(whoami)" != "root" ] && { echo "Root privileges needed"; exit ;}
 
-mountdev() {
-	mkdir -p "$mntdir" && mount "$1" "$mntdir" && echo "$1 mounted"
-}
+alias \
+	mount='mount -v' \
+	umount='umount -v'
 
-umountdev() {
-	[ "$sync" ] || { echo "Syncing..."; sync ;}
-	umount "$1" && rmdir "$mntdir" && echo "$1 unmounted"
-	sync=1
+synconce() {
+	[ "$synced" ] || { echo "Syncing..."; sync ; synced=1 ;}
 }
 
 checkmount(){
 	grep -q "$mntdir" /proc/mounts
 }
 
-for device in "$@"; do
+casemap() {
+	[ ! -e "$device" ] && { echo "$device not found"; return ;}
 	shortdev=${device##*/}
 	mntdir="/mnt/$shortdev"
 	mapper="/dev/mapper/$shortdev"
-	parttype=$(blkid -o value -s TYPE "$device")
 
-	[ ! -e "$device" ] && { echo "$device not found"; continue ;}
-
-	case $parttype in
+	case "$(blkid -o value -s TYPE "$device")" in
 		crypto_LUKS)
 			if ! checkmount; then
-				cryptsetup open -v "$device" "$shortdev" && mountdev "$mapper"
+				cryptsetup open -v "$device" "$shortdev"
+				mkdir -p "$mntdir"
+				mount "$mapper" "$mntdir"
 			else
-				umountdev "$mapper" && cryptsetup -v close "$shortdev"
+				synconce
+				umount "$device"
+				rmdir "$mntdir"
+				cryptsetup -v close "$shortdev"
 			fi
 			;;
+
 		ext4|vfat)
 			if ! checkmount; then
-				mountdev "$device"
+				mkdir -p "$mntdir"
+				mount "$device" "$mntdir"
 			else
-				umountdev "$device"
+				synconce
+				umount "$device"
+				rmdir "$mntdir"
 			fi
 			;;
 		*)
 			echo "Unknown partition type"; exit 1 ;;
 	esac
-done
+}
+
+
+if [ $# = 0 ]; then
+	device=$(sfdisk -lqo Device,Size | sed -n 's/\s\+/\t/;/dev/p' | fzf | cut -f1)
+	casemap
+else
+	for device in "$@"; do
+		casemap
+	done
+fi

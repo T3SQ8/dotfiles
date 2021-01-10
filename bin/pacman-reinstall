@@ -1,8 +1,3 @@
 #!/bin/sh
 
-printf "This will take a while. If you want to continue type 'yes' in all caps: "; read -r choice
-[ "$choice" != "YES" ] && exit
-
-for pkg in $(pacman -Qq); do
-	sudo pacman -S --noconfirm "$pkg"
-done
+echo "$(pacman -Qq; pacman -Qqm)" | sort | uniq -u | sudo pacman -S -

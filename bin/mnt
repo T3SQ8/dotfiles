@@ -44,6 +44,16 @@ casemap() {
 				rmdir "$mntdir"
 			fi
 			;;
+		ntfs)
+			if ! checkmount; then
+				mkdir -p "$mntdir"
+				ntfs-3g "$device" "$mntdir"
+			else
+				synconce
+				umount "$device"
+				rmdir "$mntdir"
+			fi
+			;;
 		*)
 			echo "Unknown partition type"; exit 1 ;;
 	esac

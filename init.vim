@@ -12,6 +12,7 @@ highlight CursorLine cterm=bold
 syntax on
 autocmd BufRead,BufNewFile *.tex set filetype=tex
 autocmd BufRead,BufNewFile *todo.txt set filetype=todo
+autocmd TermOpen * set nonumber norelativenumber
 "}}}
 
 " Key bindings{{{
@@ -31,6 +32,7 @@ command! W write
 command! WQ wq
 command! Wq wq
 tnoremap <Esc> <C-\><C-n>
+nnoremap <leader>t :execute winheight(0)/3 "split +terminal"<cr>
 " Mics
 nnoremap <s-q> <nop>
 nnoremap <leader>n :nohlsearch<cr>
@@ -56,12 +58,6 @@ function! Open()
 		let file = expand("%")
 	endif
 execute "!xdg-open" file "&"
-endfunction
-
-nnoremap <leader>t :call Terminal()<cr>
-function! Terminal()
-	execute winheight(0)/3 "split +terminal"
-	set nonumber norelativenumber
 endfunction
 
 nnoremap <leader>le :call Spellmap("en_us")<cr>

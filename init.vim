@@ -2,7 +2,7 @@
 filetype indent on
 set foldmethod=marker
 set ignorecase
-set mouse=nvci
+set mouse=a
 set notimeout
 set nowrap
 set number relativenumber cursorline

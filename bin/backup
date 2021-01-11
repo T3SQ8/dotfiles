@@ -4,7 +4,7 @@ bkpdir="backups"
 diffdir="differential"
 rclonermt="backups"
 
-datefrmt=$(date +%Y-%m-%d)
+datefrmt=$(date +%F)
 localfile="$datefrmt.tar.gz"
 rmtfile="$localfile.gpg"
 phonefile="phone/$datefrmt.ab"

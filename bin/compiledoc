@@ -3,13 +3,15 @@
 for file in "$@"; do
 	basename=${file%.*} # Without extention
 	nameonly=${basename##*/} # Without extention or directory path
-	ext=${file##*.} # Extention only
-	case $ext in
-		roff)	groff -e -ms "$file" -Tpdf > "$basename.pdf" ;;
-		tex)	pdflatex -output-directory /tmp "$file" && cp "/tmp/$nameonly.pdf" "$basename.pdf" ;;
+	case ${file##*.} in # Extention only
+		roff)
+			groff -e -ms "$file" -Tpdf > "$basename.pdf" ;;
+		tex)
+			pdflatex -output-directory /tmp "$file" && cp "/tmp/$nameonly.pdf" "$basename.pdf" ;;
 		md)
 			#pandoc "$file" -o "$basename.html" ;;
 			md2html --github "$file" -o "$basename.html" ;;
-		*)	echo "$file: Unknown filetype" ;;
+		*)
+			echo "$file: Unknown filetype" ;;
 	esac
 done

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+filelist="filelist.txt"
+
+[ -f "$filelist" ] && [ -s "$filelist" ] && { echo "$filelist already exists"; exit 1 ;}
+
+for file do
+	echo "file '$file'" >> $filelist
+done
+
+ffmpeg -y -f concat -i "$filelist" -c copy "$(date "+%H-%M-%S.${1##*.}")"
+rm "$filelist"

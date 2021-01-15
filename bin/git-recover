@@ -1,0 +1,6 @@
+#!/bin/sh
+
+file=$(git log --diff-filter=D --summary | awk '/delete/ {print $4}' | fzf)
+githash=$(git log -1 --pretty="%H" -- "$file")
+
+git checkout "$githash~1" -- "$file"

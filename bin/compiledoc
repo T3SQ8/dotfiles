@@ -11,6 +11,8 @@ for file in "$@"; do
 		md)
 			#pandoc "$file" -o "$basename.html" ;;
 			md2html --github "$file" -o "$basename.html" ;;
+		c)
+			gcc "$file" -o "$basename" ;;
 		*)
 			echo "$file: Unknown filetype" ;;
 	esac

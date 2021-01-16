@@ -1,0 +1,15 @@
+#!/bin/sh
+
+swapfile=${1:-/swapfile}
+
+dd if=/dev/zero of="$swapfile" bs=1K status=progress \
+	count="$(awk '/MemTotal:/ {print $2*1.5}' /proc/meminfo)"
+
+chmod 600 "$swapfile"
+mkswap "$swapfile"
+swapon "$swapfile"
+echo "$swapfile none swap defaults 0 0" >> /etc/fstab
+
+#swapoff "$swapfile"
+#rm "$swapfile"
+#sed -i "/$swapfile/d" /etc/fstab

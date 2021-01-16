@@ -1,0 +1,6 @@
+#!/bin/sh
+
+file="$HOME/.local/wp"
+
+[ -e "$1" ] && cp "$1" "$file"
+xwallpaper --zoom "$file"

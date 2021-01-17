@@ -1,11 +1,9 @@
 #!/bin/sh
 
-filelist="filelist.txt"
-
-[ -f "$filelist" ] && [ -s "$filelist" ] && { echo "$filelist already exists"; exit 1 ;}
+filelist=$(mktemp XXXXX)
 
 for file do
-	echo "file '$file'" >> $filelist
+	echo "file '$file'" >> "$filelist"
 done
 
 ffmpeg -y -f concat -i "$filelist" -c copy "$(date "+%H-%M-%S.${1##*.}")"

@@ -61,7 +61,7 @@ casemap() {
 
 
 if [ $# = 0 ]; then
-	device=$(sfdisk -lqo Device,Size | sed -n 's/\s\+/\t/;/dev/p' | fzf | cut -f1)
+	device=$(sfdisk -lqo Device,Size | sed -n 's/\s\+/\t/;/dev/p' | fzf --tac | cut -f1)
 	casemap
 else
 	for device in "$@"; do

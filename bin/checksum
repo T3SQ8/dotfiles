@@ -1,28 +1,18 @@
 #!/bin/sh
 
-while getopts omf:i:d:a: arg; do
-	case $arg in
-		o) sumfile=$OPTARG ;;
-		f) force=1 ;;
-		m) missing=1 ;;
-		a) hashalgo=$OPTARG ;;
-		i) add_ignore_list "$OPTARG" ;;
-		d) dir=$OPTARG ;;
-		\?) exit 1 ;;
-	esac
-done
-sumfile=${sumfile:-checksum.md5}
-dir=${dir:-.}
-hashalgo=${hashalgo:-md5sum}
+sumfile=${1:-checksum.md5}
 
-[ -f "$sumfile" ] && [ ! "$force" ] && [ ! "$missing" ] && {
-	echo "'$sumfile' already exists."; exit 1
+add_ignore_list() {
+	ignore="${ignore} ! -path '$1'"
 }
 
-if [ "$missing" ]; then
-	find "$dir" -type f | while read -r file; do
-		grep -qF "$file" "$sumfile" || $hashalgo "$file" >> "$sumfile"
-	done
-else
-	find "$dir" -type f -exec $hashalgo '{}' + >> "$sumfile"
+if [ -f "$sumfile" ]; then
+	temp=$(mktemp)
+	sed "s/^\w\+\s\+//;s/'/\\\'/" "$sumfile" > "$temp"
+	while read -r file; do
+		add_ignore_list "$file"
+	done < "$temp"
+	rm "$temp"
 fi
+
+eval find '.' -type f $ignore -exec md5sum '{}' + >> "$sumfile"

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for file in "$@"; do
+for file do
 	basename=${file%.*} # Without extention
 	nameonly=${basename##*/} # Without extention or directory path
 	case ${file##*.} in # Extention only

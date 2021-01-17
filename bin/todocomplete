@@ -1,9 +1,9 @@
 #!/bin/sh
 
-pattern="^x\s"
+reg='^x\s'
 
-for file in "$@"; do
+for file do
 	file=$(realpath "$file")
-	grep "$pattern" "$file" >> "${file%/*}/archive.txt"
-	sed -i "/$pattern/d" "$file"
+	archive="${file%/*}/archive.txt"
+	sed -i -e "/$reg/w /dev/stdout" -e "/$reg/d" "$file" >> "$archive"
 done

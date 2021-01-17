@@ -7,18 +7,17 @@ rclonermt="backups"
 datefrmt=$(date +%F)
 localfile="$datefrmt.tar.gz"
 rmtfile="$localfile.gpg"
-phonefile="phone/$datefrmt.ab"
 sumfile="checksums.md5"
 
-pkglist="$HOME/.local/installed-packages.txt"
-difflist="$HOME/.local/backups-differential"
-ignorelist="$HOME/.local/backups-ignore"
+phonefile="$HOME/backups/backup.ab"
+pkglist="$HOME/backups/installed-packages"
+biglist="$HOME/backups/backups-differential"
+ignorelist="$HOME/backups/backups-ignore"
 
 [ "${PWD##*/}" != "$bkpdir" ] && { echo "Wrong directory"; exit 1 ;}
 
 adb backup -apk -obb -all -f "$phonefile"
 pacman -Qqe > "$pkglist"
-rsync -aPr --files-from "$difflist" "$HOME" "$diffdir"
-tar -cvz -X "$ignorelist" -X "$difflist" "$HOME" | tee "$localfile" | gpg -c | rclone rcat "$rclonermt:$rmtfile"
-
-md5sum "$localfile" "$phonefile" >> "$sumfile"
+rsync -aPr --files-from "$biglist" "$HOME" "$diffdir"
+tar -cvz -X "$ignorelist" -X "$biglist" "$HOME" | tee "$localfile" | gpg -c | rclone rcat "$rclonermt:$rmtfile"
+md5sum "$localfile" >> "$sumfile"

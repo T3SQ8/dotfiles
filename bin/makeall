@@ -1,0 +1,3 @@
+#!/bin/sh
+
+make $(grep -P '^[^\t].*:$' [mM]akefile | sed 's/:$//' | tr '\n' ' ')

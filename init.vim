@@ -12,7 +12,7 @@ highlight CursorLine cterm=bold
 syntax on
 autocmd BufRead,BufNewFile *.tex set filetype=tex
 autocmd BufRead,BufNewFile *todo.txt set filetype=todo
-autocmd TermOpen * set nonumber norelativenumber
+autocmd TermOpen * setlocal nonumber norelativenumber
 "}}}
 
 " Key bindings{{{

@@ -3,7 +3,7 @@
 sumfile=${1:-checksum.md5}
 
 add_ignore_list() {
-	ignore="${ignore} ! -path '$1'"
+	ignore="${ignore} ! -path \"$1\""
 }
 
 if [ -f "$sumfile" ]; then
@@ -15,4 +15,4 @@ if [ -f "$sumfile" ]; then
 	rm "$temp"
 fi
 
-eval find '.' -type f $ignore -exec md5sum '{}' + >> "$sumfile"
+eval find '.' -type f $ignore -exec md5sum "{}" + >> "$sumfile"

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-scrot -so /dev/stdout | zbarimg --raw -q - | xclip -selection c
+import PNG:- | zbarimg --raw -q - | xclip -selection c

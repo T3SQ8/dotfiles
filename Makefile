@@ -58,11 +58,5 @@ hfile = $(mkdir) "$(@D)"; \
 ~/.config/nvim/syntax:
 	$(dfile)
 
-~/.config/nvim/templates/html:
-	$(dfile)
-
-~/.config/nvim/templates/tex:
-	$(dfile)
-
-~/.config/nvim/templates/roff:
+~/.config/nvim/templates:
 	$(dfile)

@@ -4,8 +4,8 @@
 .nr HM 0.5c	\" Top (header) margin
 .nr LL 7i	\" Line length
 
-\" Cheat{{{
-.ig \" EQN{{{
+.ig \" Cheat{{{
+\" EQN{{{
 .EQ
 W sub k = mv sup 2 over 2
 .EN
@@ -16,9 +16,8 @@ delim $$
 .EN
 
 .PP
-This sentence has some inline math. $test delim off$
-..\"}}}
-.ig \" Formatting{{{
+This sentence has some inline math. $test delim off$ \"}}}
+\" Formatting{{{
 .color 0 \" Disables colors
 .defcolor lightred rgb #aa0000
 \m[lightred]<++>\m[]
@@ -37,9 +36,8 @@ List item 1
 List item 1
 .IP \(bu 2
 List item 2
-.RE
-..\"}}}
-.ig \" Grap{{{
+.RE \"}}}
+\" Grap{{{
 .G1
 frame invis ht 2 wid 3 left solid bot solid
 draw solid
@@ -59,72 +57,47 @@ label bot "Distance(Meters)"
 "Expected" above at 4,60
 bullet at 4,60
 
-.G2
-..\"}}}
-.ig \" Formatting{{{
-.color 0 \" Disables colors
-.defcolor lightred rgb #aa0000
-\m[lightred]<++>\m[]
-
-.B "Bold"
-.I "Italic"
-.BI "Bold-Italic"
-.UL "Underlined"
-.BX "Boxed"
-.bp
-
-.IP
-List item 1
-.RS
-.IP
-List item 1
-.IP \(bu 2
-List item 2
-.RE
-..\"}}}
-.ig \" Macros{{{
+.G2 \"}}}
+\" Macros{{{
 .so macros.tmac
 .de Test
 This is some random text.
-\..
-.Test
-..\"}}}
-.ig \" Picture{{{
-.PDFPIC -L file.pdf 5cm
-..\"}}}
-.ig \" Special characters{{{
-\(Do	\" Dollar $
-\(Eu	\" Euro €
-\(Po	\" British pound sterling £
-\(aq	\" Apostrophe quote '
-\(bu	\" Bullet sign •
-\(co	\" Copyright ©
-\(cq	\" Single closing quote (right) ’
-\(ct	\" Cent ¢
-\(dd	\" Double dagger ‡
-\(de	\" Degree °
-\(dg	\" Dagger †
-\(dq	\" Double quote (ASCII 34) "
-\(em	\" Em-dash —
-\(en	\" En-dash –
-\(hy	\" Hyphen ‐
-\(lq	\" Double quote left “
-\(oq	\" Single opening quote (left) ‘
-\(rg	\" Registered sign ®
-\(rq	\" Double quote right ”
-\(rs	\" Printable backslash character \
-\(sc	\" Section sign §
-\(tm	\" Trademark symbol ™
-\(ul	\" Underline character _
-\(==	\" Identical ≡
-\(>=	\" Larger or equal ≥
-\(<=	\" Less or equal ≤
-\(!=	\" Not equal ≠
-\(->	\" Right arrow →
-\(<-	\" Left arrow ←
-\(+-	\" Plus-minus sign ±
-..\"}}}
-.ig \" TBL{{{
+\"..
+.Test \"}}}
+\" Picture{{{
+.PDFPIC -L file.pdf 5cm \"}}}
+\" Special characters{{{
+\(Do \" Dollar
+\(Eu \" Euro
+\(Po \" British pound sterling
+\(aq \" Apostrophe quote
+\(bu \" Bullet sign
+\(co \" Copyright
+\(cq \" Single closing quote
+\(ct \" Cent
+\(dd \" Double dagger
+\(de \" Degree
+\(dg \" Dagger
+\(dq \" Double quote
+\(em \" Em-dash
+\(en \" En-dash
+\(hy \" Hyphen
+\(lq \" Double quote left
+\(oq \" Single opening quote
+\(rg \" Registered sign
+\(rq \" Double quote right
+\(rs \" Printable backslash character
+\(sc \" Section sign
+\(tm \" Trademark symbol
+\(ul \" Underline character
+\(== \" Identical
+\(>= \" Larger or equal
+\(<= \" Less or equal
+\(!= \" Not equal
+\(-> \" Right arrow
+\(<- \" Left arrow
+\(+- \" Plus-minus sign \"}}}
+\" TBL{{{
 .TS
 expand center allbox tab(-);
 c s s
@@ -137,9 +110,8 @@ This is alot
 .br
 of data
 T}
-.TE
-..\"}}}
-.ig \" Vars{{{
+.TE \"}}}
+\" Vars{{{
 \" Numbers
 .nr var 7
 \n[var]
@@ -148,9 +120,8 @@ T}
 
 \" Strings
 .ds foo bar
-\*[foo]
-..\"}}}
-\"}}}
+\*[foo] \"}}}
+.. \"}}}
 
 .TL
 Title

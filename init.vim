@@ -45,7 +45,7 @@ nnoremap <leader>X ?<++><cr>"_ca<
 nnoremap <c-n> :next<cr>
 nnoremap <c-p> :previous<cr>
 nnoremap <leader>s :source $MYVIMRC<cr>
-nnoremap <buffer> <leader>u :r !cat ~/.config/nvim/templates
+autocmd BufNewFile,BufRead * execute "nnoremap <buffer> <leader>i :read ~/.config/nvim/templates/" . &filetype
 "}}}
 
 " Functions{{{

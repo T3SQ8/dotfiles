@@ -1,19 +1,20 @@
-%\documentclass{beamer}
-%\documentclass[varwidth,border=12pt]{standalone}
 \documentclass[a4paper,12pt]{article}
+%\documentclass[varwidth,border=12pt]{standalone}
+
 \usepackage{graphicx}
-\usepackage{xifthen}
-\usepackage{caption}
-\usepackage{parskip}
+%\usepackage{parskip}
 \usepackage{tcolorbox}
-\usepackage{tikz}
+%\usepackage{tikz}
 %\usepackage{multicol}
 %\usepackage{xcolor}
+
+\usepackage{caption}
+\captionsetup[table]{name=Tabel}	% Change table caption
+\captionsetup[figure]{name=Figur}	% Change figure caption
+
 %\usepackage{tkz-kiviat}
 %\usetikzlibrary{arrows}
 
-\captionsetup[table]{name=Tabel}	% Change table caption
-\captionsetup[figure]{name=Figur}	% Change figure caption
 %\linespread{1.5}			% Increase space between lines
 %\usepackage[margin=0.5in]{geometry}	% Decrease margins
 %\pagenumbering{gobble}			% Disable page numbering
@@ -41,10 +42,10 @@
 }
 
 \newcommand{\formel}[3][]{
-	\textbf{#2:}\\
-	#3
-	\ifthenelse{\isempty{#1}}{}{{\tiny{(#1)}}}
-	\medskip
+	\textbf{#2:}\\ #3
+	\ifx #1\undefined \else
+	{\tiny{(#1)}}
+	\fi
 }
 
 \newcommand{\textbox}[2][]{
@@ -54,7 +55,6 @@
 }
 
 \newcommand{\Prefix}{
-	\section{Prefix}
 	\begin{center}
 		\resizebox{\columnwidth}{!}{%
 			\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}

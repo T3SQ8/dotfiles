@@ -1,9 +1,3 @@
 #!/bin/sh
 
-vid=$1
-srt=$2
-ass=$(mktemp XXX.ass)
-
-ffmpeg -i "$srt" "$ass"
-ffmpeg -i "$vid" -vf ass="$ass" "$(date "+%H-%M-%S.${1##*.}")"
-rm "$ass"
+ffmpeg -i "$1" -vf subtitles="$2" "$(date "+%H-%M-%S.${1##*.}")"

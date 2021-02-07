@@ -2,5 +2,9 @@
 
 file="$HOME/.local/share/wp"
 
-[ -e "$1" ] && cp "$1" "$file"
-xwallpaper --zoom "$file"
+[ -e "$1" ] && {
+	res=$(xdpyinfo | awk '/dimensions:/ {print $2}')
+	convert -resize "${res}^" -gravity center -extent "${res}+0+0" "$1" "$file"
+}
+
+display -backdrop -window root "$file"

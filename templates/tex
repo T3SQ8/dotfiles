@@ -12,9 +12,6 @@
 \captionsetup[table]{name=Tabel}	% Change table caption
 \captionsetup[figure]{name=Figur}	% Change figure caption
 
-%\usepackage{tkz-kiviat}
-%\usetikzlibrary{arrows}
-
 %\linespread{1.5}			% Increase space between lines
 %\usepackage[margin=0.5in]{geometry}	% Decrease margins
 %\pagenumbering{gobble}			% Disable page numbering
@@ -148,12 +145,6 @@
 	child{node{4}};
 \end{tikzpicture} %>>>
 % >>>
-% tkz-kivitat<<<
-\begin{tikzpicture}
-	%\tkzKiviatDiagramFromFile{file.dat}
-	\tkzKiviatDiagram[scale=0.5, gap=1, lattice=5] {A,B,C,D,E}
-	\tkzKiviatLine[thick, color=blue, fill=blue!20](5,1,4,3,4)
-\end{tikzpicture} %>>>
 % xcolor<<<
 \definecolor{Mycolor1}{HTML}{FFD700}
 \colorlet{Mycolor2}{green!10!orange!90!}

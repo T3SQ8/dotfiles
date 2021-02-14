@@ -1,28 +1,62 @@
 ln = ln -sfr
+mkdir = mkdir -p
 
-all: nfile hfile dfile
+nfile = $(mkdir) "$(@D)"; \
+	$(ln) "$(@F)" "$@"
+
+dfile = $(mkdir) "$@"; \
+	$(ln) $(wildcard $(@F)/*) "$@"
+
+hfile = $(mkdir) "$(@D)"; \
+	$(ln) "$(subst .,,$(@F))" "$@"
 
 # Normal files
-nfile:
-	$(ln) bspwmrc ~/.config/bspwm
-	$(ln) config ~/.config/newsboat
-	$(ln) dunstrc ~/.config/dunst
-	$(ln) startup.py ~/.config/python
-	$(ln) sxhkdrc ~/.config/sxhkd
-	$(ln) zathurarc ~/.config/zathura
-	$(ln) xinitrc ~/.config/X11
-	$(ln) init.vim ~/.config/nvim
+~/.config/bspwm/bspwmrc:
+	$(nfile)
+
+~/.config/newsboat/config:
+	$(nfile)
+
+~/.config/dunst/dunstrc:
+	$(nfile)
+
+~/.config/python/startup.py:
+	$(nfile)
+
+~/.config/sxhkd/sxhkdrc:
+	$(nfile)
+
+~/.config/zathura/zathurarc:
+	$(nfile)
+
+~/.config/X11/xinitrc:
+	$(nfile)
+
+~/.config/nvim/init.vim:
+	$(nfile)
 
 # Hidden files
-hfile:
-	$(ln) zprofile ~/.config/zsh/.zprofile
-	$(ln) zshrc ~/.config/zsh/.zshrc
-	$(ln) zshenv ~/.zshenv
+~/.config/zsh/.zprofile:
+	$(hfile)
+
+~/.config/zsh/.zshrc:
+	$(hfile)
+
+~/.zshenv:
+	$(hfile)
 
 # Directories
-dfile:
-	$(ln) $(wildcard bin/*) ~/.local/bin
-	$(ln) $(wildcard mpv/*) ~/.config/mpv
-	$(ln) $(wildcard ftplugin/*) ~/.config/nvim/ftplugin
-	$(ln) $(wildcard syntax/*) ~/.config/nvim/syntax
-	$(ln) $(wildcard templates/*) ~/.config/nvim/templates
+~/.local/bin:
+	$(dfile)
+
+~/.config/mpv:
+	$(dfile)
+
+~/.config/nvim/ftplugin:
+	$(dfile)
+
+~/.config/nvim/syntax:
+	$(dfile)
+
+~/.config/nvim/templates:
+	$(dfile)

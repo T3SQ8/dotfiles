@@ -5,10 +5,9 @@ set ignorecase
 set mouse=a
 set notimeout
 set nowrap
-set number relativenumber cursorline
+set number relativenumber
 set splitbelow splitright
 set undofile
-highlight CursorLine cterm=bold
 syntax on
 autocmd BufRead,BufNewFile *.tex set filetype=tex
 autocmd BufRead,BufNewFile *todo.txt set filetype=todo
@@ -102,3 +101,5 @@ function! Blockseq(...)
 		let num += 1
 	endfor
 endfunction "}}}
+
+abbreviate its it's

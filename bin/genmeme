@@ -1,0 +1,13 @@
+#!/bin/sh
+
+imgres='256x256'
+
+cat << EOF | sh
+convert $(for input do
+	img=${input%%:*}
+	txt=${input##*:}
+	txtimg=$(mktemp -p /tmp 'XXX.png')
+	convert -size "$imgres" -gravity center caption:"$txt" -bordercolor white -border 10x10 "$txtimg"
+	echo -n "\( \( -gravity center -resize ${imgres}^ -extent $imgres $img \) $txtimg -resize ${imgres}! +append \) "
+done) -append out.png
+EOF

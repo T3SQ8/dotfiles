@@ -1,0 +1,43 @@
+\documentclass[a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{tcolorbox}
+\usepackage[margin=0.5in]{geometry}
+\pagenumbering{gobble}
+
+\newcommand{\formel}[3][]{
+	\textbf{#2:}\\ #3
+	\ifx #1\undefined \else
+	{\tiny(#1)}
+	\fi
+}
+
+\begin{document}
+
+\begin{center}
+	\resizebox{\columnwidth}{!}{%
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			tera (T) & giga (G) & mega (M) & kilo (k) & hekto (h) & deka (da) & deci (d) & centi (c) & milli (m) & mikro (µ) & nano (n) & piko (p) & femto (f) \\
+			$10^{12}$ & $10^9$ & $10^6$ & $10^3$ & $10^2$ & $10^1$ & $10^{-1}$ & $10^{-2}$ & $10^{-3}$ & $10^{-6}$ & $10^{-9}$ & $10^{-12}$ & $10^{-15}$ \\
+			\hline
+		\end{tabular}
+		}
+\end{center}
+
+\formel[Comment]{Densitet}
+{$\rho = \frac{m}{v}$}
+
+\formel[Enheten joule, J]{Arbete}
+{$ W=F \cdot s = mas $}
+
+\begin{tcolorbox}[title=Konjugat- och kvadreringsreglerna]
+	$(a+b)^2=a^2+2ab+b^2$
+
+	$(a-b)^2=a^2-2ab+b^2$
+
+	$(a+b)(a-b)=a^2-b^2$
+\end{tcolorbox}
+
+\end{document}

@@ -1,23 +1,19 @@
 \documentclass{beamer}
 
-\setbeamertemplate{navigation symbols}{}	% Remove bottom navigation bar
-%\usecolortheme{beaver}
-%\setbeamercolor{itemize item}{fg=red}		% Make list bullets red
-%\setlength{\leftmargini}{0.5em}		% Set margin from the left
-
+\usecolortheme{beaver}
 %\usecolortheme{owl}
-%\geometry{margin=0em}
+%\setlength{\leftmargini}{0.5em}	% Set margin from the left
+\setbeamertemplate{navigation symbols}{}
 
-% Title page
 \title{Title}
 \author{Author}
-\date{July 20, 2020}
+\date{\today}
 \institute{Institute}
 
 \newcommand{\imagecolumn}[3][\textwidth]{
 	\begin{columns}
 		\begin{column}{.5\textwidth}
-				#2
+			#2
 		\end{column}
 		\begin{column}{.5\textwidth}
 			\begin{center}
@@ -27,16 +23,16 @@
 	\end{columns}
 }
 
-\newcommand{\bigimage}[1]{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{#1}}
+\newcommand{\imgslide}[1]{
+	\begin{center}
+		\includegraphics[width=\textwidth, height=0.7\textheight, keepaspectratio]{#1}
+	\end{center}
+}
 
 \begin{document}
 
 \begin{frame}
 	\titlepage
-\end{frame}
-
-\begin{frame}
-	\frametitle{Title}
 \end{frame}
 
 \end{document}

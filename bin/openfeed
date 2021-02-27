@@ -13,7 +13,10 @@ duration() {
 }
 
 thumbnail() {
-	convert "$(youtube-dl --write-thumbnail --skip-download "$url" -o "/tmp/thumb" | awk '/Writing thumbnail/ {print $NF}')" /tmp/thumb.jpg && xdg-open /tmp/thumb.jpg &
+	old="$(youtube-dl --write-thumbnail --skip-download "$url" -o "$(mktemp -u)" | awk '/Writing thumbnail/ {print $NF}')"
+	new="$(mktemp -p /tmp 'XXX.png')"
+	convert "$old" "$new"
+	{ xdg-open "$new"; rm "$old" "$new" ;} &
 }
 
 video() {

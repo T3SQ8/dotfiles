@@ -8,7 +8,9 @@ set nowrap
 set number relativenumber
 set splitbelow splitright
 set undofile
+set makeprg=compiledoc\ %
 syntax on
+autocmd QuickFixCmdPre make update
 autocmd BufRead,BufNewFile *.tex set filetype=tex
 autocmd BufRead,BufNewFile *todo.txt set filetype=todo
 autocmd TermOpen * setlocal nonumber norelativenumber
@@ -36,7 +38,7 @@ nnoremap <leader>t :execute winheight(0)/3 "split +terminal"<cr>
 nnoremap <s-q> <nop>
 nnoremap <leader>n :nohlsearch<cr>
 nnoremap <leader>r :w \| !cleandoc %<cr>
-nnoremap <leader>c :w \| !compiledoc %<cr>
+nnoremap <leader>c :make<cr>
 nnoremap Y y$
 nnoremap <C-LeftMouse> <LeftMouse>.
 nnoremap <leader>x /<++><cr>"_ca<
@@ -101,5 +103,3 @@ function! Blockseq(...)
 		let num += 1
 	endfor
 endfunction "}}}
-
-abbreviate its it's

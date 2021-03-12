@@ -1,11 +1,14 @@
 \documentclass[a4paper]{article}
 
 \usepackage{graphicx}
+\usepackage{gnuplottex}
 \usepackage{parskip}
 \usepackage{tcolorbox}
 \usepackage[margin=0.5in]{geometry}
+\usepackage{adjustbox}
 \pagenumbering{gobble}
 
+%\formel[<comment>]{<name>}{<formula>}
 \newcommand{\formel}[3][]{
 	\textbf{#2:}\\ #3
 	\ifx #1\undefined \else
@@ -15,27 +18,76 @@
 
 \begin{document}
 
-\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-		\hline
-		tera (T) & giga (G) & mega (M) & kilo (k) & hekto (h) & deka (da) & deci (d) & centi (c) & milli (m) & mikro (µ) & nano (n) & piko (p) & femto (f) \\
-		$10^{12}$ & $10^9$ & $10^6$ & $10^3$ & $10^2$ & $10^1$ & $10^{-1}$ & $10^{-2}$ & $10^{-3}$ & $10^{-6}$ & $10^{-9}$ & $10^{-12}$ & $10^{-15}$ \\
-		\hline
-	\end{tabular}%
-}
+%\begin{adjustbox}{width=\textwidth}
+%	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+%		\hline
+%		tera (T) &
+%		giga (G) &
+%		mega (M) &
+%		kilo (k) &
+%		hekto (h) &
+%		deka (da) &
+%		deci (d) &
+%		centi (c) &
+%		milli (m) &
+%		mikro (µ) &
+%		nano (n) &
+%		piko (p) &
+%		femto (f)
+%		\\
+%		$10^{12}$ &
+%		$10^9$ &
+%		$10^6$ &
+%		$10^3$ &
+%		$10^2$ &
+%		$10^1$ &
+%		$10^{-1}$ &
+%		$10^{-2}$ &
+%		$10^{-3}$ &
+%		$10^{-6}$ &
+%		$10^{-9}$ &
+%		$10^{-12}$ &
+%		$10^{-15}$
+%		\\
+%		\hline
+%	\end{tabular}
+%\end{adjustbox}
 
-\formel[Comment]{Densitet}
-{$\rho = \frac{m}{v}$}
+%\begin{tcolorbox}[title=Konjugat- och kvadreringsreglerna]
+%	$(a+b)^2=a^2+2ab+b^2$
+%
+%	$(a-b)^2=a^2-2ab+b^2$
+%
+%	$(a+b)(a-b)=a^2-b^2$
+%\end{tcolorbox}
 
-\formel[Enheten joule, J]{Arbete}
-{$ W=F \cdot s = mas $}
-
-\begin{tcolorbox}[title=Konjugat- och kvadreringsreglerna]
-	$(a+b)^2=a^2+2ab+b^2$
-
-	$(a-b)^2=a^2-2ab+b^2$
-
-	$(a+b)(a-b)=a^2-b^2$
-\end{tcolorbox}
+%\begin{adjustbox}{height=6cm}
+%	\begin{gnuplot}[terminal=epslatex, terminaloptions=mono]
+%		set key noautotitle
+%
+%		set arrow from graph 1,0 to graph 1.05,0 filled
+%		set arrow from graph 0,1 to graph 0,1.05 filled
+%		set border 3
+%
+%		set xrange [0:10]
+%		set yrange [-20:110]
+%		set ytics -10,110
+%		set ytics add (0 0)
+%		unset xtics
+%		set ytics nomirror
+%
+%		set xlabel '$E$ ($J$)'
+%		set ylabel '$T$ ($C^{\circ}$)' rotate by 0
+%		set label 'Smältvärme' at 1,-5
+%		set label 'Ångbildningsvärme' at 7,95
+%
+%		plot 0 dashtype 2 lw 2, 100 dashtype 2 lw 2, '-' with lines dashtype 1 lw 2
+%		0	-10
+%		1	0
+%		3	0
+%		7	100
+%		10	100
+%	\end{gnuplot}
+%\end{adjustbox}
 
 \end{document}

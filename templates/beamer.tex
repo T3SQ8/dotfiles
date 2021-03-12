@@ -2,7 +2,6 @@
 
 \usecolortheme{beaver}
 %\usecolortheme{owl}
-%\setlength{\leftmargini}{0.5em}	% Set margin from the left
 \setbeamertemplate{navigation symbols}{}
 
 \title{Title}
@@ -10,7 +9,8 @@
 \date{\today}
 \institute{Institute}
 
-\newcommand{\imagecolumn}[3][\textwidth]{
+%\imgcolumn[<image width>]{<left text>}{<image>}
+\newcommand{\imgcolumn}[3][\textwidth]{
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 			#2
@@ -23,6 +23,7 @@
 	\end{columns}
 }
 
+%\imgslide{<image>}
 \newcommand{\imgslide}[1]{
 	\begin{center}
 		\includegraphics[width=\textwidth, height=0.7\textheight, keepaspectratio]{#1}
@@ -33,6 +34,10 @@
 
 \begin{frame}
 	\titlepage
+\end{frame}
+
+\begin{frame}
+	\frametitle{Frametitle}
 \end{frame}
 
 \end{document}

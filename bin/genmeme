@@ -2,7 +2,7 @@
 
 imgres='256x256'
 
-cat << EOF | sh
+sh << EOF
 convert $(for input do
 	img=${input%%:*}
 	txt=${input##*:}

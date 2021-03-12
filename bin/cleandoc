@@ -14,4 +14,4 @@ function format(msg) {
 
 / \t|\t / {format("Mismatched tabs and spaces")}
 
-END { if(match($0, /^\s*$/)) format("Last line empty")}
+END { if($0 ~ /^\s*$/) format("Last line empty")}

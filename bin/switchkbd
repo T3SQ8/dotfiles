@@ -1,0 +1,8 @@
+#!/bin/sh
+
+case "$(setxkbmap -query | awk '/layout:/ {print $2}')" in
+	se) lang="ar" ;;
+	ar) lang="se" ;;
+esac
+
+setxkbmap "$lang" && notify-send -t 1000 "Layout changed to $lang" 

@@ -22,6 +22,10 @@ super + space
 {XF86MonBrightnessUp,XF86MonBrightnessDown}
 	xbacklight {-inc 10,-dec 10}
 
+# Keyboard layout
+ctrl + space
+	switchkbd
+
 #################
 # BSPWM HOTKEYS #
 #################

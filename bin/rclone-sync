@@ -5,4 +5,4 @@ fulldir=$1
 shortdir=${fulldir##*/}
 
 rclone copy -i "$drive:$fulldir" "$shortdir"
-echo "rclone sync -i . $drive:$fulldir" > "$shortdir/push.sh"
+echo "rclone sync -i . $drive:$fulldir --exclude push.sh" > "$shortdir/push.sh"

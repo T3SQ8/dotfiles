@@ -22,13 +22,18 @@ video() {
 	mpv --no-terminal "$url" & notify-send "Sent to mpv"
 }
 
-while getopts baltv arg; do
+qr() {
+	printf "$url" | qrencode --size 10 -o - | display
+}
+
+while getopts baltvq arg; do
 	case $arg in
 		b) browser=1 ;;
 		a) audio=1 ;;
 		l) duration=1 ;;
 		t) thumbnail=1 ;;
 		v) video=1 ;;
+		q) qr=1 ;;
 		\?) exit 1 ;;
 	esac
 	default=1
@@ -41,6 +46,7 @@ for url do
 	[ "$duration" ] && duration
 	[ "$thumbnail" ] && thumbnail
 	[ "$video" ] && video
+	[ "$qr" ] && qr
 
 	if [ ! "$default" ]; then
 		case $url in

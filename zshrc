@@ -30,7 +30,8 @@ alias \
 	cp='cp -v' \
 	mv='mv -v' \
 	rm='rm -v' \
-	wget='wget --hsts-file='
+	wget='wget --hsts-file=' \
+	monerod='monerod --data-dir ~/.local/share/bitmonero' \
 
 # Git aliases
 alias \

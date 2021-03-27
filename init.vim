@@ -14,6 +14,7 @@ autocmd QuickFixCmdPre make update
 autocmd BufRead,BufNewFile *.tex set filetype=tex
 autocmd BufRead,BufNewFile *todo.txt set filetype=todo
 autocmd TermOpen * setlocal nonumber norelativenumber
+autocmd BufNewFile * call Template()
 "}}}
 
 " Key bindings{{{
@@ -46,7 +47,7 @@ nnoremap <leader>X ?<++><cr>"_ca<
 nnoremap <c-n> :next<cr>
 nnoremap <c-p> :previous<cr>
 nnoremap <leader>s :source $MYVIMRC<cr>
-autocmd BufNewFile,BufRead * execute "nnoremap <buffer> <leader>i :read ~/.config/nvim/templates/basic." . &filetype
+nnoremap <buffer> <leader>i :read ~/.config/nvim/snippet/
 "}}}
 
 " Functions{{{
@@ -102,4 +103,11 @@ function! Blockseq(...)
 		call cursor(line('.')+1, startcolumn) " Move the cursor down and back to the original column
 		let num += 1
 	endfor
+endfunction
+
+function! Template()
+	let templatefile = expand("~/.config/nvim/templates/skeleton." . expand("%:e"))
+	if filereadable(templatefile)
+		execute "0r" templatefile
+	endif
 endfunction "}}}

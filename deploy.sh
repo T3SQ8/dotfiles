@@ -36,3 +36,4 @@ cmd mpv		~/.config/mpv
 cmd ftplugin	~/.config/nvim/ftplugin
 cmd syntax	~/.config/nvim/syntax
 cmd templates	~/.config/nvim/templates
+cmd snippet	~/.config/nvim/snippet

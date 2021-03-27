@@ -1,0 +1,4 @@
+#!/bin/sh
+
+pgrep sshd && pkill -e sshd
+read -r _

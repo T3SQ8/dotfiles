@@ -5,7 +5,7 @@ zle -N edit-command-line
 zmodload zsh/complist
 
 # Options
-setopt nohup autocd autopushd nolistambiguous emacs nocheckrunningjobs
+setopt nohup autocd autopushd nolistambiguous nocheckrunningjobs
 SAVEHIST=10000
 HISTSIZE=1000
 
@@ -16,6 +16,15 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 zstyle ':completion:*' hosts off
 
 # Shortcuts
+bindkey -v
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+bindkey "^L" clear-screen
+bindkey "^R" history-incremental-search-backward
+bindkey "^S" history-incremental-search-forward
+bindkey "^U" kill-whole-line
+bindkey "^W" backward-kill-word
+bindkey "^D" delete-char
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey '^o' edit-command-line

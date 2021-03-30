@@ -1,0 +1,159 @@
+#!/bin/sh
+
+while getopts io: arg; do
+	case $arg in
+		o) out=$OPTARG;;
+		i) invert='
+			\usepackage{xcolor}
+			\pagecolor[rgb]{0,0,0}
+			\color[rgb]{1,1,1}
+			';;
+	esac
+done
+shift $(expr $OPTIND - 1)
+
+ayah=$2
+case $1 in
+	1)	surah="Al-Fatiha" ;;
+	2)	surah="Al-Baqara" ;;
+	3)	surah="Aal-e-Imran" ;;
+	4)	surah="An-Nisa" ;;
+	5)	surah="Al-Maeda" ;;
+	6)	surah="Al-Anaam" ;;
+	7)	surah="Al-Araf" ;;
+	8)	surah="Al-Anfal" ;;
+	9)	surah="At-Taubah" ;;
+	10)	surah="Yunus" ;;
+	11)	surah="Hud" ;;
+	12)	surah="Yusuf" ;;
+	13)	surah="Ar-Rad" ;;
+	14)	surah="Ibrahim" ;;
+	15)	surah="Al-Hijr" ;;
+	16)	surah="An-Nahl" ;;
+	17)	surah="Al-Isra" ;;
+	18)	surah="Al-Kahf" ;;
+	19)	surah="Maryam" ;;
+	20)	surah="Taha" ;;
+	21)	surah="Al-Anbiya" ;;
+	22)	surah="Al-Hajj" ;;
+	23)	surah="Al-Mumenoon" ;;
+	24)	surah="An-Noor" ;;
+	25)	surah="Al-Furqan" ;;
+	26)	surah="Ash-Shuara" ;;
+	27)	surah="An-Naml" ;;
+	28)	surah="Al-Qasas" ;;
+	29)	surah="Al-Ankaboot" ;;
+	30)	surah="Ar-Room" ;;
+	31)	surah="Luqman" ;;
+	32)	surah="As-Sajda" ;;
+	33)	surah="Al-Ahzab" ;;
+	34)	surah="Saba" ;;
+	35)	surah="Fatir" ;;
+	36)	surah="Ya-Seen" ;;
+	37)	surah="As-Saaffat" ;;
+	38)	surah="Sad" ;;
+	39)	surah="Az-Zumar" ;;
+	40)	surah="Ghafir" ;;
+	41)	surah="Fussilat" ;;
+	42)	surah="Ash-Shura" ;;
+	43)	surah="Az-Zukhruf" ;;
+	44)	surah="Ad-Dukhan" ;;
+	45)	surah="Al-Jathiya" ;;
+	46)	surah="Al-Ahqaf" ;;
+	47)	surah="Muhammad" ;;
+	48)	surah="Al-Fath" ;;
+	49)	surah="Al-Hujraat" ;;
+	50)	surah="Qaf" ;;
+	51)	surah="Adh-Dhariyat" ;;
+	52)	surah="At-tur" ;;
+	53)	surah="An-Najm" ;;
+	54)	surah="Al-Qamar" ;;
+	55)	surah="Al-Rahman" ;;
+	56)	surah="Al-Waqia" ;;
+	57)	surah="Al-Hadid" ;;
+	58)	surah="Al-Mujadila" ;;
+	59)	surah="Al-Hashr" ;;
+	60)	surah="Al-Mumtahina" ;;
+	61)	surah="As-Saff" ;;
+	62)	surah="Al-Jumua" ;;
+	63)	surah="Al-Munafiqoon" ;;
+	64)	surah="At-Taghabun" ;;
+	65)	surah="At-Talaq" ;;
+	66)	surah="At-Tahrim" ;;
+	67)	surah="Al-Mulk" ;;
+	68)	surah="Al-Qalam" ;;
+	69)	surah="Al-Haaqqa" ;;
+	70)	surah="Al-Maarij" ;;
+	71)	surah="Nooh" ;;
+	72)	surah="Al-Jinn" ;;
+	73)	surah="Al-Muzzammil" ;;
+	74)	surah="Al-Muddathir" ;;
+	75)	surah="Al-Qiyama" ;;
+	76)	surah="Al-Insan" ;;
+	77)	surah="Al-Mursalat" ;;
+	78)	surah="An-Naba" ;;
+	79)	surah="An-Naziat" ;;
+	80)	surah="Abasa" ;;
+	81)	surah="At-Takwir" ;;
+	82)	surah="AL-Infitar" ;;
+	83)	surah="Al-Mutaffifin" ;;
+	84)	surah="Al-Inshiqaq" ;;
+	85)	surah="Al-Burooj" ;;
+	86)	surah="At-Tariq" ;;
+	87)	surah="Al-Ala" ;;
+	88)	surah="Al-Ghashiya" ;;
+	89)	surah="Al-Fajr" ;;
+	90)	surah="Al-Balad" ;;
+	91)	surah="Ash-Shams" ;;
+	92)	surah="Al-Lail" ;;
+	93)	surah="Ad-Dhuha" ;;
+	94)	surah="Al-Inshirah" ;;
+	95)	surah="At-Tin" ;;
+	96)	surah="Al-Alaq" ;;
+	97)	surah="Al-Qadr" ;;
+	98)	surah="Al-Bayyina" ;;
+	99)	surah="Al-Zalzala" ;;
+	100)	surah="Al-Adiyat" ;;
+	101)	surah="Al-Qaria" ;;
+	102)	surah="At-Takathur" ;;
+	103)	surah="Al-Asr" ;;
+	104)	surah="Al-Humaza" ;;
+	105)	surah="Al-Fil" ;;
+	106)	surah="Quraish" ;;
+	107)	surah="Al-Maun" ;;
+	108)	surah="Al-Kauther" ;;
+	109)	surah="Al-Kafiroon" ;;
+	110)	surah="An-Nasr" ;;
+	111)	surah="Al-Masadd" ;;
+	112)	surah="Al-Ikhlas" ;;
+	113)	surah="Al-Falaq" ;;
+	114)	surah="An-Nas" ;;
+esac
+
+xelatex -output-directory=/tmp << EOF && convert -density 300 /tmp/texput.pdf "${out:-.}/${surah}_${ayah}.png"
+\documentclass[border=12pt]{standalone}
+
+$invert
+
+\usepackage{multicol}
+\setlength{\columnseprule}{0.5pt}
+\setlength{\columnsep}{1cm}
+
+\usepackage{arabxetex}
+\usepackage[trans=en]{quran}
+
+\begin{document}
+\begin{minipage}{\linewidth}
+	\begin{multicols}{2}
+		\begin{arab}[utf]
+			\quranayah[$surah][$ayah]
+		\end{arab}
+		\columnbreak
+		\quranayahen[$surah][$ayah]
+	\end{multicols}
+	\begin{center}
+		Surah $surah Ayah $ayah
+	\end{center}
+\end{minipage}
+\end{document}
+EOF

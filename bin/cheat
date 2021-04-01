@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd ~/notes/cheatsheets
-$EDITOR "$(fzf)"
+[ "$1" ] && $EDITOR "$1"* || $EDITOR "$(fzf)"

@@ -1,4 +1,10 @@
 #!/bin/sh
 
-cd ~/notes/cheatsheets
-[ "$1" ] && $EDITOR "$1"* || $EDITOR "$(fzf)"
+cd ~/notes/cheatsheets || exit
+
+if [ -e "$1"* ]; then
+	 $EDITOR "$1"*
+else
+	file=$(fzf)
+	[ -e "$file" ] && $EDITOR "$file"
+fi

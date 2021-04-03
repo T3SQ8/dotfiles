@@ -9,6 +9,7 @@ set number relativenumber
 set splitbelow splitright
 set undofile
 set makeprg=compiledoc\ %
+set nojoinspaces
 syntax on
 autocmd QuickFixCmdPre make update
 autocmd BufRead,BufNewFile *.tex set filetype=tex

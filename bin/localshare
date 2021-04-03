@@ -1,2 +1,2 @@
 ip -o a | awk '/\sinet\s/ && $2!="lo" {print $4}'
-python -m http.server 8080
+python -m http.server

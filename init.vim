@@ -56,6 +56,8 @@ nnoremap <leader>o :call Open()<cr>
 function! Open()
 	if &filetype == "tex"
 		let file = expand("%:r") . ".pdf"
+	elseif &filetype == "markdown"
+		let file = expand("%:r") . ".html"
 	else
 		let file = expand("%")
 	endif

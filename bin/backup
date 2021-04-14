@@ -7,13 +7,11 @@ localfile="$(date +%F).tar.gz"
 rmtfile="$localfile.gpg"
 sumfile="checksums.md5"
 
-phonefile="$HOME/backups/backup.ab"
 pkglist="$HOME/backups/installed-packages"
 ignorelist="$HOME/backups/backups-ignore"
 
 [ "${PWD##*/}" != "$bkpdir" ] && { echo "Wrong directory"; exit 1 ;}
 
-adb backup -apk -obb -all -f "$phonefile"
 pacman -Qqe > "$pkglist"
 tar -cvzX "$ignorelist" "$HOME" | tee "$localfile" | gpg -c | rclone rcat "$rclonermt:$rmtfile"
 md5sum "$localfile" >> "$sumfile"

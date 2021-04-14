@@ -51,3 +51,5 @@ xorg:
 	$(ln) zathurarc ~/.config/zathura/zathurarc
 	$(ln) bspwmrc ~/.config/bspwm/bspwmrc
 	$(ln) dunstrc ~/.config/dunst/dunstrc
+
+.PHONY: bin zsh vim termux mics xorg

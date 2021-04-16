@@ -1,21 +1,71 @@
 \documentclass[a4paper]{article}
-\usepackage{parskip}
-\usepackage[margin=1in]{geometry}
-\usepackage{caption}
-\captionsetup[table]{name=Tabel}
-\captionsetup[figure]{name=Figur}
+%\documentclass[varwidth,border=12pt]{standalone}
+%\documentclass[a5paper,landscape]{article}
 
-\title{Title}
-\author{Author}
-\date{\today}
+% Formatting<<<
+\usepackage[margin=1in]{geometry}
+\usepackage{parskip}
+\usepackage[iso,swedish]{isodate}
+%\pagenumbering{gobble}>>>
+
+% % Extra packages<<<
+% \usepackage{graphicx}
+% \usepackage{amsmath}
+% \usepackage{diagbox}
+% \usepackage[colorlinks=true, allcolors=blue]{hyperref}%>>>
+
+% % Figures/Tables<<<
+% \usepackage{float}
+% \usepackage{caption}
+% \captionsetup[table]{name=Tabell}
+% \captionsetup[figure]{name=Figur}%>>>
+
+% % Commands <<<
+% \newcommand{\begrepp}[2]{\textbf{\MakeUppercase #1:} #2.}
+% 
+% \newcommand{\formel}[3][]{
+% 	\textbf{\MakeUppercase #2:}\\ #3
+% 	\ifx #1\undefined \else
+% 	{\tiny(#1)}
+% 	\fi
+% }
+% 
+% \let\oldincludegraphics\includegraphics
+% \renewcommand{\includegraphics}[2][width=\textwidth, height=\textheight, keepaspectratio]{
+% 	\begin{center}
+% 		\oldincludegraphics[#1]{#2}
+% 	\end{center}
+% }%>>>
+
+% % maketitle<<<
+% \title{Title}
+% \author{Author}
+% \date{\today}%>>>
 
 \begin{document}
 
-\maketitle
-\newpage
-\tableofcontents
-\newpage
+\begin{titlepage}%<<<
+	\vspace*{\fill}
+	\centering
+	{\huge Title}
+	\vspace{\fill}
 
-\LaTeX
+	\begin{flushright}
+		\begin{tabular}{ lr }
+			Kurs: & Fysik 1 \\
+			Laborant: & John Doe \\
+			Medlaborant: &
+			Tom \\
+			& Dick \\
+			& Harry \\
+			Klass: & 9B \\
+			Datum: & \today \\
+		\end{tabular}
+	\end{flushright}
+\end{titlepage}%>>>
+
+\newpage%<<<
+\tableofcontents
+\newpage%>>>
 
 \end{document}

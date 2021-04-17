@@ -1,17 +1,18 @@
 #!/bin/sh
 
 for file do
-	basename=${file%.*} # Without extention
-	nameonly=${basename##*/} # Without extention or directory path
-	case ${file##*.} in # Extention only
+	noext=${file%.*}
+	dirpath=${noext##*/}
+	ext=${file##*.}
+	case $ext in
 		roff)
-			groff -e -ms "$file" -Tpdf > "$basename.pdf" ;;
+			groff -e -ms "$file" -Tpdf > "$noext.pdf" ;;
 		tex)
-			pdflatex -output-directory /tmp "$file" && cp "/tmp/$nameonly.pdf" "$basename.pdf" ;;
+			pdflatex -output-directory /tmp "$file" && cp "/tmp/$dirpath.pdf" "$noext.pdf" ;;
 		md)
-			pandoc "$file" -o "$basename.html" ;;
+			pandoc "$file" -o "$noext.html" ;;
 		c)
-			gcc "$file" -o "$basename" ;;
+			gcc "$file" -o "$noext" ;;
 		*)
 			echo "$file: Unknown filetype" ;;
 	esac

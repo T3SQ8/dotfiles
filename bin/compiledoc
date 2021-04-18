@@ -2,13 +2,19 @@
 
 for file do
 	noext=${file%.*}
-	dirpath=${noext##*/}
+	dirpath=${noext%/*}
+	noext_nopath=${dirpath##*/}
 	ext=${file##*.}
 	case $ext in
 		roff)
 			groff -e -ms "$file" -Tpdf > "$noext.pdf" ;;
 		tex)
-			pdflatex -output-directory /tmp "$file" && cp "/tmp/$dirpath.pdf" "$noext.pdf" ;;
+			pdflatex "$file" &&
+			biber "$noext_nopath" &&
+			pdflatex "$file" &&
+			pdflatex "$file"
+			;;
+
 		md)
 			pandoc "$file" -o "$noext.html" ;;
 		c)

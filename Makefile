@@ -28,6 +28,7 @@ vim:
 termux:
 	$(mkdir) ~/.shortcuts
 	$(ln) termux/* ~/.shortcuts
+	{ echo "cd /sdcard"; cat bin/localshare ;} > ~/.shortcuts/localshare
 
 mpv: xorg
 	$(mkdir) ~/.config/mpv

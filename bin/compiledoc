@@ -9,10 +9,15 @@ for file do
 		roff)
 			groff -e -ms "$file" -Tpdf > "$noext.pdf" ;;
 		tex)
-			pdflatex "$file" &&
-			biber "$noext_nopath" &&
-			pdflatex "$file" &&
-			pdflatex "$file"
+			dir=$PWD
+			file=$(realpath "$file")
+			tmp=$(mktemp -d)
+			cd "$tmp" || break
+			{ pdflatex < "$file"
+			{ [ -f "texput.bib" ] && biber texput && pdflatex < "$file" ;}
+			pdflatex < "$file" ;} &&
+			{ cd "$dir"; cp "$tmp/texput.pdf" "$noext_nopath.pdf" ;}
+			rm -r "$tmp"
 			;;
 
 		md)

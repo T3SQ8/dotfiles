@@ -1,0 +1,3 @@
+#!/bin/sh
+
+import PNG:- | tesseract -l swe - - | xclip -selection c

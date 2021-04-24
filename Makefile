@@ -66,4 +66,7 @@ zathura: xorg
 gnuplot: xorg
 	$(ln) gnuplot.gpi ~/.gnuplot
 
-.PHONY: bin bspwm dunst gnuplot mpv newsboat python sxhkd termux vim xorg zathura zsh
+sdcv:
+	$(ln) sdcv_ordering ~/.config/sdcv_ordering
+
+.PHONY: bin bspwm dunst gnuplot mpv newsboat python sxhkd termux vim xorg zathura zsh sdcv

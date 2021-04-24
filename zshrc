@@ -41,6 +41,7 @@ alias \
 	rm='rm -v' \
 	wget='wget --hsts-file=' \
 	monerod='monerod --data-dir ~/.local/share/bitmonero' \
+	sdcv='sdcv --color'
 
 # Git aliases
 alias \

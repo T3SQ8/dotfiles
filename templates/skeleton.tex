@@ -2,116 +2,115 @@
 %\documentclass[varwidth,border=12pt]{standalone}
 %\documentclass[a5paper,landscape]{article}
 
-% Packages<<<
-\usepackage[margin=1in]{geometry}
-\usepackage{parskip}
-\usepackage{blindtext}
-\usepackage[iso,swedish]{isodate}
-\usepackage{graphicx}
-%\usepackage{amsmath}
-%\usepackage{tcolorbox}
-\usepackage{tabularx}
-\usepackage{diagbox}
-\usepackage[english,swedish]{babel}
-\usepackage{float}
-\usepackage[colorlinks=true, allcolors=blue]{hyperref}
-\usepackage{adjustbox}
-\usepackage[multiple]{footmisc}
+% Formating
+%\pagenumbering{gobble}
 %\usepackage{mathptmx}
 %\usepackage[doublespacing]{setspace}
-%\pagenumbering{gobble}%>>>
+\usepackage[iso,swedish]{isodate}
+\usepackage[english,swedish]{babel}
+\usepackage[margin=1in]{geometry}
+\usepackage{parskip}
 
-\usepackage[exponent-product=\cdot,per-mode=symbol]{siunitx}
-\DeclareSIUnit{\gWh}{\giga{\watt\hour}}
+% Tables
+%\usepackage{tabularx}
+%\usepackage{diagbox}
 
-% Biblatex<<<
-\usepackage[sorting=none,date=iso,style=science]{biblatex}
-\addbibresource{\jobname.bib}
-\begin{filecontents}{\jobname.bib}
-@article{example2021,
-	author="John doe",
-	title="An placeholder latex citation",
-	date="2019-08-05",
-	publisher="Random pulisher",
-	url="https://example.org"
-}
-\end{filecontents}%>>>
+% Figures
+%\usepackage{float}
+%\usepackage{adjustbox}
 
-% %chemmacros<<<
-% \usepackage{chemmacros}
-% \usechemmodule{redox}
-% \chemsetup[redox]{
-% 	format = \textcolor{red},
-% 	pos = top,
-% 	explicit-sign = true
-% }%>>>
+% Science
+%\usepackage{amsmath}
+%\usepackage[exponent-product=\cdot,per-mode=symbol]{siunitx}
+%\DeclareSIUnit{\gWh}{\giga{\watt\hour}}
+%\usepackage{chemmacros}
+%\usechemmodule{redox}
+%\chemsetup[redox]{format = \textcolor{red}, pos = top, explicit-sign = true}
 
-% % Todolist<<<
-% \usepackage{enumitem,amssymb,pifont}
-% \newlist{todolist}{itemize}{2}
-% \setlist[todolist]{label=$\square$}
-% \newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\ding{51}}}\hspace{-2.5pt}}
-% \newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\ding{55}}}%>>>
+% Misc
+%\usepackage{blindtext}
+%\usepackage{tcolorbox}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[multiple]{footmisc}
 
-% Commands <<<
-\newcommand{\begrepp}[2]{\textbf{\MakeUppercase #1:} #2.}
-
-\newcommand{\formel}[3][]{
-	\textbf{\MakeUppercase #2:}\\ #3
-	\ifx #1\undefined \else
-	{\tiny(#1)}
-	\fi
-}
-
+\usepackage{graphicx}
 \let\oldincludegraphics\includegraphics
 \renewcommand{\includegraphics}[2][width=\textwidth, height=\textheight, keepaspectratio]{
 	\begin{center}
 		\oldincludegraphics[#1]{#2}
 	\end{center}
-}%>>>
+}
 
-% % maketitle<<<
-% \title{Title}
-% \author{Author}
-% \date{\today}%>>>
+% Todo
+%\usepackage{enumitem,amssymb,pifont}
+%\newlist{todolist}{itemize}{2}
+%\setlist[todolist]{label=$\square$}
+%\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\ding{51}}}\hspace{-2.5pt}}
+%\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\ding{55}}}
+
+%\usepackage[sorting=none,date=iso,style=science]{biblatex}
+%\addbibresource{\jobname.bib}
+%\begin{filecontents}{\jobname.bib}
+%@article{example2021,
+%	author="John doe",
+%	title="An placeholder latex citation",
+%	date="2019-08-05",
+%	publisher="Random pulisher",
+%	url="https://example.org"
+%}
+%\end{filecontents}
+
+%\newcommand{\begrepp}[2]{\textbf{#1:} #2}
+
+%\newcommand{\formel}[3][]{
+%	\textbf{\MakeUppercase #2:}\\ #3
+%	\ifx #1\undefined \else
+%	{\tiny(#1)}
+%	\fi
+%}
+
+\title{Title}
+\author{Author}
+\date{\today}
 
 \begin{document}
 
-\begin{titlepage}%<<<
+\maketitle
+
+\iffalse%<<<
+\makeatletter
+\begin{titlepage}
 	\vspace*{\fill}
 	\centering
-	{\huge Title}
+	{\huge \@title}
 	\vspace{\fill}
 
 	\begin{flushright}
 		\begin{tabular}{ lr }
 			Kurs: & Fysik 1 \\
-			Laborant: & John Doe \\
+			Laborant: & \@author \\
 			Medlaborant: &
 			Tom \\
 			& Dick \\
 			& Harry \\
 			Klass: & 9B \\
-			Datum: & \today \\
+			Datum: & \@date \\
 		\end{tabular}
 	\end{flushright}
-\end{titlepage}%>>>
+\end{titlepage}
+\makeatother
 
 \begin{abstract}
 	\blindtext
 \end{abstract}
 
-% tableofcontents<<<
-\newpage
-
-\tableofcontents
-
-\newpage
-%>>>
+\newpage\tableofcontents\newpage
 
 \section{Placeholder}
 \blindtext
 \cite{example2021}
 
 \printbibliography
+\fi%>>>
+
 \end{document}

@@ -22,6 +22,7 @@
 % Science
 %\usepackage{amsmath}
 %\usepackage[exponent-product=\cdot,per-mode=symbol,inter-unit-product=]{siunitx}
+%\usepackage[siunitx,nooldvoltagedirection,european]{circuitikz}
 %\usepackage{chemmacros}
 %\usechemmodule{redox}
 %\chemsetup[redox]{format = \textcolor{red}, pos = top, explicit-sign = true}
@@ -29,9 +30,10 @@
 % Misc
 %\usepackage{blindtext}
 %\usepackage{tcolorbox}
-\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+%\usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage[multiple]{footmisc}
 
+% Images
 \usepackage{graphicx}
 \let\oldincludegraphics\includegraphics
 \renewcommand{\includegraphics}[2][width=\textwidth, height=\textheight, keepaspectratio]{
@@ -75,41 +77,5 @@
 \begin{document}
 
 \maketitle
-
-\iffalse%<<<
-\makeatletter
-\begin{titlepage}
-	\vspace*{\fill}
-	\centering
-	{\huge \@title}
-	\vspace{\fill}
-
-	\begin{flushright}
-		\begin{tabular}{ lr }
-			Kurs: & Fysik 1 \\
-			Laborant: & \@author \\
-			Medlaborant: &
-			Tom \\
-			& Dick \\
-			& Harry \\
-			Klass: & 9B \\
-			Datum: & \@date \\
-		\end{tabular}
-	\end{flushright}
-\end{titlepage}
-\makeatother
-
-\begin{abstract}
-	\blindtext
-\end{abstract}
-
-\newpage\tableofcontents\newpage
-
-\section{Placeholder}
-\blindtext
-\cite{example2021}
-
-\printbibliography
-\fi%>>>
 
 \end{document}

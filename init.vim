@@ -48,7 +48,6 @@ nnoremap <leader>X ?<++><cr>"_ca<
 nnoremap <c-n> :next<cr>
 nnoremap <c-p> :previous<cr>
 nnoremap <leader>s :source $MYVIMRC<cr>
-nnoremap <buffer> <leader>i :read ~/.config/nvim/snippet/
 "}}}
 
 " Functions{{{
@@ -106,6 +105,13 @@ function! Blockseq(...)
 		call cursor(line('.')+1, startcolumn) " Move the cursor down and back to the original column
 		let num += 1
 	endfor
+endfunction
+
+nnoremap <leader>i :call Snippet()<cr>
+function! Snippet()
+	call fzf#run({
+			\ 'source': split(globpath('~/.config/nvim/snippet',
+			\ '*.' . &filetype)), 'sink': 'r'})
 endfunction
 
 function! Template()

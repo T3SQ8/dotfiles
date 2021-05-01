@@ -1,4 +1,4 @@
-" Settings{{{
+" Settings
 filetype indent on
 set foldmethod=marker
 set ignorecase
@@ -15,10 +15,8 @@ autocmd QuickFixCmdPre make update
 autocmd BufRead,BufNewFile *.tex set filetype=tex
 autocmd BufRead,BufNewFile *todo.txt set filetype=todo
 autocmd TermOpen * setlocal nonumber norelativenumber
-autocmd BufNewFile * call Template()
-"}}}
 
-" Key bindings{{{
+" Key bindings
 let mapleader=" "
 " Clipboard
 vnoremap <c-c> "+y
@@ -48,9 +46,8 @@ nnoremap <leader>X ?<++><cr>"_ca<
 nnoremap <c-n> :next<cr>
 nnoremap <c-p> :previous<cr>
 nnoremap <leader>s :source $MYVIMRC<cr>
-"}}}
 
-" Functions{{{
+" Functions
 nnoremap <leader>o :call Open()<cr>
 function! Open()
 	if &filetype == "tex"
@@ -114,9 +111,10 @@ function! Snippet()
 			\ '*.' . &filetype)), 'sink': 'r'})
 endfunction
 
+autocmd BufNewFile * call Template()
 function! Template()
 	let templatefile = expand("~/.config/nvim/templates/skeleton." . expand("%:e"))
 	if filereadable(templatefile)
 		execute "0r" templatefile
 	endif
-endfunction "}}}
+endfunction

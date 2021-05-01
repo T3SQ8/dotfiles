@@ -7,8 +7,8 @@ localfile="$(date +%F).tar.gz"
 rmtfile="$localfile.gpg"
 sumfile="checksums.md5"
 
-pkglist="$HOME/backups/installed-packages"
-ignorelist="$HOME/backups/backups-ignore"
+pkglist="$HOME/.local/installed-packages"
+ignorelist="$HOME/.local/backups-ignore"
 
 [ "${PWD##*/}" != "$bkpdir" ] && { echo "Wrong directory"; exit 1 ;}
 

@@ -1,7 +1,7 @@
 #!/bin/sh
 
-dir="$HOME/drive"
-drive="drive"
+drive="school-drive"
+dir="$HOME/$drive"
 
 if [ ! -d "$dir" ]; then
 	mkdir "$dir" && rclone mount --daemon "$drive:" "$dir" && echo "Drive mounted"

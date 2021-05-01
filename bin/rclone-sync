@@ -1,6 +1,6 @@
 #!/bin/sh
 
-drive="drive"
+drive="school-drive"
 fulldir=$1
 shortdir=${fulldir##*/}
 

@@ -2,7 +2,7 @@
 %\documentclass[varwidth,border=12pt]{standalone}
 %\documentclass[a5paper,landscape]{article}
 
-% Formating
+%% Formating/Mics
 %\pagenumbering{gobble}
 %\usepackage{mathptmx}
 %\usepackage[doublespacing]{setspace}
@@ -10,65 +10,35 @@
 \usepackage[english,swedish]{babel}
 \usepackage[margin=1in]{geometry}
 \usepackage{parskip}
+%\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[multiple]{footmisc}
 
-% Tables
-%\usepackage{tabularx}
-%\usepackage{diagbox}
-
-% Figures
+%% Figures/Tables
 %\usepackage{float}
 %\usepackage{adjustbox}
+%\usepackage{graphicx}
+%\usepackage{tabularx}
+%\usepackage{diagbox}
+%\usepackage{tcolorbox}
 
-% Science
+%% Science
 %\usepackage{amsmath}
 %\usepackage[exponent-product=\cdot,per-mode=symbol,inter-unit-product=]{siunitx}
 %\usepackage[siunitx,nooldvoltagedirection,european]{circuitikz}
 %\usepackage{chemmacros}
 %\usechemmodule{redox}
-%\chemsetup[redox]{format = \textcolor{red}, pos = top, explicit-sign = true}
-
-% Misc
-%\usepackage{blindtext}
-%\usepackage{tcolorbox}
-%\usepackage[colorlinks=true, allcolors=blue]{hyperref}
-\usepackage[multiple]{footmisc}
-
-% Images
-\usepackage{graphicx}
-\let\oldincludegraphics\includegraphics
-\renewcommand{\includegraphics}[2][width=\textwidth, height=\textheight, keepaspectratio]{
-	\begin{center}
-		\oldincludegraphics[#1]{#2}
-	\end{center}
-}
-
-% Todo
-%\usepackage{enumitem,amssymb,pifont}
-%\newlist{todolist}{itemize}{2}
-%\setlist[todolist]{label=$\square$}
-%\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\ding{51}}}\hspace{-2.5pt}}
-%\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\ding{55}}}
-
+%\chemsetup[redox]{format=\textcolor{red},pos=top,explicit-sign=true}
 %\usepackage[sorting=none,date=iso,style=science]{biblatex}
 %\addbibresource{\jobname.bib}
-%\begin{filecontents}{\jobname.bib}
-%@article{example2021,
-%	author="John doe",
-%	title="An placeholder latex citation",
-%	date="2019-08-05",
-%	publisher="Random pulisher",
-%	url="https://example.org"
-%}
-%\end{filecontents}
 
-%\newcommand{\begrepp}[2]{\textbf{#1:} #2}
+%% Dummy
+%\usepackage{blindtext}
+%\usepackage{mwe}
 
-%\newcommand{\formel}[3][]{
-%	\textbf{#2:}\\ #3
-%	\ifx #1\undefined \else
-%	{\tiny(#1)}
-%	\fi
-%}
+\newcommand{\formel}[3][]{
+	\textbf{#2:}\\ #3
+	\ifx #1\undefined \else {\tiny(#1)} \fi
+}
 
 \title{Title}
 \author{Author}

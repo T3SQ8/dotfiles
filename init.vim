@@ -1,6 +1,8 @@
 " Settings
 filetype indent on
+let g:sh_fold_enabled=1
 set foldmethod=marker
+autocmd FileType sh set foldmethod=syntax
 set ignorecase
 set mouse=a
 set notimeout

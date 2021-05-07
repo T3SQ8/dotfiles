@@ -14,4 +14,17 @@ function! Addpackage(...)
 	endif
 endfunction
 
+nnoremap <buffer> <leader>b :call Mkenviroment('')<left><left>
+function! Mkenviroment(...)
+	if empty(a:0)
+		let pkg = '<++>'
+	else
+		let pkg = a:1
+	endif
+	let @a = '\begin{' . pkg. '}' . "\n" . '\end{' . pkg . '}'
+	put a
+	normal! O
+	startinsert
+endfunction
+
 setlocal foldmarker=<<<,>>>

@@ -1,0 +1,14 @@
+\begin{tikzpicture}
+	\begin{axis}[
+			y=2cm,
+			axis y line=none,
+		]
+		\addplot [
+			boxplot,
+		]
+		table [row sep=\\,y index=0] {
+			data\\ 182\\ 178\\ 194\\ 181\\
+			186\\ 173\\ 170\\ 175\\ 172\\
+		};
+	\end{axis}
+\end{tikzpicture}

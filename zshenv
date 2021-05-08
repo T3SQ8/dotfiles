@@ -3,7 +3,8 @@ export \
 	EDITOR="nvim" \
 	TERMINAL="st" \
 	PANEL_FIFO="/tmp/panel-fifo" \
-	PATH="$PATH:$HOME/.local/bin"
+	PATH="$PATH:$HOME/.local/bin" \
+	SDCV_PAGER="less -r"
 
 # HOME cleanup
 export \

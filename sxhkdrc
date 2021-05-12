@@ -6,6 +6,10 @@
 super + Return
 	$TERMINAL
 
+# Browser
+super + b
+	$BROWSER
+
 # Reload sxhkd
 super + Escape
 	pkill -USR1 -x sxhkd

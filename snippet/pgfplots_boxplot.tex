@@ -2,13 +2,46 @@
 	\begin{axis}[
 			y=2cm,
 			axis y line=none,
+			xmajorgrids=true,
+			legend entries={Alex, Erik, Maja},
+			area legend,
+			legend pos=north west,
 		]
-		\addplot [
-			boxplot,
-		]
-		table [row sep=\\,y index=0] {
-			data\\ 182\\ 178\\ 194\\ 181\\
-			186\\ 173\\ 170\\ 175\\ 172\\
+		\addplot+[boxplot] table[y index=0] {
+			15
+			8
+			3
+			20
+			14
+			2
+			6
+			17
+			3
+			12
+		};
+
+		\addplot+[boxplot] table[y index=0] {
+			12
+			10
+			8
+			11
+			13
+			10
+			7
+			9
+			12
+			8
+		};
+
+		\addplot+[boxplot] table {
+			2 8
+			2 11
+			2 9
+			1 20
+			1 6
+			1 13
+			1 16
+			1 17
 		};
 	\end{axis}
 \end{tikzpicture}

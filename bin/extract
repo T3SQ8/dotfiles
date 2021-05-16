@@ -1,5 +1,5 @@
 #!/bin/sh
 
 for archive do
-	bsdtar -tf "$archive" | fzf -m | xargs -r bsdtar -xvf "$archive"
+	bsdtar -tf "$archive" | fzf -m | sed "s/'/\\\\'/g" | xargs -rI{} bsdtar -xvf "$archive" '{}'
 done

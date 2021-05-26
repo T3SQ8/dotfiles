@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for url do
+	youtube-dl -xf bestaudio "$url"
+done

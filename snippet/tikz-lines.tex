@@ -1,11 +1,17 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{angles, quotes, babel}
+
+\begin{document}
+
 \begin{tikzpicture}
-	\draw[red, very thick](0,0) -- (5,0);
-
-	\draw[->] (0,-1) -- (5,-1);
-
-	\node (1) at (0,-2) {Start};
-	\node (2) at (5,-2) {End};
-	\draw[->] (1) -- (2);
-
-	\draw (0,-3) -- node[above] {text above edge} (5,-3);
+	\coordinate (start) at (0,0);
+	\coordinate (end)   at (5,0);
+	\draw[->, red, thick]
+	node[left]{Start} (start) --
+	node[below]{Midway} (end) node[right]{End};
 \end{tikzpicture}
+
+
+\end{document}

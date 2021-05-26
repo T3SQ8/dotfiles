@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+	\coordinate (start) at (0,0);
+	\coordinate (yplus) at (0,2);
+	\coordinate (yneg)  at (0,-2);
+	\coordinate (xneg)  at (-2,0);
+	\coordinate (xplus) at (2,0);
+
+	\coordinate  (fg)  at (1,-1);
+	\coordinate  (fgx) at (0,-1);
+	\node[above] (fn) at (yplus) {$F_N$};
+	\node[left]  (ff) at (xneg) {$F_f$};
+
+	\draw[<->] (yneg) -- (yplus);
+	\draw[<->] (xneg) -- (xplus);
+	\draw[red,->] (start) -- node[above,right,black] {$F_g$}    (fg);
+	\draw[red,->] (fgx)   -- node[below,black]       {$F_{gx}$} (fg);
+	\draw[red,->] (start) -- node[left,black]        {$F_{gy}$} (fgx);
+
+	\pic ["$\alpha$", draw, angle eccentricity=1.4] {angle = fgx--start--fg};
+\end{tikzpicture}

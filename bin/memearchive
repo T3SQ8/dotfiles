@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for file do
+	tar -czvf ~/memes/"$file".tar.gz --remove-files "$file"
+done

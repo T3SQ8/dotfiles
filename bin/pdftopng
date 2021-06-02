@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for file do
+	convert -flatten -density 1200 "$file" "${file%.*}.png"
+done

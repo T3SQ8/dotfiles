@@ -1,6 +1,6 @@
 #!/bin/sh
 
-imgres='256x256'
+imgres='500x500'
 
 sh << EOF
 convert $(for input do

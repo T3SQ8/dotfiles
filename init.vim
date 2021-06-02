@@ -1,5 +1,8 @@
 " Settings
 filetype indent on
+let g:sh_fold_enabled=1
+set foldmethod=marker
+autocmd FileType sh set foldmethod=syntax
 set ignorecase
 set mouse=a
 set notimeout
@@ -14,8 +17,6 @@ autocmd QuickFixCmdPre make update
 autocmd BufRead,BufNewFile *.tex set filetype=tex
 autocmd BufRead,BufNewFile *todo.txt set filetype=todo
 autocmd TermOpen * setlocal nonumber norelativenumber
-autocmd BufWinLeave * mkview
-autocmd BufWinEnter * silent! loadview
 
 " Key bindings
 let mapleader=" "

@@ -1,0 +1,18 @@
+#!/bin/sh
+
+today=$(date '+%F')
+format="+%F v%W %A"
+reach=30
+
+{
+	for i in $(seq "$reach" -1 1); do
+		date -d "${today}-${i}day" "$format"
+	done
+
+	printf '\t'
+	date -d "${today}" "$format"
+
+	for i in $(seq "$reach"); do
+		date -d "${today}+${i}day" "$format"
+	done
+} | less

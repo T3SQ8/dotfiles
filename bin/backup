@@ -4,7 +4,7 @@ bkpdir="backups"
 rclonermt="backups"
 
 localfile="$(date +%F).tar.gz"
-rmtfile="$localfile.gpg"
+rmtfile="backups.gpg"
 sumfile="checksums.md5"
 
 pkglist="$HOME/.local/installed-packages"

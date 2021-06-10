@@ -40,7 +40,7 @@ nnoremap <leader>t :execute winheight(0)/3 "split +terminal"<cr>
 nnoremap <s-q> <nop>
 nnoremap <leader>n :nohlsearch<cr>
 nnoremap <leader>r :w \| !cleandoc %<cr>
-nnoremap <leader>c :make<cr>
+nnoremap <leader>c :make!<cr>
 nnoremap Y y$
 nnoremap <C-LeftMouse> <LeftMouse>.
 nnoremap <leader>x /<++><cr>"_ca<

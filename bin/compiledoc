@@ -8,17 +8,17 @@ for file do
 	case $ext in
 		roff)
 			groff -e -ms "$file" -Tpdf > "$noext.pdf" ;;
-		tex)
-			pdflatex "$file" &&
-				{ [ -f "$noext.bib" ] && biber "$noext" && pdflatex "$file" ;} &&
-				pdflatex "$file"
-			;;
+		#tex)
+		#	pdflatex "$file" &&
+		#		{ [ -f "$noext.bib" ] && biber "$noext" && pdflatex "$file" ;} &&
+		#		pdflatex "$file"
+		#	;;
 
 		md)
 			pandoc "$file" -o "$noext.html" ;;
 		c)
 			gcc "$file" -o "$noext" ;;
 		*)
-			echo "$file: Unknown filetype" ;;
+			[ -f Makefile ] && make || { echo "$file: Unknown filetype" ; exit 1 ;} ;;
 	esac
 done

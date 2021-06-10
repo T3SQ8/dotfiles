@@ -1,0 +1,20 @@
+#!/bin/sh
+
+for project do
+[ -d "$project" ] && { echo "'$project' already exists" ; exit 1;}
+mkdir "$project"
+touch "$project/$project.tex"
+
+cp ~/.config/nvim/templates/skeleton.make "$project/Makefile"
+
+cat > "$project/.gitignore" <<EOF
+*.aux
+*.log
+*.toc
+*.out
+*.tmp
+EOF
+
+cd "$project" || exit
+git init
+done

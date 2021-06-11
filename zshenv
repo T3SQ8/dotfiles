@@ -2,7 +2,6 @@ export \
 	BROWSER="firefox" \
 	EDITOR="nvim" \
 	TERMINAL="st" \
-	PANEL_FIFO="/tmp/panel-fifo" \
 	PATH="$PATH:$HOME/.local/bin" \
 	SDCV_PAGER="less -r"
 

@@ -1,7 +1,7 @@
 ln = ln -sfr
 mkdir = mkdir -p
 
-all: bin zsh vim mpv newsboat python xorg bspwm sxhkd dunst zathura
+all: bin zsh vim mpv newsboat python xorg dunst zathura
 
 bin:
 	$(mkdir) ~/.local/bin
@@ -42,18 +42,10 @@ python:
 	$(mkdir) ~/.config/python
 	$(ln) startup.py ~/.config/python/startup.py
 
-
 xorg:
 	$(mkdir) ~/.config/X11
 	$(ln) xinitrc ~/.config/X11/xinitrc
 
-bspwm: xorg
-	$(mkdir) ~/.config/bspwm
-	$(ln) bspwmrc ~/.config/bspwm/bspwmrc
-
-sxhkd: xorg
-	$(mkdir) ~/.config/sxhkd
-	$(ln) sxhkdrc ~/.config/sxhkd/sxhkdrc
 
 dunst: xorg
 	$(mkdir) ~/.config/dunst
@@ -66,4 +58,4 @@ zathura: xorg
 sdcv:
 	$(ln) sdcv_ordering ~/.config/sdcv_ordering
 
-.PHONY: bin bspwm dunst mpv newsboat python sxhkd termux vim xorg zathura zsh sdcv
+.PHONY: bin dunst mpv newsboat python termux vim xorg zathura zsh sdcv

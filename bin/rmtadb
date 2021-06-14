@@ -1,4 +1,0 @@
-#!/bin/sh
-
-port="5556"
-adb connect "$(nmap -sT -T5 -p "$port" -oG - --open "$(ip route show default | cut -d' ' -f3)/24" | awk "/$port\/open/ {print \$2}"):$port"

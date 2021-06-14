@@ -1,1 +1,4 @@
+#!/bin/sh
+
+printf 'Copied to clipboard: '
 keepassxc-cli generate -L 10 | tee /dev/tty | xclip -selection clipboard

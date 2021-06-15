@@ -55,7 +55,4 @@ zathura: xorg
 	$(mkdir) ~/.config/zathura
 	$(ln) zathurarc ~/.config/zathura/zathurarc
 
-sdcv:
-	$(ln) sdcv_ordering ~/.config/sdcv_ordering
-
-.PHONY: bin dunst mpv newsboat python termux vim xorg zathura zsh sdcv
+.PHONY: bin dunst mpv newsboat python termux vim xorg zathura zsh

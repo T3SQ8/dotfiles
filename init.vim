@@ -120,3 +120,24 @@ function! Template()
 		execute "0r" templatefile
 	endif
 endfunction
+
+function! Visualwrap(...)
+	let startPos = getpos("'<")[1:2]
+	let endPos = getpos("'>")[1:2]
+
+	if exists("a:1")
+		let startText = a:1
+	else
+		let startText = input("What to insert before?: ")
+	endif
+	if exists("a:2")
+		let endText = a:2
+	else
+		let endText = input("What to insert after?: ")
+	endif
+
+	call cursor(endPos)
+	execute 'normal! a' . endText
+	call cursor(startPos)
+	execute 'normal! i' . startText
+endfunction

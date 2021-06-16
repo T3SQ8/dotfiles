@@ -16,10 +16,10 @@ endfunction
 
 nnoremap <buffer> <leader>b :call Mkenviroment('')<left><left>
 function! Mkenviroment(...)
-	if empty(a:0)
-		let pkg = '<++>'
-	else
+	if exists("a:1")
 		let pkg = a:1
+	else
+		let pkg = ''
 	endif
 	let @a = '\begin{' . pkg. '}' . "\n" . '\end{' . pkg . '}'
 	put a
@@ -28,3 +28,5 @@ function! Mkenviroment(...)
 endfunction
 
 setlocal foldmarker=<<<,>>>
+
+vnoremap <leader>e :<c-u>call Visualwrap('\placeholder{', '}')<cr>

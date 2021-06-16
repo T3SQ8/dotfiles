@@ -113,14 +113,6 @@ function! Snippet()
 			\ '*.' . &filetype)), 'sink': 'r'})
 endfunction
 
-autocmd BufNewFile * call Template()
-function! Template()
-	let templatefile = expand("~/.config/nvim/templates/skeleton." . expand("%:e"))
-	if filereadable(templatefile)
-		execute "0r" templatefile
-	endif
-endfunction
-
 function! Visualwrap(...)
 	let startPos = getpos("'<")[1:2]
 	let endPos = getpos("'>")[1:2]

@@ -1,9 +1,31 @@
 #!/bin/sh
 
-[ -z "$1" ] && { echo "No device specified"; exit 1 ;}
+for dev do
+	mkdir -p /boot/syslinux
 
-mkdir /boot/syslinux
-#cp /usr/lib/syslinux/bios/*.c32 /boot/syslinux/
-extlinux --install /boot/syslinux
-dd if=/usr/lib/syslinux/bios/mbr.bin of="$1" bs=440 count=1 conv=notrunc
-vi /boot/syslinux/syslinux.cfg
+	printf 'Do you want to use configurations other than a basic boot prompt'; read -r prompt
+	case $prompt in
+		y|Y|yes|Yes|YES)
+			cp /usr/lib/syslinux/bios/*.c32 /boot/syslinux
+			;;
+	esac
+	extlinux --install /boot/syslinux
+	case "$(blkid -s PTTYPE -o value /dev/sda)" in
+		dos)
+			mbr="mbr.bin"
+			echo "Make sure the boot partition is marked as active."
+			echo "'sfdisk -A2 /dev/sdXX'"
+			;;
+		gpt)
+			mbr="altmbr.bin"
+			sgdisk "$dev" --attributes=1:set:2
+			sgdisk "$dev" --attributes=1:show
+			;;
+		*)
+			"Partition table not found."; exit 1
+			;;
+	esac
+	dd bs=440 count=1 conv=notrunc if=/usr/lib/syslinux/bios/mbr.bin of="$dev"
+done
+
+echo "Configuration can be made to /boot/syslinux/syslinux.cfg"

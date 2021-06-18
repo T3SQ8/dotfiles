@@ -1,5 +1,11 @@
 #!/bin/sh
 
+printf 'Do you want to continue? [y/N] '; read -r prompt
+case $prompt in
+	y|Y|yes|Yes|YES) continue ;;
+	*) exit 1 ;;
+esac
+
 swapfile=${1:-/swapfile}
 
 dd if=/dev/zero of="$swapfile" bs=1K status=progress \

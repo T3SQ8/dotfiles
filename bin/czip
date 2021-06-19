@@ -1,0 +1,14 @@
+#!/bin/sh
+
+[ $# = 0 ] && { echo "No arguments given"; exit 1 ;}
+
+zipfile="$1.zip"
+if [ -f "$zipfile" ]; then
+	printf '%s already exists you want to continue? [y/N] ' "$zipfile"
+	read -r prompt
+	case $prompt in
+		y|Y|yes|Yes|YES) ;;
+		*) continue ;;
+	esac
+fi
+find "$@" -type f -exec zip -jT "$zipfile" '{}' \+

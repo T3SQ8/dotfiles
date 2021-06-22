@@ -47,7 +47,6 @@ nnoremap <leader>x /<++><cr>"_ca<
 nnoremap <leader>X ?<++><cr>"_ca<
 nnoremap <c-n> :next<cr>
 nnoremap <c-p> :previous<cr>
-nnoremap <leader>s :source $MYVIMRC<cr>
 
 " Functions
 nnoremap <leader>o :call Open()<cr>
@@ -106,11 +105,20 @@ function! Blockseq(...)
 	endfor
 endfunction
 
+let g:templateDir = expand("~/.config/nvim/snippet/")
+autocmd BufNewFile * call Template()
+function! Template()
+	let templatefile = g:templateDir . "skeleton." . expand("%:e")
+	if filereadable(templatefile)
+		execute "0r" templatefile
+	endif
+endfunction
+
 nnoremap <leader>i :call Snippet()<cr>
 function! Snippet()
 	call fzf#run({
-			\ 'source': split(globpath('~/.config/nvim/snippet',
-			\ '*.' . &filetype)), 'sink': 'r'})
+			\ 'source': split(globpath(g:templateDir, '*.' . &filetype)), 'sink': '-1r'
+			\ })
 endfunction
 
 function! Visualwrap(...)

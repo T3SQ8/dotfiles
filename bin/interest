@@ -1,0 +1,2 @@
+cd "$(find ~ -type d -name '.git' -printf '%h\n' | fzf)"
+exec "$SHELL"

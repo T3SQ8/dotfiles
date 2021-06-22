@@ -6,7 +6,3 @@ header-includes:
 	\usepackage[margin=1in]{geometry}
 abstract: This is some random text
 ---
-
-# This is a test
-
-Lorem ipsum \ldots

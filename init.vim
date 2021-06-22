@@ -93,7 +93,7 @@ endfunction
 let g:templateDir = expand("~/.config/nvim/snippet/")
 autocmd BufNewFile * call Template()
 function! Template()
-	let templatefile = g:templateDir . "skeleton." . expand("%:e")
+	let templatefile = g:templateDir . "skeleton." . &filetype
 	if filereadable(templatefile)
 		execute "0r" templatefile
 	endif

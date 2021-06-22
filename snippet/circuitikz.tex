@@ -1,9 +1,6 @@
 \begin{circuitikz} \draw
-	(0,0)
-	to[resistor,l=12<\ohm>] (5,0)
-	-- (5,3)
-	to[battery,l=6<\volt>,invert] (0,3)
-	-- (0,0)
-	(0,1.5)	node[ground,rotate=-90]{}
+	(0,0) to[resistor,l=12<\ohm>] (5,0)
+	-- (5,3) to[battery,l=6<\volt>,invert] (0,3)
+	-- (0,0) (0,1.5) node[ground,rotate=-90]{}
 	;
 \end{circuitikz}

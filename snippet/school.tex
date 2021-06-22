@@ -1,33 +1,39 @@
+\documentclass[a4paper]{article}
+%\usepackage[document]{ragged2e}
+\usepackage{mathptmx}
+%\usepackage[doublespacing]{setspace}
+
+\begin{document}
+
 \makeatletter
 \begin{titlepage}
 	\vspace*{\fill}
 	\centering
-	{\huge \@title}
-	\vspace{\fill}
+	{\huge Title}
+	\vspace*{\fill}
 
 	\begin{flushright}
 		\begin{tabular}{ lr }
 			Kurs: & Fysik 1 \\
-			Laborant: & \@author \\
+			Laborant: & Author \\
 			Medlaborant: &
 			Tom \\
 			& Dick \\
 			& Harry \\
 			Klass: & 9B \\
-			Datum: & \@date \\
+			Datum: & Date \\
 		\end{tabular}
 	\end{flushright}
 \end{titlepage}
 \makeatother
 
 \begin{abstract}
-	\blindtext
+	\LaTeX
 \end{abstract}
 
 \newpage\tableofcontents\newpage
 
 \section{Placeholder}
-\blindtext
-\cite{example2021}
 
-\printbibliography
+%\newpage\printbibliography
+\end{document}

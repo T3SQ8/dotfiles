@@ -73,7 +73,7 @@ function! Spellmap(lang)
 	else
 		nnoremap <buffer> n ]sz=
 		nnoremap <buffer> N [sz=
-		execute "set spell spelllang=" . a:lang
+		execute "setlocal spell spelllang=" . a:lang
 	endif
 endfunction
 

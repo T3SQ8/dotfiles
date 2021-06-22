@@ -18,12 +18,14 @@ vim:
 		~/.config/nvim/ftplugin \
 		~/.config/nvim/syntax \
 		~/.config/nvim/templates \
+		~/.config/nvim/ftdetect \
 		~/.config/nvim/snippet
 	$(ln) init.vim ~/.config/nvim/init.vim
 	$(ln) ftplugin/* ~/.config/nvim/ftplugin
 	$(ln) syntax/* ~/.config/nvim/syntax
 	$(ln) templates/* ~/.config/nvim/templates
 	$(ln) snippet/* ~/.config/nvim/snippet
+	$(ln) ftdetect/* ~/.config/nvim/ftdetect
 
 termux:
 	$(mkdir) ~/.shortcuts

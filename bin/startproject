@@ -1,12 +1,11 @@
 #!/bin/sh
 
-makeTml="$HOME/.config/nvim/templates/skeleton.make"
-texTml="$HOME/.config/nvim/templates/skeleton.tex"
-
 for project do
 	[ -d "$project" ] && { echo "'$project' already exists" ; exit 1 ;}
 	mkdir "$project"
-	cp "$texTml" "$project/$project.tex"
-	cp "$makeTml" "$project/Makefile"
+	cp ~/.config/nvim/snippet/skeleton.tex \
+		"$project/$project.tex"
+	cp ~/.config/nvim/snippet/skeleton.make \
+		"$project/Makefile"
 	cd "$project" || exit; git init
 done

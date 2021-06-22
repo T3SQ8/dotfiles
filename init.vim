@@ -1,8 +1,7 @@
 " Settings
 filetype indent on
-let g:sh_fold_enabled=1
+syntax on
 set foldmethod=marker
-autocmd FileType sh set foldmethod=syntax
 set ignorecase
 set mouse=a
 set notimeout
@@ -12,10 +11,7 @@ set splitbelow splitright
 set undofile
 set makeprg=compiledoc\ %
 set nojoinspaces
-syntax on
 autocmd QuickFixCmdPre make update
-autocmd BufRead,BufNewFile *.tex set filetype=tex
-autocmd BufRead,BufNewFile *todo.txt set filetype=todo
 autocmd TermOpen * setlocal nonumber norelativenumber
 
 " Key bindings
@@ -24,11 +20,14 @@ let mapleader=" "
 vnoremap <c-c> "+y
 nnoremap <c-a> ggVG
 inoremap <expr> <c-v> getreg('+')
-" Switching splits
+nnoremap Y y$
+" Switching splits/files
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
+nnoremap <c-n> :next<cr>
+nnoremap <c-p> :previous<cr>
 " Command-line/terminal
 command! Q quit
 command! W write
@@ -39,28 +38,11 @@ nnoremap <leader>t :execute winheight(0)/3 "split +terminal"<cr>
 " Mics
 nnoremap <s-q> <nop>
 nnoremap <leader>n :nohlsearch<cr>
-nnoremap <leader>r :w \| !cleandoc %<cr>
 nnoremap <leader>c :make!<cr>
-nnoremap Y y$
 nnoremap <C-LeftMouse> <LeftMouse>.
 nnoremap <leader>x /<++><cr>"_ca<
-nnoremap <leader>X ?<++><cr>"_ca<
-nnoremap <c-n> :next<cr>
-nnoremap <c-p> :previous<cr>
 
 " Functions
-nnoremap <leader>o :call Open()<cr>
-function! Open()
-	if &filetype == "tex"
-		let file = expand("%:r") . ".pdf"
-	elseif &filetype == "markdown"
-		let file = expand("%:r") . ".html"
-	else
-		let file = expand("%")
-	endif
-execute "!xdg-open" file "&"
-endfunction
-
 nnoremap <leader>le :call Spellmap("en_us")<cr>
 nnoremap <leader>ls :call Spellmap("sv")<cr>
 nnoremap <leader>ll :call Spellmap("")<cr>
@@ -79,11 +61,11 @@ endfunction
 nnoremap <leader>w :call ToggleWraping()<cr>
 function! ToggleWraping()
 	if &wrap ==? "nowrap" || &linebreak ==? "nolinebreak"
-		set wrap linebreak
+		setlocal wrap linebreak
 		noremap <buffer> k gk
 		noremap <buffer> j gj
 	else
-		set nowrap nolinebreak
+		setlocal nowrap nolinebreak
 		silent! nunmap <buffer> k
 		silent! nunmap <buffer> j
 	endif
@@ -91,8 +73,10 @@ endfunction
 
 vnoremap <leader>q :<c-u>call Blockseq()<cr>
 function! Blockseq(...)
-	let visualrange = [ getpos("'<")[1], getpos("'>")[1] ] " Beginning and ending lines of visual selection
-	if a:0 >= 1 " Assign the starting counter to the first argument if it exists
+	" Beginning and ending lines of visual selection
+	let visualrange = [ getpos("'<")[1], getpos("'>")[1] ]
+	" Assign the starting counter to the first argument if it exists
+	if (a:0 >= 1)
 		let num = a:1
 	else
 		let num = 1
@@ -100,7 +84,8 @@ function! Blockseq(...)
 	let startcolumn = col('.')
 	for i in range(visualrange[0], visualrange[1])
 		execute 'normal! R' . num
-		call cursor(line('.')+1, startcolumn) " Move the cursor down and back to the original column
+		" Move the cursor down and back to the original column
+		call cursor(line('.')+1, startcolumn)
 		let num += 1
 	endfor
 endfunction
@@ -117,14 +102,15 @@ endfunction
 nnoremap <leader>i :call Snippet()<cr>
 function! Snippet()
 	call fzf#run({
-			\ 'source': split(globpath(g:templateDir, '*.' . &filetype)), 'sink': '-1r'
+			\ 'source':
+			\ split(globpath(g:templateDir, '*.' . &filetype)),
+			\ 'sink': '-1r'
 			\ })
 endfunction
 
 function! Visualwrap(...)
 	let startPos = getpos("'<")[1:2]
 	let endPos = getpos("'>")[1:2]
-
 	if exists("a:1")
 		let startText = a:1
 	else
@@ -135,7 +121,6 @@ function! Visualwrap(...)
 	else
 		let endText = input("What to insert after?: ")
 	endif
-
 	call cursor(endPos)
 	execute 'normal! a' . endText
 	call cursor(startPos)

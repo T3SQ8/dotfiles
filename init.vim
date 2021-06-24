@@ -104,7 +104,7 @@ function! Snippet()
 	call fzf#run({
 			\ 'source':
 			\ split(globpath(g:templateDir, '*.' . &filetype)),
-			\ 'sink': '-1r'
+			\ 'sink': 'r'
 			\ })
 endfunction
 

@@ -1,9 +1,0 @@
-#!/bin/sh
-
-reg='^x\s'
-
-for file do
-	file=$(realpath "$file")
-	archive="${file%/*}/archive.txt"
-	sed -i -e "/$reg/w /dev/stdout" -e "/$reg/d" "$file" >> "$archive"
-done

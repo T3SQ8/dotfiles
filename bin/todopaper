@@ -1,8 +1,7 @@
 #!/bin/sh
 
 res=$(xdpyinfo | awk '/dimensions:/ {print $2}')
-xborder=$(echo "${res%x*}" | awk '{print int($1*0.1+0.5)}')
-yborder=$(echo "${res#*x}" | awk '{print int($1*0.1+0.5)}')
+borders=$(awk -v x="${res%x*}" -v y="${res#*x}" 'BEGIN{print int(x*0.1+0.5) "x" int(y*0.1+0.5)}')
 background="black"
 foreground="white"
 todofile="$HOME/notes/todo.txt"
@@ -13,5 +12,5 @@ convert \
 	-fill "$foreground" \
 	caption:"$(sed '/^$/d;s/^/- /' "$todofile")" \
 	-bordercolor "$background" \
-	-border "${xborder}x${yborder}" \
+	-border "$borders" \
 	PNG:- | display -backdrop -window root -

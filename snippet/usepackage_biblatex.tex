@@ -3,11 +3,11 @@
 	sorting=none,
 	date=iso, seconds=true,
 	%style=science,
-	%bibstyle=apa,
+	%style=apa, % Use \textcite with this style
 	alldates=iso,
 ]{biblatex}
 \addbibresource{\jobname.bib}
-%\begin{filecontents}{\jobname.bib}
+%\begin{filecontents}[overwrite]{\jobname.bib}
 %@article{example2021,
 %	author="John doe",
 %	title="An placeholder latex citation",
@@ -15,4 +15,4 @@
 %	publisher="Random pulisher",
 %	url="https://example.org",
 %}
-%\end{filecontents}
+%\end{filecontents*}

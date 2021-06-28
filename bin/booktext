@@ -1,0 +1,15 @@
+#!/bin/sh
+
+while getopts o: flag; do
+	case $flag in
+		o) outfile=$OPTARG;;
+	esac
+done
+shift "$((OPTIND - 1))"
+
+[ -f "${outfile:=scantotext.txt}" ] && { echo "'$outfile' already exists"; exit 1 ;}
+
+for file do
+	echo "Converting: $file"
+	tesseract -l eng "$file" - >> "$outfile"
+done

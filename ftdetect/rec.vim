@@ -1,1 +1,1 @@
-au BufNewFile,BufRead *.rec set filetype=rec
+autocmd BufNewFile,BufRead *.rec set filetype=rec

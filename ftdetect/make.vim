@@ -1,1 +1,1 @@
-au BufNewFile,BufRead *.make set filetype=make
+autocmd BufNewFile,BufRead *.make set filetype=make

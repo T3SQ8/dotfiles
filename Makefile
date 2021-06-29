@@ -1,7 +1,7 @@
 ln = ln -sfr
 mkdir = mkdir -p
 
-all: bin zsh vim mpv newsboat python xorg dunst zathura
+all: bin zsh vim mpv newsboat python xorg zathura
 
 bin:
 	$(mkdir) ~/.local/bin
@@ -17,13 +17,11 @@ vim:
 	$(mkdir) \
 		~/.config/nvim/ftplugin \
 		~/.config/nvim/syntax \
-		~/.config/nvim/templates \
 		~/.config/nvim/ftdetect \
 		~/.config/nvim/snippet
 	$(ln) init.vim ~/.config/nvim/init.vim
 	$(ln) ftplugin/* ~/.config/nvim/ftplugin
 	$(ln) syntax/* ~/.config/nvim/syntax
-	$(ln) templates/* ~/.config/nvim/templates
 	$(ln) snippet/* ~/.config/nvim/snippet
 	$(ln) ftdetect/* ~/.config/nvim/ftdetect
 
@@ -49,12 +47,8 @@ xorg:
 	$(ln) xinitrc ~/.config/X11/xinitrc
 
 
-dunst: xorg
-	$(mkdir) ~/.config/dunst
-	$(ln) dunstrc ~/.config/dunst/dunstrc
-
 zathura: xorg
 	$(mkdir) ~/.config/zathura
 	$(ln) zathurarc ~/.config/zathura/zathurarc
 
-.PHONY: bin dunst mpv newsboat python termux vim xorg zathura zsh
+.PHONY: bin mpv newsboat python termux vim xorg zathura zsh

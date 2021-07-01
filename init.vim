@@ -136,7 +136,7 @@ function! CompileDoc()
 		else
 			let texprg = ""
 		endif
-		execute "!latexmk" texprg "-pdf -cd %"
+		execute "!latexmk -pdf -cd" texprg "%"
 	elseif &filetype == "nroff"
 			execute "!groff -e -ms % -Tpdf >" noext . ".pdf"
 	elseif &filetype == "markdown"

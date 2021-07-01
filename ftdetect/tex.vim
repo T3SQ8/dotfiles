@@ -1,1 +1,1 @@
-autocmd BufRead,BufNewFile *.tex set filetype=tex
+autocmd BufNewFile,BufRead *.tex set filetype=tex

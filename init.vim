@@ -136,7 +136,12 @@ function! CompileDoc()
 		else
 			let texprg = ""
 		endif
-		execute "!latexmk -pdf -cd" texprg "%"
+		if search('\s*%\s*shell-escape', 'n')
+			let shellesc = "-shell-escape"
+		else
+			let shellesc = ""
+		endif
+		execute "!latexmk -pdf -cd -f" shellesc texprg "%"
 	elseif &filetype == "nroff"
 			execute "!groff -e -ms % -Tpdf >" noext . ".pdf"
 	elseif &filetype == "markdown"

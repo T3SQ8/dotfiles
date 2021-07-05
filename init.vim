@@ -9,7 +9,9 @@ set nowrap
 set number relativenumber
 set splitbelow splitright
 set undofile
+set makeprg=compiledoc\ %
 set nojoinspaces
+autocmd QuickFixCmdPre make update
 autocmd TermOpen * setlocal nonumber norelativenumber
 
 " Key bindings
@@ -36,6 +38,7 @@ nnoremap <leader>t :execute winheight(0)/3 "split +terminal"<cr>
 " Mics
 nnoremap <s-q> <nop>
 nnoremap <leader>n :nohlsearch<cr>
+nnoremap <leader>c :make!<cr>
 nnoremap <C-LeftMouse> <LeftMouse>.
 nnoremap <leader>x /<++><cr>"_ca<
 
@@ -122,31 +125,4 @@ function! Visualwrap(...)
 	execute 'normal! a' . endText
 	call cursor(startPos)
 	execute 'normal! i' . startText
-endfunction
-
-nnoremap <leader>c :call CompileDoc()<cr>
-function! CompileDoc()
-	write
-	let noext = expand("%:r")
-	if &filetype == "tex"
-		if search('\s*%\s*xelatex', 'n')
-			let texprg = "-xelatex"
-		elseif search('\s*%\s*lualatex', 'n')
-			let texprg = "-lualatex"
-		else
-			let texprg = ""
-		endif
-		if search('\s*%\s*shell-escape', 'n')
-			let shellesc = "-shell-escape"
-		else
-			let shellesc = ""
-		endif
-		execute "!latexmk -pdf -cd -f" shellesc texprg "%"
-	elseif &filetype == "nroff"
-			execute "!groff -e -ms % -Tpdf >" noext . ".pdf"
-	elseif &filetype == "markdown"
-			execute "!pandoc % -o" noext . ".html"
-	else
-		make
-	endif
 endfunction

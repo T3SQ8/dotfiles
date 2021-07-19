@@ -29,7 +29,7 @@ endfunction
 
 setlocal foldmarker=<<<,>>>
 
-vnoremap <leader>e :<c-u>call Visualwrap('\placeholder{', '}')<cr>
+vnoremap <leader>b :<c-u>call Visualwrap('\textbf{', '}')<cr>
 nnoremap <buffer> <leader>o :execute '!xdg-open' expand('%:p:r'). '.pdf &'<cr>
 
 autocmd BufWritePost *.tex call Pquotes()

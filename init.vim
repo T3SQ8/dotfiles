@@ -35,42 +35,23 @@ command! WQ wq
 command! Wq wq
 tnoremap <Esc> <C-\><C-n>
 nnoremap <leader>t :execute winheight(0)/3 "split +terminal"<cr>
+" Spellcheck
+nnoremap <leader>le :setlocal spell<cr>
+nnoremap <leader>ll :setlocal nospell<cr>
+nnoremap <leader>ls :setlocal spell spelllang=sv<cr>
+nnoremap m ]sz=<cr>
+nnoremap M [sz=<cr>
 " Mics
 nnoremap <s-q> <nop>
 nnoremap <leader>n :nohlsearch<cr>
 nnoremap <leader>c :make!<cr>
 nnoremap <C-LeftMouse> <LeftMouse>.
 nnoremap <leader>x /<++><cr>"_ca<
+nnoremap <leader>w :setlocal wrap! linebreak<cr>
+nnoremap <leader>i :call fzf#run({'source':split(globpath(g:templateDir,
+			\ '*.' . &filetype)), 'sink':'r'})<cr>
 
 " Functions
-nnoremap <leader>le :call Spellmap("en_us")<cr>
-nnoremap <leader>ls :call Spellmap("sv")<cr>
-nnoremap <leader>ll :call Spellmap("")<cr>
-function! Spellmap(lang)
-	if empty(a:lang)
-		set nospell
-		silent! nunmap <buffer> n
-		silent! nunmap <buffer> N
-	else
-		nnoremap <buffer> n ]sz=
-		nnoremap <buffer> N [sz=
-		execute "setlocal spell spelllang=" . a:lang
-	endif
-endfunction
-
-nnoremap <leader>w :call ToggleWraping()<cr>
-function! ToggleWraping()
-	if &wrap ==? "nowrap" || &linebreak ==? "nolinebreak"
-		setlocal wrap linebreak
-		noremap <buffer> k gk
-		noremap <buffer> j gj
-	else
-		setlocal nowrap nolinebreak
-		silent! nunmap <buffer> k
-		silent! nunmap <buffer> j
-	endif
-endfunction
-
 vnoremap <leader>q :<c-u>call Blockseq()<cr>
 function! Blockseq(...)
 	let visualrange = [ getpos("'<")[1], getpos("'>")[1] ]
@@ -100,15 +81,6 @@ function! Template()
 	if filereadable(templatefile)
 		execute "0r" templatefile
 	endif
-endfunction
-
-nnoremap <leader>i :call Snippet()<cr>
-function! Snippet()
-	call fzf#run({
-			\ 'source':
-			\ split(globpath(g:templateDir, '*.' . &filetype)),
-			\ 'sink': 'r'
-			\ })
 endfunction
 
 function! Visualwrap(...)

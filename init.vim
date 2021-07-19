@@ -73,19 +73,22 @@ endfunction
 
 vnoremap <leader>q :<c-u>call Blockseq()<cr>
 function! Blockseq(...)
-	" Beginning and ending lines of visual selection
 	let visualrange = [ getpos("'<")[1], getpos("'>")[1] ]
+	let fill = getpos("'<")[2] - getpos("'>")[2] + 1
 	" Assign the starting counter to the first argument if it exists
 	if (a:0 >= 1)
 		let num = a:1
 	else
 		let num = 1
 	endif
+	echo visualrange fill
 	let startcolumn = col('.')
 	for i in range(visualrange[0], visualrange[1])
-		execute 'normal! R' . num
+		" Pad the string with zeroes
+		let str = repeat(0, fill - len(num)) . num
+		execute 'normal! R' . str
 		" Move the cursor down and back to the original column
-		call cursor(line('.')+1, startcolumn)
+		call cursor(line('.') + 1, startcolumn)
 		let num += 1
 	endfor
 endfunction

@@ -35,12 +35,6 @@ command! WQ wq
 command! Wq wq
 tnoremap <Esc> <C-\><C-n>
 nnoremap <leader>t :execute winheight(0)/3 "split +terminal"<cr>
-" Spellcheck
-nnoremap <leader>le :setlocal spell<cr>
-nnoremap <leader>ll :setlocal nospell<cr>
-nnoremap <leader>ls :setlocal spell spelllang=sv<cr>
-nnoremap m ]sz=<cr>
-nnoremap M [sz=<cr>
 " Mics
 nnoremap <s-q> <nop>
 nnoremap <leader>n :nohlsearch<cr>
@@ -50,6 +44,8 @@ nnoremap <leader>x /<++><cr>"_ca<
 nnoremap <leader>w :setlocal wrap! linebreak<cr>
 nnoremap <leader>i :call fzf#run({'source':split(globpath(g:templateDir,
 			\ '*.' . &filetype)), 'sink':'r'})<cr>
+nnoremap <buffer> m ]sz=
+nnoremap <buffer> M [sz=
 
 " Functions
 vnoremap <leader>q :<c-u>call Blockseq()<cr>
@@ -100,4 +96,17 @@ function! Visualwrap(...)
 	execute 'normal! a' . endText
 	call cursor(startPos)
 	execute 'normal! i' . startText
+endfunction
+
+nnoremap <leader>l :call Spellcycle()<cr>
+function! Spellcycle(...)
+	execute {
+			\ '0en': 'set spell spelllang=en',
+			\ '0sv': 'set spell spelllang=en',
+			\ '1en': 'set spell spelllang=sv',
+			\ '1sv': 'set nospell'
+			\ }[&spell . &spelllang]
+	if &spell
+		echo &spelllang
+	endif
 endfunction

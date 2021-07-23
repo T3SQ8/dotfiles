@@ -32,12 +32,8 @@ setlocal foldmarker=<<<,>>>
 vnoremap <leader>b :<c-u>call Visualwrap('\textbf{', '}')<cr>
 nnoremap <buffer> <leader>o :execute '!xdg-open' expand('%:p:r'). '.pdf &'<cr>
 
-autocmd BufWritePost *.tex call Pquotes()
-function! Pquotes()
-	let matchLine = search("[‘’'\"“”]", 'n')
-	if matchLine > 0
-		echoerr "Improper quotation on line" matchLine
-	endif
-endfunction
-
-inoremap ' \textquotesingle{}
+"autocmd BufWritePost *.tex call search("[‘’\"“”]")
+autocmd BufWritePost *.tex
+			\ if search("[‘’\"“”]", 'n') |
+			\ echoerr "File contains improper quotation" |
+			\ endif

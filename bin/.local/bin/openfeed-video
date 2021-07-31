@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for url do
+	mpv --no-terminal "$url" & notify-send "Sent to mpv"
+done

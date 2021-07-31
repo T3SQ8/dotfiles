@@ -1,0 +1,10 @@
+#!/bin/sh
+
+for url do
+	if pgrep -x Xorg; then
+		qrencode -s 7 -o - "$url" | convert - show:
+	else
+		printf "$url" | qrencode -t ansiutf8
+		read -r _
+	fi
+done

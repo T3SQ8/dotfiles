@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for url do
+	convert "$(youtube-dl --write-thumbnail --skip-download -o "$(mktemp -u)" "$url" | awk '/Writing thumbnail/ {print $NF}')" show:
+	notify-send "$(youtube-dl --get-filename --get-duration --skip-download -o '%(title)s' "$url")" &
+done

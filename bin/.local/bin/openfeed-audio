@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for url do
+	$TERMINAL -e mpv --no-video "$url" &
+done

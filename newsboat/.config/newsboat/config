@@ -15,3 +15,6 @@ macro b set browser "openfeed -b %u" ; open-in-browser ; set browser "openfeed"
 macro v set browser "openfeed -v %u" ; open-in-browser ; set browser "openfeed"
 macro q set browser "openfeed -q %u" ; open-in-browser ; set browser "openfeed"
 macro d set browser "openfeed -d %u" ; open-in-browser ; set browser "openfeed"
+
+reload-threads 2
+highlight feedlist "-----(.*)-----" red default bold

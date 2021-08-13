@@ -1,0 +1,14 @@
+#!/bin/sh
+
+sleep 3
+notify-send "slowtypefile is running"
+
+for file do
+	while read -r line; do
+		xdotool type -- "$line"
+		xdotool key Return
+		sleep 8
+	done < "$file"
+done
+
+notify-send "slowtypefile done"

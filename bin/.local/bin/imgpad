@@ -1,0 +1,10 @@
+#!/bin/sh
+
+printf 'Whats your screen size? (WIDTHxHEIGHT) '; read -r size
+printf 'Choose a padding color (e.g. white or #ffd700) '; read -r bg
+
+for file do
+	out="${file%%.*}_padded.${file#*.}"
+	[ -f "$out" ] && { echo "'$out' already exists"; continue; }
+	convert "$file" -resize "$size" -background "$bg" -gravity center -extent "$size" "$out"
+done

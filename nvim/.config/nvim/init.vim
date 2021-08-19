@@ -44,8 +44,8 @@ nnoremap <leader>x /<++><cr>"_ca<
 nnoremap <leader>w :setlocal wrap! linebreak<cr>
 nnoremap <leader>i :call fzf#run({'source':split(globpath(g:templateDir,
 			\ '*.' . &filetype)), 'sink':'r'})<cr>
-nnoremap <buffer> m ]sz=
-nnoremap <buffer> M [sz=
+nnoremap m ]sz=
+nnoremap M [sz=
 
 " Functions
 vnoremap <leader>q :<c-u>call Blockseq()<cr>

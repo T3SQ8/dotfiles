@@ -1,8 +1,12 @@
 #!/bin/sh
 
 {
+	# Uptime
+	echo " 💻"
+	uptime --pretty | cut -d' ' -f2-
+
 	# Date
-	date "+ 🗓️ %b %d 🕒 %H:%M"
+	date "+🗓️ %b %d 🕒 %H:%M"
 
 	# Volume
 	amixer get Master |

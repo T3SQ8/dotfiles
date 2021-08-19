@@ -1,6 +1,5 @@
 #!/bin/sh
 
 for file do
-	[ -d archive ] || mkdir archive
-	tar -czvf archive/"$file".tar.gz --remove-files "$file"
+	tar -czvf "$file".tar.gz --remove-files "$file"
 done

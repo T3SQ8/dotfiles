@@ -1,0 +1,8 @@
+#!/bin/sh
+
+for file do
+	out="${file%%.*}.min.${file#*.}"
+	[ -f "$out" ] && { echo "'$out' already exists"; continue ;}
+	gs -sDEVICE=pdfwrite -dPDFSETTINGS=/ebook -dNOPAUSE \
+		-dBATCH -sOutputFile="$out" "$file"
+done

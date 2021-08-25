@@ -5,6 +5,10 @@
 	echo " 💻"
 	uptime --pretty | cut -d' ' -f2-
 
+	# Newsboat
+	echo "📰"
+	cat /tmp/newslist || echo 0
+
 	# Date
 	date "+🗓️ %b %d 🕒 %H:%M"
 

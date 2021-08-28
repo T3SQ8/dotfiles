@@ -13,6 +13,7 @@ set makeprg=compiledoc\ %
 set nojoinspaces
 autocmd QuickFixCmdPre make update
 autocmd TermOpen * setlocal nonumber norelativenumber
+autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=100, on_visual=false}
 
 " Key bindings
 let mapleader=" "

@@ -1,1 +1,0 @@
-*/10 * * * * pidof -x newsboat > /dev/null || newsboat -x reload -x print-unread | cut -f1 -d' ' > /tmp/newslist

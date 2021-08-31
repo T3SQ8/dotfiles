@@ -71,7 +71,7 @@ function! Blockseq(...)
 	endfor
 endfunction
 
-let g:templateDir = expand("~/.config/nvim/snippet/")
+let g:templateDir = stdpath('config') . '/snippet/'
 autocmd BufNewFile * call Template()
 function! Template()
 	let templatefile = g:templateDir . "skeleton." . &filetype

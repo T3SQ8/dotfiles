@@ -26,7 +26,7 @@ set nojoinspaces
 autocmd QuickFixCmdPre make update
 autocmd TermOpen * setlocal nonumber norelativenumber
 autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=100, on_visual=false}
-autocmd BufNewFile,BufRead *.todo.txt set filetype=todo
+autocmd BufNewFile,BufRead *.tex set filetype=tex
 
 " Key bindings
 let mapleader=" "
@@ -84,7 +84,7 @@ function! Blockseq(...)
 	endfor
 endfunction
 
-let g:templateDir = stdpath('config') . '/snippet/'
+let g:templateDir = stdpath('config') . '\snippet\'
 autocmd BufNewFile * call Template()
 function! Template()
 	let templatefile = g:templateDir . "skeleton." . &filetype

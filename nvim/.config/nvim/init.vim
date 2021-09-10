@@ -1,3 +1,17 @@
+if has('win32')
+	call plug#begin()
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	call plug#end()
+	colorscheme gruvbox
+	set guifont=consolas:h14
+	nnoremap <c-+> execute "set guifont=consolas:h" . (matchstr(&guifont, '\d\+') + 1)<cr>
+	nnoremap <c-0> execute "set guifont=consolas:h" . (matchstr(&guifont, '\d\+') + -1)<cr>
+	let g:templateDir = stdpath('config') . '\snippet\'
+else
+	let g:templateDir = stdpath('config') . '/snippet/'
+	set makeprg=compiledoc\ %
+endif
+
 " Settings
 filetype indent on
 syntax on
@@ -9,7 +23,6 @@ set nowrap
 set number relativenumber
 set splitbelow splitright
 set undofile
-set makeprg=compiledoc\ %
 set nojoinspaces
 autocmd QuickFixCmdPre make update
 autocmd TermOpen * setlocal nonumber norelativenumber
@@ -71,7 +84,6 @@ function! Blockseq(...)
 	endfor
 endfunction
 
-let g:templateDir = stdpath('config') . '/snippet/'
 autocmd BufNewFile * call Template()
 function! Template()
 	let templatefile = g:templateDir . "skeleton." . &filetype

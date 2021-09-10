@@ -35,3 +35,19 @@ autocmd BufWritePost *.tex
 			\ if search("[‘’\"“”]", 'n') |
 			\ echoerr "File contains improper quotation" |
 			\ endif
+
+if search('^\s*%\s*xelatex$')
+	let pdfprg='-xelatex'
+elseif search('^\s*%\s*lualatex$')
+	let pdfprg='-lualatex'
+else
+	let pdfprg='-pdf'
+endif
+
+if search('^\s*%\s*shell-escape$')
+	let shellescape='-shell-escape'
+else
+	let shellescape=''
+endif
+
+let &makeprg = 'latexmk -cd ' . pdfprg . ' ' . shellescape . ' %'

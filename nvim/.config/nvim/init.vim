@@ -9,7 +9,6 @@ if has('win32')
 	let g:templateDir = stdpath('config') . '\snippet\'
 else
 	let g:templateDir = stdpath('config') . '/snippet/'
-	set makeprg=compiledoc\ %
 endif
 
 " Settings

@@ -43,11 +43,15 @@ elseif search('^\s*%\s*lualatex$')
 else
 	let pdfprg='-pdf'
 endif
-
 if search('^\s*%\s*shell-escape$')
 	let shellescape='-shell-escape'
 else
 	let shellescape=''
 endif
-
 let &makeprg = 'latexmk -cd ' . pdfprg . ' ' . shellescape . ' %'
+
+if has('win32')
+	nnoremap <leader>o :execute "!start" expand("%:r") ".pdf"<cr>
+else
+	nnoremap <leader>o :execute "!xdg-open" expand("%:r") . ".pdf"<cr>
+endif

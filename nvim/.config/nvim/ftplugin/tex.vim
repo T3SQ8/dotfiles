@@ -36,9 +36,9 @@ autocmd BufWritePost *.tex
 			\ echoerr "File contains improper quotation" |
 			\ endif
 
-if search('^\s*%\s*xelatex$')
+if search('\s\+%\s*xelatex$')
 	let pdfprg='-xelatex'
-elseif search('^\s*%\s*lualatex$')
+elseif search('\s\+%\s*lualatex$')
 	let pdfprg='-lualatex'
 else
 	let pdfprg='-pdf'

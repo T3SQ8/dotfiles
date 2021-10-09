@@ -1,12 +1,15 @@
 if has('win32')
 	call plug#begin()
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plug 'OmniSharp/omnisharp-vim'
 	call plug#end()
 	colorscheme gruvbox
-	set guifont=consolas:h14
+	set guifont=consolas:h13
+        set expandtab
 	nnoremap <c-+> execute "set guifont=consolas:h" . (matchstr(&guifont, '\d\+') + 1)<cr>
 	nnoremap <c-0> execute "set guifont=consolas:h" . (matchstr(&guifont, '\d\+') + -1)<cr>
 	let g:templateDir = stdpath('config') . '\snippet\'
+	"set shell=powershell.exe
 else
 	let g:templateDir = stdpath('config') . '/snippet/'
 endif

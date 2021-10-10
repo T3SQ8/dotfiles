@@ -1,6 +1,7 @@
 #!/bin/sh
 
 while true; do
+	sleep 10
 	read -r capacity < /sys/class/power_supply/BAT0/capacity
 	read -r status < /sys/class/power_supply/BAT0/status
 
@@ -12,5 +13,4 @@ while true; do
 		notify-send -u critical "GET THE CHARGER!" "Battery low"
 	fi
 
-	sleep 10
 done

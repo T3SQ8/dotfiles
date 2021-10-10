@@ -1,9 +1,16 @@
 #!/bin/sh
 
 while true; do
-	[ "$(cat /sys/class/power_supply/BAT*/status)" = "Discharging" ] &&
-		[ "$(cat /sys/class/power_supply/BAT*/capacity)" -le 15 ] &&
+	read -r capacity < /sys/class/power_supply/BAT0/capacity
+	read -r status < /sys/class/power_supply/BAT0/status
+
+	[ "$status" = "Charging" ] && continue
+
+	if [ "$capacity" -le 15 ]; then
+		notify-send "GET THE CHARGER!" "Battery low"
+	elif [ "$capacity" -le 10 ]; then
 		notify-send -u critical "GET THE CHARGER!" "Battery low"
+	fi
 
 	sleep 10
 done

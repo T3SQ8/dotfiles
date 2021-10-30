@@ -54,7 +54,7 @@ nnoremap <leader>t :execute winheight(0)/3 "split +terminal"<cr>
 " Mics
 nnoremap <s-q> <nop>
 nnoremap <leader>n :nohlsearch<cr>
-nnoremap <leader>c :make!<cr>
+nnoremap <leader>c :make %<cr>
 nnoremap <C-LeftMouse> <LeftMouse>.
 nnoremap <leader>x /<++><cr>"_ca<
 nnoremap <leader>w :setlocal wrap! linebreak<cr>

@@ -37,18 +37,13 @@ autocmd BufWritePost *.tex
 			\ endif
 
 if search('\s\+%\s*xelatex$')
-	let pdfprg='-xelatex'
+	let b:tex_flavor = 'latexmk -g -cd -xelatex'
 elseif search('\s\+%\s*lualatex$')
-	let pdfprg='-lualatex'
+	let b:tex_flavor = 'latexmk -g -cd -lualatex'
 else
-	let pdfprg='-pdf'
+	let b:tex_flavor = 'latexmk -g -cd -pdf'
 endif
-if search('^\s*%\s*shell-escape$')
-	let shellescape='-shell-escape'
-else
-	let shellescape=''
-endif
-let &makeprg = 'latexmk -cd ' . pdfprg . ' ' . shellescape . ' %'
+compiler tex
 
 if has('win32')
 	nnoremap <leader>o :execute "!start" expand("%:r") ".pdf"<cr>

@@ -1,1 +1,1 @@
-nnoremap <buffer> <leader>o :!python %<cr>
+compiler pylint

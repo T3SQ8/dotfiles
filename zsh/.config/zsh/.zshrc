@@ -32,23 +32,22 @@ stty -ixon
 
 # Aliases
 alias \
-	ls='ls --color=auto' \
 	e='$EDITOR' \
 	o='xdg-open' \
-	grep='grep --color' \
+	ls='ls --color=auto' \
 	cp='cp -v' \
 	mv='mv -v' \
 	rm='rm -v' \
+	du='du -h --apparent-size' \
+	grep='grep --color' \
 	wget='wget --hsts-file=' \
-	monerod='monerod --data-dir ~/.local/share/bitmonero' \
-	sdcv='sdcv --color'
+	monerod='monerod --data-dir ~/.local/share/bitmonero'
 
 # Git aliases
 alias \
+	gs='git status' \
 	ga='git add' \
 	gc='git commit' \
 	gd='git diff' \
 	gl='git log --oneline' \
 	gp='git push' \
-	gs='git status' \
-	gb='git branch -avv'

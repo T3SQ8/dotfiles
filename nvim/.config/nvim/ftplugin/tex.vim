@@ -15,13 +15,8 @@ function! Addpackage(...)
 endfunction
 
 nnoremap <buffer> <leader>b :call Mkenviroment('')<left><left>
-function! Mkenviroment(...)
-	if exists("a:1")
-		let pkg = a:1
-	else
-		let pkg = ''
-	endif
-	let @a = '\begin{' . pkg. '}' . "\n" . '\end{' . pkg . '}'
+function! Mkenviroment(pkg)
+	let @a = '\begin{' . a:pkg. '}' . "\n" . '\end{' . a:pkg . '}'
 	put a
 	normal! O
 	startinsert

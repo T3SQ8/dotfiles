@@ -39,9 +39,3 @@ else
 	let b:tex_flavor = 'latexmk -g -cd -pdf'
 endif
 compiler tex
-
-if has('win32')
-	nnoremap <leader>o :execute "!start" expand("%:r") ".pdf"<cr>
-else
-	nnoremap <leader>o :execute "!xdg-open" expand("%:r") . ".pdf"<cr>
-endif

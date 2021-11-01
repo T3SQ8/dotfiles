@@ -125,3 +125,13 @@ function! Spellcycle(...)
 		echo &spelllang
 	endif
 endfunction
+
+nnoremap <leader>o :call Openbg()<cr>
+function! Openbg()
+	if has('win32')
+		command! -nargs=? ExOpen !start <args>
+	else
+		command! -nargs=? ExOpen !xdg-open <args> &
+	endif
+	call fzf#run({'source':split(glob('%:r*')), 'sink':'ExOpen'})
+endfunction

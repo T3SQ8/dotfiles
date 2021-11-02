@@ -3,8 +3,8 @@ if has('win32')
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'OmniSharp/omnisharp-vim'
 	call plug#end()
-	colorscheme gruvbox
-	set guifont=consolas:h13
+	colorscheme nord
+	set guifont=consolas:h15
         set expandtab
 	nnoremap <c-+> execute "set guifont=consolas:h" . (matchstr(&guifont, '\d\+') + 1)<cr>
 	nnoremap <c-0> execute "set guifont=consolas:h" . (matchstr(&guifont, '\d\+') + -1)<cr>

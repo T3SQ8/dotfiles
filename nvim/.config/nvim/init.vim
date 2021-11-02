@@ -133,5 +133,7 @@ function! Openbg()
 	else
 		command! -nargs=? ExOpen !xdg-open <args> &
 	endif
-	call fzf#run({'source':split(glob('%:r*')), 'sink':'ExOpen'})
+	let files = split(glob('%:r*'))
+	call remove(files, index(files, expand('%'))) " Remove current file from list
+	call fzf#run({'source':files, 'sink':'ExOpen'})
 endfunction

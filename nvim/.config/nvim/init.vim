@@ -1,20 +1,7 @@
-if has('win32')
-	call plug#begin()
-	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'OmniSharp/omnisharp-vim'
-	call plug#end()
-	colorscheme nord
-	set guifont=consolas:h15
-        set expandtab
-	nnoremap <c-+> execute "set guifont=consolas:h" . (matchstr(&guifont, '\d\+') + 1)<cr>
-	nnoremap <c-0> execute "set guifont=consolas:h" . (matchstr(&guifont, '\d\+') + -1)<cr>
-	let g:templateDir = stdpath('config') . '\snippet\'
-	"set shell=powershell.exe
-else
-	let g:templateDir = stdpath('config') . '/snippet/'
-endif
+"
+" SETTINGS
+"
 
-" Settings
 filetype indent on
 syntax on
 set foldmethod=marker
@@ -25,12 +12,17 @@ set nowrap
 set number relativenumber
 set splitbelow splitright
 set undofile
+set linebreak
 set nojoinspaces
 autocmd QuickFixCmdPre make update
 autocmd TermOpen * setlocal nonumber norelativenumber
 autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=100, on_visual=false}
+let g:templateDir = stdpath('config') . '/snippet/'
 
-" Key bindings
+"
+" KEY BINDINGS
+"
+
 let mapleader=" "
 " Clipboard
 vnoremap <c-c> "+y
@@ -51,19 +43,38 @@ command! WQ wq
 command! Wq wq
 tnoremap <Esc> <C-\><C-n>
 nnoremap <leader>t :execute winheight(0)/3 "split +terminal"<cr>
+command! -nargs=? ExOpen !xdg-open <args> &
 " Mics
 nnoremap <s-q> <nop>
 nnoremap <leader>n :nohlsearch<cr>
 nnoremap <leader>c :make %<cr>
 nnoremap <C-LeftMouse> <LeftMouse>.
 nnoremap <leader>x /<++><cr>"_ca<
-nnoremap <leader>w :setlocal wrap! linebreak<cr>
+nnoremap <leader>w :setlocal wrap!<cr>
 nnoremap <leader>i :call fzf#run({'source':split(globpath(g:templateDir,
 			\ '*.' . &filetype)), 'sink':'r'})<cr>
 nnoremap m ]sz=
 nnoremap M [sz=
 
-" Functions
+"
+" WINDOWS
+"
+
+if has('win32')
+	call plug#begin()
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plug 'OmniSharp/omnisharp-vim'
+	call plug#end()
+	colorscheme nord
+	set guifont=consolas:h15
+	let g:templateDir = tr(g:templateDir, '/', '\')
+	command! -nargs=? ExOpen !start <args>
+endif
+
+"
+" FUNCTIONS
+"
+
 vnoremap <leader>q :<c-u>call Blockseq()<cr>
 function! Blockseq(...)
 	let visualrange = [ getpos("'<")[1], getpos("'>")[1] ]
@@ -128,11 +139,6 @@ endfunction
 
 nnoremap <leader>o :call Openbg()<cr>
 function! Openbg()
-	if has('win32')
-		command! -nargs=? ExOpen !start <args>
-	else
-		command! -nargs=? ExOpen !xdg-open <args> &
-	endif
 	let files = split(glob('%:r*'))
 	call remove(files, index(files, expand('%'))) " Remove current file from list
 	call fzf#run({'source':files, 'sink':'ExOpen'})

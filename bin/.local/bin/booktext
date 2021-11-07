@@ -3,6 +3,7 @@
 while getopts o: flag; do
 	case $flag in
 		o) outfile=$OPTARG;;
+		*) exit 1;;
 	esac
 done
 shift "$((OPTIND - 1))"

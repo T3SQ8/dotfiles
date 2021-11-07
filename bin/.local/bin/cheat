@@ -2,9 +2,11 @@
 
 cd ~/notes/cheatsheets || exit
 
-if [ -e "$1"* ]; then
-	 $EDITOR "$1"*
-else
+if [ "$#" -eq 0 ]; then
 	file=$(fzf)
-	[ -e "$file" ] && $EDITOR "$file"
+	$EDITOR "$file"
 fi
+
+for file do
+	find . -name "$file*" && $EDITOR "$file"*
+done

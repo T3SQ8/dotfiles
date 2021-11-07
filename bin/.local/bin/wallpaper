@@ -1,10 +1,10 @@
 #!/bin/sh
 
-file="$HOME/.local/share/wp"
+current_wp="$HOME/.local/share/wp"
 
-[ -e "$1" ] && {
+for file do
 	res=$(xdpyinfo | awk '/dimensions:/ {print $2}')
-	convert -resize "${res}^" -gravity center -extent "${res}+0+0" "$1" "$file"
-}
+	convert -resize "${res}^" -gravity center -extent "${res}+0+0" "$1" "$current_wp"
+done
 
-display -backdrop -window root "$file"
+display -backdrop -window root "$current_wp"

@@ -8,7 +8,7 @@ if [ -f "$zipfile" ]; then
 	read -r prompt
 	case $prompt in
 		y|Y|yes|Yes|YES) ;;
-		*) continue ;;
+		*) exit ;;
 	esac
 fi
 find "$@" -type f -exec zip -jT "$zipfile" '{}' \+

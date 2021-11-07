@@ -1,6 +1,9 @@
 #!/bin/sh
 
 for input do
-	[ -f "$input" ] && args="-r"
-	qrencode -t ansiutf8 $args "$input"
+	if [ -f "$input" ]; then
+		qrencode -t ansiutf8 -r "$input"
+	else
+		qrencode -t ansiutf8 "$input"
+	fi
 done

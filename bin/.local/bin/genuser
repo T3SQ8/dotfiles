@@ -1,0 +1,4 @@
+#!/bin/sh
+
+printf 'Copied to clipboard: '
+keepassxc-cli diceware -W 2 | tee /dev/tty | xclip -selection clipboard

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for file do
+	ffmpeg -i "$file" -vcodec mpeg4 "${file%.*}-mpeg4.${file##*.}"
+done

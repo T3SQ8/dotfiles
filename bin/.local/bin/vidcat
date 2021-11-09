@@ -1,7 +1,0 @@
-#!/bin/sh
-
-for file do
-	echo "file '$file'"
-done |
-	ffmpeg -y -f concat -protocol_whitelist file,pipe \
-	-i - -c copy "$(date "+%H-%M-%S.${1##*.}")"

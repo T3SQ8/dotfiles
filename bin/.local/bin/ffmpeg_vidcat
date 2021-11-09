@@ -1,0 +1,11 @@
+#!/bin/sh
+
+temp=$(mktemp -p .)
+
+for file do
+	echo "file '$file'" >> "$temp"
+done
+
+ffmpeg -f concat -i "$temp" -c copy "$(date '+%Y%m%dT%H%M%S').${1##*.}"
+
+rm "$temp"

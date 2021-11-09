@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for file do
+	ffmpeg -i "$file" -vf drawbox=color=black:t=fill -c:a copy "${1%.*}-novideo.${1##*.}"
+done

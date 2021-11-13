@@ -1,1 +1,1 @@
-let &makeprg = 'pandoc % -o ' . expand('%:r') . '.html'
+let &makeprg = 'pandoc -s --toc -o ' . expand('%:r') . '.html'

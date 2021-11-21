@@ -4,7 +4,6 @@
 
 filetype indent on
 syntax on
-set foldmethod=marker
 set ignorecase
 set mouse=a
 set notimeout
@@ -19,6 +18,10 @@ autocmd TermOpen * setlocal nonumber norelativenumber
 autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=100, on_visual=false}
 let g:templateDir = stdpath('config') . '/snippet/'
 
+augroup savefolds | autocmd!
+	autocmd BufWinLeave * mkview
+	autocmd BufWinEnter * silent! loadview
+augroup END
 "
 " KEY BINDINGS
 "

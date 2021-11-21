@@ -22,8 +22,6 @@ function! Mkenviroment(pkg)
 	startinsert
 endfunction
 
-setlocal foldmarker=<<<,>>>
-
 vnoremap <leader>b :<c-u>call Visualwrap('\textbf{', '}')<cr>
 
 autocmd BufWritePost *.tex

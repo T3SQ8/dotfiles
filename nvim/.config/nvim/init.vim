@@ -13,15 +13,25 @@ set splitbelow splitright
 set undofile
 set linebreak
 set nojoinspaces
-autocmd QuickFixCmdPre make update
-autocmd TermOpen * setlocal nonumber norelativenumber
-autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=100, on_visual=false}
 let g:templateDir = stdpath('config') . '/snippet/'
 
 augroup savefolds | autocmd!
 	autocmd BufWinLeave * mkview
 	autocmd BufWinEnter * silent! loadview
 augroup END
+
+augroup compilers | autocmd!
+	autocmd QuickFixCmdPre make update
+augroup END
+
+augroup textyank | autocmd!
+	autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=100, on_visual=false}
+augroup END
+
+augroup termconf | autocmd!
+	autocmd TermOpen * setlocal nonumber norelativenumber
+augroup END
+
 "
 " KEY BINDINGS
 "
@@ -100,7 +110,9 @@ function! Blockseq(...)
 	endfor
 endfunction
 
-autocmd BufNewFile * call Template()
+augroup template | autocmd!
+	autocmd BufNewFile * call Template()
+augroup END
 function! Template()
 	let templatefile = g:templateDir . "skeleton." . &filetype
 	if filereadable(templatefile)

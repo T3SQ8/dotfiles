@@ -24,11 +24,6 @@ endfunction
 
 vnoremap <leader>b :<c-u>call Visualwrap('\textbf{', '}')<cr>
 
-autocmd BufWritePost *.tex
-			\ if search("[‘’\"“”]", 'n') |
-			\ echoerr "File contains improper quotation" |
-			\ endif
-
 if search('\s\+%\s*xelatex$')
 	let b:tex_flavor = 'latexmk -g -cd -xelatex'
 elseif search('\s\+%\s*lualatex$')

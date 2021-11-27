@@ -1,0 +1,12 @@
+#!/bin/sh
+
+while getopts c:P: flag; do
+	case $flag in
+		c) zip=$OPTARG;;
+		P) threads=$OPTARG;;
+		*) echo "$USAGE"; exit 1;;
+	esac
+done
+shift "$((OPTIND - 1))"
+
+echo "$@" | xargs -rn 1 -P "${threads:=0}" ${zip:=gzip}

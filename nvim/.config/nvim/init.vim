@@ -12,7 +12,6 @@ set number relativenumber
 set splitbelow splitright
 set undofile
 set linebreak
-set nojoinspaces
 let g:templateDir = stdpath('config') . '/snippet/'
 
 augroup savefolds | autocmd!
@@ -41,14 +40,6 @@ let mapleader=" "
 vnoremap <c-c> "+y
 nnoremap <c-a> ggVG
 inoremap <expr> <c-v> getreg('+')
-nnoremap Y y$
-" Switching splits/files
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
-nnoremap <c-n> :next<cr>
-nnoremap <c-p> :previous<cr>
 " Command-line/terminal
 command! Q quit
 command! W write
@@ -59,7 +50,6 @@ nnoremap <leader>t :execute winheight(0)/3 "split +terminal"<cr>
 command! -nargs=? ExOpen !xdg-open <args> &
 " Mics
 nnoremap <s-q> <nop>
-nnoremap <leader>n :nohlsearch<cr>
 nnoremap <leader>c :make %<cr>
 nnoremap <C-LeftMouse> <LeftMouse>.
 nnoremap <leader>x /<++><cr>"_ca<
@@ -68,6 +58,8 @@ nnoremap <leader>i :call fzf#run({'source':split(globpath(g:templateDir,
 			\ '*.' . &filetype)), 'sink':'r'})<cr>
 nnoremap m ]sz=
 nnoremap M [sz=
+nnoremap <c-n> :next<cr>
+nnoremap <c-p> :previous<cr>
 
 "
 " WINDOWS

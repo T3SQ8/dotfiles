@@ -12,10 +12,11 @@ set number relativenumber
 set splitbelow splitright
 set undofile
 set linebreak
+set viewoptions-=cursor
 let g:templateDir = stdpath('config') . '/snippet/'
 
 augroup savefolds | autocmd!
-	autocmd BufWinLeave * mkview
+	autocmd BufWinLeave * silent! mkview
 	autocmd BufWinEnter * silent! loadview
 augroup END
 

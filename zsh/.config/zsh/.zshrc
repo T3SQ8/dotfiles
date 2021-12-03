@@ -41,6 +41,9 @@ alias \
 	du='du -h --apparent-size' \
 	grep='grep --color' \
 	wget='wget --hsts-file=' \
+	gzip='gzip -v' \
+	xz='xz -v' \
+	wownerod='wownerod --data-dir ~/.local/share/wownerod' \
 	monerod='monerod --data-dir ~/.local/share/bitmonero'
 
 # Git aliases

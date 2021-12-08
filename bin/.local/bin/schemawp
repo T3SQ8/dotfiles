@@ -1,0 +1,10 @@
+#!/bin/sh
+
+background="black"
+resolution="1440x2960"
+
+for file do
+	convert -density 1200 -channel RGB -negate "$file" -resize \
+		"$resolution" -background "$background" -gravity center \
+		-extent "$resolution" "${file%%.*}-phonewp.png"
+done

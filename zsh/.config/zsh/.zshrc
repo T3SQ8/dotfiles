@@ -43,6 +43,7 @@ alias \
 	wget='wget --hsts-file=' \
 	gzip='gzip -v' \
 	xz='xz -v' \
+	rsync='rsync -rP' \
 	wownerod='wownerod --data-dir ~/.local/share/wownerod' \
 	monerod='monerod --data-dir ~/.local/share/bitmonero'
 

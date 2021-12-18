@@ -1,0 +1,6 @@
+\DeclareCiteCommand{\bciteonline}[]{}{\printfield[citetitle]{labeltitle} (\printlist{organization})}{}{}
+\DeclareCiteCommand{\cciteonline}[]{}{\printfield[citetitle]{labeltitle} (\printlist{organization}\setunit{\addcomma\space}\usebibmacro{url+urldate})}{}{}
+\DeclareCiteCommand{\bciteorganization}[]{}{\printlist{organization}}{}{}
+\DeclareCiteCommand{\cciteorganization}[]{}{\printlist{organization} (\usebibmacro{url+urldate})}{}{}
+\DeclareCiteCommand{\bcitearticle}[]{}{\printfield[citetitle]{labeltitle} (\printlist{publisher}\setunit{\addcomma\space}\usebibmacro{date})}{}{}
+\DeclareCiteCommand{\bcitebook}[]{}{\printfield[citetitle]{labeltitle} (\printlist{publisher}\setunit{\addcomma\space}\printfield{year})}{}{}

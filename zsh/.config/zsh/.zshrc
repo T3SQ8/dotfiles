@@ -37,7 +37,7 @@ alias \
 	ls='ls --color=auto' \
 	cp='cp -v' \
 	mv='mv -v' \
-	rm='rm -v' \
+	rm='trash' \
 	du='du -h --apparent-size' \
 	grep='grep --color' \
 	wget='wget --hsts-file=' \

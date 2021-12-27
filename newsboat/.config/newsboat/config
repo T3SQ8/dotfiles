@@ -8,6 +8,7 @@ unbind-key ,
 bind-key SPACE macro-prefix
 bind-key I open-all-unread-in-browser
 bind-key H toggle-show-read-feeds
+bind-key c rev-sort
 
 browser "openfeed-default"
 macro a set browser "openfeed-audio" ; open-in-browser ; set browser "openfeed-default"

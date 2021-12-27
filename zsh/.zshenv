@@ -3,7 +3,6 @@ export \
 	EDITOR="nvim" \
 	TERMINAL="st" \
 	PATH="$PATH:$HOME/.local/bin" \
-	SDCV_PAGER="less -r"
 
 # HOME cleanup
 export \

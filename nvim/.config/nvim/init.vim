@@ -135,10 +135,10 @@ endfunction
 nnoremap <leader>l :call Spellcycle()<cr>
 function! Spellcycle(...)
 	execute {
-			\ '0en': 'set spell spelllang=en',
-			\ '0sv': 'set spell spelllang=en',
-			\ '1en': 'set spell spelllang=sv',
-			\ '1sv': 'set nospell'
+			\ '0en': 'setlocal spell spelllang=en',
+			\ '0sv': 'setlocal spell spelllang=en',
+			\ '1en': 'setlocal spell spelllang=sv',
+			\ '1sv': 'setlocal nospell'
 			\ }[&spell . &spelllang]
 	if &spell
 		echo &spelllang

@@ -17,6 +17,7 @@ macro b set browser "openfeed-browser" ; open-in-browser ; set browser "openfeed
 macro v set browser "openfeed-video" ; open-in-browser ; set browser "openfeed-default"
 macro q set browser "openfeed-qr" ; open-in-browser ; set browser "openfeed-default"
 macro d set browser "openfeed-download" ; open-in-browser ; set browser "openfeed-default"
+confirm-mark-feed-read false
 
 reload-threads 2
 highlight feedlist "-----(.*)-----" red default bold

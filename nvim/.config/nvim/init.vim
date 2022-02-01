@@ -12,8 +12,9 @@ set number relativenumber
 set splitbelow splitright
 set undofile
 set linebreak
-set viewoptions-=cursor
+set viewoptions=folds,options,cursor
 let g:templateDir = stdpath('config') . '/snippet/'
+let g:tex_flavor = "latex"
 
 augroup savefolds | autocmd!
 	autocmd BufWinLeave * silent! mkview

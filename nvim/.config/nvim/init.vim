@@ -12,7 +12,6 @@ set number relativenumber
 set splitbelow splitright
 set undofile
 set linebreak
-set viewoptions=folds,options,cursor
 let g:templateDir = stdpath('config') . '/snippet/'
 let g:tex_flavor = "latex"
 

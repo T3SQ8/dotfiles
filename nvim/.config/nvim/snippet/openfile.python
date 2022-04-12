@@ -1,2 +1,2 @@
-with open(file) as f:
-    data = f.read()
+with open(infile, encoding='utf-8') as infile:
+    data = infile.read()

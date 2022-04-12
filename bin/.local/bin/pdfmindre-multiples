@@ -1,0 +1,12 @@
+#!/bin/bash
+
+configuration=('screen' 'ebook' 'printer' 'prepress' 'default')
+
+for file do
+	for i in "${configuration[@]}"; do
+		root="${file%%.*}"
+		extention="${file#*.}"
+		gs -sDEVICE=pdfwrite -dPDFSETTINGS="/$i" -dNOPAUSE \
+			-dBATCH -sOutputFile="${root}-${i}.${extention}" "$file"
+	done
+done

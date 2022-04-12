@@ -42,6 +42,7 @@ alias \
 	grep='grep --color' \
 	wget='wget --hsts-file=' \
 	gzip='gzip -v' \
+	gunzip='gunzip -v' \
 	xz='xz -v' \
 	rsync='rsync -rP' \
 	wownerod='wownerod --data-dir ~/.local/share/wownerod' \

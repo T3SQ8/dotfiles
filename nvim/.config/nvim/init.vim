@@ -12,6 +12,9 @@ set number relativenumber
 set splitbelow splitright
 set undofile
 set linebreak
+set textwidth=80
+set colorcolumn=+1
+highlight ColorColumn ctermbg=darkgray
 let g:templateDir = stdpath('config') . '/snippet/'
 let g:tex_flavor = "latex"
 

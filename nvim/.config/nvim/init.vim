@@ -54,7 +54,7 @@ nnoremap <leader>t :execute winheight(0)/3 "split +terminal"<cr>
 command! -nargs=? ExOpen !xdg-open <args> &
 " Mics
 nnoremap <s-q> <nop>
-nnoremap <leader>c :make %<cr>
+nnoremap <leader>c :execute 'make' shellescape(expand('%'))<cr>
 nnoremap <C-LeftMouse> <LeftMouse>.
 nnoremap <leader>x /<++><cr>"_ca<
 nnoremap <leader>w :setlocal wrap!<cr>

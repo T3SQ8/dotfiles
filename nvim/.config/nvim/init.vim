@@ -72,7 +72,6 @@ nnoremap <c-p> :previous<cr>
 if has('win32')
 	call plug#begin()
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'OmniSharp/omnisharp-vim'
 	call plug#end()
 	colorscheme nord
 	set guifont=consolas:h15

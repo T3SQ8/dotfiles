@@ -1,1 +1,1 @@
-let &makeprg = 'pandoc -s --toc -o ' . expand('%:r') . '.html'
+let &makeprg = 'pandoc --pdf-engine=xelatex -o ' . shellescape(expand('%:r') . '.pdf')

@@ -70,6 +70,7 @@ nnoremap <c-p> :previous<cr>
 "
 
 if has('win32')
+	set shellslash
 	colorscheme nord
 	set guifont=consolas:h15
 	let g:templateDir = tr(g:templateDir, '/', '\')

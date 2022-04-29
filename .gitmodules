@@ -7,3 +7,6 @@
 [submodule "nvim/.config/nvim/pack/plugins/start/vim-rec"]
 	path = nvim/.config/nvim/pack/plugins/start/vim-rec
 	url = https://github.com/zaid/vim-rec
+[submodule "nvim/.config/nvim/pack/plugins/start/fzf"]
+	path = nvim/.config/nvim/pack/plugins/start/fzf
+	url = https://github.com/junegunn/fzf

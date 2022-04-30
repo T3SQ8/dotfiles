@@ -14,9 +14,11 @@ set undofile
 set linebreak
 set textwidth=80
 set colorcolumn=+1
+set viewoptions-=folds
 highlight ColorColumn ctermbg=darkgray
 let g:templateDir = stdpath('config') . '/snippet/'
 let g:tex_flavor = "latex"
+let g:markdown_folding = 1
 
 augroup savefolds | autocmd!
 	autocmd BufWinLeave * silent! mkview

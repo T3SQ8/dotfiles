@@ -10,3 +10,6 @@
 [submodule "nvim/.config/nvim/pack/plugins/start/fzf"]
 	path = nvim/.config/nvim/pack/plugins/start/fzf
 	url = https://github.com/junegunn/fzf
+[submodule "nvim/.config/nvim/pack/plugins/start/vim-ledger"]
+	path = nvim/.config/nvim/pack/plugins/start/vim-ledger
+	url = git@github.com:ledger/vim-ledger.git

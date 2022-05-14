@@ -1,0 +1,4 @@
+#!/bin/sh
+
+find .config/nvim/*/plugins/ -type d -name 'doc' \
+	-execdir nvim '+helptags doc | qall' \;

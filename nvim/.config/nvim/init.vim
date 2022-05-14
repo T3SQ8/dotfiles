@@ -46,7 +46,7 @@ let mapleader=" "
 " Clipboard
 vnoremap <c-c> "+y
 nnoremap <c-a> ggVG
-inoremap <expr> <c-v> getreg('+')
+inoremap <c-v> <c-o>:set paste<cr><c-r>+<c-o>:set nopaste<cr>
 " Command-line/terminal
 command! Q quit
 command! W write

@@ -153,3 +153,34 @@ function! Openbg()
 	call remove(files, index(files, expand('%'))) " Remove current file from list
 	call fzf#run({'source':files, 'sink':'ExOpen'})
 endfunction
+
+"
+" VIMWIKI
+"
+
+let g:vimwiki_hl_headers = 1            " Highlight headers with =Reddish=, ==Greenish==, ===Blueish=== colors.
+let g:vimwiki_hl_cb_checked = 2         " Highlight checked list items with a special color.
+let g:vimwiki_global_ext = 0            " Control the creation of vimwiki-temporary-wikis.
+let g:vimwiki_html_header_numbering = 1 " Auto-numbered headers in HTML.
+"let g:vimwiki_conceal_pre = 1          " Conceal preformatted text markers.
+
+let g:vimwiki_key_mappings = {
+			\   'all_maps':       1,
+			\   'global':         1,
+			\   'headers':        1,
+			\   'text_objs':      0,
+			\   'table_format':   0,
+			\   'table_mappings': 0,
+			\   'lists':          0,
+			\   'links':          1,
+			\   'html':           0,
+			\   'mouse':          0,
+			\ }
+
+let g:vimwiki_list = [{
+			\ 'path':             '~/notes/',
+			\ 'path_html':        '/tmp/vimwiki_html',
+			\ 'auto_toc':         1,
+			\ 'auto_diary_index': 1,
+			\ }]
+			"\ 'links_space_char': '_',

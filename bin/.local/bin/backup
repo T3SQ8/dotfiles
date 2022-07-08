@@ -15,8 +15,8 @@ ignorelist="$HOME/.local/backups-ignore"
 pacman -Qqe > "$pkglist"
 
 tar -cvzX "$ignorelist" "$HOME" |
-	tee "$localfile" |
 	gpg -c |
+	tee "$localfile.gpg" |
 	rclone rcat "$rclonermt:$rmtfile"
 
-md5sum "$localfile" >> "$sumfile"
+md5sum "$localfile.gpg" >> "$sumfile"

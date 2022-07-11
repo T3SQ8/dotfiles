@@ -1,5 +1,0 @@
-#!/bin/sh
-
-for file do
-	$BROWSER "http://redump.org/discs/quicksearch/$(md5sum "$file" | cut -f1 -d' ')"
-done

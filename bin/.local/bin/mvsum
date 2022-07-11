@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Rename files into their checksum
+
 for file do
 	ext=${file#*.}
 	sum=$(md5sum "$file" | cut -d' ' -f1)

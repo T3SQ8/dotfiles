@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Lists a month forward and back from today with week and day numbers
+
 today=$(date '+%F')
 format="+%F v%W %A"
 reach=30

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Set file as wallpaper
+
 current_wp="$HOME/.local/share/wp"
 
 for file do

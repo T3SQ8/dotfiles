@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Compress pdf files
+
 for file do
 	out="${file%%.*}.min.${file#*.}"
 	[ -f "$out" ] && { echo "'$out' already exists"; continue ;}

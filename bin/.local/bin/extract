@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Extract certain files from an archive
+
 for archive do
 	bsdtar -tf "$archive" | fzf -m | sed "s/'/\\\\'/g" | xargs -rI{} bsdtar -xvf "$archive" '{}'
 done

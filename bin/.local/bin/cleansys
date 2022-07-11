@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Preform system maintenance
+
 [ "$(whoami)" != "root" ] && { echo "Need root privileges"; exit ;}
 
 pacman -Qi pacman-contrib > /dev/null || exit

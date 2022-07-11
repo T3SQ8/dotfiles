@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Recover a file previously removed from git
+
 file=$(git log --diff-filter=D --summary | awk '/delete/ {print $4}' | fzf)
 githash=$(git log -1 --pretty="%H" -- "$file")
 

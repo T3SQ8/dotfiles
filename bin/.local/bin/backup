@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Backup home directory into an encrypted tarball locally and onto the cloud
+
 bkpdir="backups"
 rclonermt="Google-Drive-Personal"
 

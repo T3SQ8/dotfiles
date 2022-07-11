@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Archive multiple directories using multiple threads
+
 while getopts c:P: flag; do
 	case $flag in
 		c) zip=$OPTARG;;

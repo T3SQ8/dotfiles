@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Phone wallpaper script
+
 background="black"
 resolution="1440x2960"
 

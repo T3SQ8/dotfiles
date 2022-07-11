@@ -1,3 +1,5 @@
 #!/bin/sh
 
+# Copy QR-codes into the clipboard
+
 import PNG:- | zbarimg --raw -q - | xclip -selection c

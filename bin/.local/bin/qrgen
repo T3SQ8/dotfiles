@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Copy QR-codes into the clipboard
+
 for input do
 	if [ -f "$input" ]; then
 		qrencode -t ansiutf8 -r "$input"

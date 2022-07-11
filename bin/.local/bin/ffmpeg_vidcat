@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Concatenate videos
+
 temp=$(mktemp -p .)
 
 for file do

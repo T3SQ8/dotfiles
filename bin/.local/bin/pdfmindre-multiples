@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Compress pdf files
+
 configuration=('screen' 'ebook' 'printer' 'prepress' 'default')
 
 for file do

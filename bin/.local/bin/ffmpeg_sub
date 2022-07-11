@@ -1,3 +1,5 @@
 #!/bin/sh
 
+# Add subtitles to video
+
 ffmpeg -i "$1" -vf subtitles="$2" "${1%.*}-subs.${1##*.}"

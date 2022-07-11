@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Change X keyboard language
+
 case "$(setxkbmap -query | awk '/layout:/ {print $2}')" in
 	se) lang="ar" ;;
 	ar) lang="se" ;;

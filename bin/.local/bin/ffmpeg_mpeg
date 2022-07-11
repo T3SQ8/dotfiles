@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Convert video codec to mpeg4
+
 for file do
 	ffmpeg -i "$file" -vcodec mpeg4 "${file%.*}-mpeg4.${file##*.}"
 done

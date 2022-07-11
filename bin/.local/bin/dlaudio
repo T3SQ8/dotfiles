@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Download audio using youtube-dl
+
 for url do
 	youtube-dl -xf bestaudio "$url"
 done

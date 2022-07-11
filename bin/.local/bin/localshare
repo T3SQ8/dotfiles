@@ -1,4 +1,6 @@
 #!/bin/sh
 
+# Share current directory to the local network
+
 ip -o a | awk '/\sinet\s/ && $2!="lo" {print $4}'
 python -m http.server

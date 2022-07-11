@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Device mounting script
+
 [ "$(whoami)" != "root" ] && { echo "Root privileges needed"; exit ;}
 
 alias \

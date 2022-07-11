@@ -1,4 +1,6 @@
 #!/bin/sh
 
+# Split video into segments
+
 ffmpeg -i "$1" -c copy -map 0 -segment_time "$2" -f segment \
 	-reset_timestamps 1 "${1%.*}-split%03d.${1##*.}"

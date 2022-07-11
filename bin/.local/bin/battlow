@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Give a warning notification when the battery is reaching a critical level
+
 while true; do
 	sleep 10
 	read -r capacity < /sys/class/power_supply/BAT0/capacity

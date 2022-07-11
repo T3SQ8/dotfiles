@@ -1,3 +1,5 @@
 #!/bin/sh
 
+# Copy text into the clipboard
+
 import PNG:- | tesseract -l swe - - | xclip -selection c

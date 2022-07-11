@@ -1,3 +1,5 @@
 #!/bin/sh
 
+# Record the screen
+
 ffmpeg -f x11grab -i :0.0 "$(date '+%Y%m%dT%H%M%S').mp4"

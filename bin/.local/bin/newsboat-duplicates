@@ -2,4 +2,4 @@
 
 # Find duplicate newsboat urls
 
-sed 's/^#//;/^$/d;/^-----/d;s/#\s[a-zA-Z]\+$//' .config/newsboat/urls | sort | uniq -d | less
+sed 's/^#//;/^$/d;/^-----/d;s/#\s[a-zA-Z]\+$//' ~/.config/newsboat/urls | sort | uniq -d | less

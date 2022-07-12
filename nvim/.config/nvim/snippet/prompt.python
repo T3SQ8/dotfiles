@@ -1,0 +1,3 @@
+proceed = input('Do you want to continue? [y/N] ')
+if proceed.lower() in ['y', 'yes']:
+    pass

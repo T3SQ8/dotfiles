@@ -1,0 +1,1 @@
+x = True if y < 3 else False

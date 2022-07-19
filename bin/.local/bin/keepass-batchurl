@@ -1,0 +1,36 @@
+#!/bin/sh
+
+keepass='keepassxc-cli'
+
+for database do
+	if [ ! "$password" ]; then
+		printf 'Enter your password: '
+		read -r password
+	fi
+
+	while true; do
+		printf 'Enter a search query: '
+		read -r query
+
+		entries=$(echo "$password" |
+			$keepass search "$database" "$query" |
+			tee '/dev/stderr')
+
+		printf 'Do you want to change the entries above? [Y/n] '
+		read -r prompt
+
+		case $prompt in
+			n|N|no|No|NO) continue ;;
+			*) break ;;
+		esac
+	done
+
+	printf 'Change URL to: '
+	read -r url
+	
+	echo "$entries" |
+		while read -r entry; do
+			echo "$password" | $keepass edit \
+				--url "$url" "$database" "$entry"
+		done
+done

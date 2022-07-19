@@ -58,6 +58,7 @@ command! -nargs=? ExOpen !xdg-open <args> &
 " Mics
 nnoremap <s-q> <nop>
 nnoremap <leader>c :execute 'make' shellescape(expand('%'))<cr>
+nnoremap <leader>C :execute '!' shellescape(expand('%:p'))<cr>
 nnoremap <C-LeftMouse> <LeftMouse>.
 nnoremap <leader>x /<++><cr>"_ca<
 nnoremap <leader>w :setlocal wrap!<cr>

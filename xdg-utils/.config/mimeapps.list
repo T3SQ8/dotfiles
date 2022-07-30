@@ -1,0 +1,22 @@
+[Default Applications]
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/ftp=firefox.desktop
+x-scheme-handler/chrome=chromium.desktop
+text/html=firefox.desktop
+
+image/png=sxiv.desktop
+image/jpg=sxiv.desktop
+image/jpeg=sxiv.desktop
+image/svg+xml=sxiv.desktop
+image/gif=sxiv.desktop
+image/webp=sxiv.desktop
+
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
+
+text/plain=nvim.desktop
+inode/x-empty=nvim.desktop
+
+video/mp4=mpv.desktop
+
+# vim: ft=dosini

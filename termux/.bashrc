@@ -1,1 +1,2 @@
-cd /storage/emulated/0
+EDITOR=nvim
+alias e="$EDITOR"

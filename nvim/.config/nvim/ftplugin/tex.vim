@@ -24,11 +24,12 @@ endfunction
 
 vnoremap <leader>b :<c-u>call Visualwrap('\textbf{', '}')<cr>
 
+let tex_cmd = 'mkdir -p build && cd build && latexmk -g ../*.tex'
 if search('\s\+%\s*xelatex$')
-	let b:tex_flavor = 'latexmk -g -cd -xelatex'
+	let b:tex_flavor = tex_cmd . ' -xelatex'
 elseif search('\s\+%\s*lualatex$')
-	let b:tex_flavor = 'latexmk -g -cd -lualatex'
+	let b:tex_flavor = tex_cmd . ' -lualatex'
 else
-	let b:tex_flavor = 'latexmk -g -cd -pdf'
+	let b:tex_flavor = tex_cmd . ' -pdf'
 endif
 compiler tex

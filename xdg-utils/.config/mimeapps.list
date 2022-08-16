@@ -11,6 +11,9 @@ image/jpeg=sxiv.desktop
 image/svg+xml=sxiv.desktop
 image/gif=sxiv.desktop
 image/webp=sxiv.desktop
+image/bmp=sxiv.desktop
+image/vnd.microsoft.icon=sxiv.desktop
+image/tiff=sxiv.desktop
 
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
 

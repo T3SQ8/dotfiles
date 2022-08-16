@@ -2,19 +2,4 @@
 
 # Lists a month forward and back from today with week and day numbers
 
-today=$(date '+%F')
-format="+%F v%W %A"
-reach=30
-
-{
-	for i in $(seq "$reach" -1 1); do
-		date -d "${today}-${i}day" "$format"
-	done
-
-	printf '\t'
-	date -d "${today}" "$format"
-
-	for i in $(seq "$reach"); do
-		date -d "${today}+${i}day" "$format"
-	done
-} | less
+gcal -s monday -K .

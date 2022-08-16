@@ -1,1 +1,4 @@
 set hidden
+map i $sxiv -o "$f"
+map f $pcmanfm "$PWD"
+map D $trash "$f"

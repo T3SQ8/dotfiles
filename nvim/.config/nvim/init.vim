@@ -16,6 +16,7 @@ set textwidth=80
 set colorcolumn=+1
 set viewoptions-=folds
 set formatoptions-=t
+set nofoldenable
 highlight ColorColumn ctermbg=darkgray
 let g:templateDir = stdpath('config') . '/snippet/'
 let g:tex_flavor = "latex"

@@ -11,4 +11,4 @@ while getopts c:P: flag; do
 done
 shift "$((OPTIND - 1))"
 
-echo "$@" | xargs -rn 1 -P "${threads:=0}" ${zip:=gzip}
+printf '%s\n' "$@" | xargs -r -I{} -P "${threads:=0}" ${zip:=gzip} '{}'

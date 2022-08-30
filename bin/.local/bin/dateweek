@@ -2,4 +2,4 @@
 
 # Lists a month forward and back from today with week and day numbers
 
-gcal -s monday -K .
+cal -mw3

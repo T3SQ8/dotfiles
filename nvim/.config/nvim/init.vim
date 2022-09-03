@@ -19,7 +19,6 @@ set formatoptions-=t
 set nofoldenable
 highlight ColorColumn ctermbg=darkgray
 let g:templateDir = stdpath('config') . '/snippet/'
-let g:tex_flavor = "latex"
 let g:markdown_folding = 1
 
 augroup savefolds | autocmd!

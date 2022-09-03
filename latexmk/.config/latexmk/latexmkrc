@@ -1,0 +1,6 @@
+$out_dir = 'build';
+$pdf_mode = 1; # pdflatex=1, lualatex=4, xelatex=5
+$go_mode = 1;
+$do_cd = 1;
+
+# vim: ft=perl

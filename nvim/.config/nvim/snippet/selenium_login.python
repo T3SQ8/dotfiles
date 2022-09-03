@@ -1,0 +1,9 @@
+driver.get('https://www.example.com/login')
+
+username = driver.find_element(By.ID, "username")
+password = driver.find_element(By.ID, "password")
+
+username.send_keys("MyUsername")
+password.send_keys("MyPassword")
+
+driver.find_element_by_name("submit").click()

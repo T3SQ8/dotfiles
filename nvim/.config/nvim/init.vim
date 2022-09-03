@@ -17,9 +17,9 @@ set colorcolumn=+1
 set viewoptions-=folds
 set formatoptions-=t
 set nofoldenable
+let &backupskip = &backupskip . ',' . escape(expand('$HOME'), '\') .. '/skolarbete/*'
 highlight ColorColumn ctermbg=darkgray
 let g:templateDir = stdpath('config') . '/snippet/'
-let g:markdown_folding = 1
 
 augroup savefolds | autocmd!
 	autocmd BufWinLeave * silent! mkview
@@ -57,7 +57,7 @@ nnoremap <leader>t :execute winheight(0)/3 "split +terminal"<cr>
 command! -nargs=? ExOpen !xdg-open <args> &
 " Mics
 nnoremap <s-q> <nop>
-nnoremap <leader>c :execute 'make' shellescape(expand('%'))<cr>
+nnoremap <leader>c :execute 'make'<cr>
 nnoremap <leader>C :execute '!' shellescape(expand('%:p'))<cr>
 nnoremap <C-LeftMouse> <LeftMouse>.
 nnoremap <leader>x /<++><cr>"_ca<
@@ -68,6 +68,7 @@ nnoremap m ]sz=
 nnoremap M [sz=
 nnoremap <c-n> :next<cr>
 nnoremap <c-p> :previous<cr>
+vnoremap <C-r> "ay:%s/<C-r>a//g<left><left>
 
 "
 " WINDOWS

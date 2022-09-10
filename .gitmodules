@@ -13,3 +13,6 @@
 [submodule "nvim/.config/nvim/pack/plugins/start/vim-ledger"]
 	path = nvim/.config/nvim/pack/plugins/start/vim-ledger
 	url = https://github.com/ledger/vim-ledger.git
+[submodule "nvim/.config/nvim/pack/plugins/start/org.vim"]
+	path = nvim/.config/nvim/pack/plugins/start/org.vim
+	url = https://github.com/axvr/org.vim.git

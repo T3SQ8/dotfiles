@@ -1,0 +1,76 @@
+#!/usr/bin/env python
+
+import json
+from urllib.request import urlopen
+import re
+from datetime import datetime
+from email import utils
+
+def vsco_fetch_data(link):
+    with urlopen(link, timeout=3) as webpage:
+        for line in webpage:
+            if b'__PRELOADED_STATE__' in line:
+                line = re.search(b'__PRELOADED_STATE__ = (.+)</script>', line).group(1)
+                json_data = json.loads(line)
+    json_data = json_data['entities']['images']
+    #print(json.dumps(json_data, indent=4)) # For debugging
+    return json_data
+
+def rfc_date(ts):
+    ts = datetime.fromtimestamp(ts / 1000)
+    ts = utils.format_datetime(ts)
+    return ts
+
+def gen_rss_items(json_data):
+    items = ''
+    for image in json_data:
+        # TODO entities other than images???
+        title = json_data[image]['description']
+        link = json_data[image]['permalink']
+        guid = json_data[image]['id']
+        date = rfc_date(json_data[image]['uploadDate'])
+        items += f'''
+        <item>
+            <title>{title}</title>
+            <link>{link}</link>
+            <pubDate>{date}</pubDate>
+            <guid>{guid}</guid>
+        </item>
+        '''
+    return items
+
+def gen_rss_feed(title, link, description, data):
+    return f'''
+    <?xml version="1.0" encoding="UTF-8"?>
+    <rss version="2.0">
+    <channel>
+    <title>{title}</title>
+    <link>{link}</link>
+    <description>{description}</description>
+    {data}
+    </channel>
+    </rss>
+    '''
+
+def main(usernames, output=None):
+    for username in usernames:
+        link = f'https://vsco.co/{username}'
+        json_data = vsco_fetch_data(link)
+        data = gen_rss_items(json_data)
+        data = gen_rss_feed(f'{username} on VSCO', link, f'RSS feed for {username}', data)
+
+    if output is not None:
+        with open(output, 'w', encoding='utf-8') as file:
+            file.write(data)
+    else:
+        print(data)
+
+if __name__ == '__main__':
+    import argparse
+
+    parser = argparse.ArgumentParser(description='Generate RSS feeds for VSCO profiles.')
+    parser.add_argument('usernames', default='/dev/stdin', nargs='*', metavar='USERNAME',
+            help='Usernames to generate feeds from. Reads STDIN if no positional argument is provided.')
+    parser.add_argument('-o', '--output', help='Output file. (Defaults to STDOUT)')
+    args = parser.parse_args()
+    main(args.usernames, args.output)

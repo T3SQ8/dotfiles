@@ -3,19 +3,24 @@
 # DWM panel script
 
 {
-	# Uptime
-	echo " 💻"
-	uptime --pretty | cut -d' ' -f2-
+	echo ""
+
+	## Uptime
+	#echo "💻"
+	#uptime --pretty | cut -d' ' -f2-
 
 	# Date
-	date "+🗓️ %b %d 🕒 %H:%M"
+	date "+🗓️ %b %d 🕒 %R"
 
 	# Volume
-	pamixer --get-volume-human |
-		awk '
-		{print}
-		BEGIN {print "🔊"}
-		'
+	pamixer --get-volume --get-mute |
+		awk '{
+			if ($1 == "true")
+				print "📳"
+			else
+				print "🔊"
+			print $2 "%"
+		}'
 
 	# Network
 	awk '

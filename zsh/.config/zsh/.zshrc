@@ -44,9 +44,7 @@ alias \
 	gzip='gzip -v' \
 	gunzip='gunzip -v' \
 	xz='xz -v' \
-	rsync='rsync -rP' \
-	wownerod='wownerod --data-dir ~/.local/share/wownerod' \
-	monerod='monerod --data-dir ~/.local/share/bitmonero'
+	rsync='rsync -rP'
 
 # Git aliases
 alias \

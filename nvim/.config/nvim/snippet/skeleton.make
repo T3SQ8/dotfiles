@@ -1,14 +1,21 @@
-TEX = pdflatex -output-directory $(@D)
-BIB = biber
+OUTDIR = build/
+TEXFLAGS = -outdir=$(OUTDIR) -xelatex -cd -g
+TEX = latexmk $(TEXFLAGS)
+MARKDOWNFLAGS = --pdf-engine=xelatex
+MARKDOWN = pandoc $(MARKDOWNFLAGS)
 
-all: $(patsubst %.tex,%.pdf,$(wildcard *.tex))
+all: \
+	$(OUTDIR)$(patsubst %.tex,%.pdf,$(wildcard *.tex)) \
+	$(OUTDIR)$(patsubst %.md,%.pdf,$(wildcard *.md))
+	@mkdir -p $(OUTDIR)
 
-%.pdf: %.tex
+$(OUTDIR)%.pdf: %.tex
 	$(TEX) $<
-	-[ -f $*.bib ] && $(BIB) $* && $(TEX) $<
-	$(TEX) $<
+
+$(OUTDIR)%.pdf: %.md
+	$(MARKDOWN) $< -o $@
 
 clean:
-	-rm -- *.log *.toc *.aux *.bbl *.bcf *.out *.blg *.run.xml
+	$(TEX) -C
 
 .PHONY: clean

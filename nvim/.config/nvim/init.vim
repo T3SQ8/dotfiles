@@ -57,7 +57,7 @@ nnoremap <leader>t :execute winheight(0)/3 "split +terminal"<cr>
 command! -nargs=? ExOpen !xdg-open <args> &
 " Mics
 nnoremap <s-q> <nop>
-nnoremap <leader>c :execute 'make'<cr>
+nnoremap <leader>c :make<cr>
 nnoremap <leader>C :execute '!' shellescape(expand('%:p'))<cr>
 nnoremap <C-LeftMouse> <LeftMouse>.
 nnoremap <leader>x /<++><cr>"_ca<
@@ -151,7 +151,5 @@ endfunction
 
 nnoremap <leader>o :call Openbg()<cr>
 function! Openbg()
-	let files = split(glob('%:r*'))
-	call remove(files, index(files, expand('%'))) " Remove current file from list
-	call fzf#run({'source':files, 'sink':'ExOpen'})
+	call fzf#run({'source':'find -iname "'.expand('%:r').'.*"', 'sink':'ExOpen'})
 endfunction

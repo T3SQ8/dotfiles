@@ -12,13 +12,26 @@ sumfile="checksums.md5"
 pkglist="$HOME/.local/installed-packages"
 ignorelist="$HOME/.local/backups-ignore"
 
-[ "${PWD##*/}" != "$bkpdir" ] && { echo "Wrong directory"; exit 1 ;}
+if [ "${PWD##*/}" != "$bkpdir" ]; then
+	printf 'Not in "%s" directory. Do you want to backup to the cloud only? [y/N] ' \
+		"$bkpdir"
+	read -r cloud_only
+	case $cloud_only in
+		y|Y|yes|Yes|YES) cloud_only=1 ;;
+		*) exit 1 ;;
+	esac
+fi
 
 pacman -Qqe > "$pkglist"
 
-tar -cvzX "$ignorelist" "$HOME" |
-	gpg -c |
-	tee "$localfile.gpg" |
-	rclone rcat "$rclonermt:$rmtfile"
-
-md5sum "$localfile.gpg" >> "$sumfile"
+if [ $cloud_only ]; then
+	tar -cvzX "$ignorelist" "$HOME" |
+		gpg -c |
+		rclone rcat "$rclonermt:$rmtfile"
+else
+	tar -cvzX "$ignorelist" "$HOME" |
+		gpg -c |
+		tee "$localfile.gpg" |
+		rclone rcat "$rclonermt:$rmtfile"
+	md5sum "$localfile.gpg" >> "$sumfile"
+fi

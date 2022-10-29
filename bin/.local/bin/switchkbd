@@ -7,4 +7,4 @@ case "$(setxkbmap -query | awk '/layout:/ {print $2}')" in
 	ar) lang="se" ;;
 esac
 
-setxkbmap "$lang" && notify-send -t 1000 "Layout changed to $lang" 
+setxkbmap "$lang" && notify-send -t 1000 "Layout changed to $lang"

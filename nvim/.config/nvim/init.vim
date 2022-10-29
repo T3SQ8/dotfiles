@@ -17,6 +17,8 @@ set colorcolumn=+1
 set viewoptions-=folds
 set formatoptions-=t
 set nofoldenable
+set mousemodel=
+"set spell
 let &backupskip = &backupskip . ',' . escape(expand('$HOME'), '\') .. '/skolarbete/*'
 highlight ColorColumn ctermbg=darkgray
 let g:templateDir = stdpath('config') . '/snippet/'
@@ -68,7 +70,7 @@ nnoremap m ]sz=
 nnoremap M [sz=
 nnoremap <c-n> :next<cr>
 nnoremap <c-p> :previous<cr>
-vnoremap <C-r> "ay:%s/<C-r>a//g<left><left>
+vnoremap <C-r> "ay:%s/\<<C-r>a\>//g<left><left>
 
 "
 " WINDOWS

@@ -14,8 +14,10 @@ image/webp=sxiv.desktop
 image/bmp=sxiv.desktop
 image/vnd.microsoft.icon=sxiv.desktop
 image/tiff=sxiv.desktop
+image/heic=sxiv.desktop
 
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
+message/rfc822=chromium.desktop
 
 text/plain=nvim.desktop
 inode/x-empty=nvim.desktop

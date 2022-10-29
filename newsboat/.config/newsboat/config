@@ -20,5 +20,5 @@ macro q set browser "openfeed-qr" ; open-in-browser ; set browser "openfeed-defa
 macro d set browser "openfeed-download" ; open-in-browser ; set browser "openfeed-default"
 confirm-mark-feed-read false
 
-reload-threads 2
+#reload-threads 2
 highlight feedlist "-----(.*)-----" red default bold

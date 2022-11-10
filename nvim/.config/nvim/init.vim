@@ -45,10 +45,16 @@ augroup END
 "
 
 let mapleader=" "
+
 " Clipboard
 vnoremap <c-c> "+y
 nnoremap <c-a> ggVG
 inoremap <c-v> <c-o>:set paste<cr><c-r>+<c-o>:set nopaste<cr>
+
+" Mouse
+nnoremap <C-LeftMouse> <LeftMouse>.
+noremap <MiddleMouse> <Nop>
+
 " Command-line/terminal
 command! Q quit
 command! W write
@@ -57,20 +63,20 @@ command! Wq wq
 tnoremap <Esc> <C-\><C-n>
 nnoremap <leader>t :execute winheight(0)/3 "split +terminal"<cr>
 command! -nargs=? ExOpen !xdg-open <args> &
+
 " Mics
 nnoremap <s-q> <nop>
-nnoremap <leader>c :make<cr>
+nnoremap <leader>c :make!<cr>
 nnoremap <leader>C :execute '!' shellescape(expand('%:p'))<cr>
-nnoremap <C-LeftMouse> <LeftMouse>.
 nnoremap <leader>x /<++><cr>"_ca<
 nnoremap <leader>w :setlocal wrap!<cr>
-nnoremap <leader>i :call fzf#run({'source':split(globpath(g:templateDir,
-			\ '*.' . &filetype)), 'sink':'r'})<cr>
 nnoremap m ]sz=
 nnoremap M [sz=
 nnoremap <c-n> :next<cr>
 nnoremap <c-p> :previous<cr>
 vnoremap <C-r> "ay:%s/\<<C-r>a\>//g<left><left>
+nnoremap <leader>i :call fzf#run({'source':split(globpath(g:templateDir,
+			\ '*.' . &filetype)), 'sink':'r'})<cr>
 
 "
 " WINDOWS
@@ -79,8 +85,9 @@ vnoremap <C-r> "ay:%s/\<<C-r>a\>//g<left><left>
 if has('win32')
 	colorscheme nord
 	set guifont=consolas:h15
-	let g:templateDir = tr(g:templateDir, '/', '\')
+	"let g:templateDir = tr(g:templateDir, '/', '\')
 	command! -nargs=? ExOpen !start <args>
+	let &shell='"C:\Program Files\Git\usr\bin\sh"'
 endif
 
 "

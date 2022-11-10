@@ -7,6 +7,8 @@ MARKDOWN = pandoc $(MARKDOWNFLAGS)
 all: \
 	$(OUTDIR)$(patsubst %.tex,%.pdf,$(wildcard *.tex)) \
 	$(OUTDIR)$(patsubst %.md,%.pdf,$(wildcard *.md))
+
+$(OUTDIR):
 	@mkdir -p $(OUTDIR)
 
 $(OUTDIR)%.pdf: %.tex

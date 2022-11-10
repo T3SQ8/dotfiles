@@ -1,0 +1,30 @@
+#!/bin/sh
+
+extreme() {
+	echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo
+	echo 0 | tee /sys/devices/system/cpu/cpu*/online
+	cpupower frequency-set -g powersave -d 0.8G -u 0.9G
+}
+
+disable() {
+	echo 0 > /sys/devices/system/cpu/intel_pstate/no_turbo
+	echo 1 | tee /sys/devices/system/cpu/cpu*/online
+	cpupower frequency-set -g schedutil
+}
+
+light() {
+	disable
+	echo 0 | tee /sys/devices/system/cpu/cpu*/online
+	echo 1 > /sys/devices/system/cpu/cpu1/online
+	cpupower frequency-set -g powersave
+}
+
+case "$1" in
+	e) extreme ;;
+	d) disable ;;
+	l) light ;;
+	m) minimal ;;
+	*) echo "No changes made" ; exit 1 ;;
+esac
+
+cpupower frequency-info

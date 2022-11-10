@@ -1,0 +1,12 @@
+#!/bin/sh
+
+INDEX_PHP="$HOME/repos/rss-bridge/index.php"
+
+while getopts b: flag; do
+	case $flag in
+		b) bridge=$OPTARG;;
+	esac
+done
+shift "$((OPTIND - 1))"
+
+php "$INDEX_PHP" action=display bridge="$bridge" format=Atom $@

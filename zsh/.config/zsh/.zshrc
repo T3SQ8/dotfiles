@@ -38,12 +38,12 @@ alias \
 	cp='cp -v' \
 	mv='mv -v' \
 	rm='trash' \
-	du='du -h --apparent-size' \
 	grep='grep --color' \
 	wget='wget --hsts-file=' \
 	gzip='gzip -v' \
 	gunzip='gunzip -v' \
 	xz='xz -v' \
+	pacs='sudo pacman -S' \
 	rsync='rsync -rP'
 
 # Git aliases

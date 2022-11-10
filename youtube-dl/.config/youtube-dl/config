@@ -1,5 +1,5 @@
 #--ignore-errors
 --add-metadata
---write-thumbnail
+#--write-thumbnail
 
 #--format '(bestvideo+bestaudio/best)[protocol^=http]'

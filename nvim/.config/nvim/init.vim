@@ -18,10 +18,13 @@ set viewoptions-=folds
 set formatoptions-=t
 set nofoldenable
 set mousemodel=
-"set spell
+set spell spelllang=
 let &backupskip = &backupskip . ',' . escape(expand('$HOME'), '\') .. '/skolarbete/*'
-highlight ColorColumn ctermbg=darkgray
 let g:templateDir = stdpath('config') . '/snippet/'
+
+highlight clear SpellBad
+highlight link SpellBad DiagnosticError
+highlight ColorColumn ctermbg=darkgray
 
 augroup savefolds | autocmd!
 	autocmd BufWinLeave * silent! mkview
@@ -147,15 +150,13 @@ endfunction
 
 nnoremap <leader>l :call Spellcycle()<cr>
 function! Spellcycle(...)
+	set spell
 	execute {
-			\ '0en': 'setlocal spell spelllang=en',
-			\ '0sv': 'setlocal spell spelllang=en',
-			\ '1en': 'setlocal spell spelllang=sv',
-			\ '1sv': 'setlocal nospell'
-			\ }[&spell . &spelllang]
-	if &spell
-		echo &spelllang
-	endif
+			\ '': 'setlocal spelllang=en',
+			\ 'en': 'setlocal spelllang=sv',
+			\ 'sv': 'setlocal spelllang='
+			\ }[&spelllang]
+	echo "spell:" &spell "spelllang:" &spelllang
 endfunction
 
 nnoremap <leader>o :call Openbg()<cr>

@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Forked from https://github.com/newsboat/newsboat/blob/master/contrib/urls-maintenance.sh
+
+shuf "${urls_file:-$HOME/.config/newsboat/urls}" |
+	while read -r url; do
+		echo "$url" | grep -q '^\s*#' && continue
+		echo "$url" | grep -q '^\s*$' && continue
+		echo "$url" | grep -q '^\s*-----' && continue
+
+		execurl=$(echo "$url" | sed -n "s/^[\"']\?exec:\([^\"']\+\)[\"']\?/\1/p")
+		if [ "$execurl" ] ; then
+			$execurl > /dev/null 2>&1 || echo "$url"
+		else
+			response=$(curl -so /dev/null -w "%{http_code}" --connect-timeout 10 "$url")
+			case "$response" in
+				200)
+					;;
+				429) # TODO redo the same url before moving on.
+					echo "Sending requests too quickly, waiting before continuing. $url"
+					#sleep 60
+					;;
+				*)
+					echo "$url" # TODO function to deal with flagged urls
+					;;
+			esac
+		fi
+	done

@@ -9,3 +9,4 @@ function! Mkenviroment(pkg)
 endfunction
 
 vnoremap <leader>b :<c-u>call Visualwrap('\textbf{', '}')<cr>
+nnoremap <leader>c :make!<cr>

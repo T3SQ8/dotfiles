@@ -66,7 +66,7 @@ command! -nargs=? ExOpen !xdg-open <args> &
 
 " Mics
 nnoremap <s-q> <nop>
-nnoremap <leader>c :make!<cr>
+nnoremap <leader>c :make %<cr>
 nnoremap <leader>C :execute '!' shellescape(expand('%:p'))<cr>
 nnoremap <leader>x /<++><cr>"_ca<
 nnoremap <leader>w :setlocal wrap!<cr>

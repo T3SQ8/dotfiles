@@ -1,4 +1,6 @@
 OUTDIR = build/
+IMGDIR = images/
+IMGCONV = convert
 TEXFLAGS = -outdir=$(OUTDIR) -xelatex -cd -g
 TEX = latexmk $(TEXFLAGS)
 MARKDOWNFLAGS = --pdf-engine=xelatex
@@ -19,5 +21,15 @@ $(OUTDIR)%.pdf: %.md
 
 clean:
 	$(TEX) -C
+
+images: \
+	$(patsubst %.jpg,%.webp,$(wildcard $(IMGDIR)*.jpg)) \
+	$(patsubst %.jpeg,%.webp,$(wildcard $(IMGDIR)*.jpeg)) \
+	$(patsubst %.png,%.webp,$(wildcard $(IMGDIR)*.png))
+
+$(IMGDIR)%.webp:
+	#$(eval base := $(wildcard $(basename $@).*))
+	#$(IMGCONV) $(base) $@
+	#mv $(base) $(base).bak
 
 .PHONY: clean

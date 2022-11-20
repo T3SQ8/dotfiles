@@ -1,3 +1,5 @@
+setlocal spelllang=sv
+
 nnoremap <buffer> <leader>b :call Mkenviroment('')<left><left>
 function! Mkenviroment(pkg)
 	call append('.', [

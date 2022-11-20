@@ -1,3 +1,4 @@
+setlocal spelllang=en
 let g:markdown_folding = 1
 
 highlight Title cterm=bold

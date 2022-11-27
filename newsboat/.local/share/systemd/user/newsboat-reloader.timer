@@ -1,0 +1,10 @@
+[Unit]
+Description=Newsboat Reloader Timer
+
+[Timer]
+#RandomizedDelaySec=60m
+OnCalendar=18:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

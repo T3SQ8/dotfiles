@@ -3,14 +3,14 @@
 # DWM panel script
 
 {
-	echo ""
-
 	## Uptime
 	#echo "💻"
 	#uptime --pretty | cut -d' ' -f2-
 
+
 	# Date
-	date "+🗓️ %b %d 🕒 %R"
+	date "+ %b %d %R"
+	echo ";"
 
 	# Volume
 	pamixer --get-volume --get-mute |

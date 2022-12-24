@@ -1,4 +1,17 @@
 "
+" PLUGINS
+"
+
+call plug#begin()
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'freitass/todo.txt-vim'
+Plug 'zaid/vim-rec'
+Plug 'ledger/vim-ledger'
+Plug 'axvr/org.vim'
+call plug#end()
+
+"
 " SETTINGS
 "
 

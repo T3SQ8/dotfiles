@@ -9,7 +9,11 @@ Plug 'freitass/todo.txt-vim'
 Plug 'zaid/vim-rec'
 Plug 'ledger/vim-ledger'
 Plug 'axvr/org.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 call plug#end()
+
+let g:limelight_conceal_ctermfg = 'gray'
 
 "
 " SETTINGS
@@ -93,6 +97,7 @@ nnoremap <c-p> :previous<cr>
 vnoremap <C-r> "ay:%s/\<<C-r>a\>//g<left><left>
 nnoremap <leader>i :call fzf#run({'source':split(globpath(g:templateDir,
 			\ '*.' . &filetype)), 'sink':'r'})<cr>
+nnoremap <leader>f :Goyo \| Limelight<cr>
 
 "
 " WINDOWS

@@ -11,4 +11,5 @@ function! Mkenviroment(pkg)
 endfunction
 
 vnoremap <leader>b :<c-u>call Visualwrap('\textbf{', '}')<cr>
+vnoremap <leader>i :<c-u>call Visualwrap('\textit{', '}')<cr>
 nnoremap <leader>c :make!<cr>

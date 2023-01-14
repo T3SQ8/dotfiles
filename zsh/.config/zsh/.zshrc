@@ -5,7 +5,7 @@ zle -N edit-command-line
 zmodload zsh/complist
 
 # Options
-setopt nohup autocd autopushd nolistambiguous nocheckrunningjobs
+setopt nohup autocd autopushd nolistambiguous nocheckrunningjobs completealiases
 export SAVEHIST=10000
 export HISTSIZE=$SAVEHIST
 

@@ -1,11 +1,45 @@
 #!/bin/sh
 
-# Copy QR-codes into the clipboard
+# Generate QR-codes
+
+USAGE='
+qrgen [-g] [INPUT]
+qrgen -h
+
+INPUT
+	Can be text or file name. STDIN read if not specified.
+-g
+	Force usage of GUI.
+-h
+	Print help message.
+'
+
+while getopts gh flag; do
+	case $flag in
+		g) force_gui=1;;
+		h|*) echo "$USAGE"; exit 1;;
+	esac
+done
+shift "$((OPTIND - 1))"
+
+if [ $# -eq 0 ] ; then
+	set -- "$(xclip -o -selection clipboard)"
+fi
+
+if [ -t 0 ] && [ ! "$force_gui" ]; then
+	encode() {
+		qrencode -t ansiutf8 "$@"
+	}
+else
+	encode() {
+		qrencode -s 7 -o - "$@" | convert - show:
+	}
+fi
 
 for input do
 	if [ -f "$input" ]; then
-		qrencode -t ansiutf8 -r "$input"
+		encode -r "$input"
 	else
-		qrencode -t ansiutf8 "$input"
+		encode "$input"
 	fi
 done

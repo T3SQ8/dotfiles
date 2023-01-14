@@ -1,10 +1,5 @@
 #!/bin/sh
 
 for url do
-	if [ "$DISPLAY" ]; then
-		qrencode -s 7 -o - "$url" | convert - show:
-	else
-		qrencode -t ansiutf8 "$url"
-		read -r _
-	fi
+	qrgen -g "$url"
 done

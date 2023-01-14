@@ -44,6 +44,7 @@ alias \
 	gunzip='gunzip -v' \
 	xz='xz -v' \
 	pacs='sudo pacman -S' \
+	lf='ranger' \
 	rsync='rsync -rP'
 
 # Git aliases

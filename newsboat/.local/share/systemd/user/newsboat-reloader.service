@@ -3,3 +3,4 @@ Description=Newsboat Reloader
 
 [Service]
 ExecStart=/usr/bin/newsboat -x reload
+Environment=PATH=/home/musse/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

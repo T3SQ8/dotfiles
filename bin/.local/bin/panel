@@ -16,7 +16,7 @@
 	pamixer --get-volume --get-mute |
 		awk '{
 			if ($1 == "true")
-				print "📳"
+				print ""
 			else
 				print "🔊"
 			print $2 "%"

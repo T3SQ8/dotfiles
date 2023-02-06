@@ -32,7 +32,7 @@ set linebreak
 set textwidth=80
 set colorcolumn=+1
 set viewoptions-=folds
-set formatoptions-=t
+set formatoptions-=tc
 set nofoldenable
 set mousemodel=
 set spell spelllang=

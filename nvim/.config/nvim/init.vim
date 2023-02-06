@@ -97,7 +97,6 @@ nnoremap <c-p> :previous<cr>
 vnoremap <C-r> "ay:%s/\<<C-r>a\>//g<left><left>
 nnoremap <leader>i :call fzf#run({'source':split(globpath(g:templateDir,
 			\ '*.' . &filetype)), 'sink':'r'})<cr>
-nnoremap <leader>f :Goyo \| Limelight<cr>
 
 "
 " WINDOWS
@@ -180,4 +179,17 @@ endfunction
 nnoremap <leader>o :call Openbg()<cr>
 function! Openbg()
 	call fzf#run({'source':'find -iname "'.expand('%:r').'.*"', 'sink':'ExOpen'})
+endfunction
+
+nnoremap <leader>f :call Focus()<cr>
+function! Focus()
+	if exists("g:focus")
+		Goyo!
+		Limelight!
+		unlet g:focus
+	else
+		Goyo
+		Limelight
+		let g:focus = 1
+	endif
 endfunction

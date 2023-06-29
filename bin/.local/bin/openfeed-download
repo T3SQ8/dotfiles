@@ -1,6 +1,0 @@
-#!/bin/sh
-
-for url do
-	youtube-dl -qo "$HOME/Downloads/%(title)s-%(id)s.%(ext)s" "$url" &
-	notify-send "Video downloading"
-done

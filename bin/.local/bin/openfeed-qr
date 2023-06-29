@@ -1,5 +1,0 @@
-#!/bin/sh
-
-for url do
-	qrgen -g "$url"
-done

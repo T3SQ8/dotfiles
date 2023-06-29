@@ -1,5 +1,0 @@
-#!/bin/sh
-
-for url do
-	$BROWSER "$url" > /dev/null 2>&1 &
-done

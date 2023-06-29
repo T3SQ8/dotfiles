@@ -1,3 +1,13 @@
+cleanup-on-quit no
+#reload-threads 2
+highlight feedlist "-----(.*)-----" red default bold
+
+browser "openfeed"
+macro b set browser "openfeed -b" ; open-in-browser ; set browser "openfeed"
+macro q set browser "openfeed -q" ; open-in-browser ; set browser "openfeed"
+confirm-mark-feed-read false
+
+
 bind-key j down
 bind-key k up
 bind-key l open
@@ -11,15 +21,3 @@ bind-key H toggle-show-read-feeds
 bind-key c sort
 bind-key C rev-sort
 unbind-key R
-
-browser "openfeed-default"
-macro a set browser "openfeed-audio" ; open-in-browser ; set browser "openfeed-default"
-macro p set browser "openfeed-preview" ; open-in-browser ; set browser "openfeed-default"
-macro b set browser "openfeed-browser" ; open-in-browser ; set browser "openfeed-default"
-macro v set browser "openfeed-video" ; open-in-browser ; set browser "openfeed-default"
-macro q set browser "openfeed-qr" ; open-in-browser ; set browser "openfeed-default"
-macro d set browser "openfeed-download" ; open-in-browser ; set browser "openfeed-default"
-confirm-mark-feed-read false
-
-#reload-threads 2
-highlight feedlist "-----(.*)-----" red default bold

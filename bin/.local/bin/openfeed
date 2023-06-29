@@ -1,0 +1,56 @@
+#!/bin/sh
+
+_chromium() {
+	chromium "$@" > /dev/null 2>&1 &
+}
+
+_mpv_audio() {
+	$TERMINAL -e mpv --no-video "$url" &
+}
+
+_mpv() {
+	thumbnail="$(yt-dlp --write-thumbnail --skip-download -o "$(mktemp -u)" "$url" | awk '/Writing video thumbnail/ {print $NF}')"
+	mpv --no-terminal "$thumbnail" "$url" & notify-send "Sent to mpv"
+}
+
+_browser() {
+	$BROWSER "$@" > /dev/null 2>&1 &
+}
+
+_ytdl() {
+	youtube-dl -qo "$HOME/Downloads/%(title)s-%(id)s.%(ext)s" "$url" 2>&1 &
+	notify-send "Video downloading"
+}
+
+_qrgen() {
+	qrgen -g "$url"
+}
+
+while getopts qb flag; do
+	case $flag in
+		q) qr=1;;
+		b) browser=1;;
+		*) echo "$USAGE"; exit 1;;
+	esac
+done
+shift "$((OPTIND - 1))"
+
+for url do
+	if [ "$qr" ]; then
+		_qrgen "$url"
+	elif [ "$browser" ]; then
+		_browser "$url"
+	else
+		case $url in
+			*instagram.com/*)
+				_chromium "$url"
+				;;
+			*youtube.com/*|*odysee.com/*)
+				_mpv "$url"
+				;;
+			*)
+				_browser "$url"
+				;;
+		esac
+	fi
+done

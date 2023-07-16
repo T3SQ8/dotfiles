@@ -1,7 +1,0 @@
-#!/bin/sh
-
-sshd
-whoami
-ip a | awk '/wlan0/ && /inet/ {print $2}'
-echo "port 8022"
-read -r _

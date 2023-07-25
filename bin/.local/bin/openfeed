@@ -13,12 +13,17 @@ _mpv() {
 	mpv --no-terminal "$thumbnail" "$url" & notify-send "Sent to mpv"
 }
 
+_mpv_nothumb() {
+	mpv --no-terminal "$url" & notify-send "Sent to mpv"
+}
+
+
 _browser() {
 	$BROWSER "$@" > /dev/null 2>&1 &
 }
 
 _ytdl() {
-	youtube-dl -qo "$HOME/Downloads/%(title)s-%(id)s.%(ext)s" "$url" 2>&1 &
+	yt-dlp -qo "$HOME/Downloads/%(title)s-%(id)s.%(ext)s" "$url" 2>&1 &
 	notify-send "Video downloading"
 }
 
@@ -26,10 +31,22 @@ _qrgen() {
 	qrgen -g "$url"
 }
 
-while getopts qb flag; do
+_watch_later() {
+	title=$(yt-dlp --get-filename --skip-download -o "%(title)s" "$url" | tr '[' '(' | tr ']' ')')
+	echo "* TODO [[$url][$title]]" >> ~/notes/todos/watch_later.org
+	notify-send "Added \"$title\" to watch later"
+}
+
+_dlaudio() {
+	yt-dlp -xf bestaudio "$url"
+}
+
+while getopts aqbw flag; do
 	case $flag in
+		a) audio=1;;
 		q) qr=1;;
 		b) browser=1;;
+		w) watch_later=1;;
 		*) echo "$USAGE"; exit 1;;
 	esac
 done
@@ -40,13 +57,26 @@ for url do
 		_qrgen "$url"
 	elif [ "$browser" ]; then
 		_browser "$url"
+	elif [ "$watch_later" ]; then
+		_watch_later "$url"
+	elif [ "$audio" ]; then
+		_dlaudio "$url"
 	else
 		case $url in
 			*instagram.com/*)
 				_chromium "$url"
 				;;
+			*.youtube.com/channel/*)
+				_mpv_nothumb "$url"
+				;;
 			*youtube.com/*|*odysee.com/*)
 				_mpv "$url"
+				;;
+			*proxitok.*|*tiktok.com/*)
+				_chromium "$url"
+				;;
+			*facebook.com/*)
+				_chromium "$url"
 				;;
 			*)
 				_browser "$url"

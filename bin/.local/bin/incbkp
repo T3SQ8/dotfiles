@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-rsync -aAXHP --partial --info=progress2 --delete \
-	--exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} \
-	"$1" "$2"

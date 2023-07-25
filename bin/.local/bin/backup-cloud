@@ -1,0 +1,15 @@
+#!/bin/sh
+
+ignore="/home/musse/.local/backups-ignore"
+rclonermt="gdrive-personal"
+rmtfile="backups.gpg"
+
+pkglist
+
+tar -cvzX "$ignore" "$HOME" |
+	gpg -c |
+	rclone rcat "$rclonermt:$rmtfile"
+
+#rclone -P copy ~/passwords mega-personal:
+#rclone -P copy ~/passwords gdrive-personal:
+#rclone -P copy gdrive-personal:backups.gpg mega-personal:

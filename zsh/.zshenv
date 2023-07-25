@@ -2,6 +2,7 @@ export \
 	BROWSER="firefox" \
 	EDITOR="nvim" \
 	TERMINAL="st" \
+	GTK_THEME="Arc-Dark-solid"
 	PATH="$PATH:$HOME/.local/bin"
 
 export \

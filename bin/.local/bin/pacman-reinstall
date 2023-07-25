@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# Reinstall all packages
-
-pacman -Qqn | pacman -S -

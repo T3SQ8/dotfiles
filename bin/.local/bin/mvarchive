@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# Add files into an archive and remove them
-
-for file do
-	tar -czvf "$file.tar.gz" --remove-files "$file"
-done

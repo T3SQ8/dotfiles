@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # DWM panel script
+# Relies on Font Awesome 6 Pro <https://fontawesome.com/search>
 
 {
 	## Uptime
@@ -11,6 +12,13 @@
 	# Date
 	date "+ %b %d %R"
 	echo ";"
+
+	# Keyboard language
+	command -v xkblayout-state >/dev/null 2>&1 && {
+		echo 
+		xkblayout-state print '%s' | tr '[:lower:]' '[:upper:]'
+		echo ""
+	}
 
 	# Volume
 	pamixer --get-volume --get-mute |

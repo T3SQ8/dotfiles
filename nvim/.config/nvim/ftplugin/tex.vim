@@ -10,6 +10,6 @@ function! Mkenviroment(pkg)
 	startinsert
 endfunction
 
-vnoremap <leader>b :<c-u>call Visualwrap('\textbf{', '}')<cr>
-vnoremap <leader>i :<c-u>call Visualwrap('\textit{', '}')<cr>
+vnoremap <leader>b :Visualwrap \textbf{ }<cr>
+vnoremap <leader>i :Visualwrap \textit{ }<cr>
 nnoremap <leader>c :make!<cr>

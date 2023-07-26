@@ -1,3 +1,0 @@
-import re
-
-re.search('a(.+)b', line).group(1)

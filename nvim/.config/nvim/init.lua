@@ -243,13 +243,6 @@ vim.keymap.set("n", "<Leader>C", function()
     vim.notify(vim.fn.system(vim.fn.shellescape(vim.fn.expand('%:p'))))
 end)
 
-vim.keymap.set("n", "<Leader>i", function()
-    vim.fn['fzf#run']({
-        source = vim.fn.split(vim.fn.globpath(vim.g.templateDir, '*.' .. vim.bo.filetype)),
-        sink = 'r'
-    })
-end)
-
 vim.api.nvim_create_user_command('Open', function(opts)
     local open
     if vim.fn.has('unix') == 1 then

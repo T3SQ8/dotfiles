@@ -1,0 +1,63 @@
+{
+    "skeleton": {
+        "prefix": "skeleton",
+        "body": [
+            "<!DOCTYPE html>",
+            "<html lang=\"$1\">",
+            "\t<head>",
+            "\t\t<meta charset=\"UTF-8\">",
+            "\t\t<link rel=\"stylesheet\" href=\"$2\">",
+            "\t\t<link rel=\"icon\" href=\"${3:/favicon.ico}\">",
+            "\t\t<meta name=\"description\" content=\"$4\">",
+            "\t\t<title>$4</title>",
+            "\t</head>",
+            "\t<body>",
+            "\t$0",
+            "\t</body>",
+            "</html>"
+        ]
+    },
+
+    "a": {
+        "prefix": "a",
+        "body": "<a href=\"$1\" ${2:target=\"_blank\"}>$3</a>"
+    },
+
+    "figure": {
+        "prefix": "figure",
+        "body": [
+            "<figure>",
+            "\t$1",
+            "\t<figcaption>",
+            "\t\t$2",
+            "\t</figcaption>",
+            "</figure>"
+        ]
+    },
+
+    "table": {
+        "prefix": "table",
+        "body": [
+            "<table>",
+            "\t<caption>$1</caption>",
+            "\t<tr>",
+            "\t\t<th>${2:header}</th>",
+            "\t\t<th>${3:header}</th>",
+            "\t\t<th>${4:header}</th>",
+            "\t\t<th>${5:header}</th>",
+            "\t</tr>",
+            "\t<tr>",
+            "\t\t<td>${6:item}</td>",
+            "\t\t<td>${7:item}</td>",
+            "\t\t<td>${8:item}</td>",
+            "\t\t<td>${9:item}</td>",
+            "\t</tr>",
+            "</table>"
+        ]
+    },
+
+    "img": {
+        "prefix": "img",
+        "body": "<img src=\"$1\" alt=\"$2\" class=\"$3\">"
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "skeleton": {
+        "prefix": "skeleton",
+        "body": "#!/usr/bin/awk -f"
+    },
+
+    "error": {
+        "prefix": "error",
+        "body": "print \"Error message!\" > \"/dev/stderr\""
+    },
+
+    "function": {
+        "prefix": "function",
+        "body": "function name(arg1, arg2) {\n\tprint arg1+arg2\n}"
+    }
+}

@@ -1,2 +1,0 @@
-#+TITLE: Title
-#+AUTHOR: John Doe

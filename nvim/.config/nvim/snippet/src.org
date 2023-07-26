@@ -1,4 +1,0 @@
-#+BEGIN_SRC python
-import re
-re.search('a(.+)b', line).group(1)
-#+END_SRC

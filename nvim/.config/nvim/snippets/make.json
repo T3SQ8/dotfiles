@@ -1,0 +1,42 @@
+{
+    "TeX make": {
+        "prefix": "tex_make",
+        "body": [
+            "OUTDIR = build/",
+            "IMGDIR = images/",
+            "IMGCONV = convert",
+            "TEXFLAGS = -outdir=\\$(OUTDIR) -xelatex -cd -g",
+            "TEX = latexmk \\$(TEXFLAGS)",
+            "MARKDOWNFLAGS = --pdf-engine=xelatex",
+            "MARKDOWN = pandoc \\$(MARKDOWNFLAGS)",
+            "",
+            "all: \\",
+            "\t\\$(OUTDIR)\\$(patsubst %.tex,%.pdf,\\$(wildcard *.tex)) \\",
+            "\t\\$(OUTDIR)\\$(patsubst %.md,%.pdf,\\$(wildcard *.md))",
+            "",
+            "\\$(OUTDIR):",
+            "\t@mkdir -p \\$(OUTDIR)",
+            "",
+            "\\$(OUTDIR)%.pdf: %.tex",
+            "\t\\$(TEX) \\$<",
+            "",
+            "\\$(OUTDIR)%.pdf: %.md",
+            "\t\\$(MARKDOWN) \\$< -o \\$@",
+            "",
+            "clean:",
+            "\t\\$(TEX) -C",
+            "",
+            "images: \\",
+            "\t\\$(patsubst %.jpg,%.webp,\\$(wildcard \\$(IMGDIR)*.jpg)) \\",
+            "\t\\$(patsubst %.jpeg,%.webp,\\$(wildcard \\$(IMGDIR)*.jpeg)) \\",
+            "\t\\$(patsubst %.png,%.webp,\\$(wildcard \\$(IMGDIR)*.png))",
+            "",
+            "\\$(IMGDIR)%.webp:",
+            "\t#\\$(eval base := \\$(wildcard \\$(basename \\$@).*))",
+            "\t#\\$(IMGCONV) \\$(base) \\$@",
+            "\t#mv \\$(base) \\$(base).bak",
+            "",
+            ".PHONY: clean"
+        ]
+    }
+}

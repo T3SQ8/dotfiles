@@ -1,0 +1,36 @@
+{
+    "skeleton": {
+        "prefix": "skeleton",
+        "body": [
+            "#+TITLE: Title",
+            "#+AUTHOR: John Doe",
+            "#+FILETAGS: example"
+        ]
+    },
+
+    "src": {
+        "prefix": "src",
+        "body": [
+            "#+BEGIN_SRC python",
+            "import re",
+            "re.search('a(.+)b', line).group(1)",
+            "#+END_SRC"
+        ]
+    },
+
+    "table": {
+        "prefix": "table",
+        "body": [
+            "| Num | Symb  | Meaning            |",
+            "|-----+-------+--------------------|",
+            "| 0   | =---= | Nothing            |",
+            "| 1   | =--x= | Execute            |",
+            "| 2   | =--w= | Write              |",
+            "| 3   | =-wx= | Write/execute      |",
+            "| 4   | =r--= | Read               |",
+            "| 5   | =r-x= | Read/execute       |",
+            "| 6   | =rw-= | Read/write         |",
+            "| 7   | =rwx= | Read/write/execute |"
+        ]
+    }
+}

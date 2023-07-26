@@ -1,0 +1,768 @@
+{
+    "skeleton": {
+        "prefix": "skeleton",
+        "body": [
+            "\\documentclass[12pt, a4paper]{article}",
+            "",
+            "\\usepackage[iso,swedish]{isodate}",
+            "\\usepackage[",
+            "\tmain=english, swedish,",
+            "\t%main=swedish, english,",
+            "]{babel}",
+            "\\usepackage{csquotes}",
+            "\\usepackage[margin=1in]{geometry}",
+            "\\usepackage{parskip}",
+            "\\usepackage[",
+            "\tcolorlinks,",
+            "\tallcolors=black, urlcolor=magenta,",
+            "\t%draft,",
+            "\tlinktocpage,",
+            "]{hyperref}",
+            "",
+            "\\usepackage{array} % Allowing misc. characters in tables",
+            "\\usepackage[",
+            "\t%labelformat=empty,",
+            "\t%font=small,",
+            "]{caption} % Kerning for table/figure captions",
+            "\\usepackage{graphicx}",
+            "\\graphicspath{{images/}{pictures/}{img/}{pics/}}",
+            "\\usepackage{fnpct} % Footnote superscript kerning",
+            "",
+            "\\title{Title}",
+            "\\author{Author}",
+            "\\date{\\today}",
+            "",
+            "\\begin{document}\\maketitle\\tableofcontents",
+            "",
+            "\\end{document}"
+        ]
+    },
+
+    "draft": {
+        "prefix": "draft",
+        "body": [
+            "\\newif\\ifdraft",
+            "\\drafttrue",
+            "",
+            "\\ifdraft",
+            "\\fi"
+        ]
+    },
+
+    "sectsty": {
+        "prefix": "sectsty",
+        "body": [
+            "\\usepackage{sectsty}",
+            "\\sectionfont{\\large\\itshape}"
+        ]
+    },
+
+    "fontspec": {
+        "prefix": "fontspec",
+        "body": [
+            "\\usepackage{fontspec}",
+            "\\setmainfont{Times New Roman}",
+            "\\newfontfamily\\spacefont{[font.ttf]}"
+        ]
+    },
+
+    "hooks": {
+        "prefix": "hooks",
+        "body": [
+            "\\renewcommand{\\thesubsection}{\\thesection\\alph{subsection}} % Alphabetical numbering for subsections",
+            "\\renewcommand{\\thefootnote}{\\roman{footnote}} % Roman numbering for footnotes",
+            "\\AddToHook{cmd/part/before}{\\clearpage}",
+            "\\usepackage{titling}",
+            "\\renewcommand{\\maketitlehooka}{\\ttfamily}"
+        ]
+    },
+
+    "fancyvrb-ex": {
+        "prefix": "fancyvrb-ex",
+        "body": [
+            "\\usepackage{fancyvrb-ex} % Fancy verbatims, usefull for \\SideBySideExample",
+            "\\fvset{",
+                "\tframe=single,",
+                "\tlabel=\\fbox{Source},",
+                "\tframesep=4mm,",
+                "\tnumbers=left,",
+                "}"
+        ]
+    },
+
+    "polyglossia": {
+        "prefix": "polyglossia",
+        "body": [
+            "\\usepackage{polyglossia}",
+            "\\setdefaultlanguage{arabic}",
+            "\\setotherlanguages{english,swedish}",
+            "\\newfontfamily\\arabicfont[Script=Arabic]{Amiri}",
+            "\\newfontfamily\\arabicfont[Script=Arabic]{Noto Naskh Arabic}",
+            "\\newfontfamily\\arabicfont[Script=Arabic]{Reem Kufi}",
+            "\\setotherlanguages{greek}",
+            "\\newfontfamily\\greekfont{GFS Artemisia}"
+        ]
+    },
+
+    "xcolor": {
+        "prefix": "xcolor",
+        "body": [
+            "\\usepackage{xcolor}",
+            "\\definecolor{Mycolor1}{HTML}{FFD700}",
+            "\\colorlet{Mycolor2}{green!10!orange!90!}"
+        ]
+    },
+
+    "tocloft": {
+        "prefix": "tocloft",
+        "body": [
+            "\\usepackage{tocloft}",
+            "\\renewcommand\\cftsecdotsep{\\cftdot}",
+            "\\renewcommand\\cftsubsecdotsep{\\cftdot}",
+            "\\addtocontents{toc}{\\itshape}"
+        ]
+    },
+
+    "ragged2e": {
+        "prefix": ["ragged2e", "onehalfspacing", "doublespacing"],
+        "body": [
+            "\\usepackage[document]{ragged2e}",
+            "\\usepackage[",
+            "\t%doublespacing,",
+            "\tonehalfspacing,",
+            "]{setspace}"
+        ]
+    },
+
+    "siunitx": {
+        "prefix": "siunitx",
+        "body": [
+            "\\usepackage[",
+            "\texponent-product=\\cdot,",
+            "\tper-mode=symbol,",
+            "\tinter-unit-product=,",
+            "\tgroup-digits=false,",
+            "\toutput-product=\\cdot,",
+            "\tmode=match,",
+            "\trange-units=single,",
+            "\trange-phrase={\\$-\\$},",
+            "]{siunitx}"
+        ]
+    },
+
+    "usepackage_circuitikz": {
+        "prefix": "circuitikz",
+        "body": [
+            "\\usepackage[",
+            "\tsiunitx,",
+            "\tnooldvoltagedirection,",
+            "\teuropean,",
+            "]{circuitikz}"
+        ]
+    },
+
+    "eso-pic": {
+        "prefix": ["eso-pic", "background"],
+        "body": [
+            "\\usepackage{eso-pic}",
+            "\\AddToShipoutPictureBG\\AtPageCenter{\\includegraphics[width=3cm]{example-grid-100x100pt}}"
+        ]
+    },
+
+    "adjustbox": {
+        "prefix": "adjustbox",
+        "body": [
+            "\\begin{adjustbox}{width=\\textwidth}",
+            "\t\\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}",
+            "\t\t\\hline",
+            "\t\ttera (T) & giga (G) & mega (M) & kilo (k) & hekto (h) & deka",
+            "\t\t(da) & deci (d) & centi (c) & milli (m) & mikro (µ) & nano (n)",
+            "\t\t& piko (p) & femto (f) \\\\",
+            "\t\t\\$10^{12}\\$ & \\$10^9\\$ & \\$10^6\\$ & \\$10^3\\$ & \\$10^2\\$ & \\$10^1\\$ &",
+            "\t\t\\$10^{-1}\\$ & \\$10^{-2}\\$ & \\$10^{-3}\\$ & \\$10^{-6}\\$ & \\$10^{-9}\\$ &",
+            "\t\t\\$10^{-12}\\$ & \\$10^{-15}\\$ \\\\",
+            "\t\t\\hline",
+            "\t\\end{tabular}",
+            "\\end{adjustbox}"
+        ]
+    },
+
+    "figure": {
+        "prefix": "figure",
+        "body": [
+            "\\begin{figure}[htbp] \\centering",
+            "\t\\includegraphics[height=5cm]{$1}",
+            "\t\\caption{$2 \\footnotemark}",
+            "\t\\label{fig:$3}",
+            "\\end{figure} \\footnotetext{\\fullcite[$4][]{$5}}"
+        ]
+    },
+
+    "circuitikz": {
+        "prefix": "circuitikz",
+        "body": [
+            "\\begin{circuitikz} \\draw",
+            "\t(0,0) to[resistor,l=12<\\ohm>] (5,0)",
+            "\t-- (5,3) to[battery,l=6<\\volt>,invert] (0,3)",
+            "\t-- (0,0) (0,1.5) node[ground,rotate=-90]{}",
+            "\t;",
+            "\\end{circuitikz}"
+        ]
+    },
+
+    "chemfig": {
+        "prefix": "chemfig",
+        "body": [
+            "\\chemfig[atom sep=1.5em]{HO-[1]([2]=O)-[7]O^{-}}",
+            "\\quad",
+            "\\chemfig{Na^{+}}"
+        ]
+    },
+
+    "usepackage_chemmacros": {
+        "prefix": "usepackage_chemmacros",
+        "body": [
+            "\\usepackage{chemmacros} % Drawing reactions",
+            "\\chemsetup{",
+            "\tmodules={redox, reactions},",
+            "\tredox/format=\\textcolor{red},",
+            "\tredox/pos=top,",
+            "\tredox/explicit-sign=true,",
+            "}"
+        ]
+    },
+
+    "chemmacros": {
+        "prefix": "chemmacros",
+        "body": [
+            "\\ch{Ag\\sld{} + H2SO4 -> Ag2SO4 + SO2\\gas{} + H2O}",
+            "",
+            "\\ch {",
+            "\t\"\\ox{0,Ag}\"",
+            "\t+ \"\\ox{+1,H}\" {}2",
+            "\t+ \"\\ox{+6,S}\"",
+            "\t\"\\ox{-2,O4^{2-}}\"",
+            "\t->",
+            "\t\"\\ox{+1,Ag}\" {}2+",
+            "\t+ \"\\ox{+4,S}\" \"\\ox{-2,O4^{-2}}\"",
+            "\t+ \"\\ox{+4,S}\" \"\\ox{-2,O2}\"",
+            "\t+ \"\\ox{+1,H}\" {}2 \"\\ox{-2,O}\"",
+            "}",
+            "",
+            "\\begin{reactions}",
+            "\t\"\\OX{a,\\ox{0,Ag}}\"",
+            "\t+ \"\\OX{c,\\ox{+6,S}}O\" {}4",
+            "\t->",
+            "\t\"\\OX{b,\\ox{1,Ag}}\" {}2",
+            "\t+ \"\\OX{d,\\ox{+4,S}}O\" {}2",
+            "\t\"\\redox(a,b)[->][-1]{+1}\"",
+            "\t\"\\redox(c,d)[->][-1]{-2}\"",
+            "\\end{reactions}"
+        ]
+    },
+
+    "listings": {
+        "prefix": "listings",
+        "body": [
+            "\\lstset{",
+                "\tnumbers=left, numberstyle=\\tiny,",
+                "\tframe=single,",
+                "\tbasicstyle=\\footnotesize\\ttfamily,",
+                "\tlanguage=Tex,",
+                "}"
+        ]
+    },
+
+    "pdfpages": {
+        "prefix": "pdfpages",
+        "body": "\\includepdf[pages=-]{<++>}"
+    },
+
+    "numcases": {
+        "prefix": "numcases",
+        "body": [
+            "\\begin{numcases}{f(x)=}",
+            "\t\\bar x = \\frac{y}{\\bar x} \\label{eqn1} \\\\",
+            "\t\\bar x + 1 = \\frac{y + 47}{\\bar x + 1} \\label{eqn2}",
+            "\\end{numcases}"
+        ]
+    },
+
+    "fancyhdr": {
+        "prefix": "fancyhdr",
+        "body": [
+            "\\usepackage{fancyhdr}",
+            "\\fancyhf{} % Clear page numbering",
+            "\\fancyhead[L]{Section \\thesection}",
+            "\\fancyhead[R]{Part \\thepart}",
+            "\\fancyfoot[R]{Page \\thepage}",
+            "\\pagestyle{fancy}",
+            "\\renewcommand{\\headrulewidth}{1pt}",
+            "\\renewcommand{\\footrulewidth}{1pt}"
+        ]
+    },
+
+    "usepackage_multicol": {
+        "prefix": "usepackage_multicol",
+        "body": [
+            "\\usepackage{multicol}",
+            "\\setlength{\\columnseprule}{1pt}",
+            "\\setlength{\\columnsep}{1cm}"
+        ]
+    },
+
+    "multicol": {
+        "prefix": "multicol",
+        "body": [
+            "\\begin{multicols}{2}[This text is going to be on top of the paragraph.]",
+            "\tThis text is going to be on the left side of the paragraph.",
+            "",
+            "\t\\columnbreak",
+            "",
+            "\tThis text is going to be on the right side of the paragraph.",
+            "\\end{multicols}"
+        ]
+    },
+
+    "itemize": {
+        "prefix": "itemize",
+        "body": [
+            "\\begin{itemize}",
+            "\t\\item This is item 1",
+            "\t\\item This is item 2",
+            "\t\\item This is item 3",
+            "\\end{itemize}"
+        ]
+    },
+
+    "enumerate": {
+        "prefix": "enumerate",
+        "body": [
+            "\\begin{enumerate}",
+            "\t\\item This is item 1",
+            "\t\\item This is item 2",
+            "\t\\item This is item 3",
+            "\\end{enumerate}"
+        ]
+    },
+
+    "tcolorbox": {
+        "prefix": "tcolorbox",
+        "body": [
+            "\\begin{tcolorbox}[title=My nice heading]",
+            "\tThis is another \\textbf{tcolorbox}.",
+            "\t\\tcblower",
+            "\tHere, you see the lower part of the box.",
+            "\\end{tcolorbox}"
+        ]
+    },
+
+    "table": {
+        "prefix": "table",
+        "body": [
+            "\\begin{table}[h] \\centering",
+            "\t\\caption{<++>} \\label{tab:<++>}",
+            "\t\\begin{tabular}{|l|l|l|l|>{\\bfseries}l|}",
+            "\t\t\\hline",
+            "\t\t\\diagbox{Försök}{Grupp} & Grupp 1 & Grupp 2 & Grupp 3 & Kontroll \\\\",
+            "\t\t\\hline",
+            "\t\t\\hline",
+            "\t\tFörsök 1 & 113 & 160 & 110 & 135 \\\\",
+            "\t\t\\hline",
+            "\t\tFörsök 1 & 177 & 141 & 103 & 135 \\\\",
+            "\t\t\\hline",
+            "\t\tFörsök 1 & 102 & 186 & 111 & 135 \\\\",
+            "\t\t\\hline",
+            "\t\t\\hline",
+            "\t\tTotal & 392 & 487 & 324 & 405\\\\",
+            "\t\t\\hline",
+            "\t\\end{tabular}",
+            "\\end{table}"
+        ]
+    },
+
+    "SideBySideExample": {
+        "prefix": "SideBySideExample",
+        "body": [
+            "\\begin{SideBySideExample}[xrightmargin=5cm]",
+            "\t{\\huge \\LaTeX}",
+            "\\end{SideBySideExample}"
+        ]
+    },
+
+    "biblatex": {
+        "prefix": "biblatex",
+        "body": [
+            "\\usepackage[",
+            "\t%sorting=none,",
+            "\tdate=iso, seconds=true, alldates=iso,",
+            "\t%style=apa,",
+            "\t%style=authoryear-ibid,",
+            "\t%style=oxalph,",
+            "\tstyle=oxnotes,",
+            "]{biblatex}",
+            "\\addbibresource{\\jobname.bib}",
+            "\\usepackage{xurl} % Breaks long urls"
+        ]
+    },
+
+    "biblatex_printbibliography": {
+        "prefix": "pgfplot_csv",
+        "body": "\\printbibliography[heading=bibintoc]"
+    },
+
+    "xlop": {
+        "prefix": "xlop",
+        "body": [
+            "\\opadd{45,05}{78,4}",
+            "\\opmul{134}{98}"
+        ]
+    },
+
+    "wrapfigure": {
+        "prefix": "wrapfigure",
+        "body": [
+            "\\begin{wrapfigure}[10]{r}{5.1cm} \\centering",
+            "\t\\includegraphics[height=5cm]{<++>}",
+            "\t\\caption{<++> \\footnotemark}",
+            "\t\\label{fig:<++>}",
+            "\\end{wrapfigure} \\footnotetext{\\fullcite[<++>][]{<++>}}"
+        ]
+    },
+
+    "TikZ trees": {
+        "prefix": "tikz_trees",
+        "body": [
+            "\\begin{tikzpicture}[",
+            "\t\talign=flush center,",
+            "\t\ttext width=5em,",
+            "\t\tevery node/.style={rectangle, draw=black},",
+            "\t\tlevel 1/.append style={sibling distance=22em},",
+            "\t\tlevel 2/.append style={sibling distance=6em},",
+            "\t\t]",
+            "\t\\node{School}",
+            "\t\tchild{node{Biologi}",
+            "\t\t\tchild{node{Ekologi}}",
+            "\t\t\tchild{node{Evolution}}",
+            "\t\t\tchild{node{Genitik}}",
+            "\t\t\tchild{node{Klasisk-genitik}}",
+            "\t\t}",
+            "\t\tchild{node{Kemi}",
+            "\t\t\tchild{node{Bindningar}}",
+            "\t\t\tchild{node{Redox}}",
+            "\t\t\tchild{node{Stokiometri}}",
+            "\t\t}",
+            "\t;",
+            "\\end{tikzpicture}"
+        ]
+    },
+
+    "TikZ shapes": {
+        "prefix": "tikz_shapes",
+        "body": [
+            "\\begin{tikzpicture}",
+            "\t\\draw (0,0) rectangle (3,3);",
+            "\t\\draw (0,0) circle (0.5);",
+            "\t\\draw (0,0) circle[radius=1cm];",
+            "\t\\draw (0,0) arc (0:95:1.5);",
+            "\\end{tikzpicture}"
+        ]
+    },
+
+    "TikZ lines": {
+        "prefix": "tikz_lines",
+        "body": [
+            "\\begin{tikzpicture}",
+            "\t\\coordinate (start) at (0,0);",
+            "\t\\coordinate (end) at (5,0);",
+            "\t\\draw[->, red, thick]",
+            "\tnode[left]{Start} (start) --",
+            "\tnode[below]{Midway} (end) node[right]{End};",
+            "\\end{tikzpicture}"
+        ]
+    },
+
+    "TikZ elevator": {
+        "prefix": "tikz_elevator",
+        "body": [
+            "\\begin{tikzpicture}",
+            "\t\\draw (0,0) rectangle (2,-3);",
+            "\t\\draw[yscale=0.5] (1,0) -- (1,5);",
+            "\t\\draw[yscale=0.5,red,thick,->] (1,3) -- (1,4) node[left,black]{\\$F_a\\$};",
+            "\t\\draw[yscale=0.5,red,thick,->] (1,2) -- (1,1) node[left,black]{\\$F_g\\$};",
+            "\t\\draw (1,-2.8) circle (.2);",
+            "\\end{tikzpicture}"
+        ]
+    },
+
+    "TikZ cornercolor": {
+        "prefix": "tikz_cornercolor",
+        "body": [
+            "\\begin{tikzpicture}[remember picture,overlay]",
+            "\t\\fill[red] (\\$(current page.north east)-(1.5in,1in)\\$) rectangle (\\$(current page.north east)-(0.75in,0in)\\$);",
+            "\t\\node at (\\$(current page.north east)-(1.125in,0.75in)\\$) {\\bfseries\\large\\color{white} 2022};",
+            "\\end{tikzpicture}"
+        ]
+    },
+
+    "TikZ components": {
+        "prefix": "tikz_components",
+        "body": [
+            "\\begin{tikzpicture}",
+            "\t\\coordinate (start) at (0,0);",
+            "\t\\coordinate (yplus) at (0,2);",
+            "\t\\coordinate (yneg) at (0,-2);",
+            "\t\\coordinate (xneg) at (-2,0);",
+            "\t\\coordinate (xplus) at (2,0);",
+            "",
+            "\t\\coordinate (fg) at (1,-1);",
+            "\t\\coordinate (fgx) at (0,-1);",
+            "\t\\node[above] (fn) at (yplus) {\\$F_N\\$};",
+            "\t\\node[left] (ff) at (xneg) {\\$F_f\\$};",
+            "",
+            "\t\\draw[<->] (yneg) -- (yplus);",
+            "\t\\draw[<->] (xneg) -- (xplus);",
+            "\t\\draw[red,->] (start)\t-- node[above,right,black]{\\$F_g\\$}\t(fg);",
+            "\t\\draw[red,->] (fgx)\t-- node[below,black]{\\$F_{gx}\\$}\t\t(fg);",
+            "\t\\draw[red,->] (start)\t-- node[left,black]{\\$F_{gy}\\$}\t\t(fgx);",
+            "",
+            "\t\\pic [\"\\$\\alpha\\$\", draw, angle eccentricity=1.4] {angle = fgx--start--fg};",
+            "\\end{tikzpicture}"
+        ]
+    },
+
+    "Pgfplot csv": {
+        "prefix": "pgfplot_csv",
+        "body": [
+            "\\begin{filecontents*}{data.csv}",
+            "År,Årlig besparing,Kvar på,Total besparning",
+            "1,15588,123215,15588",
+            "2,15978,107237,31566",
+            "3,16419,90817,47985",
+            "4,16873,73945,64858",
+            "5,17338,56606,82196",
+            "6,17817,38789,100013",
+            "7,18308,20481,118321",
+            "8,18813,1668,137134",
+            "\\end{filecontents*}",
+            "",
+            "\\begin{tikzpicture}",
+            "\t\\begin{axis}[",
+            "\t\t\txlabel=År,",
+            "\t\t\tylabel=Svenska Kroner (Tusen),",
+            "\t\t\tlegend pos=south east,",
+            "\t\t\tlegend entries={Skuld, Total besparning},",
+            "\t\t\tgrid style=dashed,",
+            "\t\t\txmajorgrids=true, ymajorgrids=true,",
+            "\t\t\txtick=data,",
+            "\t\t\tymin=0,",
+            "\t\t\taxis lines = left,",
+            "\t\t\ty coord trafo/.code={\\pgfmathparse{\\pgfmathresult/1000}},",
+            "\t\t]",
+            "\t\t\\addplot table[x=År, y=Kvar på, col sep=comma]{Totalbesparning.csv};",
+            "\t\t\\addplot table[x=År, y=Total besparning, col sep=comma]{Totalbesparning.csv};",
+            "\t\\end{axis}",
+            "\\end{tikzpicture}"
+        ]
+    },
+
+    "Pgfplot graph": {
+        "prefix": "pgfplot_graph",
+        "body": [
+            "\\begin{tikzpicture}",
+            "\t\\begin{axis}[",
+            "\t\t\txlabel=Antal häckande storkar,",
+            "\t\t\tylabel=Antal nyfödda barn (tusental),",
+            "\t\t\taxis lines = left,",
+            "\t\t\tlegend pos=south east,",
+            "\t\t\tgrid style=dashed,",
+            "\t\t\tymajorgrids=true,",
+            "\t\t\txmajorgrids=true,",
+            "\t\t\tymin=0,",
+            "\t\t\tlegend entries={Samband, Regression (\\$0.53x+49.88\\$)}",
+            "\t\t\t]",
+            "\t\t\t\\addplot[domain=800:2200,no markers]{0.53*x+49.88};",
+            "\t\t\t\\addplot[only marks,mark=+] coordinates {",
+            "\t\t\t\t(1900,1050)",
+            "\t\t\t\t(1800,1000)",
+            "\t\t\t\t(1610,920)",
+            "\t\t\t\t(1405,825)",
+            "\t\t\t\t(1208,750)",
+            "\t\t\t\t(1200,675)",
+            "\t\t\t\t(1100,620)",
+            "\t\t\t\t(1100,600)",
+            "\t\t\t};",
+            "\t\\end{axis}",
+            "\\end{tikzpicture}"
+        ]
+    },
+
+    "Pgfplot boxplot": {
+        "prefix": "pgfplot_boxplot",
+        "body": [
+            "\\begin{tikzpicture}",
+            "\t\\begin{axis}[",
+            "\t\t\ty=2cm,",
+            "\t\t\taxis y line=none,",
+            "\t\t\txmajorgrids=true,",
+            "\t\t\tlegend entries={Alex, Erik, Maja},",
+            "\t\t\tarea legend,",
+            "\t\t\tlegend pos=north west,",
+            "\t\t\txtick distance=2,",
+            "\t\t]",
+            "\t\t\\addplot+[boxplot] table[y index=0] {",
+            "\t\t\t15",
+            "\t\t\t8",
+            "\t\t\t3",
+            "\t\t\t20",
+            "\t\t\t14",
+            "\t\t\t2",
+            "\t\t\t6",
+            "\t\t\t17",
+            "\t\t\t3",
+            "\t\t\t12",
+            "\t\t};",
+            "",
+            "\t\t\\addplot+[boxplot] table[y index=0] {",
+            "\t\t\t12",
+            "\t\t\t10",
+            "\t\t\t8",
+            "\t\t\t11",
+            "\t\t\t13",
+            "\t\t\t10",
+            "\t\t\t7",
+            "\t\t\t9",
+            "\t\t\t12",
+            "\t\t\t8",
+            "\t\t};",
+            "",
+            "\t\t\\addplot+[boxplot] table {",
+            "\t\t\t2 8",
+            "\t\t\t2 11",
+            "\t\t\t2 9",
+            "\t\t\t1 20",
+            "\t\t\t1 6",
+            "\t\t\t1 13",
+            "\t\t\t1 16",
+            "\t\t\t1 17",
+            "\t\t};",
+            "\t\\end{axis}",
+            "\\end{tikzpicture}"
+        ]
+    },
+
+    "Pgfplot barchart": {
+        "prefix": "pgfplot_barchart",
+        "body": [
+            "\\begin{tikzpicture}",
+            "\t\\begin{axis}[",
+            "\t\t\tybar,",
+            "\t\t\tymin=0, ymax=110,",
+            "\t\t\taxis lines*=left,",
+            "\t\t\tylabel={Tillväxt},",
+            "\t\t\tsymbolic x coords={Sample 1, Sample 2, Sample 3, Sample 4},",
+            "\t\t\txtick=data,",
+            "\t\t\tlegend entries={\\$27.8^\\circ\\$C, \\$35.2^\\circ\\$C},",
+            "\t\t\tlegend pos=outer north east,",
+            "\t\t\tymajorgrids=true,",
+            "\t\t\tnodes near coords={\\pgfmathprintnumber[precision=0]{\\pgfplotspointmeta}}",
+            "\t\t]",
+            "\t\t\\addplot [draw=none,fill=red!30] coordinates {",
+            "\t\t\t(Sample 1, 110)",
+            "\t\t\t(Sample 2, 90)",
+            "\t\t\t(Sample 3, 70)",
+            "\t\t\t(Sample 4, 80)",
+            "\t\t};",
+            "",
+            "\t\t\\addplot [draw=none, fill=green!30] coordinates {",
+            "\t\t\t(Sample 1, 70)",
+            "\t\t\t(Sample 2, 60)",
+            "\t\t\t(Sample 3, 50)",
+            "\t\t\t(Sample 4, 50)",
+            "\t\t};",
+            "\t\\end{axis}",
+            "\\end{tikzpicture}"
+        ]
+    },
+
+    "Labbrapport titelsida": {
+        "prefix": "labbrapport_titelsida",
+        "body": [
+            "\\begin{titlepage}\\makeatletter",
+            "\t\\vspace*{\\fill}",
+            "\t\\centering",
+            "\t{\\huge \\@title}",
+            "\t\\vspace*{\\fill}",
+            "",
+            "\t\\begin{flushright}",
+            "\t\t\\begin{tabular}{ lr }",
+            "\t\t\tKurs:        & Fysik 1  \\\\",
+            "\t\t\tLaborant:    & \\@author \\\\",
+            "\t\t\tMedlaborant: & Tom      \\\\",
+            "\t\t\t             & Dick     \\\\",
+            "\t\t\t             & Harry    \\\\",
+            "\t\t\tKlass:       & 9B       \\\\",
+            "\t\t\tDatum:       & \\@date   \\\\",
+            "\t\t\\end{tabular}",
+            "\t\\end{flushright}",
+            "\\end{titlepage}\\makeatother",
+            "",
+            "\\begin{abstract}",
+            "\t\\LaTeX",
+            "\\end{abstract}",
+            "",
+            "\\newpage\\tableofcontents\\newpage",
+            "",
+            "\\section{Syfte}",
+            "\\subsection{Frågeställning}",
+            "\\section{Teori}",
+            "\\section{Metod}",
+            "\\subsection{Material}",
+            "\\section{Formler}",
+            "\\subsection{Beräkningar}",
+            "\\section{Resultat}",
+            "\\section{Diskussion}",
+            "\\subsection{Analys}",
+            "\\subsection{Slutsats}"
+        ]
+    },
+
+    "Text normal":         { "prefix": "textnormal",   "body": "\\textnormal{$1}" },
+    "Text Emphatic":       { "prefix": "emph",         "body": "\\emph{$1}" },
+    "Text roman":          { "prefix": "textrm",       "body": "\\textrm{$1}" },
+    "Text Sans-Serif":     { "prefix": "textsf",       "body": "\\textsf{$1}" },
+    "Text Teletype":       { "prefix": "texttt",       "body": "\\texttt{$1}" },
+    "Text Upright":        { "prefix": "textup",       "body": "\\textup{$1}" },
+    "Text Italic":         { "prefix": "textit",       "body": "\\textit{$1}" },
+    "Text Slanted":        { "prefix": "textsl",       "body": "\\textsl{$1}" },
+    "Text small Capitals": { "prefix": "textsc",       "body": "\\textsc{$1}" },
+    "Text uppercase":      { "prefix": "uppercase",    "body": "\\uppercase{$1}" },
+    "Text lowercase":      { "prefix": "lowercase",    "body": "\\lowercase{$1}" },
+    "Text bold":           { "prefix": "textbf",       "body": "\\textbf{$1}" },
+    "Text Medium":         { "prefix": "textmd",       "body": "\\textmd{$1}" },
+    "Text light":          { "prefix": "textlf",       "body": "\\textlf{$1}" },
+
+    "normalfont":          { "prefix": "normalfont",   "body": "{\\normalfont $1}" },
+    "em":                  { "prefix": "em",           "body": "{\\em $1}" },
+    "rmfamily":            { "prefix": "rmfamily",     "body": "{\\rmfamily $1}" },
+    "sffamily":            { "prefix": "sffamily",     "body": "{\\sffamily $1}" },
+    "ttfamily":            { "prefix": "ttfamily",     "body": "{\\ttfamily $1}" },
+    "upshape":             { "prefix": "upshape",      "body": "{\\upshape $1}" },
+    "itshape":             { "prefix": "itshape",      "body": "{\\itshape $1}" },
+    "slshape":             { "prefix": "slshape",      "body": "{\\slshape $1}" },
+    "scshape":             { "prefix": "scshape",      "body": "{\\scshape $1}" },
+    "bfseries":            { "prefix": "bfseries",     "body": "{\\bfseries $1}" },
+    "mdseries":            { "prefix": "mdseries",     "body": "{\\mdseries $1}" },
+    "lfseries":            { "prefix": "lfseries",     "body": "{\\lfseries $1}" },
+
+    "tiny":                { "prefix": "tiny",         "body": "{\\tiny $1}" },
+    "scriptsize":          { "prefix": "scriptsize",   "body": "{\\scriptsize $1}" },
+    "footnotesize":        { "prefix": "footnotesize", "body": "{\\footnotesize $1}" },
+    "small":               { "prefix": "small",        "body": "{\\small $1}" },
+    "normalsize":          { "prefix": "normalsize",   "body": "{\\normalsize $1}" },
+    "large":               { "prefix": "large",        "body": "{\\large $1}" },
+    "Large":               { "prefix": "Large",        "body": "{\\Large $1}" },
+    "LARGE":               { "prefix": "LARGE",        "body": "{\\LARGE $1}" },
+    "huge":                { "prefix": "huge",         "body": "{\\huge $1}" },
+    "Huge":                { "prefix": "Huge",         "body": "{\\Huge $1}" }
+}

@@ -1,0 +1,155 @@
+{
+    "skeleton": {
+        "prefix": "skeleton",
+        "body": [
+            "#!/usr/bin/env python",
+            "",
+            "def main():",
+            "\tprint(\"Hello, World!\")",
+            "",
+            "if __name__ == '__main__':",
+            "\tmain()"
+        ]
+    },
+
+    "argparse": {
+        "prefix": "argparse",
+        "body": [
+            "import argparse",
+            "",
+            "parser = argparse.ArgumentParser(description='Visually plot ledger files.')",
+            "parser.add_argument('input_files', default='/dev/stdin', nargs='*', metavar='FILE',",
+            "\thelp='Input file(s). Reads STDIN if no positional argument is provided.')",
+            "parser.add_argument('-t', '--title', help='RSS feed title')",
+            "",
+            "timeframe_arg = parser.add_mutually_exclusive_group()",
+            "timeframe_arg.add_argument('-D', '--daily', dest='timeframe', action='store_const', const='-D',",
+            "\tdefault='-D', # Setting the default value",
+            "\thelp='Group postings by day. (Default)')",
+            "timeframe_arg.add_argument('-W', '--weekly', dest='timeframe', action='store_const', const='-W',",
+            "\thelp='Group postings by week (starting on Sundays).')",
+            "",
+            "args = parser.parse_args()"
+        ]
+    },
+
+    "makedirs": {
+        "prefix": "makedirs",
+        "body": [
+            "for path in '/home/user/notes/test'",
+            "\tparents = os.path.dirname(path)",
+            "\tif parents:",
+            "\t\tos.makedirs(parents, exist_ok=True)"
+        ]
+    },
+
+    "enumerate": {
+        "prefix": "enumerate",
+        "body": [
+            "for i, item in enumerate(my_list):",
+            "\tmy_list[i] = item + 'abc'"
+        ]
+    },
+
+    "json": {
+        "prefix": "json",
+        "body": [
+            "import json",
+            "",
+            "json_data = json.loads(data)",
+            "print(json.dumps(json_data, indent=4)) # For debugging"
+        ]
+    },
+
+    "openfile": {
+        "prefix": "openfile",
+        "body": [
+            "with open(infile, 'r+', encoding='utf-8') as infile:",
+            "\tdata = infile.readlines()"
+        ]
+    },
+
+    "prompt": {
+        "prefix": "prompt",
+        "body": [
+            "proceed = input('Do you want to continue? [y/N] ')",
+            "if proceed.lower() in ['y', 'yes']:",
+            "\tpass"
+        ]
+    },
+
+    "regex": {
+        "prefix": "regex",
+        "body": [
+            "import re",
+            "",
+            "re.search('a(.+)b', line).group(1)"
+        ]
+    },
+
+    "tempfile": {
+        "prefix": "tempfile",
+        "body": [
+            "import tempfile",
+            "",
+            "def open_in_editor(contents):",
+            "\twith tempfile.NamedTemporaryFile(mode='r+') as tmp:",
+            "\t\ttmp.writelines(contents)",
+            "\t\ttmp.flush()",
+            "\t\ttry:",
+            "\t\t\teditor = os.environ['EDITOR']",
+            "\t\texcept KeyError:",
+            "\t\t\teditor = 'vi'",
+            "\t\tsubprocess.call([editor, tmp.name])",
+            "\t\ttmp.seek(0)",
+            "\t\tcontents = tmp.readlines()",
+            "\t\treturn contents"
+        ]
+    },
+
+    "ternary": {
+        "prefix": "ternary",
+        "body": "x = True if y < 3 else False"
+    },
+
+    "sysargs": {
+        "prefix": "sysargs",
+        "body": "for arg in sys.argv[1:]:"
+    },
+
+    "list comprehension": {
+        "prefix": "list_comprehension",
+        "body": "my_list = [int(n) for n in data if n > 2.3]"
+    },
+
+    "selenium": {
+        "prefix": "selenium",
+        "body": [
+            "from selenium import webdriver",
+            "from selenium.webdriver.chrome.options import Options",
+            "from selenium.webdriver.common.by import By",
+            "",
+            "options = Options()",
+            "#options.headless = True",
+            "driver = webdriver.Chrome(options=options)",
+            "driver.get('https://example.com')",
+            "driver.find_element(By.TAG_NAME, 'h1').text",
+            "driver.quit()"
+        ]
+    },
+
+    "selenium_login": {
+        "prefix": "selenium_login",
+        "body": [
+            "driver.get('https://www.example.com/login')",
+            "",
+            "username = driver.find_element(By.ID, \"username\")",
+            "password = driver.find_element(By.ID, \"password\")",
+            "",
+            "username.send_keys(\"MyUsername\")",
+            "password.send_keys(\"MyPassword\")",
+            "",
+            "driver.find_element_by_name(\"submit\").click()"
+        ]
+    }
+}

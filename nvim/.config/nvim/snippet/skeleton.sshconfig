@@ -1,6 +1,0 @@
-Host backups-server
-	User foo
-	Port 23
-	IdentityFile ~/.ssh/id_rsa
-	Hostname 192.168.0.44
-

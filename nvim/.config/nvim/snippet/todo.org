@@ -1,8 +1,0 @@
-* TODO [#A] Foo
-SCHEDULED: <2022-09-13>
-DEADLINE: <2022-09-14>
-- [ ] Call Bob
-
-* DONE [#B] Bar
-CLOSED: <2022-09-08>
-- [X] Email Alice

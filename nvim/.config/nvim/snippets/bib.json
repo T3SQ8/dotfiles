@@ -1,0 +1,44 @@
+{
+    "@book": {
+        "prefix": "@book",
+        "body": [
+            "@book{$1,",
+            "\ttitle = \"$2\",",
+            "\tauthor = \"$3\",",
+            "\tpublisher = \"$4\",",
+            "\tyear = \"$5\",",
+            "\tmonth = \"$6\",",
+            "\torigyear = \"$7\",",
+            "\teditor = \"$8\",",
+            "\teditortype = \"$9\",",
+            "\ttranslator = \"$10\",",
+            "\tintroduction = \"$11\",",
+            "\tforeword = \"$12\",",
+            "\tafterword = \"$13\",",
+            "\tvolume = \"$14\",",
+            "\tnumber = \"$15\",",
+            "\tseries = \"$16\",",
+            "\taddress = \"$17\",",
+            "\tedition = \"$18\",",
+            "\tisbn = \"$19\",",
+            "}"
+        ]
+    },
+
+    "@online": {
+        "prefix": "@online",
+        "body": [
+            "@book{$1,",
+            "\ttitle = \"$2\",",
+            "\tauthor = \"$3\",",
+            "\tshortauthor = \"$4\",",
+            "\teditor = \"$5\",",
+            "\torganization = \"$6\",",
+            "\tdate = \"$7\",",
+            "\torigdate = \"$8\",",
+            "\turl = \"$9\",",
+            "\turldate = \"$10\",",
+            "}"
+        ]
+    }
+}

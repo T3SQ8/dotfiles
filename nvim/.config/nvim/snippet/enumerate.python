@@ -1,2 +1,0 @@
-for i, item in enumerate(my_list):
-    my_list[i] = item + 'abc'

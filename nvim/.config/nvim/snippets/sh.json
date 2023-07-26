@@ -1,0 +1,25 @@
+{
+    "skeleton": {
+        "prefix": "skeleton",
+        "body": "#!/bin/sh"
+    },
+
+    ".min": {
+        "prefix": ".min",
+        "body": "\\${file%%.*}.min.\\${file#*.}"
+    },
+
+    "getopts": {
+        "prefix": "getopts",
+        "body": [
+            "while getopts ab: flag; do",
+            "\tcase \\$flag in",
+            "\t\ta) var=1;;",
+            "\t\tb) carg=\\$OPTARG;;",
+            "\t\t*) echo \"\\$USAGE\"; exit 1;;",
+            "\tesac",
+            "done",
+            "shift \"\\$((OPTIND - 1))\""
+        ]
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "skeleton": {
+        "prefix": "skeleton",
+        "body": [
+            "%rec: Books",
+            "%mandatory: Title Author Language ISBN",
+            "%allowed: Year",
+            "%type: Language enum Swedish English Arabic French",
+            "%doc: A list of random books",
+            "",
+            "Title: Example book",
+            "Author: John Doe",
+            "Language: English",
+            "ISBN: 978-3-16-148410-0",
+            "Year: 2021"
+        ]
+    }
+}

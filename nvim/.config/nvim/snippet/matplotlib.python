@@ -1,5 +1,0 @@
-from matplotlib import pyplot as plt
-
-plt.plot(dates, amounts, label=category)
-plt.legend()
-plt.show()

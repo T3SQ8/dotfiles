@@ -9,6 +9,25 @@
         "body": "\\${file%%.*}.min.\\${file#*.}"
     },
 
+    "default clipboard": {
+        "prefix": "default_clipboard",
+        "body": [
+            "if [ \\$# -eq 0 ] ; then",
+            "\tset -- \"\\$(xclip -o -selection clipboard)\"",
+            "fi"
+        ]
+    },
+
+    "check_root": {
+        "prefix": "check_root",
+        "body": [
+            "if [ \"\\$(whoami)\" != \"root\" ]; then",
+            "\techo \"Need root privileges\"",
+            "\texit 1",
+            "fi"
+        ]
+    },
+
     "getopts": {
         "prefix": "getopts",
         "body": [

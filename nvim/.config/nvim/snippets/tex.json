@@ -727,6 +727,116 @@
         ]
     },
 
+    "Appendix": {
+        "prefix": "appendix",
+        "body": [
+            "\\appendix",
+            "\\setcounter{figure}{0}",
+            "\\renewcommand{\\figurename}{Bilaga}"
+        ]
+    },
+
+    "dotting": {
+        "prefix": "dotting",
+        "body": [
+            "\\usepackage{secdot} % Add dot after section numbering",
+            "\\sectiondot{subsection} % Add dot after subsection numbering",
+            "% Add dot after section numbering in TOC",
+            "\\usepackage{tocloft}",
+            "\\renewcommand{\\cftsecaftersnum}{.}"
+        ]
+    },
+
+    "page_numbering": {
+        "prefix": "page_numbering",
+        "body": [
+            "% Enable and disable",
+            "\\pagenumbering{gobble}",
+            "\\pagenumbering{arabic}",
+            "",
+            "% Single page",
+            "\\thispagestyle{empty}"
+        ]
+    },
+
+    "pgfplot_magnetfält": {
+        "prefix": "pgfplot_magnetfält",
+        "body": [
+            "\\begin{tikzpicture}",
+            "\t\\begin{axis}[",
+            "\t\t\txlabel={Längd [\\unit{\\meter}]},",
+            "\t\t\tylabel={Kraft [\\unit{\\newton}]},",
+            "\t\t\t%axis lines = left,",
+            "\t\t\tlegend pos=south east,",
+            "\t\t\tgrid style=dashed,",
+            "\t\t\tymajorgrids=true, xmajorgrids=true,",
+            "\t\t\tymin=0,",
+            "\t\t\txmin=0, xmax=0.1,",
+            "\t\t\trestrict x to domain=-1:1,",
+            "\t\t\tlegend entries={",
+            "\t\t\t\t\\qty{207e-3}{\\newton \\per \\ampere},",
+            "\t\t\t\t\\qty{179e-3}{\\newton \\per \\ampere},",
+            "\t\t\t\t\\qty{193e-3}{\\newton \\per \\ampere},",
+            "\t\t\t\tMätdata,",
+            "\t\t\t},",
+            "\t\t\txticklabel style={",
+            "\t\t\t\t/pgf/number format/fixed,",
+            "\t\t\t},",
+            "\t\t]",
+            "\t\t\\addplot[dashed]       {0.206685820512821*x};",
+            "\t\t\\addplot[dotted, thick]{0.178862487179487*x};",
+            "\t\t\\addplot[no markers]   {0.192774153846154*x};",
+            "\t\t\\addplot[only marks,mark=+] coordinates {",
+            "\t\t\t(0.02, 0.0041244)",
+            "\t\t\t(0.04, 0.0078560)",
+            "\t\t\t(0.03, 0.0058920)",
+            "\t\t\t(0.01, 0.0021604)",
+            "\t\t\t(0.06, 0.0112930)",
+            "\t\t\t(0.08, 0.0154174)",
+            "\t\t};",
+            "\t\\end{axis}",
+            "\\end{tikzpicture}",
+            "",
+            "\\begin{tikzpicture}",
+            "\t\\begin{axis}[",
+            "\t\t\txlabel={Längd [\\unit{\\meter}]},",
+            "\t\t\tylabel={Kraft [\\unit{\\newton}]},",
+            "\t\t\t%axis lines = left,",
+            "\t\t\tlegend pos=south east,",
+            "\t\t\tgrid style=dashed,",
+            "\t\t\tymajorgrids=true, xmajorgrids=true,",
+            "\t\t\tymin=0,",
+            "\t\t\txmin=0, xmax=0.1,",
+            "\t\t\trestrict x to domain=-1:1,",
+            "\t\t\tlegend entries={",
+            "\t\t\t\t\\qty{207e-3}{\\newton \\per \\ampere},",
+            "\t\t\t\t\\qty{179e-3}{\\newton \\per \\ampere},",
+            "\t\t\t\t\\qty{193e-3}{\\newton \\per \\ampere},",
+            "\t\t\t\tMätdata,",
+            "\t\t\t},",
+            "\t\t\txticklabel style={",
+            "\t\t\t\t/pgf/number format/fixed,",
+            "\t\t\t},",
+            "\t\t]",
+            "\t\t\\addplot[dashed]       {0.206685820512821*x};",
+            "\t\t\\addplot[dotted, thick]{0.178862487179487*x};",
+            "\t\t\\addplot[no markers]   {0.192774153846154*x};",
+            "\t\t\\addplot[only marks,mark=+] coordinates {",
+            "\t\t\t(0.02, 0.0041244)",
+            "\t\t\t(0.04, 0.0078560)",
+            "\t\t\t(0.01, 0.0021604)",
+            "\t\t\t(0.06, 0.0112930)",
+            "\t\t\t(0.08, 0.0154174)",
+            "\t\t};",
+            "\t\t\\addplot[red, only marks,mark=+] coordinates {",
+            "\t\t\t(0.035, 0.0078560)",
+            "\t\t};",
+            "\t\t\\addplot[no markers, red]{0.190283227016886*x};",
+            "\t\\end{axis}",
+            "\\end{tikzpicture}"
+        ]
+    },
+
     "Text normal":         { "prefix": "textnormal",   "body": "\\textnormal{$1}" },
     "Text Emphatic":       { "prefix": "emph",         "body": "\\emph{$1}" },
     "Text roman":          { "prefix": "textrm",       "body": "\\textrm{$1}" },

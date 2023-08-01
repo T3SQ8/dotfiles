@@ -56,6 +56,40 @@
         ]
     },
 
+    "imgzoomer": {
+        "prefix": "imgzoomer",
+        "body": [
+            "<html>",
+            "\t<style>",
+            "img {",
+            "\twidth: 500px",
+            "}",
+            "",
+            ".zoomed {",
+            "\twidth: unset",
+            "}",
+            "\t</style>",
+            "",
+            "\t<img src=\"img1.jpg\"/>",
+            "\t<img src=\"img2.jpg\"/>",
+            "\t<img src=\"img3.jpg\"/>",
+            "\t<img src=\"img4.jpg\"/>",
+            "",
+            "\t<script>",
+            "\t\tfunction zoom() {",
+            "\t\t\tevent.srcElement.classList.toggle(\"zoomed\");",
+            "\t\t}",
+            "",
+            "\t\tvar images = document.getElementsByTagName('img');",
+            "",
+            "\t\tfor(var i = 0; i < images.length; i++) {",
+            "\t\t\timages[i].addEventListener(\"click\", zoom);",
+            "\t\t}",
+            "\t</script>",
+            "</html>"
+        ]
+    },
+
     "img": {
         "prefix": "img",
         "body": "<img src=\"$1\" alt=\"$2\" class=\"$3\">"

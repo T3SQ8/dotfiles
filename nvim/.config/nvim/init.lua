@@ -47,6 +47,11 @@ require('packer').startup(function(use)
 
     use 'hrsh7th/cmp-vsnip'
     use 'hrsh7th/vim-vsnip'
+
+    use {
+        'nvim-tree/nvim-tree.lua',
+        requires = 'nvim-tree/nvim-web-devicons'
+    }
 end)
 
 -- nvim-cmp setup
@@ -129,6 +134,20 @@ vim.cmd [[
 imap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
 imap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
 ]]
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+require("nvim-tree").setup({
+    renderer = {
+        group_empty = true,
+    },
+    filters = {
+        dotfiles = false,
+        git_ignored = false,
+    },
+})
+
+vim.keymap.set("n", "<C-f>", vim.cmd.NvimTreeToggle)
 
 --
 -- SETTINGS

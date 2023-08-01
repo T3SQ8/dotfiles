@@ -68,7 +68,7 @@ cmp.setup({
         -- documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
-        ['<C-m>'] = cmp.mapping.confirm({ select = true })
+        ['<C-j>'] = cmp.mapping.confirm({ select = true })
     }),
     sources = cmp.config.sources({
         { name = 'ledger' },
@@ -156,6 +156,7 @@ vim.keymap.set("n", "<C-f>", vim.cmd.NvimTreeToggle)
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.ignorecase = true
+vim.opt.hidden = false
 vim.opt.timeout = false
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -246,6 +247,8 @@ vim.keymap.set("n", "M", "[sz=")
 vim.keymap.set("n", "<C-n>", ":next<CR>")
 vim.keymap.set("n", "<C-p>", ":previous<CR>")
 vim.keymap.set("v", "<C-r>", [["ay:%s/\<<C-r>a\>//g<Left><Left>]]) -- search and replace
+vim.keymap.set("n", "gq", "gw")
+vim.keymap.set("n", "gqq", "gww")
 
 langs = {'en', 'sv', 'fr', ''}
 local lang_index = 1

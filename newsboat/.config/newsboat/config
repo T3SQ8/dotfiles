@@ -1,8 +1,11 @@
 cleanup-on-quit no
 #reload-threads 2
-feed-sort-order lastupdated-asc
+#feed-sort-order lastupdated-asc
+feed-sort-order unreadarticlecount-asc
+#article-sort-order date-desc
 show-read-feeds no
 confirm-mark-feed-read false
+prepopulate-query-feeds yes
 
 highlight feedlist "-----(.*)-----" red default bold
 

@@ -15,7 +15,6 @@ fi
 pkglist
 
 rsync -aAXHP --delete-after --stats -h --dry-run \
-	--exclude-from="$ignore" \
 	--exclude="/dev/*" \
 	--exclude="/proc/*" \
 	--exclude="/sys/*" \
@@ -24,4 +23,6 @@ rsync -aAXHP --delete-after --stats -h --dry-run \
 	--exclude="/mnt/*" \
 	--exclude="/media/*" \
 	--exclude="/lost+found" \
+	--exclude="/var/cache/*" \
+	--exclude="/swapfile" \
 	/ "$diff_dir"

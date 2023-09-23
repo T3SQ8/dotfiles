@@ -8,7 +8,6 @@
 	#echo "💻"
 	#uptime --pretty | cut -d' ' -f2-
 
-
 	# Date
 	date "+ %b %d %R"
 	echo ";"
@@ -27,12 +26,13 @@
 				print ""
 			else
 				print "🔊"
+				#print ""
 			print $2 "%"
 		}'
 
 	# Network
 	awk '
-	BEGIN {print "📶"}
+	#BEGIN {print "📶"}
 	{
 		if ($0 ~ /^up$/) {
 			n=1
@@ -40,10 +40,12 @@
 		}
 	}
 	END {
-		if (n)
-			print "ON"
-		else
-			print "OFF"
+		if (n) {
+			print ""
+			system("nmcli -t -f connection dev status | sed \"/^\s*$/d;/lo/d\"")
+		} else {
+			print ""
+		}
 	}' /sys/class/net/*/operstate
 
 	# Battery

@@ -1,6 +1,6 @@
 {
-    "TeX make": {
-        "prefix": "tex_make",
+    "TeX make old": {
+        "prefix": "tex_make_old",
         "body": [
             "OUTDIR = build/",
             "IMGDIR = images/",
@@ -37,6 +37,28 @@
             "\t#mv \\$(base) \\$(base).bak",
             "",
             ".PHONY: clean"
+        ]
+    },
+
+    "TeX make": {
+        "prefix": "tex_make",
+        "body": [
+            "BUILD = .build/",
+            "TEXFLAGS = -outdir=\\$(BUILD) -xelatex -cd -g -synctex=1 -pvc",
+            "TEX = latexmk \\$(TEXFLAGS)",
+            "",
+            "all: latexmk cpbuild",
+            "",
+            "latexmk:",
+            "\t\\$(TEX)",
+            "",
+            "cpbuild: latexmk",
+            "\tcp \\$(BUILD)*.pdf .",
+            "",
+            "clean:",
+            "\t\\$(TEX) -C",
+            "",
+            ".PHONY: clean latexmk cpbuild"
         ]
     }
 }

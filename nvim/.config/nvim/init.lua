@@ -52,6 +52,8 @@ require('packer').startup(function(use)
         'nvim-tree/nvim-tree.lua',
         requires = 'nvim-tree/nvim-web-devicons'
     }
+
+    use 'lervag/vimtex'
 end)
 
 -- nvim-cmp setup
@@ -107,7 +109,9 @@ require('nvim-treesitter.configs').setup {
 }
 
 require('orgmode').setup({
-    org_agenda_files = {'~/notes/todos/*.org'},
+    org_agenda_files = {
+        '~/notes/todos/*.org',
+    },
     org_default_notes_file = '~/notes/todos/refile.org',
     org_todo_keywords = {'TODO', '|', 'DONE', 'CANCELED', 'DELEGATED'},
     org_capture_templates = {
@@ -129,7 +133,17 @@ require('orgmode').setup({
     org_priority_default = 'C',
 })
 
-vim.g.vsnip_snippet_dir = vim.fn.expand('$XDG_CONFIG_HOME') .. '/nvim/snippets'
+vim.api.nvim_create_autocmd("BufWinEnter", {
+    pattern = "chalmers.org",
+    callback = function()
+        require('orgmode').setup({
+            org_agenda_files = vim.fn.expand('%:p'),
+            org_default_notes_file = vim.fn.expand('%:p'),
+        })
+    end,
+})
+
+vim.g.vsnip_snippet_dir = vim.fn.expand('$HOME') .. '/.config/nvim/snippets'
 
 vim.cmd [[
 imap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
@@ -214,6 +228,13 @@ vim.api.nvim_create_autocmd("TermOpen", {
     pattern = "*",
     command = "setlocal nonumber norelativenumber",
 })
+
+--vim.api.nvim_create_autocmd("BufEnter", {
+--    pattern = "*",
+--    command = "silent! lcd %p:h",
+--})
+
+vim.cmd [[autocmd BufEnter * silent! lcd %:p:h]]
 
 --
 -- KEYMAPS
@@ -312,3 +333,7 @@ vim.api.nvim_create_user_command('Visualwrap', function(opts)
     vim.cmd("normal! i" .. before_text)
 end,
 { nargs = '+', range = true })
+
+if vim.fn.has('gui_vimr') then
+	vim.cmd.colorscheme('habamax')
+end

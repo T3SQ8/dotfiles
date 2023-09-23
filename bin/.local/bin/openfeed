@@ -1,7 +1,7 @@
 #!/bin/sh
 
 _chromium() {
-	chromium "$@" > /dev/null 2>&1 &
+	google-chrome-stable "$@" > /dev/null 2>&1 &
 }
 
 _mpv_audio() {

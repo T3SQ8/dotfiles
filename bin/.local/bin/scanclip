@@ -2,4 +2,4 @@
 
 # Copy text into the clipboard
 
-import PNG:- | tesseract -l swe - - | xclip -selection c
+import PNG:- | tesseract -l "$(tesseract --list-langs | tail -n +2 | dmenu)" - - | xclip -selection c

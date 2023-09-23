@@ -6,7 +6,7 @@ zmodload zsh/complist
 
 # Options
 setopt nohup autocd autopushd nolistambiguous nocheckrunningjobs completealiases
-export SAVEHIST=10000
+export SAVEHIST=100000
 export HISTSIZE=$SAVEHIST
 
 # Command-line completion

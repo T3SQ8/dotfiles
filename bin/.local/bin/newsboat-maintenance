@@ -1,28 +1,30 @@
 #!/bin/sh
 
-# Forked from https://github.com/newsboat/newsboat/blob/master/contrib/urls-maintenance.sh
+# forked from https://github.com/newsboat/newsboat/blob/master/contrib/urls-maintenance.sh
+
+countfile=$(mktemp)
+n=1
 
 shuf "${urls_file:-$HOME/.config/newsboat/urls}" |
+	grep -v -e '^\s*#' -e '^\s*-' -e '^\s*$' -e 'exec:' |
+	cut -d' ' -f1 |
+	tee "$countfile" |
 	while read -r url; do
-		echo "$url" | grep -q '^\s*#' && continue
-		echo "$url" | grep -q '^\s*$' && continue
-		echo "$url" | grep -q '^\s*-----' && continue
-
-		execurl=$(echo "$url" | sed -n "s/^[\"']\?exec:\([^\"']\+\)[\"']\?/\1/p")
-		if [ "$execurl" ] ; then
-			$execurl > /dev/null 2>&1 || echo "$url"
-		else
+		count=$(wc -l "$countfile" | cut -d' ' -f1)
+		echo "$n/$count $url"
+		while true; do
 			response=$(curl -so /dev/null -w "%{http_code}" --connect-timeout 10 "$url")
 			case "$response" in
-				200)
-					;;
-				429) # TODO redo the same url before moving on.
+				200) break ;;
+				429)
 					echo "Sending requests too quickly, waiting before continuing. $url"
-					#sleep 60
+					sleep 120
 					;;
 				*)
-					echo "$url" # TODO function to deal with flagged urls
+					echo "$response -- $url"
+					break
 					;;
 			esac
-		fi
+		done
+		n=$((n + 1))
 	done

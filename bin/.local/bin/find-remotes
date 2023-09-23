@@ -2,4 +2,4 @@
 
 # Find open ssh ports on this network
 
-nmap -sT -T5 -p 22 -oG - --open "$(ip route show default | cut -d' ' -f3)/24" | grep -v "^#"
+nmap -sT -T5 -p 22,8022 -oG - --open "$(ip route show default | cut -d' ' -f3)/24" | grep -v "^#"

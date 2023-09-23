@@ -76,6 +76,7 @@ cmp.setup({
         { name = 'vsnip' },
     }, {
         { name = 'buffer' },
+        { name = 'path' }
     })
 })
 
@@ -135,8 +136,8 @@ imap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
 imap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
 ]]
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+--vim.g.loaded_netrw = 1
+--vim.g.loaded_netrwPlugin = 1
 require("nvim-tree").setup({
     renderer = {
         group_empty = true,
